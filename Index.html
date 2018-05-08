@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Common</title>
+<base target="_blank" />
+<style type="text/css">
+    .S{
+	background:#06c;
+}
+* {
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	color:#333;
+}
+html {
+	overflow-y:scroll;
+}
+body {
+	font:400 12px/24px Verdana, "宋体";
+	text-align:center;
+}
+.Wrap {
+	width:980px;
+	text-align:left;
+	margin:0 auto;
+}
+a{
+	white-space:nowrap;
+	text-decoration:none;
+}
+.Org,
+a:hover{
+	color:#f63;
+}
+img {
+	border:none;
+}
+h1,h2,h3,h4,h5,h6{
+	color:#fff;
+	letter-spacing:1px;
+}
+h1
+{
+    font:600 16px/36px "";
+}
+b{
+	font-weight:600;
+	display:block;
+}
+p {
+	text-indent:2em;
+}
+li{
+	list-style:outside none;
+}
+.Ac{
+	text-align:center;
+}
+.I0 {
+	text-indent:0;
+}
+.L {
+	float:left;
+}
+.R {
+	float:right;
+}
+.Clr{
+	clear:both;
+	height:0;
+	line-height:0;
+	font-size:0;
+}
+p.AL{
+	text-indent:0;
+}
+.Ctn,
+.Is,
+.AL{
+	padding:8px 12px;
+	border:1px solid #668d0c;
+	border-top:none;
+	background:#efe;
+} 
+.AL a{
+	display:block;
+	background:url(/Images/Arrow.gif) no-repeat 0px -92px;
+	height:24px;
+	padding-left:12px;
+	white-space:normal;
+}
+.Is{
+	padding:14px 0 8px 17px;
+	zoom:1;
+}
+.Is p{
+	text-indent:0;
+	text-align:center;
+	float:left;
+	width:236px;
+}
+.Is p a{
+	display:block;
+}
+.Is p a img{
+	margin-bottom:6px;
+	padding:2px;
+	border:1px solid #ddd;
+}
+.Is dl{
+	position:relative;
+	float:left;
+	width:120px;
+}
+.Is dl dt,
+.Is dl dd{
+	width:110px;
+	text-align:center;
+}
+.Is dl dt a,
+.Is dl dd a{
+	white-space:normal;
+}
+.Is dl dt span{
+	display:block;
+	position:absolute;
+	background:#fff;
+	filter:alpha(opacity=70);
+	opacity:0.7;
+	top:107px;
+	left:9px;
+	width:82px;
+	padding-left:10px;
+	height:20px;
+	line-height:20px;
+}
+.Is dl dt span a{
+	margin-right:10px;
+}
+.Is dl dt{	
+height:132px;
+}
+.Is dl dd{
+	height:24px;
+}
+.Is dl dt a img{
+	padding:1px;
+	border:1px solid #ddd;
+}
+.ML40{
+	margin-left:40px;
+}
+.MT4{
+	margin-top:4px;
+}
+.MT9{
+	margin-top:10px;
+}
+.MV9{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.ML9{
+	margin-left:10px;
+}
+.P12{
+	padding:12px;
+}
+a.Detail{
+	margin-left:1em;
+	color:#f60;
+	background:none;
+	padding:0;
+	display:inline;
+}
+a.More{
+	float:right;
+	color:#f60;
+	padding-right:2em;
+	background:none;
+}
+.Rd{
+	color:#f60;
+}
+.NBg{
+	background:none;
+}
+.BtG{
+	border:none;
+	width:69px;
+	height:22px;
+	font:400 14px/23px "";
+	color:#ffc;
+	text-align:center;
+	background:#71a400 url(/XML/BtnBgA.jpg) no-repeat 0 0;
+	margin-left:10px;
+	margin-bottom:14px;
+	}
+textarea{
+	overflow-y:scroll;
+	width:200px;
+	margin:10px 0px 4px  0;
+	height:48px;
+}
+.Cs div.Crt1{
+	display:block;
+}
+.Cs div{
+	display:none;
+}
+/******************************************************* Profile *********************/
+h3{
+	height:28px;
+	font:800 14px/28px "";
+	/*background:url(/XML/H.jpg) no-repeat 0 0;*/
+	border:1px solid #668d0c;
+	border-bottom-color:#3b5c01;
+	padding-left:12px;
+}
+h3 a.More,
+h3 a{
+	color:#fff;
+}
+h3 a.More:hover,
+h3 a:hover{
+	color:#ff9;
+}
+.Ad{
+	height:135px;
+	background:#ffe;
+}
+.FC{
+	background:#fef;
+	zoom:1;
+	margin-right:-12px;
+}
+.FC li{
+	float:left;
+	width:236px;
+	margin-right:12px;
+	}
+.W2{
+	width:200px;
+	background:#eff;
+}
+.W5{
+	width:536px;
+	margin-left:12px;
+	background:#eff;
+}
+.W22{
+	width:220px;
+	background:#eff;
+}
+.W7{
+	width:748px;
+	margin-right:12px;
+}
+.W96{
+	width:110px;
+	padding:1px;
+	border:1px solid #999;
+	margin-top:5px;
+}
+    select
+    {
+        background: none repeat scroll 0 0 #FFFFF5;
+        border: 1px solid #BCB691;
+        border-radius: 3px 3px 3px 3px;
+        margin: 0 0 3px;
+        padding: 4px;
+        width: auto;
+    }
+    .hi
+    {
+        width:600px;
+        height:371px;
+        border:none;
+        background:#eee;
+    }
+</style>
+    <script src="Js/Base.js"></script>
+</head>
+
+<body class="Wrap">
+<div class="L W2">
+<h3><a href="#">最新动态</a></h3>
+    <p class="AL">
+    <a href="####">Navigate</a>
+    <a href="####">Spider</a>
+    <a href="####">WebServies</a>
+    <a href="####">AjaxSite</a>
+    <a href="####">ThinkTank</a>
+    <a href="####">ThinkTankV3</a>
+    <a href="####">ThinkTankV3</a>
+    </p>
+</div>
+<div class="L W5">
+<h3><a href="#">最新动态</a></h3>
+    <p class="AL">
+    <a href="####">暂无</a>
+    <a href="####">Enterprises</a>
+    <a href="####">Net4</a>
+    <a href="####">QuanXin</a>
+    <a href="####">JsDemos</a>
+    <a href="####">Forum</a>
+    <a href="####">ThinkTankV3</a>
+    </p>
+</div>
+
+<div class="R W22">
+<h3><a href="#">最新动态</a></h3>
+    <p class="AL">
+<a href="http://192.168.100.5/Default.aspx">JsDemos:80</a>
+    <a href="http://192.168.100.5:60082/">Enterprises:60082</a>
+    <a href="http://192.168.100.5:60083/">ThinkTank:60083</a>
+    <a href="http://192.168.100.5:60084/">Dnn:60084</a>
+    <a href="http://192.168.100.5:60086/">WCF:60086</a>  
+    <a href="http://192.168.100.5:60087/">SiteFactory:60087</a>    
+    <a href="http://192.168.100.5:60088/">We7:60088</a>      </p>
+    </div><br class="Clr" />
+    <div class="L W7 MV9">
+<h3><a href="#">专家团队</a></h3>
+	<div class="Is">
+    <dl>
+    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+    </dl>
+   <dl>
+    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+    </dl>
+      <dl>
+    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+    </dl>
+      <dl>
+    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+    </dl>
+      <dl>
+    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+    </dl>
+      <dl>
+    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+    </dl>
+    <br class="Clr" /></div>
+</div>
+<div class="R W22 MV9">
+<h3><a href="#">最新动态</a></h3>
+    <p class="AL">
+    <a href="#">文章列表文字文章列表文字文章列表文字</a>
+    <a href="#">文章列表文字文章列表文字文章列表文字</a>
+    <a href="#">文章列表文字文章列表文字文章列表文字</a>
+    <a href="#">文章列表文字文章列表文字文章列表文字</a>
+    <a href="#">文章列表文字文章列表文字文章列表文字</a>
+    <a href="#">文章列表文字文章列表文字文章列表文字</a>
+    </p>
+    </div><br class="Clr" />
+	<h3 class="MT9"><a href="#">活动现场</a></h3>
+	<div class="Is">
+    <p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
+<p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
+<p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
+<p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
+    </div>
+    <div>
+      <ul class="MV9 FC">
+        <li>
+          <h3>网上留言</h3>
+          <form class="Ctn" action="#">
+            <textarea name="a">请输入您的健康疑问，点击“提交”或“查看”来获得专家回复。</textarea>
+            <input type="button" value="提&nbsp;&nbsp;交" class="BtG ML40" />
+            &nbsp;
+            <input type="button" value="重&nbsp;&nbsp;填" class="BtG" />
+          </form>
+        </li>
+        <li>待定内容待定内容待定内容待定内容待定内容待定内容待定内容待定内容</li>
+        <li>
+          <h3>网上预约&nbsp;优先就诊</h3>
+          <form class="Ctn" action="#">
+            您的姓名:&nbsp;
+            <input type="text" class="W96" />
+            <br />
+            联系电话:&nbsp;
+            <input type="text" class="W96" />
+            <br />
+            预约时间:&nbsp;
+            <input type="text" class="W96" />
+            <br />
+            <textarea name="b">请输入您的预约内容!</textarea>
+            <input type="button" value="提&nbsp;&nbsp;交" class="BtG ML40" />
+            &nbsp;
+            <input type="button" value="查&nbsp;&nbsp;看" class="BtG" />
+          </form>
+        </li>
+        <li>待定内容待定内容待定内容待定内容待定内容待定内容待定内容待定内容</li>
+      </ul>
+    </div>
+</body>
+</html>

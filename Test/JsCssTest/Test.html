@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Js操作CSS</title>
+<link rel="stylesheet" type="text/css" href="Sty.css"/>
+</head>
+<body>
+<script type="text/javascript">
+function changecss(theClass,element,value)
+ {
+    for (var S = 0; S < document.styleSheets.length; S++)
+    {
+        var cssRules=document.styleSheets[S].cssRules || document.styleSheets[S].rules;
+        for (var R = 0; R <cssRules.length; R++)
+        {
+            if (cssRules[R].selectorText == theClass) 
+                {
+                    cssRules[R].style[element] = value;
+                }
+        }
+    }
+}
+</script> 
+<h2 class="exampleA">Example A</h2> 
+<h2 class="exampleB">Example B</h2> 
+<h2 class="exampleC">Example C</h2> 
+<input type="button" value="Change A Red" onclick="changecss('.exampleA','color','#ff0000')"/> 
+<input type="button" value="Change B Cyan" onclick="changecss('.exampleB','color','#00ffff')"/>
+<h1 id="Rpt"></h1>
+</body>
+</html>

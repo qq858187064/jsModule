@@ -1,0 +1,70 @@
+﻿<%@ Master Language="C#" CodeFile="Demos.master.cs" Inherits="Demos" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server"><link href="/App_Themes/Base.css" rel="stylesheet" type="text/css" charset="utf-8" />
+ <asp:ContentPlaceHolder ID="hd" runat="server" />
+</head>
+<body><div class="W" id="form1" runat="server">
+<div class="Hd"><b>Javascript Modules Library</b><a href="#" class="Lg"></a></div>
+<div class="SubNav" id="SubNav"><a href="####" onclick="C.SetHome('http://j.cnfol.com')" class="R">设为首页</a><a href="####" onclick="C.Collect()" class="R">加入收藏</a>
+今天是：<i id="AW"></i>世界时间：北京<i id="AS"></i>伦敦<i id="BS"></i>纽约<i id="CS"></i>东京<i id="DS"></i>芝加哥<i id="ES"></i>
+<%--<div id="Lra" class="Ra"><span><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a></span></div>
+--%></div>
+<dl id="C2Cot" class="Cot Z1">
+<dt class="Prt L"><b>Js类库目录</b>
+    <a href="/Default.aspx" title="所有类中公用的功能">Base&nbsp;基础类</a>
+    <a href="/Pages/Tabs.aspx" title="选项卡切换功能">Tabs&nbsp;选项卡切换</a>
+    <a href="/Pages/Dialog.aspx" title="弹出窗口的功能">Dialog&nbsp;弹出窗口</a>
+    <a href="/Pages/Fixed.aspx" title="固定窗口的功能">Fixed&nbsp;固定窗口</a>
+    <a href="/Pages/Rolls.aspx" title="滚动显示（跑马灯）">Rolls&nbsp;滚动显示</a>  
+    <a href="/Pages/Imgs.aspx" title="图片切换功能">Imgs&nbsp;图片切换</a>
+    <a href="/Pages/Menus.aspx" title="伸缩菜单功能">Menus&nbsp;伸缩菜单</a>
+    <a href="/Pages/Trees.aspx" title="树型菜单功能">Trees&nbsp;树型菜单</a>
+    <a href="/Pages/Checkbox.aspx" title="复选框全选/取消全选组件">Checkbox&nbsp;全选/取消全选</a>
+    <a href="/Pages/Ajax.aspx" title="Ajax相关功能">Ajax&nbsp;异步通讯</a>
+    <a href="/Pages/ShowHide.aspx" title="显示/隐藏功能">ShowHide&nbsp;显示/隐藏</a>
+    <a href="/Pages/Wave.aspx" title="实现波浪式切换显示功能">Wave&nbsp;波浪式展示</a>
+    <a href="/Pages/Drags.aspx" title="模块拖动功能">Drag&nbsp;拖动组件</a>
+    <a href="/Pages/Cookie.aspx" title="Cookie的读写改删功能">Cookie&nbsp;操作Cookie</a>
+    <a href="/Pages/Forms.aspx" title="操作表单">Forms&nbsp;操作表单</a>
+    <a href="/Pages/Tally.aspx" title="计算输入字符数的组件">Tally&nbsp;输入字符计数</a>
+    <a href="/Pages/Timers.aspx" title="正、负计时器的组件">Timers&nbsp;正、负计时器</a>
+    <a href="/Pages/Cal.aspx" title="日历组件">Cal&nbsp;日历组件</a>
+    <a href="/Pages/Selects.aspx" title="省市区三级联动">Selects&nbsp;省市区三级联动</a>
+    <a href="/Pages/fs.aspx" title="全屏显示/恢复组件">fs&nbsp;全屏/恢复显示</a>
+	 <a href="/Pages/sg.aspx" title="输入框默认文字">sg&nbsp;输入框默认文字</a>
+    <a href="/Pages/crop.aspx" title="上传裁切图像">crop&nbsp;上传、裁切图像</a>
+    <a href="#" title="生成标准Html代码的功能">CreateHtml</a>
+    <a href="#" title="生成标准的外置Css的功能">CreateCss</a>
+    <a href="#" title="操作Xml(含XHTML)的功能">OperatXml</a>
+    <a href="#" title="操作一般文件(含Css)的功能" class="BbS">OperatFile</a>
+    </dt>
+<dd style=" display:block"><h5><asp:ContentPlaceHolder id="Hd5" runat="server" />组件<i><asp:ContentPlaceHolder id="Descr" runat="server" /></i></h5>
+    <dl id="C1A"><dt class="RBar"><asp:ContentPlaceHolder id="MenuC" runat="server" /><a href="#" id="Sce" class="BbS">当前模块源代码</a></dt><asp:ContentPlaceHolder id="MainC" runat="server" /><dd></dd></dl>
+</dd>
+</dl>
+    <dl><dt></dt><dd></dd></dl>
+</div>
+<div class="Ft" id="Ft"><a href="#" target="_blank">论坛</a><a href="#" target="_blank">微博</a><a href="#" target="_blank">首页</a></div>
+<asp:ContentPlaceHolder ID="FBHtml" runat="server" />
+<asp:ContentPlaceHolder ID="FBd" runat="server" />
+<%--<script type="text/javascript" src="/Js/Base.js"></script>
+<script type="text/javascript" src="/Js/Tabs.js"></script>
+<script type="text/javascript" src="/Js/Sys.js"></script>--%>
+<%--<script type="text/javascript" src="/Js/Rolls.js"></script>--%>
+<%--<script type="text/javascript" src="../Hs/f.ashx?Js/Base.js,Js/Tabs.js,Js/Sys.js,Js/Rolls.js"></script>--%>
+
+<script type="text/javascript" src="/Js/Base.js"></script>
+<script type="text/javascript" src="/Js/Rolls.js"></script>
+<script type="text/javascript" src="/Js/Tabs.js"></script>
+<script type="text/javascript" src="/Js/Sys.js"></script>
+<asp:ContentPlaceHolder id="IptJs" runat="server"/>
+<script type="text/javascript">
+Tabs(<asp:ContentPlaceHolder runat="server" ID="TabId" />"C1A");
+C.sDate("AW","AS","BS","CS","DS","ES");
+/*new Rolls("Lra",20,1,0);*/
+<asp:ContentPlaceHolder runat="server" ID="RunJs" />
+new Sys();
+</script>
+</body>
+</html>

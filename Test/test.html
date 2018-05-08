@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>js test</title>
+    <style type="text/css">
+        body {
+        height:666px;
+        }
+        a{
+		display:block;
+		text-decoration:none;
+		color:#096;
+		text-align:center;
+		margin:4px;
+		padding:12px;
+		}
+		a:hover
+		{
+		background:#ccc;
+		font-weight:800;
+		}
+    </style>
+
+</head>
+<body>
+ <a href="#">黄金</a><a href="#">股票</a><a href="#">外汇</a>
+ <h1 id="r">无数据</h1>
+    <script type="text/javascript">
+	var arr=[1,2,7,4,9,3,-2,-1];
+	
+	
+
+var r=document.getElementById("r"),
+	cc=0;
+	
+	//排序
+	r.innerHTML=arr.sort(function (a, b) { return b-a; }).join("、");
+        function ns(es) {
+            var i;
+            for (i = 0; i < es.length; i++) {
+                var o = es[i];
+				o.i=i;
+                o.onclick = function (o)
+				{
+					return function (e)
+					{
+					r.innerHTML=o.i+"、"+o.innerHTML;
+					};
+                }(o);
+            }
+        };
+
+       ns(document.getElementsByTagName("a"));
+
+        function fade(node) {
+            var n = 1,
+			s=100;
+            function step() {
+                var hex = n.toString(16);
+                node.style.backgroundColor = '#ffff' + hex + hex;
+                if (n < 15)
+				{
+                    n += 1;
+                    setTimeout(step, s);
+                }
+            }
+          setTimeout(step, s);
+        };
+        fade(document.body);
+	   
+	   /*old
+        var add_the_handlers = function (nodes) {
+           
+            var i;
+            document.write(nodes.length);
+            for (i = 0; i < nodes.length; i += 1) {
+                nodes[i].onclick = function (i) {
+                    return function (e) {
+                        alert(i);
+                        document.write(i);
+                    };
+                }(i);
+            }
+        };
+		
+		        function fade(node) {
+            var n = 1;
+            function step() {
+                var hex = n.toString(16);
+                node.style.backgroundColor = '#66ff' + hex + hex;
+                //document.write(hex);
+                if (n < 15) {
+                    n += 1;
+                    setTimeout(step, 100);
+                }
+            }
+           setTimeout(step, 100);
+        };
+        fade(document.body);
+		
+		
+    */
+    </script>
+
+</body>
+</html>

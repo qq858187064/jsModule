@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+    .upBtn,.downBtn,.upLeftBtn,.upRightBtn,.downLeftBtn,.downRightBtn,.centerLeftBtn,.centerRightBtn
+    { position:absolute; background:#CC0000; width:9px; height:9px; z-index:5; }
+    .upBtn { top:-4px; left:50%; cursor:n-resize; }
+    .downBtn { bottom:-4px; left:50%; cursor:s-resize; }
+    .upLeftBtn { top:-4px; left:-4px; cursor:nw-resize; }
+    .upRightBtn { top:-4px; right:-4px; cursor:ne-resize; }
+    .downLeftBtn { bottom:-4px; left:-4px; cursor:sw-resize; }
+    .downRightBtn { bottom:-4px; right:-4px; cursor:se-resize; }
+    .centerLeftBtn { top:50%; left:-4px; cursor:w-resize; }
+    .centerRightBtn { top:50%; right:-4px; cursor:e-resize; }
+    </style>
+    <script type="text/javascript" >
+        function $(id) {
+            return document.getElementById(id);
+        }
+        function getEvent(e) {
+            return e || window.event;
+        }
+        function getLocation(e) {
+            return {
+                x: e.x || e.clientX,
+                y: e.y || e.clientY
+            }
+        }
+        var obj = null; // 当前操作的对象
+        var preview = null; // 要处理的对象
+        var clickX = 0; // 保留上次的X轴位置
+        var clickY = 0; // 保留上次的Y轴位置
+        // 鼠标点击
+        var onDragDown = function (e, type) {
+            e = getEvent(e);
+            var location = getLocation(e);
+            clickY = location.y;
+            clickX = location.x;
+            obj = this;
+            obj.operateType = type;
+            preview = $("preview");
+            return false;
+        };
+        var onUpBtnDown = function (e) {
+            onDragDown(e, "n");
+        };
+        var onDownBtnDown = function (e) {
+            onDragDown(e, "s");
+        };
+        var onCenterLeftBtnDown = function (e) {
+            onDragDown(e, "w");
+        };
+        var onCenterRightBtnDown = function (e) {
+            onDragDown(e, "e");
+        };
+        var onUpLeftBtnDown = function (e) {
+            onDragDown(e, "nw");
+        };
+        var onUpRightBtnDown = function (e) {
+            onDragDown(e, "ne");
+        };
+        var onDownLeftBtnDown = function (e) {
+            onDragDown(e, "sw");
+        };
+        var onDownRightBtnDown = function (e) {
+            onDragDown(e, "se");
+        };
+        var onDragUp = function () {
+            document.body.style.cursor = "auto";
+            obj = null;
+        };
+        var move = function (operateType, location, preview) {
+            document.body.style.cursor = location + "_resize";
+            switch (operateType) {
+                case "e":
+                    var add_length = clickX - location.x;
+                    clickX = location.x;
+                    var length = parseInt(preview.style.width) - add_length;
+                    preview.style.width = length + "px";
+                    break;
+                case "s":
+                    var add_length = clickY - location.y;
+                    clickY = location.y;
+                    var length = parseInt(preview.style.height) - add_length;
+                    preview.style.height = length + "px";
+                    break;
+                case "w":
+                    var add_length = clickX - location.x;
+                    clickX = location.x;
+                    var length = parseInt(preview.style.width) + add_length;
+                    preview.style.width = length + "px";
+                    preview.style.left = clickX + "px";
+                    break;
+                case "n":
+                    var add_length = clickY - location.y;
+                    clickY = location.y;
+                    var length = parseInt(preview.style.height) + add_length;
+                    preview.style.height = length + "px";
+                    preview.style.top = clickY + "px";
+                    break;
+            }
+        };      
+        var onDragMove = function (e) {
+            if (obj) {
+                e = getEvent(e);
+                var location = getLocation(e);
+                switch (obj.operateType) {
+                    case "n":
+                        move("n", location, preview);
+                        break;
+                    case "s":
+                        move("s", location, preview);
+                        break;
+                    case "w":
+                        move("w", location, preview);
+                        break;
+                    case "e":
+                        move("e", location, preview);
+                        break;
+                    case "nw":
+                        move("n", location, preview);
+                        move("w", location, preview);
+                        break;
+                    case "ne":
+                        move("n", location, preview);
+                        move("e", location, preview);
+                        break;
+                    case "sw":
+                        move("s", location, preview);
+                        move("w", location, preview);
+                        break;
+                    case "se":
+                        move("s", location, preview);
+                        move("e", location, preview);
+                        break;
+                }
+            }
+            return false;
+        };
+        window.onload = function () {
+            $("upBtn").onmousedown = onUpBtnDown;
+            $("downBtn").onmousedown = onDownBtnDown;
+            $("centerLeftBtn").onmousedown = onCenterLeftBtnDown;
+            $("centerRightBtn").onmousedown = onCenterRightBtnDown;
+            $("upLeftBtn").onmousedown = onUpLeftBtnDown;
+            $("upRightBtn").onmousedown = onUpRightBtnDown;
+            $("downLeftBtn").onmousedown = onDownLeftBtnDown;
+            $("downRightBtn").onmousedown = onDownRightBtnDown;
+            document.onmousemove = onDragMove;
+            document.onmouseup = onDragUp;
+        }
+    </script>
+</head>
+<body>
+<div id="preview" style="width:200px; height:200px; border:1px solid gray; position:absolute; left:200px; top:100px;" >
+<div class="upBtn" id="upBtn"></div>
+<div class="downBtn" id="downBtn"></div>
+<div class="upLeftBtn" id="upLeftBtn"></div>
+<div class="upRightBtn" id="upRightBtn"></div>
+<div class="downLeftBtn" id="downLeftBtn"></div>
+<div class="downRightBtn" id="downRightBtn"></div>
+<div class="centerLeftBtn" id="centerLeftBtn"></div>
+<div class="centerRightBtn" id="centerRightBtn"></div>
+</div>
+</body>
+</html>

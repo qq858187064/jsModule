@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Nav>
+    <div>
+        <a href="#">Home</a>
+        <a href="#">Company</a>
+        <a href="#">News</a>
+        <a href="#">Contact</a>
+    </div>
+    <div>
+        <b>Products</b>
+        <a href="#">Strap</a>
+        <a href="#">Metal Parts</a>
+        <a href="#">Plastic Parts</a>
+        <a href="#">Stationery</a>
+        <a href="#">Binder</a>
+        <a href="#">Expanding File</a>
+        <a href="#">Index Card Case</a>
+        <a href="#">Pencil Case</a>
+        <a href="#">File Bag</a>
+        <a href="#">Others</a>
+        <a href="#">Gifts</a>
+        <a href="#">Keychain</a>
+        <a href="#">Bookmark</a>
+        <a href="#">Fridge Magnet</a>
+        <a href="#">Purse Hanger</a>
+        <a href="#">Bracelet</a>
+        <a href="#">Others</a>
+    </div>
+</Nav>

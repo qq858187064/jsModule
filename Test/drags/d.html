@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: #00FFFF;
+            position: absolute;
+            border: 1px solid;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var div = document.getElementById('div1');
+            var disX = 0;
+            var disY = 0;
+            document.onmousedown = function (ev) {  //鼠标按下
+                var oEvent = ev || event;       //判断浏览器兼容
+                disX = oEvent.clientX - div1.offsetLeft;    //鼠标横坐标点到div的offsetLeft距离
+                disY = oEvent.clientY - div1.offsetTop;     //鼠标纵坐标点到div的offsetTop距离
+                document.onmousemove = function (ev) {      //鼠标移动
+                    var oEvent = ev || event;
+                    var l = oEvent.clientX - disX;          //获取div左边的距离
+                    var t = oEvent.clientY - disY;          //获取div上边的距离
+                    if (l < 0) {        //判断div的可视区，为避免DIV失去鼠标点
+                        l = 0;
+                    }
+                    else if (l > document.documentElement.clientWidth - div.offsetWidth) {
+                        l = document.documentElement.clientWidth - div.offsetWidth;
+                    }
+                    if (t < 0) {
+                        t = 0;
+                    }
+                    else if (t > document.documentElement.clientHeight - div.offsetHeight) {
+                        t = document.documentElement.clientHeight - div.offsetHeight;
+                    }
+                    div.style.left = l + 'px';      //确定DIV的左边位置
+                    div.style.top = t + 'px';       //确定DIV的上边位置
+                }
+                document.onmouseup = function () {      //当鼠标松开后关闭移动事件和自身事件
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+    </div>
+</body>
+</html>

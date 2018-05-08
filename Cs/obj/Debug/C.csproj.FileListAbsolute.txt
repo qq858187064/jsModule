@@ -1,0 +1,5 @@
+F:\Projects\JsDemos\Cs\bin\Debug\Cs.dll
+F:\Projects\JsDemos\Cs\bin\Debug\Cs.pdb
+F:\Projects\JsDemos\Cs\obj\Debug\Cs.dll
+F:\Projects\JsDemos\Cs\obj\Debug\Cs.pdb
+F:\Projects\JsDemos\Cs\obj\Debug\C.csprojResolveAssemblyReference.cache

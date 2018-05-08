@@ -1,0 +1,64 @@
+﻿*
+{	
+	padding:0;
+	margin:0;
+	font:400 14px/28px Verdana, "宋体";
+	text-decoration:none;
+	color:#333;
+}
+body
+{	
+	padding:0 99px 0;
+}
+dl 
+{
+	margin-bottom:12px;
+	border:1px solid #aaf;
+	zoom:1;
+}
+dt,dd
+{	
+	padding:12px;
+	clear:both;
+}
+dt
+{
+	padding:2px;
+	background:#d4dfff;
+	text-align:right;
+}
+dt a
+{
+	padding-left:24px;
+	background:#d4dfff url(http://192.168.100.5:60083/Images/S2.gif) no-repeat 4px 8px;
+	float:left;
+}
+dt a.CM
+{	
+	background-image:url(http://192.168.100.5:60083/Images/S1.gif);
+}
+dt b
+{
+	margin-right:14px;
+	cursor:pointer;
+}
+dd
+{	
+	background:#f9f9ff;
+	display:none;
+}
+ol
+{	
+	list-style:decimal outside;
+	padding-left:2em;
+}
+dt a
+{
+	color:#039;
+	font-weight:600;
+	letter-spacing:1px;
+}
+dt a:hover
+{
+	color:#00f;
+}

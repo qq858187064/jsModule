@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+  <title></title>
+  <style type="text/css">
+    .editorIframe {
+      border: 1px solid #0000ff;
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+
+</head>
+<body onload="onload()">
+<div>
+  <button onclick="doRichEditCommand('bold')" style="font-weight:bold; width: 25px">B</button>
+  <button onclick="doRichEditCommand('italic')" style="font-weight:bold; width: 25px">I</button>
+</div>
+<div>
+  <iframe id="editorIframe" class="editorIframe" src="edif.html"></iframe>
+</div>
+
+<script type="text/javascript">
+  var editorDoc = getIFrameDocument('editorIframe');
+  var editorEl = document.getElementById('editorIframe');
+
+  function onload() {
+    document.getElementById('editorIframe').contentWindow.focus();
+  }
+
+
+  function doRichEditCommand(cmd, arg) {
+    //这里不能使用缓存对象，editorDoc
+    cmd && getIFrameDocument('editorIframe').execCommand(cmd, false, arg);
+    document.getElementById('editorIframe').contentWindow.focus();
+  }
+
+  function getIFrameDocument(aID) {
+  var fd=document.getElementById(aID).contentWindow.document
+    return fd;
+
+
+    //不需要使用Mozilla写法
+    // if contentDocument exists, W3C compliant (Mozilla)
+//    if (document.getElementById(aID).contentDocument) {
+//      return document.getElementById(aID).contentDocument;
+//    } else {
+//      // IE
+//      return document.frames[aID].document;
+//    }
+  }
+</script>
+</body>
+</html>

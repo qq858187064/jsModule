@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+	.bar{
+height:28px;
+white-space:nowrap; 
+border:1px solid #9ee;
+	}
+        .bar a{
+            display:inline-block;
+            /*padding:4px 8px;*/
+            height:22px;
+            width:27px;
+            border:1px solid #eee;
+			background:url(bg.png) no-repeat center center;
+        }
+		a.save
+		{
+
+		    background-position: 0 -22px;
+		}
+		a.arrowDown
+		{
+padding-right: 50px;
+    background-position: -138px 0;
+		}
+		a.bold
+		{
+    background-position: -580px -22px;;
+		}
+		a.italic
+		{
+		    background-position: -608px -22px;
+
+		}
+		a.underLine
+		{
+		    background-position:-636px -22px;
+
+		}
+		a.foreColor
+		{
+		    background-position:-666px -22px;
+		}
+		a.undo
+		{
+		    background-position:-27px -22px;
+		}
+		a.redo
+		{
+		    background-position:-54px -22px;
+		}
+		a.emotion
+		{ 
+		background-position:-353px -22px;
+		}
+		a.fullScreen
+		{ 
+		background-position:-412px -113px;
+		}
+		a.createLink
+		{ 
+		background-position:-461px 0;
+		}
+		a.unlink
+		{ 
+		background-position:-461px 0;
+		}
+
+
+    </style>
+</head>
+<body>
+<div id="bar" class="bar">
+<a class="">发 表</a>
+<a name="" title="保存草稿(ctrl+s)" class="save"></a>
+
+<a name="fontName" title="字体" class="arrowDown">Arial</a>
+
+<a name="fontSize" title="文字大小" class="arrowDown">5(14px)</a>
+<a name="foreColor" title="设置文本颜色"></a>
+<a name="bold" title="加粗(ctrl+b)" ></a>
+
+<a name="italic" title="斜体(ctrl+i)"></a>
+<a name="underLine" title="下划线(ctrl+u)"></a>
+
+<a name="undo" title="撤销(ctrl+z)"></a>
+<a name="redo" title="恢复(ctrl+y)"></a>
+
+<a name="createLink" title="设置链接"></a>
+<a name="unlink" title="取消链接"></a>
+
+<a name="" title="表情" class="emotion"></a>
+<a name="insertHorizontalRule" title="水平线"></a>
+<a name="" title="进入全屏模式" class="fullScreen"></a>
+
+<!--
+<a name="insertImage" title="插入图片"></a>
+<a name="" title="切换到 高级功能">高级功能</a>
+<a name="" title="切换到HTML代码编辑模式"></a>
+<a name="" title="插入代码"></a>
+<a name="" title="插入视频"></a>
+<a name="" title="插入Flash动画"></a>
+<a name="" title="插入音乐"></a>
+
+<a name="backColor" title="设置背景颜色"></a>
+<a name="Outdent" title="向左缩进"></a>
+<a name="Indent" title="向右缩进"></a>
+<a name="justifyLeft" title="左对齐(ctrl+alt+l)"></a>
+<a name="justifyCenter" title="居中对齐(ctrl+alt+c)"></a>
+<a name="justifyRight" title="右对齐(ctrl+alt+r)"></a>
+<a name="insertOrderedList" title="有序列表"></a>
+<a name="insertUnorderList" title="无序列表"></a>
+<a name="removeFormat" title="清除格式"></a>
+
+<a name="createLink" title="设置链接"></a>
+<a name="unlink" title="取消链接"></a>
+<a name="undo" title="撤销(ctrl+z)"></a>
+<a name="redo" title="恢复(ctrl+y)"></a>
+<a name="selectAll" title="全选"></a>
+
+insertHTML
+在插入点插入一个HTML字符串（删除选中的部分）。需要一个个HTML字符串作为参数。(IE浏览器不支持)
+<a name="" title="一键美化排版"></a>
+<form> -->
+    <!-- <textarea></textarea> -->
+<!-- </form>--></div> 
+<!-- <a onclick="exe('Bold',0)">B</a>
+<a onclick="Italic()">I</a>
+<a onclick="UnderLine()">U</a>
+<a onclick="()">UL</a>
+<a onclick="Outdent()">左</a>
+<a onclick="Indent()">右</a>
+<a onclick="()">图</a>-->
+<div id="iframeDiv" style="display:block">
+<!-- <div id="ifRTC"></div> -->
+<iframe id="ifRTC" width="400" height="200" border="1" src="blank.html" ></iframe>
+</div>
+<div id="textDiv" style="display:none">
+   <textarea id="htmlText" cols="50" rows="10"></textarea>
+</div>
+<br>
+<input type="button" value=" + " name="Add" onclick="Add()" />&nbsp;&nbsp;
+<input type="button" value=" 预   览 " name="Preview" onclick="Preview()" />&nbsp;&nbsp;
+<input type="button" value=" 源代码 " name="Source" onclick="Source()" />
+<script src="http://localhost/js/Base.js"></script>
+
+<script>
+var //bar=C.G("bar"),
+m=C.Gs("bar","a");
+for(var i=0;i<m.length;i++)
+{
+var a=m[i];
+C.AddClass(a,a.name);
+a.unselectable="on"
+C.AddEvent(a, "click", function (a) {
+    exe(a.name, "");
+	
+}, a);
+
+}
+
+
+
+    C.G("ifRTC").contentWindow.document.body.focus()
+        /*无效
+	<!-- obj.designMode ="on";   -->
+    <!-- obj.body.contentEditable = true; -->
+	       <!-- obj.body.focus(); -->
+           */
+var contentHTML;
+function d(){return C.G("ifRTC").contentWindow.document;}
+function exe(command, value)
+{
+  C.G("ifRTC").contentWindow.document.execCommand(command, false, value);
+}
+
+// 加粗
+function Black()
+{
+   exeCommand("Bold", "");
+   //document.execCommand("Bold", false, "");
+}
+
+// 斜体
+function Italic()
+{
+   var obj = frames['ifRTC'].RTC;
+   obj.focus();
+   exeCommand('Italic', '');
+}
+
+// 下划线
+function UnderLine()
+{
+   var obj = frames['ifRTC'].RTC;
+   obj.focus();
+   exeCommand('Underline', '');
+}
+
+// 向里缩进
+function Indent()
+{
+   var obj = frames['ifRTC'].RTC;
+   obj.focus();
+   exeCommand('Indent', '');
+}
+
+// 向外缩进
+function Outdent()
+{
+   var obj = frames['ifRTC'].RTC;
+   obj.focus();
+   exeCommand('Outdent', '');
+}
+
+// 无序列表
+function UnorderList()
+{
+   var obj = frames['ifRTC'].RTC;
+   obj.focus();
+   exeCommand('InsertUnorderedList', '');
+}
+
+// 有序列表
+function OrderList()
+{
+   var obj = frames['ifRTC'].RTC;
+   obj.focus();
+   exeCommand('InsertOrderedList', '');
+}
+
+// 插入图片
+function Image()
+{
+   var obj = frames['ifRTC'].RTC;
+   obj.focus();
+   ImagePath = window.prompt('请输入图片路径：', '');
+   exeCommand('InsertImage', ImagePath);
+}
+
+// 预览效果
+function Preview()
+{
+   var htmlContent = frames['ifRTC'].RTC.innerHTML;
+   var open = window.open('');
+   open.document.write(htmlContent);
+}
+
+// 查看编辑框里的HTML源代码
+function Source()
+{
+   var htmlContent = frames['ifRTC'].RTC.innerHTML;
+   if (document.all.iframeDiv.style.display == 'block')
+   {
+     document.all.iframeDiv.style.display = 'none';
+     document.all.htmlText.value = htmlContent;
+     document.all.textDiv.style.display = 'block';
+     document.all.htmlText.focus();
+     document.all.Source.value='HTML';
+   }
+   else
+   {
+     document.all.iframeDiv.style.display = 'block';
+     document.all.textDiv.style.display = 'none';
+     frames['ifRTC'].RTC.innerHTML = document.all.htmlText.value;
+     frames['ifRTC'].RTC.focus();
+     document.all.Source.value=' 源代码 ';
+   }
+}
+
+// 增加编辑框的高度
+function Add()
+{
+   document.all.ifRTC.height = document.all.ifRTC.height*1 + 50;
+}
+</script>
+</body>
+</html>

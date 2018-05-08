@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link href="http://localhost/App_Themes/Base.css" type="text/css" rel="stylesheet">
+    <style>
+	.bar{
+height:22px;
+overflow:hidden;
+	}
+.bar a{
+            display:inline-block;
+           padding:0 10px;
+            height:20px;
+			line-height:20px;
+             /*width:20px;*/
+			background:url(icon.png) no-repeat center center;
+			broder:1px solid #fff;
+        }
+		.bar a:hover{
+		background-color:#d5e1f2;
+		border-color:#a3bde3;
+		}
+.sprt
+{
+border-left:1px solid #eee;
+}
+a.arrow
+{
+    padding-right:8px;
+background-position:32px 0;
+}	
+a.save
+		{
+		
+background:#5babe6;
+		}
+		a.fullscreen {
+    background-position: -100px -20px;
+}
+a.fmt
+{
+    width:2em;
+    background-position: 32px 0;
+}
+a.fml
+{
+    width: 66px;
+    background-position: 62px 0;
+}
+a.size
+{
+width: 53px;
+    background-position: 55px 0;
+}
+
+
+a.source {
+    background-position:-260px -0px;
+}
+a.undo {
+    background-position: -160px 0;
+}
+a.redo {
+    background-position: -100px 0;
+}
+a.bold{
+    background-position:-739px 0;
+}
+a.italic {
+    background-position: -60px 0;
+}
+a.underline  {
+    background-position: -140px 0
+}
+a.strikethrough {
+    background-position: -120px 0;
+}
+
+a.superscript {
+    background-position: -620px 0;
+}
+a.subscript {
+    background-position:  -600px 0;
+}
+a.font, a.forecolor {
+    background-position: -720px 0;
+}
+
+a.backcolor {
+    background-position: -760px 0;
+}
+
+a.insertorderedlist {
+    background-position: -80px 0;
+}
+a.insertunorderedlist {
+    background-position:   -20px 0;
+}
+a.selectall {
+    background-position: -400px -20px;
+}
+a.cleardoc {
+    background-position: -520px 0;
+}
+a.paragraph {
+    background-position: -140px 0;
+}
+
+a.fontfamily {
+    background-position: -140px 0;
+}
+
+a.fontsize {
+    background-position: -140px 0;
+}
+
+a.justifyleft {
+    background-position: -460px 0;
+}
+
+a.justifycenter {
+    background-position: -420px 0;
+}
+
+a.justifyright {
+    background-position:-480px 0;
+}
+
+a.justifyjustify {
+    background-position: -440px 0;
+}
+
+a.link {
+    background-position: -500px 0;
+}
+
+a.unlink{
+    background-position: -640px 0;
+}
+
+a.image {
+    background-position: -380px 0;
+}
+
+a.emotion {
+    background-position: -60px -20px;
+}
+a.video {
+    background-position: -320px -20px;
+}
+
+a.map {
+    background-position:  -40px -40px;
+}
+
+a.gmap {
+    background-position:  -260px -40px;
+}
+a.horizontal {
+    background-position: -360px 0;
+}
+
+a.print {
+    background-position: -440px -20px;
+}
+a.preview {
+    background-position: -420px -20px;
+}
+
+a.removeformat {
+    background-position: -580px 0;
+}
+a.drafts {
+    background-position: -560px 0;
+}
+a.formula {
+    background-position: -80px -20px;
+}
+    </style>
+</head>
+<body>
+<div id="bar" class="bar">
+<a class="save" href="javascript:save()">保存</a>
+<a name="fullscreen" title="全屏"></a>
+<a name="source" title="源代码"></a>
+<a name="undo" title="撤销"></a>
+<a name="redo" title="重做"></a>
+<a name="bold" class="sprt" title="加粗"></a>
+<a name="italic" title="斜体"></a>
+<a name="underline" title="下划线"></a>
+<a name="strikethrough" title="删除线"></a>
+<a name="superscript" title="上标"></a>
+<a name="subscript" title="下标"></a>
+<a name="forecolor" title="字体颜色"></a>
+<a name="backcolor" title="背景色"></a>
+<a name="removeformat" title="清除格式"></a>
+<a name="insertorderedlist" title="有序列表"></a>
+<a name="insertunorderedlist" title="无序列表"></a>
+<a name="selectall" title="全选"></a>
+<a name="cleardoc" title="清空文档"></a>
+<a name="" class="arrow fmt" title="文本格式">正文</a>
+<a name="" class="arrow fml" title="字体">微软雅黑</a>
+<a name="" class="arrow size" title="字号">(5)14px</a>
+<a name="justifyleft" title="居左对齐"></a>
+<a name="justifycenter" title="居中对齐"></a>
+<a name="justifyright" title="居右对齐"></a>
+<a name="link" title="超链接"></a>
+<a name="unlink" title="取消链接"></a>
+<a name="emotion" title="表情"></a>
+<a name="image" title="图片"></a>
+<a name="video" title="视频"></a>
+<a name="map" title="百度地图"></a>
+<a name="horizontal" title="分隔线"></a>
+<a name="print" title="打印"></a>
+<a name="preview" title="预览"></a>
+<a name="drafts" title="草稿箱"></a>
+<a name="formula" title="数学公式"></a></div> 
+<!-- <a onclick="exe('Bold',0)">B</a>
+<a onclick="Italic()">I</a>
+<a onclick="UnderLine()">U</a>
+<a onclick="()">UL</a>
+<a onclick="Outdent()">左</a>
+<a onclick="Indent()">右</a>
+<a onclick="()">图</a>-->
+<div id="iframeDiv" style="display:block">
+<!-- <div id="ifRTC"></div> -->
+<!-- <iframe id="ifRTC" width="400" height="200" border="1" src="blank.html" ></iframe> -->
+<div id="ed" width="400" height="200" border="1" name="ed">test:这里我可以写一些输入提示</div>
+</div>
+<div id="textDiv" style="display: none;">
+   <textarea id="htmlText" cols="50" rows="10"></textarea>
+</div>
+<br>
+<input type="button" value=" + " name="Add" onclick="Add()" />&nbsp;&nbsp;
+<input type="button" value=" 预   览 " name="Preview" onclick="Preview()" />&nbsp;&nbsp;
+<input type="button" value=" 源代码 " name="Source" onclick="Source()" />
+<script src="http://localhost/js/Base.js"></script>
+
+<script>
+var //bar=C.G("bar"),
+m=C.Gs("bar","a");
+for(var i=0;i<m.length;i++)
+{
+var a=m[i];
+C.AddClass(a,a.name);
+a.unselectable="on"
+C.AddEvent(a, "click", function (a) {
+    exe(a.name, "");
+}, a);
+
+}
+
+
+
+//C.G("ifRTC").contentWindow.document.body.focus()
+        /*无效
+	<!-- obj.designMode ="on";   -->
+    <!-- obj.body.contentEditable = true; -->
+	       <!-- obj.body.focus(); -->
+           */
+var contentHTML;
+function d(){return C.G("ifRTC").contentWindow.document;}
+
+var ed=C.G("ed");//d();
+ed.contentEditable = true;
+ed.tabindex=0
+  ed.focus();
+ed.onblur=function(){
+  ed.focus();
+};
+
+document.activeElement=ed;
+function exe(command, value)
+{
+ document.execCommand(command, false, value);
+  //ed.body.focus()不选择不操作加粗等功能
+}
+function save()
+{
+  console.log(d().body.innerHTML);
+}
+
+// 插入图片
+function Image()
+{
+   var obj = frames['ifRTC'].RTC;
+   obj.focus();
+   ImagePath = window.prompt('请输入图片路径：', '');
+   exeCommand('InsertImage', ImagePath);
+}
+
+// 预览效果
+function Preview()
+{
+   var htmlContent = frames['ifRTC'].RTC.innerHTML;
+   var open = window.open('');
+   open.document.write(htmlContent);
+}
+
+// 查看编辑框里的HTML源代码
+function Source()
+{
+   var htmlContent = frames['ifRTC'].RTC.innerHTML;
+   if (document.all.iframeDiv.style.display == 'block')
+   {
+     document.all.iframeDiv.style.display = 'none';
+     document.all.htmlText.value = htmlContent;
+     document.all.textDiv.style.display = 'block';
+     document.all.htmlText.focus();
+     document.all.Source.value='HTML';
+   }
+   else
+   {
+     document.all.iframeDiv.style.display = 'block';
+     document.all.textDiv.style.display = 'none';
+     frames['ifRTC'].RTC.innerHTML = document.all.htmlText.value;
+     frames['ifRTC'].RTC.focus();
+     document.all.Source.value=' 源代码 ';
+   }
+}
+</script>
+</body>
+</html>

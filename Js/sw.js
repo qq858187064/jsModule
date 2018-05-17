@@ -1,3 +1,4 @@
+/*Í¼Æ¬ÇÐ»»ÖÐ¼òµ¥½á¹¹ÇÐ»»*/
 function sw()
 {
     sw.prototype = {

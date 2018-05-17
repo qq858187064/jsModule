@@ -34,6 +34,8 @@
     <a href="/Pages/fs.aspx" title="全屏显示/恢复组件">fs&nbsp;全屏/恢复显示</a>
 	 <a href="/Pages/sg.aspx" title="输入框默认文字">sg&nbsp;输入框默认文字</a>
     <a href="/Pages/crop.aspx" title="上传裁切图像">crop&nbsp;上传、裁切图像</a>
+     <a href="/Pages/swipe.aspx" title="滑动切换">swipe&nbsp;滑动切换</a>
+
     <a href="#" title="生成标准Html代码的功能">CreateHtml</a>
     <a href="#" title="生成标准的外置Css的功能">CreateCss</a>
     <a href="#" title="操作Xml(含XHTML)的功能">OperatXml</a>

@@ -936,6 +936,19 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
     Contain: function (a, b) {
         //console.log(a.compareDocumentPosition(b));
         return a.contains ? a != b && a.contains(b) : a.compareDocumentPosition(b) == 16//!!(a.compareDocumentPosition(b) & 16);
+    },
+    /* 获取并返回get请求参数        */
+    param: function () {
+        //?user_id=261591&owner=261591
+        var ps = location.search.substring(1).split('&'),
+            o = {};
+        for (var i = 0; i < ps.length; i++) {
+            var p = ps[i],
+                k = p.split('=');
+            o[k[0]] = k[1];
+            //o[p]
+        }
+        return o;
     }
 };
 Function.prototype.Method = function (Nm, Fun) {

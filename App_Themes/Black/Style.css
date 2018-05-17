@@ -48,7 +48,7 @@
     display: inline-block;
     width: 217px;
     height: 56px;
-    background: url(/Images/logo.png) no-repeat 22px 6px;
+    /*background: url(/Images/logo.png) no-repeat 22px 6px;*/
 }
 
 .SubNav

@@ -290,13 +290,14 @@ pre
     background: #000;
     filter: alpha(opacity=30);
     opacity: 0.3;
+    width:100%;
 }
 
 /***** 对话框： *****/
 .DW
 {
-    width: 360px;
-    height: 240px;
+    /*width: 360px;
+    height: 240px;*/
     background: #fff;
     border: 1px solid #ccc;
     text-align: left;
@@ -313,14 +314,17 @@ pre
     }
 
         /***** 对话框标题右方的关闭铵钮： *****/
-        .DW h4 a.Cls
+.Cls
         {
+            position:absolute;
+            right:0;
             display: inline-block;
             width: 18px;
             height: 18px;
-            float: right;
-            background: url(/Images/Icons.gif) no-repeat 4px -400px;
+            font-size: 1.5rem;
+            line-height: 1.2rem;
         }
+.Cls:hover{color:#f63;}
 
             /*.DW h4 a.Cls:hover
             {
@@ -364,6 +368,7 @@ pre
    {
        position:relative;
        height:444px;
+       width:100%;
    }
       .hi
     {

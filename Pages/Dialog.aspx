@@ -55,17 +55,17 @@
 <asp:Content ID="Conten6" ContentPlaceHolderID="FBHtml" Runat="Server">
 <div id="WBg" class="DBg"></div>
 <div id="Pop" class="DW">
-    <h4><a href="javascript:Dialog.Close()" class="Cls" id="Cls"></a>A弹出窗标题文字</h4>
+    <h4><a href="javascript:Dialog.Close()" class="Cls" id="Cls">X</a>A弹出窗标题文字</h4>
     <div class="Ctt">Dialog类提供了一个弹出窗的功能，其内容和外观由调用者在Html和Css中自由控制，如果您在完成了一些逻辑之后希望关闭该弹出窗，可以像这样调用模块的关闭方法：Dialog.Close()。
 <br /><a href="javascript:Dialog.Close()" class="Btn">关&nbsp;闭</a></div>
 </div>
 <div id="Tmk" class="DW">
-    <h4><a href="javascript:Dialog.Close()" class="Cls" id="A2"></a>A弹出窗标题文字</h4>
+    <h4><a href="javascript:Dialog.Close()" class="Cls" id="A2">X</a>A弹出窗标题文字</h4>
     <div class="Ctt">Dialog类提供了一个弹出窗的功能，其内容和外观由调用者在Html和Css中自由控制，如果您在完成了一些逻辑之后希望关闭该弹出窗，可以像这样调用模块的关闭方法：Dialog.Close()。
 <br /><a href="javascript:Dialog.Close()" class="Btn">关&nbsp;闭</a></div>
 </div>
 <div id="AC1A" class="DW">
-    <h4><a href="javascript:Dialog.Close('AC1A')" class="Cls" name="Cls" id="A1"></a>B弹出窗标题文字</h4>
+    <h4><a href="javascript:Dialog.Close('AC1A')" class="Cls" name="Cls" id="A1">X</a>B弹出窗标题文字</h4>
     <div class="Ctt">Dialog类提供了一个弹出窗的功能，其内容和外观由调用者在Html和Css中自由控制，如果您在完成了一些逻辑之后希望关闭该弹出窗，可以像这样调用模块的关闭方法：Dialog.Close()。
 <br /><a href="javascript:Dialog.Close('AC1A')" class="Btn">关&nbsp;闭</a></div>
 </div>

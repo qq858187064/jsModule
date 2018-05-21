@@ -177,9 +177,12 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
     },
     /* 获取并返回传入对象的p属性,如果元素没有该属性, 则为其添加，且其值为空对象*/
     Pt: function (o) {
+        if (!o.ps)
+        {
         var p = C.Attr(o, "p");
         o.ps = C.Json(p);
         return p ? o.ps : {};
+        }
     },
     /* 判断元素是否为包含关系*/
     Contains: function (parentNode, childNode) {
@@ -410,22 +413,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             b = C.G(b);
         b.style.height = a.offsetHeight + "px";
     },
-    /*
-    old
-        Eh: function (Id, Tg) {
-        var Ctn = C.G(Id),
-        Sbs = C.Gs(Ctn, Tg),
-        Hs = [];
-        for (var i = 0; i < Sbs.length; i++) {
-            Hs[i] = Sbs[i].clientHeight;
-        }
-        for (var j = 0; j < Sbs.length; j++) {
-            Sbs[j].style.height = Hs.sort(function (a, b) { return b - a; })[0] + "px";
-        }
-    },
-
-    */
-
     /* 设置传入元素等高 */
     Ehs: function () {
         var Es = [],
@@ -461,6 +448,10 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 　　varrelatedTarget=e.relatedTarget||e.fromElement;
 			   */
         return mt;
+    },
+    /*是否支持触摸事件*/
+    isTouch: function (e) {
+            return "ontouchend" in document ? true : false;
     },
 
     /* 为对象添加的事件监听  */

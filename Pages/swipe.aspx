@@ -2,8 +2,22 @@
 <script runat="server">
 </script>
 <asp:Content ContentPlaceHolderID="hd" runat="Server">
+    <link href="../App_Themes/Black/Style.css" rel="stylesheet" />
         <style>
-           html {
+            .DW {
+                                display:block!important;
+                 left:-9999px;
+                width:100%;
+                height:100%;
+               z-index:99;
+
+               line-height:100%;
+               vertical-align:middle;
+            }
+            .sip {
+                position:static!important; 
+            }
+           /*html {
             height: 100vh;
         }
 
@@ -17,7 +31,7 @@
 
         h2 {
             color: #666;
-        }
+        }*/
 
         .bn {
             margin: 0 -1em;
@@ -76,21 +90,21 @@
                 filter: alpha(opacity=9);
     opacity: 0.9;
         }
-        .dw{
+        /*.dw{
              width: 99%;
             border:none;
             background:none;
             text-align: center;
-        }
-        .cls{
-            background:none;
-            top:0;
-            right:0;
-        }
+        }*/
         .prev{
             display:block;
              width: 100%;
-             margin:0 auto;
+                 margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
         }
         
 .w2Animate {
@@ -169,15 +183,20 @@
         <img class="w2" id="w2" src="../App_Themes/Black/images/wave2.png" />
         <img src="../App_Themes/Black/images/wave1.png" />
             <audio id="audio" src="http://obj00.cdn.ipalfish.com/aud/65/82/84025b7bf7e1939500c72f8292c4"></audio>
-
     </i>
-<p id="img" class="img" p="box:dw,bg:'bg',h:350,tit:0,img:'prev'">
-        <img id="1" src="../Images/Pf.jpg" />
-        <img id="2" src="../Images/Pf.jpg" />
-        <img id="3" src="../Images/Pf.jpg" />
-        <img id="4" src="../Images/Pf.jpg" />
-    <p id="dw" class="dw"><a class="cls" id="cls" onclick="pop.close();C.DelClass(document.documentElement, 'fix');"></a><img id="prev" class="prev" /><i id="pg" class="pg"></i><i id="count" class="pg"></i></p>
-    <div id="bg" class="dbg"></div>
+        <img src="" />
+<%--<p id="img" class="img" p="box:dw,bg:'bg',h:350,tit:0,v:'prev',s:['../Images/3.gif','../Images/6.gif','../Images/Smt.gif','../Images/Pf.jpg']">--%>
+        <p id="img" class="img" p="box:dw,bg:'bg',tit:0,v:prev,s:['../Images/uimg/tmp/aa.jpg','../Images/uimg/tmp/bb.jpg','../Images/uimg/tmp/cc.jpg','../Images/uimg/tmp/dd.jpg']">
+        <img src="../Images/by.jpg" />
+        <img src="../Images/by.jpg" />
+        <img src="../Images/by.jpg" />
+        <img src="../Images/by.jpg" /></p>
+    <p id="dw" class="DW"><%-- src="../Images/by.jpg"--%>
+        <a class="Cls" id="cls" onclick="pop.close();C.DelClass(document.documentElement, 'fix');">X</a>
+        <img id="prev" class="prev" />
+        <i id="pg" class="pg"></i><i id="count" class="pg"></i>
+    </p>
+<%--    <div id="bg" class="DBg"></div>--%>
     </dd>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="FBHtml" runat="Server">
@@ -185,10 +204,14 @@
 <asp:Content ID="Content6" ContentPlaceHolderID="FBd" runat="Server">
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="IptJs" runat="Server">
-  <script type="text/javascript" src="/Js/Drags.js"></script>
-  <script type="text/javascript" src="/Js/crop.js"></script>
-    <!--<script type="text/javascript" src="/Js/resize.js"></script>-->
-    <script type="text/javascript" charset="utf-8">
+    <script src="../Js/pop.js"></script>
+    <script src="../Js/swipe.js"></script>
+</asp:Content>
+<asp:Content ID="Content8" ContentPlaceHolderID="RunJs" runat="Server">
+      
+</asp:Content>
+<asp:Content ID="Content9" ContentPlaceHolderID="endRun" runat="Server">
+    <script>
         window.Cm = 22;
         var audio = C.G("audio");
         //播放声音
@@ -211,210 +234,11 @@
             C.DelClass(w2, "w2Animate");
             C.DelClass(w3, "w3Animate");
         });
-
-        /* var aaa = { "h_av": "2.9.14.0", "h_dt": 0, "h_did": "867398030057053", "h_nt": 0, "h_nst": 13, "h_m": 100234, "h_ch": "me", "h_ts": 1526297414595, "h_lc": "zh", "h_src": 2, "h_p": 5613, "zone": 28800, "token": "f6959a22a223dd64e24c4f60f881551a", "cate": 2, "offset": 0, "limit": 1 };
-          C.EXHR(function (o) {
-            console.log(o)
-        }, "POST", "/klian/media/photo/get", aaa);//{"owner":222,"offset":0}
-        261591 
-        */
-        /**/
+        
         var uid = parseInt(C.param().user_id),
             pg = C.G('pg'),
-            im = C.G("img"),
-            prev = C.G("prev");
-        //prev.s = [];//预览图的源
-
-        //获取相册
-        P.post("/klian/media/photo/get", { "owner": uid }, function (d) {
-            var ps = C.Gs(im, "img");
-            prev.ms = d.items;
-            for (var i = 0; i < ps.length; i++) {
-                let p = ps[i];
-                p.src = prev.ms[i].tiny;
-                //p.src = prev.s[i].origin;
-                C.AddEvent(p, "click", function () {
-                    prev.n = p.id - 1;//
-                }, p);
-            }
-            C.AddEvent(prev, "load", function (e) {
-
-                var imgs = new Image();
-                imgs.src = prev.src;
-                var w = imgs.width,
-                h = prev.height;
-                console.log(w + "__" + h)
-                var ww = pop.co.offsetWidth
-                if (h > ww) {
-                    pop.co.style.top = "1px";//document.documentElement.scrollTop;
-                    document.documentElement.scrollTop = 0;
-                    C.AddClass(document.documentElement, "fix");
-                    // document.documentElement.clientHeight
-                    //pop.co.bg.style.height="100%";
-                    prev.style.height = "auto";// prev.offsetWidth + "px";
-                    prev.style.height = prev.offsetHeight - 24 + "px";
-                    prev.style.width = ww + "px";
-                }
-                else if (h < ww) {
-                    prev.style.height = "";
-                    prev.style.width = "100%";
-                    pop.co.style.top = (document.documentElement.clientHeight - prev.offsetHeight) / 2 + "px";
-                }
-                n = prev.n + 1;
-                if (prev.r == 3)
-                    n = prev.n + 1;
-                else if (prev.r == 4) {
-                    n = prev.n + 1;;
-                }
-                pg.innerHTML = n
-
-                if (n == ps.length)//最后一页时请求更多图片
-                {
-                    console.log(2222)
-                }
-                //     n=pg.ci;
-
-                /*  pg.innerHTML = prev.r == 3 ? ++pg.ci + 1 : --pg.ci + 1; */
-                // if(n>ps)
-                //if()
-            });
-        }, function (d) {
-            console.log(d);
-        });
-
-        //获取老师详情
-        P.post("/klian/general/otherbasicprofile", { "user_id": uid }, function (d) {
-            var ps = C.Gs(im, "img"),
-                abt = C.G("abt"),
-                
-            u = d.user_info,//d.data.items;photocn
-            ms = document.createTextNode(Math.floor(u.audiolength / 60) + "'   " + u.audiolength % 60 + "\"");
-            abt.insertBefore(ms, abt.firstChild)
-            C.G("pf").src = u.avatar;
-            C.G("nm").innerHTML = u.name + "&#160;" + u.country;
-            C.G("tit").innerHTML = u.title;// + "&#160;|&#160;" + u.juniortitle;
-            C.G("dscr").innerHTML = u.sign;
-
-            audio.src = u.audiobrief;
-            C.G("count").innerHTML = '/' + (d.photocn - 1);
-           
-
-
-        }, function (d) {
-            console.log(d);
-        });
-
-        //可试听状态
-        P.post("/klian/ugc/curriculum/audition/denystatus/get", { "uid": uid }, function (d) {
-            var ps = C.Gs(im, "img"),
-                u = "";
-            if (d.ent.iskidteacher == 1) {
-                u = "";//官方课老师且未设置为可试听时：跳转试听申请页面
-                if (d.ent.status) {
-                    u = "";//  官方课老师且设置为可试听时：跳转预约页面
-                }
-                location.replace(u);
-            }
-            else {
-                var ap = C.G("apply");
-                ap.innerText = "下载伴鱼 APP";
-                if (P.isAndroid()) {
-                    u = 'http://web.cdn.ibanyu.com/klian/html/app/reading_android/prod/palfish_reading.apk';
-                } else {
-                    u = 'https://itunes.apple.com/cn/app/id1203189645?mt=8';
-                }
-            }
-            ap.href = u;
-            // location.replace(u);
-
-        }, function (d) {
-            console.log(d);
-        });
-
-        pop(im);
-        swipe(prev);
-
-        /*
-          (function po()
-          {
-              C.AddEvent(img, "click", function (e) {
-                  var i = C.Ge(e);
-                  if (i.tagName.toLowerCase() == "img")
-                  console.log(e+i.id);
-              })
-          }())
-  */
-        function wechat(data) {
-            var links = location.href;
-            var content = '我觉得伴鱼上的' + data.data.name + '老师太棒了，你也来试试吧！';
-            var imgurl = data.data.avatar;
-            var audiobrief = data.data.audiobrief;
-            wx.ready(function () {
-                wx.onMenuShareTimeline({
-                    title: '推荐老师 - ' + content, // 分享标题
-                    link: links, // 分享链接
-                    imgUrl: imgurl, // 分享图标
-                    success: function () {
-                        // 用户确认分享后执行的回调函数
-                    },
-                    cancel: function () {
-                        // 用户取消分享后执行的回调函数
-                    }
-                });
-                wx.onMenuShareAppMessage({
-                    title: '推荐老师', // 分享标题
-                    desc: content, // 分享描述
-                    link: links, // 分享链接
-                    imgUrl: imgurl, // 分享图标
-                    success: function () {
-                        // 用户确认分享后执行的回调函数
-                    },
-                    cancel: function () {
-                        // 用户取消分享后执行的回调函数
-                    }
-                });
-                wx.onMenuShareQQ({
-                    title: '推荐老师', // 分享标题
-                    desc: content, // 分享描述
-                    link: links, // 分享链接
-                    imgUrl: imgurl, // 分享图标
-                    success: function () {
-                        // 用户确认分享后执行的回调函数
-                    },
-                    cancel: function () {
-                        // 用户取消分享后执行的回调函数
-                    }
-                });
-                wx.onMenuShareWeibo({
-                    title: '推荐老师', // 分享标题
-                    desc: content, // 分享描述
-                    link: links, // 分享链接
-                    imgUrl: imgurl, // 分享图标
-                    success: function () {
-                        // 用户确认分享后执行的回调函数
-                    },
-                    cancel: function () {
-                        // 用户取消分享后执行的回调函数
-                    }
-                });
-                wx.onMenuShareQZone({
-                    title: '推荐老师', // 分享标题
-                    desc: content, // 分享描述
-                    link: links, // 分享链接
-                    imgUrl: imgurl, // 分享图标
-                    success: function () {
-                        // 用户确认分享后执行的回调函数
-                    },
-                    cancel: function () {
-                        // 用户取消分享后执行的回调函数
-                    }
-                });
-            });
-
-            wx.error(function (res) {
-                consloe.log(res);
-                alert('Error');
-            });
-        }
+            im = C.G("img");
+        pop(im);//弹出框
+        swipe(im);//滑屏切换
     </script>
 </asp:Content>

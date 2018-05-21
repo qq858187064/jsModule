@@ -35,7 +35,6 @@
 	 <a href="/Pages/sg.aspx" title="输入框默认文字">sg&nbsp;输入框默认文字</a>
     <a href="/Pages/crop.aspx" title="上传裁切图像">crop&nbsp;上传、裁切图像</a>
      <a href="/Pages/swipe.aspx" title="滑动切换">swipe&nbsp;滑动切换</a>
-
     <a href="#" title="生成标准Html代码的功能">CreateHtml</a>
     <a href="#" title="生成标准的外置Css的功能">CreateCss</a>
     <a href="#" title="操作Xml(含XHTML)的功能">OperatXml</a>
@@ -66,7 +65,9 @@ Tabs(<asp:ContentPlaceHolder runat="server" ID="TabId" />"C1A");
 C.sDate("AW","AS","BS","CS","DS","ES");
 /*new Rolls("Lra",20,1,0);*/
 <asp:ContentPlaceHolder runat="server" ID="RunJs" />
-new Sys();
+//new Sys();//暂时移后，endRun移回RunJs后移回来
 </script>
+<asp:ContentPlaceHolder runat="server" ID="endRun" />
+    <script>new Sys();</script>
 </body>
 </html>

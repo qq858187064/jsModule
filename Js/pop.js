@@ -76,6 +76,11 @@ function pop() {
                     }, t);
                 }
             }
+
+            //if(o.p.img)
+            //{
+            //    o.p.img.
+            //}
         },
         tit: function (o) {
             return C.G((o.tit || "tit"));
@@ -129,15 +134,16 @@ function pop() {
             }
             if (!o.url && o.fc)/*异步请求的fc无效，因innerHTML赋值方式*/
                 C.G(o.fc).focus();
-            pop.co = o.box;//用于关闭
-
-
+            pop.co = o.box;//用于关闭或其它组件中引用
+            /*
             if (window.evt["poped"]) {//            o.ce = arguments[1];//记录事件对像
                 var i = C.G(o.p.img);
                 i.ce = arguments[1]
-                i.s = pop.co;
+                i.o = o;
+                // i.s = o.t;// pop.co;
                 C.trg(i, evt.poped);//C.trg(C.G(o.p.img), evt.poped)
             }
+            */
         }
     }
     pop.pop = pop.prototype.pop;

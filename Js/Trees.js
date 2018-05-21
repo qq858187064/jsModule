@@ -45,7 +45,7 @@
                 }
             }
         },
-        Fold: function (e, o)
+        Fold: function (o,e)
         {
             var that = (e.target) ? e.target : e.srcElement;
             if (that == o)
@@ -61,7 +61,7 @@
                 }
             }
         },
-        Ss: function (e, Arr)
+        Ss: function (Arr,e)
         {
             var Cb = Arr[0],
              Li = Arr[1],

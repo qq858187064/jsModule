@@ -5,35 +5,24 @@
     <link href="../App_Themes/Black/Style.css" rel="stylesheet" />
         <style>
             .DW {
-                                display:block!important;
+                 display:block!important;
                  left:-9999px;
                 width:100%;
                 height:100%;
-               z-index:99;
-
+                background: #000!important;
+               /*z-index:99;
                line-height:100%;
                vertical-align:middle;
+                  */
+
+            }
+            .Cls{
+                color:#fff;
             }
             .sip {
                 position:static!important; 
             }
-           /*html {
-            height: 100vh;
-        }
-
-        body {
-            padding: 0 1em;
-        }
-
-        p {
-            display: block;
-        }
-
-        h2 {
-            color: #666;
-        }*/
-
-        .bn {
+               .bn {
             margin: 0 -1em;
             background: url('img/bg.jpg') no-repeat 0 0;
             text-align: center;
@@ -46,7 +35,6 @@
                 color: #fff;
                 line-height: 1.6em;
             }
-
         .pf {
             margin-top: 1em;
             width: 6rem;
@@ -54,7 +42,6 @@
             border: 2px solid rgba(255,255,255, 0.6);
             border-radius: 50%;
         }
-
         .audio {
             display: block;
             background:#d1ffd1; /*url('img/audio.png') no-repeat 95% center;*/

@@ -1,5 +1,5 @@
 ﻿/*
-pc+mobile
+pc+mobile+wx
 swipe组件rule方法中为传入对象o设置了以下属性：
 o.sp、o.ep是当前滑屏事件中触点的开始位置和结束位置对象，未来可扩展滑动距离等
 o.r：根据起、终点求角度、判断并返回方向0：未滑动，1：向上，2：向下，3：向左，4：向右；
@@ -12,37 +12,60 @@ v:用于指定显示媒体的窗口
 ___________________pc端兼容暂未处理！
 */
 function swipe(o) {
-    this.ww = document.documentElement.clientWidth;
-    this.wh = document.documentElement.clientHeight;
+    this.html = document.documentElement;
+    this.ww = this.html.clientWidth;
+    this.wh = this.html.clientHeight;
     swipe.prototype = {
-        Init: function (o)
-        {
-
+        Init: function (o) {
             var v = C.G(o.p.v),
              ps = C.Gs(o, "img");
             for (var i = 0; i < ps.length; i++) {
                 var p = ps[i];
                 p.i = i;
-                C.AddEvent(p, "click", function (p,e) {
+                C.AddEvent(p, "click", function (p, e) {
                     var t = C.Ge(e);
-                    if (t.tagName.toLowerCase() == "img")
-                        {
+                    if (t.tagName.toLowerCase() == "img") {
                         v.src = p.src;//如果是小图则不能用src
                         v.n = p.i;
                     }
                     //swipe.prototype.zoom(v)
-                },p);
+                }, p);
             }
             v.t = o;//触发元素父元素
             v.p = C.Pt(o);
             C.AddEvent(v, "load", this.zoom, v);
             var vp = v.parentNode;
-            C.AddEvent(vp, "touchstart", this.rule, v);
-            C.AddEvent(vp, "touchmove", this.rule, v)
-            C.AddEvent(vp, "touchend", this.rule, v);
+            console.log(vp.offsetWidth / 2)
+            if (C.isTouch()) {
+                v.r = 0;
+                C.AddEvent(vp, "touchstart", this.rule, v);
+                C.AddEvent(vp, "touchmove", this.rule, v)
+                C.AddEvent(vp, "touchend", this.rule, v);
+            }
+            else  //pc
+            {
+                C.AddEvent(vp, "click", this.rule, v);
+            var cx = vp.offsetWidth / 2;
+            C.AddEvent(vp, "mousemove", function (e) {
+                var e = e || window.event,
+                x = e.clientX - vp.offsetLeft - 2;
+                if (x < cx) {
+                    C.DelClass(vp, "next")
+                    C.AddClass(vp, "previous");
+                    vp.title = "上一张";
+                    v.r = 4;
+                }
+                else {
+                    C.DelClass(vp, "previous")
+                    C.AddClass(vp, "next");
+                    vp.title = "下一张";
+                    v.r = 3;
+                }
+
+            });
+        }
         },
         rule: function (o, e) {
-            //event.preventDefault();
             if (e.type == "touchstart") {
                 var s = e.touches[0];
                 o.sp = { x: s.clientX, y: s.clientY };//,time:+new Date};可记录时间
@@ -50,12 +73,12 @@ function swipe(o) {
             else if (e.type == "touchend") {
                 // var dur = +new Date - sp.time; //滑动的持续时间
                 var b = e.changedTouches[0];
-                o.r = 0;
+               
                 o.ep = { x: b.clientX, y: b.clientY };
                 var x = o.ep.x - o.sp.x,
                 y = o.ep.y - o.sp.y;
                 if (Math.abs(x) < 2 && Math.abs(y) < 2)  //如果滑动距离太短
-                    return o.r;
+                    return;
                 var a = Math.atan2(y, x) * 180 / Math.PI;//用反正切求夹角度数
                 if (x > 0 && a >= -45 && a < 45) {
                     o.r = 4;
@@ -75,16 +98,23 @@ function swipe(o) {
                 }
                 else {
                     console.log("没滑动");
+                    return;
                 }
-                swipe.prototype.handle(o);
+                //swipe.prototype.handle(o);
             }
             else if (e.type == "touchmove") {
-                 e.preventDefault();//阻止触摸事件的默认滚屏行为
+                C.PreventDefault(e);//阻止触摸事件的默认滚屏行为
             }
+            console.log(e.type + "_o.r ：" + o.r + "_o.n：" + o.n)
+            //else if (e.type == "click") {//鼠标事件事处理
+            //    console.log(e.type)
+            //} 
+            if ((e.type == "touchend"||e.type == "click") && o.r > 2)
+            swipe.prototype.handle(o);
         },
         handle: function (o) {
-            console.log("o.n" + o.n)
-            if (o.r == 3)//&&o.n>0
+            console.log(o)
+            if (o.r == 3&&o.n>-1)//
             {
                 if (o.n < o.t.p.s.length - 1)
                     o.src = o.t.p.s[++o.n];
@@ -109,17 +139,17 @@ function swipe(o) {
             swipe.prototype.zoom(o);
         },
         zoom: function (o) {
-            console.log("zoom start");
+
             var i = new Image();
             i.src = o.src;
             var w = i.width,
             h = i.height;
             if (h > w) {
-                o.style.height =h>wh? "100%":"auto";
+                o.style.height = h > wh ? "100%" : "auto";
                 o.style.width = "auto";
             }
             else if (h < w) {
-                o.style.width =w>ww? "100%":"auto";
+                o.style.width = w > ww ? "100%" : "auto";
                 o.style.height = "auto";
             }
         }

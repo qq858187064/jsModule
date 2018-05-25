@@ -278,7 +278,7 @@ pre
 /******************* 弹出窗开始 *******************/
 .DBg, .DW
 {
-    position: absolute;
+    position:absolute;/*;fixed*/
     display: none;
 }
 
@@ -318,14 +318,19 @@ pre
         {
             position:absolute;
             right:0;
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            font-size: 1.5rem;
-            line-height: 1.2rem;
+            padding: 12px;
+            font:1.8rem/1.2rem "Arial";
+            cursor: pointer;
         }
 .Cls:hover{color:#f63;}
-
+.previous
+{
+    cursor:url(images/previous.cur),auto;
+}
+.next
+{
+    cursor:url(images/next.cur),auto;
+}
             /*.DW h4 a.Cls:hover
             {
                 background-position: 4px -430px;

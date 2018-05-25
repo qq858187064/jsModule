@@ -23,8 +23,8 @@ dw是在布局页一个全局的弹出框元素
 配置定义在触发元素的p属性中，但当触发元素为集合时，如弹出图片预览，该集合的弹出框box，此时配置属性p写在box上，
 */
 function pop() {
-    //pop.s='<div id="dbg" class="dbg"></div><div class="dw" id="dw" rpt="rt"><a class="cls" href="####" onclick="pop.close()"></a><h4 id="tit">{0}</h4><i class="rt" id="rpt"></i>{1}</div>';
-    var dl = "-9999px";
+    var html = document.documentElement;
+        dl = "-9999px";
     /*pop.e = C.G("dw");约定默认弹出框：先在html中定义好
     pop.e.tit = C.G("tit");
     pop.e.bg = C.G("dbg")*/
@@ -35,6 +35,7 @@ function pop() {
         o.style.left = dl;
         if (o.bg)
             o.bg.style.left = dl;
+         html.style.overflow = "";////允许滚动
     };
     pop.r = C.G("rpt");
 
@@ -126,7 +127,7 @@ function pop() {
             o.box.style.width = o.w != 0 ? o.w + "px" : "auto";
             o.box.style.height = o.h != 0 ? o.h + "px" : "auto";
 
-            o.box.style.top = (bd.clientHeight - o.h) / 2 + st + "px";
+            o.box.style.top = (bd.clientHeight - o.h) / 2+ st + "px";
             o.box.style.left = (bd.offsetWidth - o.w) / 2 + "px";
             if (o.box.bg) {
                 o.box.bg.style.height = bd.scrollHeight + "px";
@@ -144,6 +145,7 @@ function pop() {
                 C.trg(i, evt.poped);//C.trg(C.G(o.p.img), evt.poped)
             }
             */
+            html.style.overflow="hidden";//禁止滚动
         }
     }
     pop.pop = pop.prototype.pop;

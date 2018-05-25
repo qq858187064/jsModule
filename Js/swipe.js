@@ -100,7 +100,6 @@ function swipe(o) {
                     console.log("没滑动");
                     return;
                 }
-                //swipe.prototype.handle(o);
             }
             else if (e.type == "touchmove") {
                 C.PreventDefault(e);//阻止触摸事件的默认滚屏行为

@@ -1,2 +1,4 @@
-﻿*.txt
+*.txt
 *.suo
+*.sln
+.vs

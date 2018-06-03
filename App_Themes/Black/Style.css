@@ -321,6 +321,7 @@ pre
             padding: 12px;
             font:1.8rem/1.2rem "Arial";
             cursor: pointer;
+            z-index:9999;
         }
 .Cls:hover{color:#f63;}
 .previous
@@ -1514,7 +1515,7 @@ label input.W1
 {
     display: block;
     width: 176px;
-    height: 203px;
+    height: 205px;
     background:#ddd;
     outline:none;
 }
@@ -1565,7 +1566,7 @@ b.Y,
 b.M
         {
             vertical-align:middle;
-            width: 22px;
+            width: 21px;
             background:url(/Images/FbgA.gif) no-repeat 8px -98px;
             padding: 1px 0 0 0px;
         }
@@ -1665,6 +1666,10 @@ a.Sd
     padding: 1px;
     margin-right: 10px;
     width: 106px;
+}
+.tm a
+{
+    margin-right:0.8em;
 }
 /******************* 日历组件*******************/
 .Cnzz a

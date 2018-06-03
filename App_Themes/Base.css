@@ -41,6 +41,9 @@ i
 	text-decoration:none;
 	font-style:normal;
 }
+a{
+    cursor:pointer;
+}
 img {
 	border:none;
     

@@ -6,6 +6,7 @@
 <a href="javascript:void(0)" onclick="Dialog('Tmk');">常规弹出窗口</a>
 <a href="javascript:void(0)" onclick="Dialog('WBg','AC1A');">定时关闭弹出窗口</a>
 <a href="javascript:void(0)">模块关键Css规则</a>
+    <a href="javascript:void(0)">pop弹出</a>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainC" Runat="Server">
 <dd>

@@ -177,12 +177,12 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
     },
     /* 获取并返回传入对象的p属性,如果元素没有该属性, 则为其添加，且其值为空对象*/
     Pt: function (o) {
-        if (!o.ps)
-        {
-        var p = C.Attr(o, "p");
-        o.ps = C.Json(p);
-        return p ? o.ps : {};
+        if (!o.ps) {
+            var p = C.Attr(o, "p");
+            o.ps = C.Json(p);
+            o = p ? o.ps : {};
         }
+        return o;
     },
     /* 判断元素是否为包含关系*/
     Contains: function (parentNode, childNode) {

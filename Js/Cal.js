@@ -48,7 +48,7 @@
                 for (var i = 0; i < Arr.length; i++) {
                     var Aid = Arr[i];
                     var ipt = C.G(Arr[i]);
-                    C.AddEvent(ipt, Et, function (e, It) {
+                    C.AddEvent(ipt, Et, function (It) {
                         var t = C.sliceC(It.value.split("/"));
                         o.It = It;
                         o.It.lst = It.id.slice(-1);
@@ -70,7 +70,7 @@
                         // console.log(ipt+ipt.sm)
                     }, ipt);
                 }
-                C.AddEvent(o, "blur", function (e) {
+                C.AddEvent(o, "blur", function () {
                     setTimeout(function () { if (document.activeElement != o) o.style.display = "none"; }, 200);
                 });
             }
@@ -226,7 +226,7 @@
                 }
                 var pn = cls != "Pn";
                 if (cls !== "No" && pn) {
-                    C.AddEvent(Sd, "click", function (e, Sd) {//
+                    C.AddEvent(Sd, "click", function (Sd) {//
                         if (Sd.s != 0) {
                             o.s = Sd.s;
                             o.Tsd = Sd.d;

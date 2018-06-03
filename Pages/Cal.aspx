@@ -7,7 +7,12 @@
 </asp:content>
 <asp:content id="Content4" contentplaceholderid="MainC" runat="Server">
     <dd><%--<q:Ca runat="server" />--%>
- <p id="Sc0" class="Ps Mb9" p="no:[5,15,25]"><a class="Py"></a><a class="Pm"></a><b class="Y">2012</b>年<b class="M">11</b>月<a class="Nm"></a><a class="Ny"></a><b>一</b><b>二</b><b>三</b><b>四</b><b>五</b><b>六</b><b>日</b></p> 
+ <p id="Sc0" class="Ps Mb9" p="no:[5,15,25],tm:'tm'"><a class="Py"></a><a class="Pm"></a><b class="Y">2012</b>年<b class="M">11</b>月<a class="Nm"></a><a class="Ny"></a><b>一</b><b>二</b><b>三</b><b>四</b><b>五</b><b>六</b><b>日</b>
+ <span class="tm"><a id="tm">选择时间</a><a>清空</a><a>现在</a><a>确定</a></span>
+ </p>
+
+<%--返回日期--%>
+ 
 <p id="Sc2" class="Ps Abs" p="a:'Ipt1_Ipt20,Ipt20,Ipt1_Ipt30,Ipt30'"><a class="Py"></a><a class="Pm"></a><b class="Y">2012</b>年<b class="M">11</b>月<a class="Nm"></a><a class="Ny"></a><b>一</b><b>二</b><b>三</b><b>四</b><b>五</b><b>六</b><b>日</b></p>
 <div id="Sc3" class="Cs Ps" p="c:3,no:[0]"><a class="Pm"></a><a class="Nm"></a><br /><p><b class="Y"></b>年<b class="M">11</b>月<br /><b>一</b><b>二</b><b>三</b><b>四</b><b>五</b><b>六</b><b>日</b></p></div>
 <div id="Sc4" class="Cs Ps Abs" p="a:'Ipt_Ipt0,Ipt0',c:3"><a class="Pm"></a><a class="Nm"></a><p><b class="Y">2012</b>年<b class="M">11</b>月<br /><b>一</b><b>二</b><b>三</b><b>四</b><b>五</b><b>六</b><b>日</b></p></div>
@@ -40,6 +45,10 @@
     样式约定：Td为当天时间的样式名，No为不可选中日期的样式名,Sd为选中日期的样式名
     将欲与之联动的元素ID用下划线_连接起来,如果希望日历实例只能选取当前日期以后的日期，则将其id的最后一个符设为0
     */
+    /*
+清空现在确定
+选择时间
+返回日期*/
 </pre>
 </dd>
 </asp:content>

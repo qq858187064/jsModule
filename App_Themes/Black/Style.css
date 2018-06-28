@@ -1519,6 +1519,9 @@ label input.W1
     background:#ddd;
     outline:none;
 }
+.Ps{
+    position:relative;
+}
 .Cs a,
 .Ps a,
 .Ps b
@@ -1667,10 +1670,30 @@ a.Sd
     margin-right: 10px;
     width: 106px;
 }
+.tm
+{
+    position:absolute;
+    width:100%;
+    height:100%;
+    padding:1em;
+    background:#eee;
+}
 .tm a
 {
     margin-right:0.8em;
 }
+.tm span{
+    background:#fff;
+    height:100%;
+    overflow:scroll!important;
+    text-align:center;
+}
+.tm span a{
+    display:block;
+    padding:6px 8px;
+    margin-right:0;
+}
+
 /******************* 日历组件*******************/
 .Cnzz a
 {

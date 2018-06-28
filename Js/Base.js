@@ -238,9 +238,11 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 		 }
 		return false;
 		*/
-        var rgx =/<script\b.*?(?:\bsrc\s?=\s?"([^>]*)")?>([\s\S]*?)<\/script>/ig,
+        var rgx = /<script\b.*?(?:\bsrc\s?=\s?"([^>]*)")?>([\s\S]*?)<\/script>/ig,
         ss,
-        b = C.Bd();
+        b = C.Bd(),
+        run = C.Ce('script');
+        var i = 0;
         while (ss = rgx.exec(s)) {
             var js = C.Ce('script'),
             src = ss[1];
@@ -258,7 +260,7 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             }
             else
 			{/*无src的script*/
-			var t=ss[2];
+                var t = ss[2];
 			if(C.exjs.pre&&C.exjs.pre.src!="")//||typeof C.exjs.pre.onload!="undefined"
 			{
 				if(typeof C.exjs.pre.onload!="undefined")
@@ -276,7 +278,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 						console.log(C.exjs.pre.readyState);
 						if(C.exjs.pre.readyState == "complete"||C.exjs.pre.readyState == "loaded")
 						{
-						
 							execScript(t);
 						//js.appendChild(document.createTextNode(t));
 						//js.innerHTML=t;
@@ -288,11 +289,20 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 			}
 			else// if(C.exjs.pre.src==""||typeof C.exjs.pre.onload=="undefined")/*||typeof C.exjs.pre.onload=="undefined" for ie7、8*/
 			{
+
+
+
+
+
 				//if(navigator.appName!="Microsoft Internet Explorer"&&parseFloat(navigator.appVersion)<5)
-				if(!C.ie8())
+                /* 换成append形式
+			    if (!C.ie8())
 					eval(t);
 				else
-				execScript(t);
+				    execScript(t);
+*/
+			    run.innerHTML += t;
+				//b.appendChild(js);
 				// if()
 				// {
 					
@@ -310,6 +320,9 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 			
 			
         }
+        //b.appendChild(run);
+        console.log(gr);
+        b.insertBefore(run,gr);
     },
     /* 隐藏元素 */
     Hide: function (Id) {
@@ -458,8 +471,8 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
     AddEvent: function (obj, ev, fn,arg) {
         obj = C.G(obj);
         var f = fn,
-		ags=arguments;
-        if (arg)
+		ags = arguments;//20180624
+        if (arg!=undefined)
 		{
            f = function(e) { 
 		   //fn(arg,e);
@@ -740,6 +753,8 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
                         }
                         else {
                             Rsp = oXHR.responseText;
+                            //C.exjs(Rsp);
+                            //console.log(Rsp)
                         }
                         CallBack(Rsp);/*C.Json(Rsp)*/
 
@@ -753,7 +768,9 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         /*//Url += Junctor + "timeStamp=" + new Date().getTime();*/
         Async = Async != false ? true : false;
         oXHR.open(Method, encodeURI(Url), Async);
-        oXHR.setRequestHeader('ajax', 1);//标识为ajax请求
+        //oXHR.setRequestHeader('ajax', 1);//标识为ajax请求
+        //标识为ajax请求，此值若改，服务端C.http中也需要做对应修改
+        oXHR.setRequestHeader('X-Requested-With', "XMLHttpRequest");
      /*   //oXHR.responseType = "msxml-document";//兼容IE10+版本，调用selectSingleNode类似方法*/
         if (Method == "POST") {
              oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -788,8 +805,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         }
     }，
     */
-
-
     /* Jsonp
         */
     Jsp: function (str) {
@@ -929,17 +944,34 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         return a.contains ? a != b && a.contains(b) : a.compareDocumentPosition(b) == 16//!!(a.compareDocumentPosition(b) & 16);
     },
     /* 获取并返回get请求参数        */
-    param: function () {
+    param: function (k) {
         //?user_id=261591&owner=261591
-        var ps = location.search.substring(1).split('&'),
+		
+		var r="",
+		s=location.search;
+		if(s.length>2){
+			if(k)
+			{
+				var a=s.indexOf(k+"=");
+				if(a>1){
+				var b=s.substring(a);
+				var c=b.substring(0+2,b.indexOf("&"));
+				return c;
+				}
+			}
+			else
+			{
+        var ps = s.substring(1).split('&'),
             o = {};
         for (var i = 0; i < ps.length; i++) {
             var p = ps[i],
                 k = p.split('=');
             o[k[0]] = k[1];
-            //o[p]
         }
         return o;
+		}
+			}
+
     }
 };
 Function.prototype.Method = function (Nm, Fun) {

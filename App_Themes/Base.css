@@ -33,7 +33,8 @@ body {
 }
 /* body *{font-family:'微软雅黑'!important;}
 a{blr:expression(this.onFocus=this.blur());} */
-a:focus {outline: none;}  
+a:focus,
+input:focus {outline: none;}  
 a,
 em,
 i

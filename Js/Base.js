@@ -945,18 +945,17 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
     },
     /* 获取并返回get请求参数        */
     param: function (k) {
-        //?user_id=261591&owner=261591
-		
-		var r="",
-		s=location.search;
-		if(s.length>2){
+		var s=location.search;
 			if(k)
 			{
-				var a=s.indexOf(k+"=");
-				if(a>1){
-				var b=s.substring(a);
-				var c=b.substring(0+2,b.indexOf("&"));
-				return c;
+				var z=k+"=",
+				a=s.indexOf(z);
+				if(a>0){
+				var b=s.substring(a),
+				c=b.indexOf("&");
+				if(c==-1)
+					c=undefined;
+				 return b.substring(z.length,c);
 				}
 			}
 			else
@@ -970,7 +969,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         }
         return o;
 		}
-			}
 
     }
 };

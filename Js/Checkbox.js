@@ -17,10 +17,10 @@
                         o.Itr = o.Cs.pop();
                         break;
                     case "A":
-                        o.Irt = o.Cs.shift();
+                        o.Itr = o.Cs.shift();
                         o.Itr2 = o.Cs.pop();
                         C.AddEvent(o.Itr2, "click", this.Ca, o);
-                       // fst.onchange =o.Itr.onchange= o.Itr.click;// function () { o.Itr.click(); };
+                         //o.Itr2.onchange =o.Itr.onchange= o.Itr.click;// function () { o.Itr.click(); };
                         break;
                 }
                 C.AddEvent(o.Itr, "click", this.Ca, o);
@@ -43,16 +43,15 @@
                     C.AddEvent(Ivs, "click", this.Inverse, o);
                 }
         },
-        Ca: function (o)
+        Ca: function (o,e)
         {
+            var ck = e.target || e.toElement
+            if (o.Itr==ck && o.Itr2)
+                o.Itr2.checked = ck.checked;
+                
             for (var i = 0; i < o.Cs.length; i++)
             {
-                if (o.Cs[i].type == "checkbox")
-                {
-                    o.Cs[i].checked = (o.Itr.checked||(o.Itr2&&o.Itr2.checked)) ? true : false;
-					//if()
-					//console.log(o.Cs[i].id+"_"+o.Cs[i].checked+"_"+o.Itr.checked)
-                }
+                o.Cs[i].checked = ck.checked ? true : false;
             }
         },
         Inverse:function (o)

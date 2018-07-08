@@ -20,7 +20,7 @@
                         o.Itr = o.Cs.shift();
                         o.Itr2 = o.Cs.pop();
                         C.AddEvent(o.Itr2, "click", this.Ca, o);
-                         //o.Itr2.onchange =o.Itr.onchange= o.Itr.click;// function () { o.Itr.click(); };
+                        o.Itr2.onchange = function () { o.Itr.checked = o.Itr2.checked;}
                         break;
                 }
                 C.AddEvent(o.Itr, "click", this.Ca, o);
@@ -38,29 +38,30 @@
                 o.Cs=o.rcs;
                 if (o.id.indexOf("_") != -1)
                 {
-                    var Params = o.id.split("_"),
-                        Ivs = C.G(Params[1]);
-                    C.AddEvent(Ivs, "click", this.Inverse, o);
+                    var Params = o.id.split("_");
+                       o.Ivs = C.G(Params[1]);
+                    C.AddEvent(Ivs, "click", this.Ca, o);
                 }
         },
+        /*全选、反选*/
         Ca: function (o,e)
         {
-            var ck = e.target || e.toElement
+            var ck = e.target || e.toElement,
+                all = true,
+                ckd;
+            if (ck == o.Ivs)
+            {
+                all = false;
+            }
             if (o.Itr==ck && o.Itr2)
                 o.Itr2.checked = ck.checked;
-                
+            ckd=ck.checked ? all : !all;
             for (var i = 0; i < o.Cs.length; i++)
             {
-                o.Cs[i].checked = ck.checked ? true : false;
+                if (!all)
+                    ckd = !o.Cs[i].checked;
+                o.Cs[i].checked = ckd;
             }
-        },
-        Inverse:function (o)
-        {
-            for (var i = 0; i < o.Cs.length; i++)
-            {
-                o.Cs[i].checked = o.Cs[i].checked ? false : true;
-            }
-            Checkbox.prototype.Refle(o);
         },
         Refle:function (o)
         {

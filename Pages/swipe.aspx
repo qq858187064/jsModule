@@ -14,7 +14,6 @@
                line-height:100%;
                vertical-align:middle;
                   */
-
             }
             .Cls{
                 color:#fff;

@@ -1,92 +1,102 @@
 ﻿/*参考HTML5的拖放（Drag 和 drop）http://www.w3school.com.cn/html5/html_5_draganddrop.asp*/
-function Drags()
-{
+function Drags() {
+    var e1, e2, e3, touch = C.isTouch();
+    if (touch) {
+        e1 = "touchstart";
+        e2 = "touchmove";
+        e3 = "touchend";
+    }
+    else {
+        e1 = "mousedown";
+        e2 = "mousemove";
+        e3 = "mouseup";
+    }
     Drags.prototype = {
-        Init: function (o)
-        {
+        Init: function (o) {
             o.rx = o.ry = 0;
             o.ml = o.mt = 0;
             var f = !o.id ? o.parentNode : o;
-
-            if (f.id.charAt(0).toLowerCase() == "s")
-            {
+            if (f.id.charAt(0).toLowerCase() == "s") {
                 o.Bar = o;
             }
-            else
-            {
+            else {
                 o.Bar = o.firstChild.nodeType == 1 ? o.firstChild : C.Nxt(o.firstChild);
             }
-            C.AddEvent(o.Bar, "mousedown",Drags.prototype.Start, o);
+            C.AddEvent(o.Bar, e1, Drags.prototype.Start, o);
+            //C.AddEvent(document, e1,Drags.prototype.Start, o);
         },
-        Start: function (o,e)
-        {
-			// console.log("start:")
-			//o.parentNode.w=o.parentNode.offsetWidth;
-			//o.parentNode.h=o.parentNode.offsetHeight;
-            o.rx = e.clientX - o.offsetLeft;
-            o.ry = e.clientY - o.offsetTop;
+        Start: function (o, e) {
+            // console.log("start:")
+            //o.parentNode.w=o.parentNode.offsetWidth;
+            //o.parentNode.h=o.parentNode.offsetHeight;
+            var x = touch ? e.changedTouches[0].clientX : e.clientX,
+                y = touch ? e.changedTouches[0].clientY : e.clientY;
+            o.rx = x - o.offsetLeft;
+            o.ry = y - o.offsetTop;
             o.ml = parseInt(C.CurrentStyle(o).marginLeft) || 0;
             o.mt = parseInt(C.CurrentStyle(o).marginTop) || 0;
-			if(!document.onmousemove)
-            document.onmousemove = function (oe)
-            {
-				//if(e.clientX!=oe.clientX|e.clientY!=oe.clientY)
-					if(o.tagName.toLowerCase()!="i"||!window.evt["resize"])
-					Drags.prototype.Move(o,oe);
-				else
-					{			
-			/*目前仅resize用*/
-			o.x=e.clientX;
-			o.y=e.clientY;
-				
-							 C.trg(o,evt.resize)
-							o.e=oe;/*自定义事件传参未实现*/
-					}
 
-				C.StopBubble(oe);
-            C.PreventDefault(oe);
 
-            };
-			if(!document.onmouseup)
-			document.onmouseup=function(oe){
-				Drags.prototype.Stop(o,oe)
-				}
+            if (!document["on" + e2])
+                document["on" + e2] = function (oe) {
+                    //if(e.clientX!=oe.clientX|e.clientY!=oe.clientY)
+                    if (o.tagName.toLowerCase() != "i" || !window.evt["resize"])
+                        Drags.prototype.Move(o, oe);
+                    else {
+                        /*目前仅resize用*/
+                        o.x = x;
+                        o.y = y;
+
+                        C.trg(o, evt.resize)
+                        o.e = oe;/*自定义事件传参未实现*/
+                    }
+
+                    C.StopBubble(oe);
+                    C.PreventDefault(oe);
+                };
+            if (!document["on" + e3])
+                document["on" + e3] = function (oe) {
+                    Drags.prototype.Stop(o, oe)
+                }
             //C.AddEvent(document, "mouseup", Drags.prototype.Stop, o);
-			C.StopBubble(e);
-            //C.PreventDefault(e);
+            C.StopBubble(e);
+            C.PreventDefault(e);
 
         },
-        Move: function (o,e)
-        {
+        Move: function (o, e) {
+            //事件节省未处理
             //var e = e || window.event;
             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-			var x=e.clientX - o.rx - o.ml,
-			y=e.clientY - o.ry - o.mt;
-			// if(x<0)
-				// x=0;
-			// if(y<0)
-				// y=0;
+            var x = (e.clientX || e.changedTouches[0].clientX) - o.rx - o.ml,
+                y = (e.clientY || e.changedTouches[0].clientY) - o.ry - o.mt;
+            // if(x<0)
+            // x=0;
+            // if(y<0)
+            // y=0;
             o.style.left = x + "px";
             o.style.top = y + "px";
-			console.log("move  o.style.top______________________"+ o.style.top)
-// o.mx=x;
-// o.my=y;
-
+            console.log("move  o.style.top______________________" + o.style.top)
+            // o.mx=x;
+            // o.my=y;
         },
-        Stop: function (o,e)
-        {
-			// console.log("stop:")
-			// console.log(o)
-			//console.log(o.id+"x轴方向移动了："+(e.clientX-o.x)+"，y轴方向移动了："+(e.clientY-o.y))
-			// o.ex=e.clientX-o.x;
-			// o.ey=e.clientY-o.y;
-			document.onmousemove = document.onmouseup = null;
-			//o.resize=null;
-			
-			if(window.evt["drop"])
-			C.trg(o,evt.drop)
+        Stop: function (o, e) {
+            // console.log("stop:")
+            // console.log(o)
+            console.log(o.id + "x轴方向移动了：" + (e.clientX - o.x) + "，y轴方向移动了：" + (e.clientY - o.y))
+            // o.ex=e.clientX-o.x;
+            // o.ey=e.clientY-o.y;
+            if(touch)
+            document.ontouchmove=document.ontouchend=null;
+            else
+            document.onmousemove = document.onmouseup = null;
+        
+            //o.resize=null;
+            if (window.evt)
+                console.log(evt)
+            if (window.evt && window.evt["drop"])
+                C.trg(o, window.evt.drop)
 
-			//if(o.parentNode==)
+            //if(o.parentNode==)
         }
     };
     C.Batch();

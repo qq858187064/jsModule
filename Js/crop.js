@@ -63,18 +63,16 @@ function crop() {
                 o.p.h = o.p.offsetHeight;
             }
             if (o.e) {
-								console.log((o.p.te&&o.p.te!=o.e)	)
-
-			var sy=o.e.clientY;
+			var sy=o.e.clientY||o.e.changedTouches[0].clientY;
 			if(o.p.te&&o.p.te!=o.e)
 			{
-				sy=o.p.te.clientY;
+				sy=o.p.te.clientY||o.p.te.changedTouches[0].clientY;
 				o.p.te=o.e;
 				console.log((o.p.te&&o.p.te!=o.e)+"__only one")
 }
 				
-                var mx = o.e.clientX - o.x,
-		my =o.e.clientY- o.y;//o.e.clientY
+                var mx = (o.e.clientX||o.e.changedTouches[0].clientX) - o.x,
+		my =(o.e.clientY||o.e.changedTouches[0].clientY)- o.y;//o.e.clientY
 		//o.p.te=o.e.clientY
 				                    //o.p.ot = parseInt(o.p.style.top)- o.p.ot 	;
 					//	my =(o.p.ey|| o.e.clientY) - o.y;

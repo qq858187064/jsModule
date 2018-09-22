@@ -507,6 +507,7 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 
         if (window.addEventListener) {
             obj.addEventListener(ev, f , false);
+            //1、注册处理函数时，明确声明为非被动的window.addEventListener('touchmove', f, { passive: false })
         }
         else if (window.attachEvent) {
             obj.attachEvent("on" + ev,f );

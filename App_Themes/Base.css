@@ -11,7 +11,7 @@ html
 	overflow-y:scroll;
 	background:#fff;
 		text-align:center;
-
+		touch-action: none;/*不让触摸事件产生默认行为*/
 }
 body {
     height:100%;
@@ -20,8 +20,8 @@ body {
 	text-align:left;
 	overflow:visible;
 }
-/*@media screen and (min-width:999px)
-{*/
+@media screen and (min-width:999px)
+{
 .cross
 {
 	text-align:center;

@@ -47,8 +47,9 @@ function Drags() {
                         o.x = x;
                         o.y = y;
 
+                       
                         C.trg(o, evt.resize)
-                        o.e = oe;/*自定义事件传参未实现*/
+                         o.e = oe;/*自定义事件传参未实现*/
                     }
 
                     C.StopBubble(oe);

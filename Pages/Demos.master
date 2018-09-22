@@ -6,7 +6,7 @@
 </head>
 <body><%--<div class="W" id="form1" runat="server">--%>
 <div class="Hd cross"><b>Javascript Modules Library</b><a href="#" class="Lg"></a></div>
-<div class="SubNav" id="SubNav"><a href="####" onclick="C.SetHome('http://j.cnfol.com')" class="R">设为首页</a><a href="####" onclick="C.Collect()" class="R">加入收藏</a>
+<div class="SubNav cross" id="SubNav"><a href="####" onclick="C.SetHome('http://j.cnfol.com')" class="R">设为首页</a><a href="####" onclick="C.Collect()" class="R">加入收藏</a>
 今天是：<i id="AW"></i>世界时间：北京<i id="AS"></i>伦敦<i id="BS"></i>纽约<i id="CS"></i>东京<i id="DS"></i>芝加哥<i id="ES"></i>
 <%--<div id="Lra" class="Ra"><span><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a><i>14:20</i><a href="#">中小板指形成“独岛”，调整风险陡增</a><i>14:25</i><a href="#">市场异动：沪深两市资金大幅流入 </a><i>14:56</i><a href="#">出版界元老助阵老板电器“唤醒”主题发布会</a><i>15:36</i><a href="#">政策不确定 下半年股市多悬念</a></span></div>
 --%></div>

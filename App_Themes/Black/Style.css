@@ -2,8 +2,8 @@
 {
     width:960px;
     padding:0 20px;
-    background: url(/Images/Bg.jpg) repeat-x 0 0;
-}
+/*     background: url(/Images/Bg.jpg) repeat-x 0 0;
+ */}
 
 .W
 {
@@ -57,9 +57,9 @@
 
 .SubNav
 {
-    height: 54px;
-    padding: 20px 0 0 22px;
-    background: url(/Images/Icons.gif) no-repeat 0px -550px;
+    height: 64px;
+    padding-top: 20px;
+    background: url(/Images/Bg.jpg) repeat-x 0 -50px;
 }
 
     .SubNav a

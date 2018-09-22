@@ -821,6 +821,28 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         //setTimeout(function () { Jn.parentNode.removeChild(Jn) }, 5000)
         //Jn.parentNode.removeChild(Jn);
     },
+	/*返回Promise对象*/
+	ajax:function(method,url,data){
+	//	'use strict';
+    var request = new XMLHttpRequest();
+    return new Promise(function (resolve, reject) {
+        request.onreadystatechange = function () {
+            if (request.readyState === 4)
+			{
+                if (request.status === 200)
+				{
+                    resolve(request.responseText);
+                } else
+				{
+                    reject(request.status);
+                }
+            }
+        };
+        request.open(method, url);
+        request.send(data);
+    });
+
+	},
     /* 加入收藏 */
     Collect: function (sUrl, Tit) {
         var sUrl = !sUrl ? document.URL : sUrl,

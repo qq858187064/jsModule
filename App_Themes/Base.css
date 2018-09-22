@@ -20,8 +20,8 @@ body {
 	text-align:left;
 	overflow:visible;
 }
-@media screen and (min-width:999px)
-{
+/*@media screen and (min-width:999px)
+{*/
 .cross
 {
 	text-align:center;
@@ -30,8 +30,8 @@ body {
     padding-right: 1000px!important;
     margin-right: -1000px!important;
 }
-}
-/* body *{font-family:'微软雅黑'!important;}
+/* }
+body *{font-family:'微软雅黑'!important;}
 a{blr:expression(this.onFocus=this.blur());} */
 a:focus,
 input:focus {outline: none;}  

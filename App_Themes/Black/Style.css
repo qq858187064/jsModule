@@ -1,11 +1,14 @@
 ﻿body
 {
+    width:960px;
+    padding:0 20px;
     background: url(/Images/Bg.jpg) repeat-x 0 0;
 }
 
 .W
 {
-    width: 960px;
+    /*width: 960px;*/
+
 }
 
 .Bd, .BP
@@ -21,6 +24,7 @@
 .Hd
 {
     height: 56px;
+    background-color:#333;
 }
 
     .Hd b

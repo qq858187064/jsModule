@@ -5,6 +5,13 @@ function crop() {
     crop.prototype = {
         Init: function (o) {
             C.Pt(o);
+            o.style.width = o.ps.w + "px";
+            o.style.height = o.ps.h + "px";
+            if (o.ps.s)
+                o.s = o.ps.w / o.ps.h;
+
+            o.ml = parseInt(C.CurrentStyle(o).marginLeft);
+            o.mt = parseInt(C.CurrentStyle(o).marginTop);
             o.img = C.G(o.ps.img);
             o.view = C.G(o.ps.prev);
             C.evt("resize", false, true);
@@ -40,26 +47,27 @@ function crop() {
                     o.view = C.G(o.ps.prev);
                 }
                 o.view.src = o.img.src;
+                
+                o.ot = o.offsetTop - parseInt(C.CurrentStyle(o).marginTop);
+                o.ol = o.offsetLeft - parseInt(C.CurrentStyle(o).marginLeft);
+
                 crop.clip(o);
-
-                    o.ot = o.offsetTop;
-                    o.ol = o.offsetLeft;
-
             }
             o.img.src = o.img.src;
         },
         /*预览*/
         clip: function (i) {
-            i.ml = parseInt(C.CurrentStyle(i).marginLeft);
-            i.mt = parseInt(C.CurrentStyle(i).marginTop);
-            i.t = i.mt + i.offsetTop;
+           
+           // i.ml = parseInt(C.CurrentStyle(i).marginLeft);
+           // i.mt = parseInt(C.CurrentStyle(i).marginTop);
+            // i.t = i.mt + i.offsetTop;
+            i.t = i.ot+parseInt(C.CurrentStyle(i).marginTop);
             i.r = i.offsetLeft + i.offsetWidth;
             i.b = i.t + i.offsetHeight;
 
             i.view.style.clip = "rect(" + i.t + "px " + i.r + "px " + i.b + "px " + i.offsetLeft + "px" + ")";
             i.view.style.left = -i.offsetLeft + "px";
             i.view.style.top = -i.offsetTop + "px";
-
         },
         /*调整大小*/
         resize: function (o) {
@@ -74,26 +82,23 @@ function crop() {
                     o.p.te = o.e;
                     //console.log((o.p.te&&o.p.te!=o.e)+"__only one")
                 }
-
                 var mx = (o.e.clientX || o.e.changedTouches[0].clientX) - o.x,
                     my = (o.e.clientY || o.e.changedTouches[0].clientY) - o.y;//o.e.clientY
-
-
                 //o.p.te=o.e.clientY
                 //o.p.ot = parseInt(o.p.style.top)- o.p.ot 	;
                 //	my =(o.p.ey|| o.e.clientY) - o.y;
-                console.log("o.p.ot："+o.p.ot+"_o.e.clientY："+o.e.clientY)
                 var cls = C.Attr(o, "class");
 
-                if (!window.aaa) {
+                if (!o.p.pss) {
                     o.p.style.top = o.p.ot + my + "px";//yv;//
                     o.p.style.left = o.p.ol + mx + "px";
-                    window.aaa = true;
+                    o.p.pss = true;
                 }
                 switch (cls) {
                     case "a":
-                        o.p.style.top = o.p.ot + my + "px";//yv;//
-                        o.p.style.left = o.p.ol + mx + "px";
+                        if(!o.p.s)
+                        o.p.style.top = o.p.ot + my+"px";//yv;//
+                        o.p.style.left = o.p.ol + mx+ "px";
                         mx = -mx;
                         my = -my;
                         break;
@@ -103,6 +108,7 @@ function crop() {
                         mx = 0;
                         break;
                     case "c":
+                        if (!o.p.s)
                         o.p.style.top = o.p.ot + my + "px";
                         my = -my;
                         break;
@@ -119,20 +125,35 @@ function crop() {
                         mx = -mx;
                         break;
                     case "h":
-                        console.log('o.p.ol:', o.p.ol)
-                        o.p.style.left = (o.p.ol || 0) + mx + "px";
+                        o.p.style.left = (o.p.ol || 0) + mx  + "px";
                         mx = -mx;
-                        my = 0;
+
                         break;
                 }
+                if (o.p.s>0)
+                {
+                   
+                    if(mx!=0)
+                    {
+                        console.log("mx")
+                        o.p.style.width = o.p.w + mx + "px";
+                        o.p.style.height = (o.p.w + mx) / o.p.s + "px";
+                        //o.p.style.top = o.p.ot  +"px";
+                    }
+                    else if(my!=0)
+                    {
+                        console.log("my")
+                        o.p.style.height = o.p.h + my + "px";
+                        o.p.style.width = (o.p.h + my) * o.p.s + "px";
+                    }
+                }
+                else
+                {
                 if (mx != 0)
                     o.p.style.width = o.p.w + mx + "px";
                 if (my != 0)
                     o.p.style.height = o.p.h + my + "px";
-
-
-
-
+                }
             }
         }
     }

@@ -47,9 +47,9 @@ function Drags() {
                         o.x = x;
                         o.y = y;
 
-                       
+                        o.e = oe;/*自定义事件传参未实现*/
                         C.trg(o, evt.resize)
-                         o.e = oe;/*自定义事件传参未实现*/
+                       
                     }
 
                     C.StopBubble(oe);
@@ -76,14 +76,14 @@ function Drags() {
             // y=0;
             o.style.left = x + "px";
             o.style.top = y + "px";
-            console.log("move  o.style.top______________________" + o.style.top)
+            //console.log("move  o.style.top______________________" + o.style.top)
             // o.mx=x;
             // o.my=y;
         },
         Stop: function (o, e) {
             // console.log("stop:")
             // console.log(o)
-            console.log(o.id + "x轴方向移动了：" + (e.clientX - o.x) + "，y轴方向移动了：" + (e.clientY - o.y))
+            //console.log(o.id + "x轴方向移动了：" + (e.clientX - o.x) + "，y轴方向移动了：" + (e.clientY - o.y))
             // o.ex=e.clientX-o.x;
             // o.ey=e.clientY-o.y;
             if(touch)
@@ -92,8 +92,6 @@ function Drags() {
             document.onmousemove = document.onmouseup = null;
         
             //o.resize=null;
-            if (window.evt)
-                console.log(evt)
             if (window.evt && window.evt["drop"])
                 C.trg(o, window.evt.drop)
 

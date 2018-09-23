@@ -397,20 +397,20 @@ pre
    {
     display:block;
    }
-   .win
-   {
-       position:relative;
-       left:50%;
-       top:50%;
-       z-index:999;
-       width:88px;
-       height:88px;
-       background-color:transparent;
-       cursor:move;
-       border:1px dashed #999;
-       overflow:visible;
-       margin:9px 0 0 9px;
-   }
+.win {
+    position: relative;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    /*box-sizing: border-box;
+        border: 300px solid rgba(0, 0, 0, .35);
+    */
+    background-color: transparent;
+    cursor: move;
+    border: 1px solid rgba(0, 0, 0, .35);
+    overflow: visible;
+    margin: -31px auto auto -50px;
+}
    .win i
    {
        position:absolute;

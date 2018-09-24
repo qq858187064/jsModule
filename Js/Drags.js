@@ -70,6 +70,18 @@ function Drags() {
             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
             var x = (e.clientX || e.changedTouches[0].clientX) - o.rx - o.ml,
                 y = (e.clientY || e.changedTouches[0].clientY) - o.ry - o.mt;
+            //拖动范围限制：
+            if (x <= -o.ml)
+                x = -o.ml;
+            else if (x - o.ml >= o.parentNode.offsetWidth)
+                x = o.parentNode.offsetWidth+ o.ml;
+            if (y <= -o.mt)
+                y = -o.mt;
+            else if (y - o.mt >= o.parentNode.offsetHeight)
+                y = o.parentNode.offsetHeight + o.mt;
+
+            console.log(o.p)
+            console.log(x , o.ml , o.parentNode.offsetWidth)
             // if(x<0)
             // x=0;
             // if(y<0)

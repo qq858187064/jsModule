@@ -1,4 +1,4 @@
-﻿<%@ Page Title="弹出窗组件"  Language="C#" CodeFile="Dialogs.aspx.cs" Inherits="Dialogs" %>
+﻿<%@ Page Title="弹出窗组件"  Language="C#"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="Hd5" Runat="Server">Dialogs</asp:Content>
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Descr">实现各种弹出窗口的功能类</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuC" Runat="Server">

@@ -51,7 +51,7 @@
                 C.G("r").href = o;
             },
         "GET",
-        "http://localhost/Hs/Handler.ashx?f=cut&p=" + img.src.substring(img.src.indexOf("/", 8)) + "&x=" + -si.offsetLeft + "&y=" + -si.t + "&w="+si.offsetWidth+"&h="+si.offsetHeight
+        "/Hs/Handler.ashx?f=cut&p=" + img.src.substring(img.src.indexOf("/", 8)) + "&x=" + -si.offsetLeft + "&y=" + -si.t + "&w="+si.offsetWidth+"&h="+si.offsetHeight
         );
             console.log(si.view.src + "_x:" + si.l + "_y:" + si.t);
         }

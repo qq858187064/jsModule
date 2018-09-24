@@ -10,11 +10,11 @@ function crop() {
             if (o.ps.s)
                 o.s = o.ps.w / o.ps.h;
 
-            o.ml = parseInt(C.CurrentStyle(o).marginLeft);
-            o.mt = parseInt(C.CurrentStyle(o).marginTop);
+            //o.ml = parseInt(C.CurrentStyle(o).marginLeft);
+            //o.mt = parseInt(C.CurrentStyle(o).marginTop);
             o.img = C.G(o.ps.img);
             o.view = C.G(o.ps.prev);
-            C.evt("resize", false, true);
+            //C.evt("resize", false, true);
             C.evt("drop", false, true);
             //o.ot = window.getComputedStyle(o).left;//IE9以下:window.getComputedStyle ? window.getComputedStyle(boxs).left : boxs.currentStyle.left
 
@@ -24,16 +24,22 @@ function crop() {
             for (var j = 0; j < ii.length; j++) {
                 var i = ii[j];
                 i.p = o;
-                C.AddEvent(i, "resize", crop.resize, i);
+                //console.log(i)
+                //C.AddEvent(i, "resize", crop.resize, i);
                 C.AddEvent(i, "drop", function fun(i, e) {
 
                     //i.w=si.offsetWidth;
                     //i.h=si.offsetHeight;
-
+                    /*
                     i.p.ol = parseInt(i.p.style.left);
                     i.p.ot = parseInt(i.p.style.top);
                     i.p.w = parseInt(i.p.style.width);
                     i.p.h = parseInt(i.p.style.height);
+                    */
+                    o.ol = parseInt(o.style.left);
+                    o.ot = parseInt(o.style.top);
+                    o.w = parseInt(o.style.width);
+                    o.h = parseInt(o.style.height);
 
                     i.p.te = i.e;
                     crop.clip(o);
@@ -48,8 +54,8 @@ function crop() {
                 }
                 o.view.src = o.img.src;
                 
-                o.ot = o.offsetTop - parseInt(C.CurrentStyle(o).marginTop);
-                o.ol = o.offsetLeft - parseInt(C.CurrentStyle(o).marginLeft);
+                o.ot = o.offsetTop - o.mt;//parseInt(C.CurrentStyle(o).marginTop)
+                o.ol = o.offsetLeft - o.ml;// parseInt(C.CurrentStyle(o).marginLeft);
 
                 crop.clip(o);
             }
@@ -61,7 +67,7 @@ function crop() {
            // i.ml = parseInt(C.CurrentStyle(i).marginLeft);
            // i.mt = parseInt(C.CurrentStyle(i).marginTop);
             // i.t = i.mt + i.offsetTop;
-            i.t = i.ot+parseInt(C.CurrentStyle(i).marginTop);
+            i.t = i.ot + i.mt;
             i.r = i.offsetLeft + i.offsetWidth;
             i.b = i.t + i.offsetHeight;
 
@@ -74,7 +80,8 @@ function crop() {
             if (!o.p.w) {
                 o.p.w = o.p.offsetWidth;
                 o.p.h = o.p.offsetHeight;
-            }
+               
+            } 
             if (o.e) {
                 var sy = o.e.clientY || o.e.changedTouches[0].clientY;
                 if (o.p.te && o.p.te != o.e) {
@@ -82,18 +89,23 @@ function crop() {
                     o.p.te = o.e;
                     //console.log((o.p.te&&o.p.te!=o.e)+"__only one")
                 }
-                var mx = (o.e.clientX || o.e.changedTouches[0].clientX) - o.x,
-                    my = (o.e.clientY || o.e.changedTouches[0].clientY) - o.y;//o.e.clientY
+
+                var mx = (o.e.clientX || o.e.changedTouches[0].clientX) - o.ox,
+                    my = (o.e.clientY || o.e.changedTouches[0].clientY) - o.oy;//o.e.clientY
                 //o.p.te=o.e.clientY
                 //o.p.ot = parseInt(o.p.style.top)- o.p.ot 	;
                 //	my =(o.p.ey|| o.e.clientY) - o.y;
-                var cls = C.Attr(o, "class");
-
+                var cls = C.Attr(o, "class"),
+                 xe = parseInt(o.p.style.left) <= -o.p.ml,
+                    ye = parseInt(o.p.style.left) <= -o.p.mt;
+                //console.log('o.p.ot', o.p.ot)
                 if (!o.p.pss) {
+                    console.log(o.p.ot)
                     o.p.style.top = o.p.ot + my + "px";//yv;//
                     o.p.style.left = o.p.ol + mx + "px";
                     o.p.pss = true;
                 }
+               // console.log(o.p.ml,xe);
                 switch (cls) {
                     case "a":
                         if(!o.p.s)
@@ -130,27 +142,27 @@ function crop() {
 
                         break;
                 }
+
                 if (o.p.s>0)
                 {
-                   
                     if(mx!=0)
                     {
-                        console.log("mx")
+                       // console.log("mx")
                         o.p.style.width = o.p.w + mx + "px";
                         o.p.style.height = (o.p.w + mx) / o.p.s + "px";
-                        //o.p.style.top = o.p.ot  +"px";
+                        o.p.style.top = o.p.ot  +"px";
                     }
                     else if(my!=0)
                     {
-                        console.log("my")
+                        //console.log("my")
                         o.p.style.height = o.p.h + my + "px";
                         o.p.style.width = (o.p.h + my) * o.p.s + "px";
                     }
                 }
                 else
                 {
-                if (mx != 0)
-                    o.p.style.width = o.p.w + mx + "px";
+                    if (mx != 0)
+                        o.p.style.width = o.p.w + mx + "px";
                 if (my != 0)
                     o.p.style.height = o.p.h + my + "px";
                 }

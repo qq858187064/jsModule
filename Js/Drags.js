@@ -14,7 +14,10 @@ function Drags() {
     Drags.prototype = {
         Init: function (o) {
             o.rx = o.ry = 0;
-            o.ml = o.mt = 0;
+            //o.ml = o.mt = 0;
+            o.ml = parseInt(C.CurrentStyle(o).marginLeft);
+            o.mt = parseInt(C.CurrentStyle(o).marginTop);
+
             var f = !o.id ? o.parentNode : o;
             if (f.id.charAt(0).toLowerCase() == "s") {
                 o.Bar = o;
@@ -33,23 +36,24 @@ function Drags() {
                 y = touch ? e.changedTouches[0].clientY : e.clientY;
             o.rx = x - o.offsetLeft;
             o.ry = y - o.offsetTop;
-            o.ml = parseInt(C.CurrentStyle(o).marginLeft) || 0;
-            o.mt = parseInt(C.CurrentStyle(o).marginTop) || 0;
+            //o.ml = parseInt(C.CurrentStyle(o).marginLeft) || 0;
+            //o.mt = parseInt(C.CurrentStyle(o).marginTop) || 0;
 
 
             if (!document["on" + e2])
                 document["on" + e2] = function (oe) {
+                    console.log(o.ox, o.rx)
                     //if(e.clientX!=oe.clientX|e.clientY!=oe.clientY)
-                    if (o.tagName.toLowerCase() != "i" || !window.evt["resize"])
+                    if (o.tagName.toLowerCase() != "i" )//|| !window.evt["resize"]
                         Drags.prototype.Move(o, oe);
                     else {
                         /*目前仅resize用*/
-                        o.x = x;
-                        o.y = y;
-
+                        o.ox = x;
+                        o.oy = y;
                         o.e = oe;/*自定义事件传参未实现*/
-                        C.trg(o, evt.resize)
-                       
+                        //C.trg(o, evt.resize)
+                        //  if (o.p.offsetLeft >0)
+                            crop.resize(o)
                     }
 
                     C.StopBubble(oe);
@@ -68,29 +72,32 @@ function Drags() {
             //事件节省未处理
             //var e = e || window.event;
             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-            var x = (e.clientX || e.changedTouches[0].clientX) - o.rx - o.ml,
-                y = (e.clientY || e.changedTouches[0].clientY) - o.ry - o.mt;
+            o.x = (e.clientX || e.changedTouches[0].clientX) - o.rx - o.ml,
+             o.y = (e.clientY || e.changedTouches[0].clientY) - o.ry - o.mt;
             //拖动范围限制：
-            if (x <= -o.ml)
-                x = -o.ml;
-            else if (x - o.ml >= o.parentNode.offsetWidth)
-                x = o.parentNode.offsetWidth+ o.ml;
-            if (y <= -o.mt)
-                y = -o.mt;
-            else if (y - o.mt >= o.parentNode.offsetHeight)
-                y = o.parentNode.offsetHeight + o.mt;
+            if (o.x <= -o.ml)
+                o.x = -o.ml;
+            else if (o.x - o.ml >= o.parentNode.offsetWidth)
+                o.x = o.parentNode.offsetWidth + o.ml;
+            if (o.y <= -o.mt)
+                o.y = -o.mt;
+            else if (o.y - o.mt >= o.parentNode.offsetHeight)
+                o.y = o.parentNode.offsetHeight + o.mt;
+            o.style.left = o.x + "px";
+            o.style.top = o.y + "px";
 
-            console.log(o.p)
-            console.log(x , o.ml , o.parentNode.offsetWidth)
             // if(x<0)
             // x=0;
             // if(y<0)
             // y=0;
-            o.style.left = x + "px";
-            o.style.top = y + "px";
             //console.log("move  o.style.top______________________" + o.style.top)
             // o.mx=x;
             // o.my=y;
+        },
+        Limit: function (o) {
+            //console.log(o.x, o.rx, o.ox)
+
+            //console.log(o.style.left)
         },
         Stop: function (o, e) {
             // console.log("stop:")

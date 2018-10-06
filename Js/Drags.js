@@ -13,10 +13,14 @@ function Drags() {
     }
     Drags.prototype = {
         Init: function (o) {
-            o.rx = o.ry = 0;
             //o.ml = o.mt = 0;
-            o.ml = parseInt(C.CurrentStyle(o).marginLeft);
-            o.mt = parseInt(C.CurrentStyle(o).marginTop);
+            //元素边框宽度
+            o.bw = parseInt(C.CurrentStyle(o).borderWidth);
+            o.ml = parseInt(C.CurrentStyle(o).marginLeft);//+o.bw;
+            o.mt = parseInt(C.CurrentStyle(o).marginTop);//+o.bw;
+            //计算相对于范围元素(图片亦是其父元素)绝对定位的左、上位置
+            o.l = o.offsetLeft - o.ml;
+            o.t = o.offsetTop - o.mt;
 
             var f = !o.id ? o.parentNode : o;
             if (f.id.charAt(0).toLowerCase() == "s") {
@@ -26,95 +30,149 @@ function Drags() {
                 o.Bar = o.firstChild.nodeType == 1 ? o.firstChild : C.Nxt(o.firstChild);
             }
             C.AddEvent(o.Bar, e1, Drags.prototype.Start, o);
-            //C.AddEvent(document, e1,Drags.prototype.Start, o);
+            //o.co = o;
         },
         Start: function (o, e) {
-            // console.log("start:")
-            //o.parentNode.w=o.parentNode.offsetWidth;
-            //o.parentNode.h=o.parentNode.offsetHeight;
-            var x = touch ? e.changedTouches[0].clientX : e.clientX,
-                y = touch ? e.changedTouches[0].clientY : e.clientY;
-            o.rx = x - o.offsetLeft;
-            o.ry = y - o.offsetTop;
-            //o.ml = parseInt(C.CurrentStyle(o).marginLeft) || 0;
-            //o.mt = parseInt(C.CurrentStyle(o).marginTop) || 0;
+            /*开始拖动的起始点，鼠标按下时，相对于document的坐标*/
+            o.ox = touch ? e.changedTouches[0].clientX : e.clientX;
+            o.oy = touch ? e.changedTouches[0].clientY : e.clientY;
 
+            //o.setCapture();//releaseCapture
+            //window.captureEvents(e.type);
 
+            o.tg = C.Ge(e);
+            o.isd = o.tg.parentNode == o && o.tg.tagName == 'I'
             if (!document["on" + e2])
-                document["on" + e2] = function (oe) {
-                    console.log(o.ox, o.rx)
-                    //if(e.clientX!=oe.clientX|e.clientY!=oe.clientY)
-                    if (o.tagName.toLowerCase() != "i" )//|| !window.evt["resize"]
-                        Drags.prototype.Move(o, oe);
-                    else {
-                        /*目前仅resize用*/
-                        o.ox = x;
-                        o.oy = y;
-                        o.e = oe;/*自定义事件传参未实现*/
-                        //C.trg(o, evt.resize)
-                        //  if (o.p.offsetLeft >0)
-                            crop.resize(o)
-                    }
-
-                    C.StopBubble(oe);
-                    C.PreventDefault(oe);
-                };
+                document["on" + e2] = function (oe) { Drags.prototype.Move(o, oe) };
             if (!document["on" + e3])
                 document["on" + e3] = function (oe) {
                     Drags.prototype.Stop(o, oe)
                 }
             //C.AddEvent(document, "mouseup", Drags.prototype.Stop, o);
-            C.StopBubble(e);
-            C.PreventDefault(e);
-
         },
         Move: function (o, e) {
-            //事件节省未处理
-            //var e = e || window.event;
+            var ex = touch ? e.changedTouches[0].clientX : e.clientX,
+                ey = touch ? e.changedTouches[0].clientY : e.clientY,
+                xro = o.offsetWidth + o.offsetLeft > o.parentNode.offsetWidth,//x轴右侧超出
+                ybo = o.offsetHeight + o.offsetTop > o.parentNode.offsetHeight,//y轴下方超出
+                out = xro || ybo;
             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-            o.x = (e.clientX || e.changedTouches[0].clientX) - o.rx - o.ml,
-             o.y = (e.clientY || e.changedTouches[0].clientY) - o.ry - o.mt;
-            //拖动范围限制：
-            if (o.x <= -o.ml)
+            o.x = o.l + ex - o.ox;
+            o.y = o.t + ey - o.oy;
+            //限制x轴：
+            if (o.x <= -o.ml)/*x轴左边超出*/
                 o.x = -o.ml;
-            else if (o.x - o.ml >= o.parentNode.offsetWidth)
-                o.x = o.parentNode.offsetWidth + o.ml;
-            if (o.y <= -o.mt)
+            else if (o.offsetWidth + o.x + o.ml >= o.parentNode.offsetWidth)/*x轴右边超出*/
+                o.x = o.parentNode.offsetWidth - o.offsetWidth - o.ml;
+            //限制y轴：
+            if (o.y <= -o.mt)/*y轴上边超出*/
                 o.y = -o.mt;
-            else if (o.y - o.mt >= o.parentNode.offsetHeight)
-                o.y = o.parentNode.offsetHeight + o.mt;
-            o.style.left = o.x + "px";
-            o.style.top = o.y + "px";
+            else if (o.offsetHeight + o.y + o.mt >= o.parentNode.offsetHeight)/*y轴下边超出*/
+                o.y = o.parentNode.offsetHeight - o.offsetHeight - o.mt;
+            //o.tg = C.Ge(e);
+            var x, y;
+            if (o.isd)//暂时根据元素结构、标签判断是否方向键，考虑其它方式
+            {
+                if (!o.w) {
+                    o.w = o.offsetWidth;
+                    o.h = o.offsetHeight;
+                }
+                var cls = C.Attr(o.tg, "class"),
+                    mx = ex - o.ox,//x轴移动的距离
+                    my = ey - o.oy;//,//y轴移动的距离
+                //x,y;
+                switch (cls) {
+                    case "a":
+                        mx = -mx;
+                        my = -my;
+                        x = o.x;
+                        break;
+                    case "b":
+                        my = -my;
+                        mx = 0;
+                        y = o.y;
+                        break;
+                    case "c":
+                        my = -my;
+                        y = o.y;
+                        break;
+                    case "d":
+                        my = 0;
+                        break;
+                    case "e":
+                        break;
+                    case "f":
+                        mx = 0;
+                        break;
+                    case "g":
+                        mx = -mx;
+                        x = o.x;
+                        break;
+                    case "h":
+                        mx = -mx;
+                        x = o.x;
+                        break;
+                }
+				/*更新是否超出值，为了实现超出后回拉时有响应*/
+				 xro = x+mx> o.parentNode.offsetWidth;
+				 ybo =y+my> o.parentNode.offsetHeight;
+                var w, h;
+                /*比例限制：*/
+                if (o.s > 0)
+				{
+                    if (!xro && !ybo)
+					{
+                        if (mx != 0)
+						{
 
-            // if(x<0)
-            // x=0;
-            // if(y<0)
-            // y=0;
-            //console.log("move  o.style.top______________________" + o.style.top)
-            // o.mx=x;
-            // o.my=y;
-        },
-        Limit: function (o) {
-            //console.log(o.x, o.rx, o.ox)
+                            w = o.w + mx;
+                            h = (o.w + mx) / o.s;
+                        }
+                        else if (my != 0)
+						{
+                            h = o.h + my;
+                            w = (o.h + my) * o.s;
+                        }
+                    }
+                }
+                else
+				{
+                    if (!xro && mx != 0)
+                        w = o.w + mx;
+                    if (!ybo && my != 0)
+                        h = o.h + my;
+                }
 
-            //console.log(o.style.left)
+                //避免大小超出
+                if (w >= o.parentNode.offsetWidth - o.offsetLeft){
+                    w = o.parentNode.offsetWidth - o.offsetLeft;
+					h=w/o.s;
+					}
+
+                o.style.width = w + "px";
+                o.style.height = h + "px";
+            }
+            else// if(o.co == o.tg)
+            {
+                x = o.x;
+                y = o.y;
+            }
+            //if(x)
+            o.style.left = x + "px";
+            //if(y)
+            o.style.top = y + "px";
         },
         Stop: function (o, e) {
-            // console.log("stop:")
-            // console.log(o)
-            //console.log(o.id + "x轴方向移动了：" + (e.clientX - o.x) + "，y轴方向移动了：" + (e.clientY - o.y))
-            // o.ex=e.clientX-o.x;
-            // o.ey=e.clientY-o.y;
-            if(touch)
-            document.ontouchmove=document.ontouchend=null;
+            if (touch)
+                document.ontouchmove = document.ontouchend = null;
             else
-            document.onmousemove = document.onmouseup = null;
-        
-            //o.resize=null;
+                document.onmousemove = document.onmouseup = null;
             if (window.evt && window.evt["drop"])
                 C.trg(o, window.evt.drop)
 
-            //if(o.parentNode==)
+            //更新位置：计算相对于范围元素(图片亦是其父元素)绝对定位的左、上位置
+            o.l = o.offsetLeft - o.ml;
+            o.t = o.offsetTop - o.mt;
         }
     };
     C.Batch();
@@ -139,62 +197,5 @@ function Drags() {
        IsMousedown=false;  
       }  
      }  
-	 
-	 
-	 
-	 
-	 
-	 OK:
-	 function Drags()
-{
-    Drags.prototype = {
-        Init: function (o)
-        {
-            o.Rx = o.Ry = 0;
-            o.ML = o.MT = 0;
-            var f = !o.id ? o.parentNode : o;
-
-            if (f.id.charAt(0).toLowerCase() == "s")
-            {
-                o.Bar = o;
-                //o.s = true;
-            }
-            else
-            {
-                o.Bar = o.firstChild.nodeType == 1 ? o.firstChild : C.Nxt(o.firstChild);
-            }
-            C.AddEvent(o.Bar, "mousedown", Drags.prototype.Start, o);
-        },
-        Start: function (o,e)
-        {
-			o.x=e.clientX;
-			o.y=e.clientY;
-		    o.ML = parseInt(C.CurrentStyle(o).marginLeft) || 0;
-            o.MT = parseInt(C.CurrentStyle(o).marginTop) || 0;
-            o.Rx = e.clientX - o.offsetLeft - o.ML;
-            o.Ry = e.clientY - o.offsetTop- o.MT;
-            document.onmousemove = function (e)
-            {
-                Drags.prototype.Move(o,e);
-            };
-            C.AddEvent(document, "mouseup", Drags.prototype.Stop, o);
-            C.StopBubble(e);
-            C.PreventDefault(e);
-        },
-        Move: function (o,e)
-        {
-            var e = e || window.event;
-            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-            o.style.left = (e.clientX - o.Rx) + "px";
-            o.style.top = (e.clientY - o.Ry ) + "px";
-        },
-        Stop: function (o,e)
-        {
-			console.log("此次x轴移动："+(e.clientX-o.x)+";y轴移动："+(e.clientY-o.y))
-            document.onmousemove = null;
-            document.onmouseup = null;
-        }
-    };
-    C.Batch();
-}
+	
 */

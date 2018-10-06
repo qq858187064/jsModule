@@ -12,7 +12,7 @@
 			<b class="win" id="si" p="prev:'prev',img:'img',w:'100',h:'62',s:1"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><i class="e"></i><i class="f"></i><i class="g"></i><i class="h"></i></b>
 			</p>
             <p class="bts mt9"><a style="margin-right:75px;" href="javascript:C.G('Fu').click()">上传图像</a><a title="缩小">-</a><a title="放大">+</a><a href="javascript:cut()">确定</a></p>
-            <a id="r" target="_blank"></a>
+            <a id="r" target="_blank"><img id='ri' /></a>
 			 <form action="/Hs/Handler.ashx?f=up" method="post" enctype="multipart/form-data" id="ImI" target="Hi" class="sip">
              <input name="Fu" id="Fu" type="file" onchange="UpImg()" accept="image/gif, image/jpeg"/ style="margin-right:114px;display:none" /><!--  multiple="multiple"-->
             <iframe name='Hi' id="hi" class="hi"></iframe>
@@ -41,17 +41,22 @@
         var hi = C.G("hi"),
             si = C.G("si");
 
-	crop(si) 
+	window.onload=function(){
+	crop(si)
+}; 
 	
         /*确认图像*/
+		var r=C.G("r"),
+		ri=C.G('ri');
         function cut() {
-            // EXHR: function (CallBack, Method, Url, Data, Proc, Async) 
             C.EXHR(function (o) {
-                C.G("r").innerHTML = "图片处理完成：" + o;
-                C.G("r").href = o;
+                r.innerHTML = "图片处理完成，返回值：" + o+"<br />";
+                r.href =o;
+				ri.src= o+"?"+Math.random();
+				r.appendChild(ri)
             },
         "GET",
-        "/Hs/Handler.ashx?f=cut&p=" + img.src.substring(img.src.indexOf("/", 8)) + "&x=" + -si.offsetLeft + "&y=" + -si.t + "&w="+si.offsetWidth+"&h="+si.offsetHeight
+        "/Hs/Handler.ashx?f=cut&p=" + img.src.substring(img.src.indexOf("/", 8)) + "&x=" + -si.offsetLeft + "&y=" + -si.offsetTop+ "&w="+si.offsetWidth+"&h="+si.offsetHeight
         );
             console.log(si.view.src + "_x:" + si.l + "_y:" + si.t);
         }

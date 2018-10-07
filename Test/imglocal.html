@@ -1,12 +1,11 @@
 ﻿<html>
 <head>
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
 <script src="../Js/Base.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
 <body>
-		商品图片 <input type="file" id="face_upload"/><br>
+		商品图片 <input type="file" id="fileUp" onchange="chgImg(this);"/><br>
 		<img src="" height="200" width="200" id="xs"/>
 
     <img id="image" src="" />
@@ -14,7 +13,7 @@
     <input type="file" onchange="selectImage(this);" />
     <br />
     <script>
-        function getObjectURL(file) {
+        /*function imgUrl(file) {
             var url = null
             if (window.createObjectURL != undefined) { // basic  
                 url = window.createObjectURL(file)
@@ -24,17 +23,16 @@
                 url = window.webkitURL.createObjectURL(file)
             }
             return url;
-        }
-
-        C.G("face_upload").onchange=function () {
-            var objUrl = getObjectURL(this.files[0]);
-            var size = this.files[0].size;
-            if (size >= 1024000 * 10) bottomTip("图片超过10M了哦", 0);
-            else {
-                if (objUrl) {
-                    $("#xs").attr("src", objUrl);
-                }
-            }
+        }*/
+        function chgImg(fi)
+		{
+		var f0=fi.files[0],
+             ou =window[window.URL ? 'URL' : 'webkitURL']['createObjectURL'](f0);// imgUrl(fi.files[0]);
+			if (ou&&f0.size < 1024000 * 5){
+				C.G("xs").src=ou;
+			}
+			else
+			alert("图片超过5M或不存在");
         };
 
         //第二种h5

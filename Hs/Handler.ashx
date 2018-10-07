@@ -97,7 +97,7 @@ stream.Read(bt, 0, bt.Length);
         }
         //File.Delete(hc.Server.MapPath(ep));
         //hc.Response.Write(hc.Server.MapPath(ep));
-            bmp.Save(hc.Server.MapPath(ep),ci,ps);
+        bmp.Save(hc.Server.MapPath(ep),ci,ps);
 
         // bmp.Dispose();
 
@@ -116,9 +116,9 @@ stream.Read(bt, 0, bt.Length);
     public void up(HttpContext hc)
     {
         hc.Response.ContentType = "text/plain";
-        HttpPostedFile file = hc.Request.Files["Fu"];
+        HttpPostedFile file = hc.Request.Files[0];
         #region 上传文件，并输出返回服务端地址
-        string Fn = hc.Request.Files[0].FileName;
+        string Fn = file.FileName;// hc.Request.Files[0].FileName;
         StringBuilder Psb = new StringBuilder(@"/Images/uimg/tmp/");
         Psb.Append(DateTime.Now.ToString("yyyyMMddHHmmss"));
         Psb.Append(new Random().Next(10000));

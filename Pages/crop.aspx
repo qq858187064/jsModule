@@ -11,6 +11,7 @@
 			<p class="cans"><img id="img" src="/images/uimg/tmp/a.jpg" style="display:block;position:absolute;" onmousewheel="return bbimg(this)" />
 			<b class="win" id="si" p="prev:'prev',img:'img',w:'100',h:'62',s:1"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><i class="e"></i><i class="f"></i><i class="g"></i><i class="h"></i></b>
 			</p>
+			<canvas id='cvs'></canvas>
             <p class="bts mt9"><input name="Fu" id="Fu" type="file" onchange="chgImg(this)" accept="image/*" text='上传图像' /><a title="缩小">-</a><a title="放大">+</a><a href="javascript:upload()">确定</a></p>
             <a id="r" target="_blank"><img id='ri' /></a><!-- <a style="margin-right:75px;" href="javascript:C.G('Fu').click()">上传图像</a> multiple="multiple"-->
 			 <!--<form action="/Hs/Handler.ashx?f=up" method="post" enctype="multipart/form-data" id="ImI" target="Hi" class="sip">
@@ -34,20 +35,37 @@
     <script type="text/javascript" charset="utf-8">
 			var r=C.G("r"),
 		ri=C.G('ri');
-			var fs;
+			var fs,ou;
         //本地预览图片
         function chgImg(fi)
 			{
-		     fs=fi.files;
-            var ou =window[window.URL ? 'URL' : 'webkitURL']['createObjectURL'](fs[0]);// imgUrl(fi.files[0]);
+		     fs=fi.files,
+             ou =window[window.URL ? 'URL' : 'webkitURL']['createObjectURL'](fs[0]);// imgUrl(fi.files[0]);
 			if (ou&&fs[0].size < 1024000 * 5){
 				C.G("img").src=ou;
 			}
 			else
 			alert("图片超过5M或不存在");
         };
+		/*将图片指定区域画到画布上*/
+		function draw(){
+		var //img=new Image(),
+		//cct=C.Ce('canvas').getContext('2d');
+		cvs=C.G('cvs');
+		cct=cvs.getContext('2d');
+		//img.src=ou;
+		cct.drawImage(img,-200,-200);
+		
+		var imgData=cvs.toDataURL(img.type,0.8),
+		sendData=imgData.replace('data:'+img.type+';base64,','');
+		
+		
+		}
+		img.onload=draw();
+		
 				/*纯前端裁剪后上传*/
 		function upload(){
+		
       var fd= new FormData();
       fd.append('Fu', fs[0]);
 

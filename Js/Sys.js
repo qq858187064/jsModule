@@ -14,7 +14,9 @@
         {
             Pn[i].setAttribute("m", i);
         }
-        C.AddClass(Pn[parseInt(Pn[window.Cm].getAttribute("m"))], "CM");
+        //C.AddClass(Pn[parseInt(Pn[window.Cm].getAttribute("m"))], "CM");
+		C.AddClass(Pn[parseInt(C.Attr(Pn[window.Cm],"m"))], "CM");
+		
         Sys.prototype.Code = function ()
         {
             var Ci = parseInt(Cdl.n);

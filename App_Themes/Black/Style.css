@@ -400,14 +400,16 @@ pre
 .win {
     position: relative;
     z-index: 999;
-    left: 50%;
-    top: 50%;
-    /*box-sizing: border-box;
-        border: 300px solid rgba(0, 0, 0, .35);
-    */
+	left:50%;
+	top:50%;
+   /* left: -150px;
+    top: -150px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, .3);*/
+    box-shadow: 0 0 0 300px rgba(0,0,0,.3);
     background-color: transparent;
     cursor: move;
-    border: 1px solid rgba(0, 0, 0, .35);
+   
     overflow: visible;
     margin: -31px auto auto -50px;
 }

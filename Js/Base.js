@@ -774,12 +774,35 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         oXHR.setRequestHeader('X-Requested-With', "XMLHttpRequest");
      /*   //oXHR.responseType = "msxml-document";//兼容IE10+版本，调用selectSingleNode类似方法*/
         if (Method == "POST") {
-             oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-           /* oXHR.setRequestHeader("Content-type", "multipart/form-data");*/
+
+             // oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//formData//设了这个头request.files居然得不到文件
+          /* oXHR.setRequestHeader("Content-type", "multipart/form-data");*///payload
         }
         oXHR.send(Data);
     },
+	/*返回Promise对象*/
+	ajax:function(method,url,data,resolve,reject){
+	//	'use strict';
+    var request = new XMLHttpRequest();
+    return new Promise(function ()//resolve, reject
+	{
+        request.onreadystatechange = function () {
+            if (request.readyState === 4)
+			{
+                if (request.status === 200)
+				{
+                    resolve(request.responseText);
+                } else
+				{
+                    reject(request.status);
+                }
+            }
+        };
+        request.open(method, url);
+        request.send(data);
+    });
 
+	},
     /*ajax跨域兼容IE*/
     /*C.DXHR = function (fns, method, url, data, Proc, Async) {
 
@@ -822,28 +845,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         //setTimeout(function () { Jn.parentNode.removeChild(Jn) }, 5000)
         //Jn.parentNode.removeChild(Jn);
     },
-	/*返回Promise对象*/
-	ajax:function(method,url,data){
-	//	'use strict';
-    var request = new XMLHttpRequest();
-    return new Promise(function (resolve, reject) {
-        request.onreadystatechange = function () {
-            if (request.readyState === 4)
-			{
-                if (request.status === 200)
-				{
-                    resolve(request.responseText);
-                } else
-				{
-                    reject(request.status);
-                }
-            }
-        };
-        request.open(method, url);
-        request.send(data);
-    });
-
-	},
     /* 加入收藏 */
     Collect: function (sUrl, Tit) {
         var sUrl = !sUrl ? document.URL : sUrl,

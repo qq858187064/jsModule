@@ -71,14 +71,9 @@ stream.Read(bt, 0, bt.Length);
         string pt =p["p"],
          //约定临时目录为tmp
          ep = pt.Replace("tmp/", "");
-
         Image img = Image.FromFile(hc.Server.MapPath(pt));
-
-
-
         Bitmap bmp = new Bitmap(w, h, PixelFormat.Format24bppRgb);
         bmp.SetResolution(img.HorizontalResolution, img.VerticalResolution);
-
         using (Graphics g = Graphics.FromImage(bmp))
         {
             //graphic.SmoothingMode = SmoothingMode.HighSpeed;
@@ -90,20 +85,21 @@ stream.Read(bt, 0, bt.Length);
             //img.Dispose();
             //g.Dispose();
         }
-
+        //img.Dispose();
         EncoderParameters ps = new EncoderParameters();
         ps.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 95L);
 
         ImageCodecInfo ci = null;
         ImageCodecInfo[] cs=ImageCodecInfo.GetImageEncoders();
-        string mt =  "image/jpeg";
         foreach (ImageCodecInfo i in cs)
         {
-            if (i.MimeType == mt) ci= i;
+            if (i.MimeType == "image/jpeg") ci= i;
         }
-
-          //File.Delete(hc.Server.MapPath(ep));
+        //File.Delete(hc.Server.MapPath(ep));
+        //hc.Response.Write(hc.Server.MapPath(ep));
         bmp.Save(hc.Server.MapPath(ep),ci,ps);
+
+        // bmp.Dispose();
 
         hc.Response.Write(ep);
         hc.Response.End();
@@ -120,9 +116,9 @@ stream.Read(bt, 0, bt.Length);
     public void up(HttpContext hc)
     {
         hc.Response.ContentType = "text/plain";
-        HttpPostedFile file = hc.Request.Files["Fu"];
+        HttpPostedFile file = hc.Request.Files[0];
         #region 上传文件，并输出返回服务端地址
-        string Fn = hc.Request.Files[0].FileName;
+        string Fn =file.FileName;//  hc.Request.Files[0].FileName;//
         StringBuilder Psb = new StringBuilder(@"/Images/uimg/tmp/");
         Psb.Append(DateTime.Now.ToString("yyyyMMddHHmmss"));
         Psb.Append(new Random().Next(10000));

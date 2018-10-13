@@ -9,16 +9,18 @@
     <dd class="sip">
             <i class="prev R">预览:<img id="prev" class="view" /></i>
 			<p class="cans"><img id="img" src="/images/uimg/tmp/a.jpg" style="display:block;position:absolute;" onmousewheel="return bbimg(this)" />
-			<b class="win" id="si" p="prev:'prev',img:'img',w:'100',h:'62',s:1"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><i class="e"></i><i class="f"></i><i class="g"></i><i class="h"></i></b>
+			<b class="win" id="si" p="prev:'prev',img:'img',w:'100',h:'62',s:1,q:0.6,fu:'fu',up:'up'"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><i class="e"></i><i class="f"></i><i class="g"></i><i class="h"></i></b>
 			</p>
 			<!--<canvas id='cvs'></canvas>-->
-            <p class="bts mt9"><input name="Fu" id="Fu" type="file" onchange="setImg(this)" accept="image/*" text='上传图像' /><a title="缩小">-</a><a title="放大">+</a><a href="javascript:draw(upload)">确定</a></p>
+            <p class="bts mt9"><input name="Fu" id="fu" type="file" accept="image/*" text='上传图像' /><a title="缩小">-</a><a title="放大">+</a><a href="#" id="up">确定</a></p>
             <a id="r" target="_blank"><img id='ri' /></a><!-- <a style="margin-right:75px;" href="javascript:C.G('Fu').click()">上传图像</a> multiple="multiple"-->
-			 <!--<form action="/Hs/Handler.ashx?f=up" method="post" enctype="multipart/form-data" id="ImI" target="Hi" class="sip">
+			 <!--<form action="/Hs/Handler.ashx?f=up" method="post" enctype="multipart/form-data" id="ImI" target="Hi" class="sip"><a href="javascript:draw(upload)">确定</a>
              <input name="Fu" id="Fu" type="file" onchange="UpImg()" accept="image/gif, image/jpeg"/ style="margin-right:114px;display:none" />
             <iframe name='Hi' id="hi" class="hi"></iframe>
 			</form>-->
-        prev:用于预览图片id，img:用户上传的原图，w、h:是裁剪框的宽度，s:锁定比例的标识
+        img:用户上传的原图，prev:用于预览图片id(可选)，w、h:是裁剪框的宽度，
+        可选：q:图片压缩质量(0-1,值越小，图片压缩力度越大。)，s:锁定比例的标识,
+        fu:上传文件输入框，up:确定上传铵钮id
     </dd>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="FBHtml" runat="Server">
@@ -35,96 +37,7 @@
     <script type="text/javascript" charset="utf-8">
 			var r=C.G("r"),
 		ri=C.G('ri');
-        var img = C.G("img"),
-           // im = new Image(),
-                fs, ou, sd, mime;
-        /*本地预览图片*/
-        function setImg(fi)
-			{
-		     fs=fi.files,
-             ou =window[window.URL ? 'URL' : 'webkitURL']['createObjectURL'](fs[0]);// imgUrl(fi.files[0]);
-		     if (ou && fs[0].size < 1024000 * 5) {
-		         img.src = ou;
-		         prev.src = ou;
-			}
-			else
-			    alert("图片超过5M或不存在");
-			
-		     mime = fs[0].type;
-        };
-		/*将图片指定区域画到画布上,并在加载完成后提取数据并上传*/
-		function draw(fn){
-		    var w = si.offsetWidth,
-            h = si.offsetHeight,
-            cvs = C.Ce('canvas'); //C.G('cvs');
-		cvs.width =w;
-		cvs.height = h;
-		cct = cvs.getContext('2d');
-		    //im.src = ou;
-		img.src = ou;
-		img.onload = function () {
-
-		    console.log(123)
-		    cct.drawImage(img, si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h);
-		    console.log('si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h', si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h)
-		    sd = cvs.toDataURL(mime, 1);//.replace('data:image/jpeg;base64,', '');
-		    sd = toBlob(sd);
-            if(fn)
-		    fn();
-		}
-		
-		    //以下两步必须要在img load后执行：
-		    //im.onload = function () {
-
-		//var imgData=cvs.toDataURL(img.type,0.8),
-		//sendData=imgData.replace('data:'+img.type+';base64,','');
-		}
-        /*dataurl转成blob*/
-		function toBlob(dataurl) {
-		    var arr = dataurl.split(','),
-               // mime = arr[0].match(/:(.*?);/)[1],
-                bstr = atob(arr[1]),
-                n = bstr.length,
-                u8arr = new Uint8Array(n);
-		    while (n--)
-		    {
-		        u8arr[n] = bstr.charCodeAt(n);
-		    }
-		    return new Blob([u8arr], { type: mime });
-		}
-		/*纯前端裁剪后上传*/
-		function upload() {
-		        var fd = new FormData();
-		        fd.append('Fu', sd, Fu.value);
-		        //fd.append('Fu', fs[0]);
-		        C.EXHR(
-              function (o) {
-                  r.innerHTML = "图片处理完成，返回值：" + o + "<br />";
-                  r.href = o;
-                  ri.src = o + "?" + Math.random();
-                  r.appendChild(ri)
-              },
-              'POST',
-              '/Hs/Handler.ashx?f=up',// +(a.i || 1),+"&token=" + this.cookie("token"),
-              fd
-            );
-
-		    
-	/*
-	 //ie下报Promise未定义：
-       C.ajax('POST',
-        '/Hs/Handler.ashx?f=up',// +(a.i || 1),+"&token=" + this.cookie("token"),
-        fd,
-        function(o){
-		        r.innerHTML = "图片处理完成，返回值：" + o+"<br />";
-                r.href =o;
-				ri.src= o+"?"+Math.random();
-				r.appendChild(ri)
-        },
-		function(o){console.log(o)}
-      ); 
-	 */
-		}
+       
 		//图片缩放
         function bbimg(o) {
             var zoom = parseInt(o.style.zoom, 10) || 100;

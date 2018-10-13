@@ -142,7 +142,8 @@ function crop() {
 
      var path = o.ou?o.img.src+o.mime.replace('image/','.'):o.img.src
      fn = path.substring(path.lastIndexOf("/") + 1);
-        o.img.onload = function () {
+     o.img.onload = function () {
+         console.log(123)
             //以下两步必须要在img load后执行：
             cct.drawImage(img, si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h);
             console.log('si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h', si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h)
@@ -150,6 +151,7 @@ function crop() {
             sd = crop.prototype.toBlob(sd,o.mime);
             //fun(fn);//加入数
             crop.prototype.upload(fn)
+            o.img.onload = null;//避免每次加载时执行裁剪
         }
     },
     /*dataurl转成blob*/

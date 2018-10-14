@@ -40,6 +40,7 @@
     padding-top: 36px;
     margin-top: 32px;
     background: url(/Images/BtmBg.jpg) repeat-x 0 0;
+    clear:both;
 }
 
     .Ft a
@@ -143,6 +144,7 @@ dl.Cot dt.Prt
     border-right: 1px solid #ddd;
     border-top: none;
 }
+
 
 dl.Cot dt.RBar
 {
@@ -258,7 +260,11 @@ dl.Cp dt a
         background: #fff url(/Images/CMbg.gif) no-repeat 0px -25px;
         color: #cb5931;
     }
-
+    /*
+    dl,dt,dd{
+        display:inline-block;
+        float:none!important;
+    }*/
 h6
 {
     margin-top: 10px;

@@ -12,15 +12,19 @@
 			<b class="win" id="si" p="prev:'prev',img:'img',w:'100',h:'62',s:1,q:0.6,fu:'fu',up:'up'"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i><i class="e"></i><i class="f"></i><i class="g"></i><i class="h"></i></b>
 			</p>
 			<!--<canvas id='cvs'></canvas>-->
-            <p class="bts mt9"><input name="Fu" id="fu" type="file" accept="image/*" text='上传图像' /><a title="缩小">-</a><a title="放大">+</a><a href="#" id="up">确定</a></p>
-            <a id="r" target="_blank"><img id='ri' /></a><!-- <a style="margin-right:75px;" href="javascript:C.G('Fu').click()">上传图像</a> multiple="multiple"-->
-			 <!--<form action="/Hs/Handler.ashx?f=up" method="post" enctype="multipart/form-data" id="ImI" target="Hi" class="sip"><a href="javascript:draw(upload)">确定</a>
+            <p class="bts mt9"><input name="Fu" id="fu" type="file" accept="image/*" text='上传图像'/><a title="缩小">-</a><a title="放大">+</a><a href="#" id="up">确定</a></p>
+            <a id="r" target="_blank"><img id='ri' /></a>
+			 <!--
+                 capture=user|environment
+                 <form action="/Hs/Handler.ashx?f=up" method="post" enctype="multipart/form-data" id="ImI" target="Hi" class="sip"><a href="javascript:draw(upload)">确定</a>
              <input name="Fu" id="Fu" type="file" onchange="UpImg()" accept="image/gif, image/jpeg"/ style="margin-right:114px;display:none" />
             <iframe name='Hi' id="hi" class="hi"></iframe>
 			</form>-->
-        img:用户上传的原图，prev:用于预览图片id(可选)，w、h:是裁剪框的宽度，
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br />img:用户上传的原图，prev:用于预览图片id(可选)，w、h:是裁剪框的宽度，
         可选：q:图片压缩质量(0-1,值越小，图片压缩力度越大。)，s:锁定比例的标识,
         fu:上传文件输入框，up:确定上传铵钮id
+
     </dd>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="FBHtml" runat="Server">

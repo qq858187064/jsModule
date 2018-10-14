@@ -123,9 +123,9 @@ function crop() {
         img.src = o.view.src = o.ou;
        // img.onload = crop.prototype.draw(o);
     }
-    else
-        alert("图片超过5M或不存在");
-			
+   // else
+       // alert("图片超过5M或不存在");
+    img.src = o.view.src = o.ou
     o.mime = fs[0].type;
 },
     /*将图片指定区域画到画布上,并在加载完成后提取数据并上传*/

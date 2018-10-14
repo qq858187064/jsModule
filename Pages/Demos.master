@@ -1,7 +1,10 @@
 ﻿<%@ Master Language="C#" CodeFile="Demos.master.cs" Inherits="Demos" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server"><link href="/App_Themes/Base.css" rel="stylesheet" type="text/css" charset="utf-8" />
+<head runat="server">
+     <meta name="viewport" content="width=device-width, user-scalable=1" />
+       <%--  <meta name="viewport" content="width=device-width,maximum-scale=1.0,user-scalable=yes" />--%>
+    <link href="/App_Themes/Base.css" rel="stylesheet" type="text/css" charset="utf-8" />
  <asp:ContentPlaceHolder ID="hd" runat="server" />
 </head>
 <body><%--<div class="W" id="form1" runat="server">--%>
@@ -41,7 +44,7 @@
     <a href="#" title="操作一般文件(含Css)的功能" class="BbS">OperatFile</a>
     </dt>
 <dd style=" display:block"><h5><asp:ContentPlaceHolder id="Hd5" runat="server" />组件<i><asp:ContentPlaceHolder id="Descr" runat="server" /></i></h5>
-    <dl id="C1A"><dt class="RBar"><asp:ContentPlaceHolder id="MenuC" runat="server" /><a href="#" id="Sce" class="BbS">当前模块源代码</a></dt><asp:ContentPlaceHolder id="MainC" runat="server" /><dd></dd></dl>
+    <dl id="C1A" class="sdl"><dt class="RBar"><asp:ContentPlaceHolder id="MenuC" runat="server" /><a href="#" id="Sce" class="BbS">当前模块源代码</a></dt><asp:ContentPlaceHolder id="MainC" runat="server" /><dd></dd></dl>
 </dd>
 </dl>
     <dl><dt></dt><dd></dd></dl>
@@ -68,6 +71,7 @@ C.sDate("AW","AS","BS","CS","DS","ES");
 //new Sys();//暂时移后，endRun移回RunJs后移回来
 </script>
 <asp:ContentPlaceHolder runat="server" ID="endRun" />
-    <script>new Sys();</script>
+    <script>new Sys();//alert(document.documentElement.offsetHeight+"_"+document.body.offsetHeight)
+    </script>
 </body>
 </html>

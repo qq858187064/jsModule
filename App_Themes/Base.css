@@ -7,18 +7,21 @@
 }
 html 
 {
-	height:100%;
 	overflow-y:scroll;
 	background:#fff;
-		text-align:center;
-		touch-action: none;/*不让触摸事件产生默认行为*/
+	text-align:center;
+	touch-action: none;/*不让触摸事件产生默认行为height:100%;*/
 }
 body {
     height:100%;
+    overflow:auto;
 	margin:0 auto;
-	font:400 14px/2 '微软雅黑','宋体',Verdana;
+	font:400 14px/2 '微软雅黑',Verdana;
 	text-align:left;
-	overflow:visible;
+    overflow-y: scroll;
+  overflow: hidden scroll;
+  position: relative;
+
 }
 @media screen and (min-width:999px)
 {
@@ -30,8 +33,8 @@ body {
     padding-right: 1000px!important;
     margin-right: -1000px!important;
 }
-/* }
-body *{font-family:'微软雅黑'!important;}
+ }
+/*body *{font-family:'微软雅黑'!important;}
 a{blr:expression(this.onFocus=this.blur());} */
 a:focus,
 input:focus {outline: none;}  

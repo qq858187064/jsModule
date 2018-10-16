@@ -482,7 +482,6 @@ var num=C.G('num');
 //console.log('属性列表：',arr)
 for(var i=0;i<arr.length;i++)
 {
-
 /*var it=arr[i];
 it.id=i;
 console.log(it.id)*/
@@ -515,40 +514,58 @@ ca;/*当前分类中选中项*/
 if(pc.ca)
 {
 C.DelClass(pc.ca,'ca');
+sled.splice(a,1);
 }
 if(pc.ca!=a){
 C.AddClass(a,'ca');
 ca=a;
 ci=a.i;
+pc.ca=a;
+pc.ci=a.i;
+sled.push(a);
 }
-pc.ca=ca;
-pc.ci=ci;
-
-filt(a);
+filt();
 //
 }
 
-console.log(skus[0].pair,skus[1].pair,skus[2].pair,arr)
+//console.log(skus[0].pair,skus[1].pair,skus[2].pair,arr)
 function filt()
 {
-for(var i=0;i<skus.length;i++)
+for(var i=0;i<arr.length;i++)
 {
-//if(arr[i].ci!=undefined)
-//console.log(arr[i],'arr[i].ci',arr[i].ci,'arr[i].length：',arr[i].length)
-var s=skus[i];
-console.log(s)
-/*it=arr[i];
-
-if(it.ca)
-console.log(it.ca.innerText);
-
+var a=arr[i];
+//console.log('i:',i,a.ci,)
+if(a.ci==undefined)
+{
+//console.log(skus[0].pair,skus[1].pair,skus[2].pair)
+var prev=arr[i-1][arr[i-1].ci+1];//上一项选中的子项
+//console.log(prev)
 for(var j=0;j<skus.length;j++)
 {
-var pair=skus[j].pair;
-console.log(pair)
+
+var s=skus[j];
+//for(var n=0;n<s.pair.length;n++)
+//{
+//if(prev==s.pair[n])
+var k=s.pair.indexOf(prev);//上一项选中子项在有效sku中
+if(s.pair.indexOf(prev)>-1)
+console.log(prev,s.pair)
+
+//}
+
 }
-*/
+
+
+
+
 }
+//console.log(Math.random(),sled[i].innerText)
+}
+
+
+
+
+
 //console.log(a.pi,arr[a.pi],'s:',arr[a.pi].ci)
 //console.log(skus[0].pair,skus[1].pair,skus[2].pair,skus)
 }

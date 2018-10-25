@@ -113,8 +113,7 @@
 
 <body>
 	<div class="sku">
-		<img src="https://cdn.17shanyuan.com/goods/284566/8b7dcb0571eb85a6aad0b23d1c283cd94f598fc2.jpeg?x-oss-process=style/webp_240"
-		/>
+		<img src="https://cdn.17shanyuan.com/goods/284566/8b7dcb0571eb85a6aad0b23d1c283cd94f598fc2.jpeg?x-oss-process=style/webp_240" />
 		<b>¥0.05</b>
 		<b>库存：1111件</b>
 		<b>已选：M kg 袋 Linux 5kg 12瓶 </b>
@@ -489,56 +488,146 @@
 			arr.push(ar);
 		}
 		;
-		console.log('arr：',arr.join(),'\nskus：',skus.join());
+		console.log('arr：', arr.join(), '\nskus：', skus.join());
 		/*将属性列表arr绑至页面
 		arr[2] = ["red", "bule"]
 		arr[2].tit = "color"*/
-		//console.log(arr[1])
 		var num = C.G('num');
 		//console.log('属性列表：',arr)
-		for (var i = 0; i < arr.length; i++) {
-			//设置项标题
+		each(arr,
+		/*二维处理函数*/
+		function(o)
+		{
+				var a = C.Ce("a");
+				a.innerText = o.v;
+				o.a=a;
+				C.AddEvent(a, "click", slct,o);
+				arr[o.pi][o.i] = a;
+				num.parentNode.insertBefore(a, num)
+		},
+		/*一维处理函数*/
+		function(o){
+		//设置项标题
 			var t = C.Ce('a');
-			t.innerText = arr[i].tit;
+			t.innerText = o.tit;
 			C.AddClass(t, "fs");
 			num.parentNode.insertBefore(t, num)
-			for (var j = 0; j < arr[i].length; j++) {
-				var a = C.Ce("a");
-				a.pi = i;//当前分类项索引
-				a.i = j;//当前项索引
-
-				a.innerText = arr[i][j];
-				//if(j==0)
-				//C.AddClass(a,"fs");
-				//else
-				C.AddEvent(a, "click", slct, a)
-				arr[i][j] = a;
-				num.parentNode.insertBefore(a, num)
-			}
+			//console.log(123,o.i)
 		}
-
-
+		)
 		/*用户选中sku项处理函数*/
-		function slct(a) {
-			var pc = arr[a.pi],//父类别
+		function slct(o) {
+		console.log(o,789)
+		//console.log(o.v)
+			var pc = arr[o.pi],//父类别
 				ci,/*当前分类中选中项索引*/
 				ca;/*当前分类中选中项*/
+				
 			if (pc.ca) {
 				C.DelClass(pc.ca, 'ca');
-				sed.splice(a, 1);
+				//sed.splice(o, 1);
+				
 			}
-			if (pc.ca != a) {
-				C.AddClass(a, 'ca');
-				ca = a;
-				ci = a.i;
-
-				sed.push(a);
+			if (pc.ca != o.a) {
+				C.AddClass(o.a, 'ca');
+				ca = o.a;
+				ci = o.i;
+				//sed.push(o);
 			}
 			pc.ca = ca;
 			pc.ci = ci;
-			filt();
-			//
+			
+			
+			//filt();
+			up();
+			
 		}
+		/*遍历二维数组
+		arr:二维数组；fa：二维元素处理函数，fb一维元素处理函数
+		*/
+		function each(arr, fa, fb) {
+			for (var i = 0; i < arr.length; i++) {
+				var ar = arr[i];
+				ar.i=i;
+				if(fb)
+				fb(ar);
+				for (var j = 0; j < ar.length; j++) {
+					//var a = ar[j];
+					//a.pi = i;
+					//console.log('a.pi',a.pi)
+					//a.i = j;
+					if(fa)
+					fa({v:ar[j],pi:i,i:j});//v:二维元素，pi:当前项之父项的索引，i：当前项索引
+				}
+			}
+		}
+		//it(arr, function (a) { console.log(a.i,a) }, function (a) { console.log(a.i,a) });
+		/*更新状态*/
+		function up()
+		{
+		each(arr,
+		function(o){
+		//console.log('up>set:',o.v,o.pi,o.i);
+		
+		
+		},
+		function(o){
+		console.log(o.i,'_____________')
+		if(o.ca)
+		{
+		
+		console.log(o.ca.innerText)
+		
+		each(skus,function(si){/*sku二维子项*/
+		//console.log(123,si)
+		},
+		function(s){/*sku一维子项*/
+		s.s=false;
+		if(o.ca.innerText==s[o.i])
+		{
+		//console.log(Math.random(),s[o.i]);
+		//console.log('11111111111',arr[o.ci][0].innerText,arr[o.ci][1].innerText,s)
+		s.s=true;//是否可选
+		//console.log(s.s,s)
+		//console.log(o[o.i],999)
+		
+		
+		}
+		else{
+		//s.s=false;
+		//console.log('not',arr[o.ci][0].innerText,arr[o.ci][1].innerText,a)
+		//console.log(Math.random(),a[o.i]);
+		//console.log('222222222222',arr[o.ci][0].innerText,arr[o.ci][1].innerText,a)
+
+		}
+		console.log(o.i,s.s,s)
+		});
+		
+		//console.log('o[o.i]',arr[o.i][o.ci].innerText)
+		//var ed=arr[o.i][o.ci].innerText;
+		//console.log(o.i)
+		
+		
+		}
+		
+		});
+		}
+		/*
+		//遍历skus
+		function set(a)
+		{
+		console.log('up>set:',a.v)
+		}
+		
+		//更新sku可选状态
+		function skuf()
+		{
+		
+		}*/
+		
+		
+		
+		
 		//console.log(arr, skus)
 
 		//console.log(skus[0].pair,skus[1].pair,skus[2].pair,arr)
@@ -546,7 +635,7 @@
 		//console.log(skus.join())
 
 
-		
+
 		/*
 		传入项是否包括在有效sku列表中
 		
@@ -574,21 +663,26 @@
 		/*
 		设置默认选中sku
 		*/
-				/*
-		项是否可选
-		*/
+		/*
+项是否可选
+*/
+
+
+
+var sk = skus;
+		//filt();
+
+		function filt(o) {
 		
-		filt();
-		
-		function filt(o) {var sk=skus;//匹配选中项后可能的sku组合
-		//console.log(o);
+			//匹配选中项后可能的sku组合
+			//console.log(o);
 			/*arr和skus中子项sku等长,下标可匹配*/
 			var z = 0
-			console.log('i','n','j','k','____________________')
+			console.log('i', 'n', 'j', 'k', '____________________')
 			for (var i = 0; i < arr.length; i++) {
 				var ar = arr[i],
-				ed=ar.ci != undefined;//该项有选中项
-					//sku = skus[i];
+					ed = ar.ci != undefined;//该项有选中项
+				//sku = skus[i];
 				/*if (ed)//
 				{
 				console.log(ar[ar.ci].innerText)
@@ -597,75 +691,55 @@
 					//sk=
 				}
 				else*/
-					for (var n = 0; n < ar.length; n++) {
-						var it = ar[n];
-						//if(o)console.log(o);
-						//it.s=inSku(it);
-						//console.log(it.s)
-						//it.s=false;
-						for (var j = 0; j < sk.length; j++) {
-							//console.log(j,'______')
-							z++;
-							var s = sk[j];
-							if(ed)
+				for (var n = 0; n < ar.length; n++) {
+					var it = ar[n];
+					//if(o)console.log(o);
+					//it.s=inSku(it);
+					//it.s=false;
+
+					for (var j = 0; j < sk.length; j++) {
+
+						//console.log(j,'______')
+						z++;
+						var s = sk[j];
+
+						if (ed)//如果有选中项
+						{
+							var m = s.indexOf(ar[ar.ci]);
+							if (m < 0)//如果sku中不包含选中项
 							{
-							var m=s.indexOf(it.innerText);
-							console.log('m',m,it.innerText)
-							if(m<0)
-							{
-							//sk.splice(s,1);
-							console.log(it.innerText,s)
-							}
-							}
-							//console.log(i, n, j,it.pi,it.innerText,s[it.pi],z)
-							//if(it.innerText==s[it.pi])
-							if(it.innerText==s[it.pi])
-							{
-									it.style.color = '#090';
-									it.s = true;
+								console.log(i, n, j,it.pi,it.innerText,s[it.pi],z)
+								//console.log(ar[ar.ci].innerText)
+								//it.style.color='#ddd';
+								s.s=true;
+								console.log(i, n, j,it.pi,it.innerText,s[it.pi],z)
+								console.log('s:',s)
+								//sk.splice(j,1);//如果选中项
+								//j--;
+								//break;000
+
 							}
 							else
-							{
-							it.style.color = '#ddd';
-									it.s = false;
-							}
-							if(it.s)
+							s.s=false;
 							break;
-							
-							/*
-							for (var k =0; k < s.length; k++) {
-							//k=k+a;
-								z++
-								//if (ar.ci != undefined)break;
 
-								console.log(i, n, j, k, it.innerText, s[k], z, s.join())
-								//console.log(it.innerText,s[k])
-								if (it.innerText == s[i]) {
-
-									it.style.color = '#090';
-									it.s = true;
-									//j=0;
-									break
-									//i++;
-									//console.log(Math.random(), it.i==j, it, s[i])
-									//return v.innerText == s[i];
-								}
-								else {
-									it.style.color = '#ddd';
-									//it.s=false;
-									//break;
-
-								}
-							}
-							*/
-
-								
-							//if (it.s)
-								//break;
 
 						}
-
+						//console.log(i, n, j,it.pi,it.innerText,s[it.pi],z)
+						//if(it.innerText==s[it.pi])
+						if (it.innerText == s[it.pi]) {
+							it.style.color = '#090';
+							it.s = true;
+						}
+						else {
+							//it.style.color = '#ddd';
+							//it.s = false;
+						}
+						if (it.s)
+							break;
 					}
+
+				}
 
 			}
 

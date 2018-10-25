@@ -28,7 +28,25 @@
     <script type="text/javascript">
 	var arr=[1,2,7,4,9,3,-2,-1];
 	
-	
+			/*遍历二维数组
+		arr:二维数组；fa：二维元素处理函数，fb一维元素处理函数
+		*/
+		function each(arr, fa, fb) {
+			for (var i = 0; i < arr.length; i++) {
+				var ar = arr[i];
+				ar.i=i;
+				if(fb)
+				fb(ar);
+				for (var j = 0; j < ar.length; j++) {
+					//var a = ar[j];
+					//a.pi = i;
+					//console.log('a.pi',a.pi)
+					//a.i = j;
+					if(fa)
+					fa({v:ar[j],pi:i,i:j});//v:二维元素，pi:当前项之父项的索引，i：当前项索引
+				}
+			}
+		}
 
 var r=document.getElementById("r"),
 	cc=0;

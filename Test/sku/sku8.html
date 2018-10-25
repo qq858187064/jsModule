@@ -11,15 +11,14 @@ ul,li{ padding:0px; margin:0px;}
 #panel{ width:500px; margin:30px auto;}
 .goods_attr{ overflow:hidden;}
 .goods_attr .label {font: 12px/30px '宋体';color: #777;width: 50px;;padding-right: 10px;float: left; display:block;}
-.goods_attr ul {float:left;width:300px;}
 
-.goods_attr li{color:#333;overflow:hidden;position:relative;float:left;text-align:center; vertical-align:middle; border:1px solid #999;text-indent:0; cursor:pointer}
-.goods_attr li.b{border:1px dotted #CCC;color:#DDD; pointer:none;}
-.goods_attr li.b img {opacity:0.4;}
-.goods_attr li.sel{ border:1px solid #c80a28;color:#333;}
+.goods_attr a{color:#333;overflow:hidden;position:relative;float:left;text-align:center; vertical-align:middle; border:1px solid #999;text-indent:0; cursor:pointer}
+.goods_attr a.b{border:1px dotted #CCC;color:#DDD; pointer:none;}
+.goods_attr a.b img {opacity:0.4;}
+.goods_attr a.sel{ border:1px solid #c80a28;color:#333;}
 
-.goods_attr li.text{margin:5px 10px 5px 0; height:23px;line-height:23px;text-indent:0;padding:0 23px;font-style:normal;}
-.goods_attr li.img{ margin-right:10px;width:35px;height:35px; line-height:35px;text-align:center;}
+.goods_attr a{margin:5px 10px 5px 0; height:23px;line-height:23px;text-indent:0;padding:0 23px;font-style:normal;}
+.goods_attr a.img{ margin-right:10px;width:35px;height:35px; line-height:35px;text-align:center;}
     
     
     </style>
@@ -31,9 +30,9 @@ ul,li{ padding:0px; margin:0px;}
     </div>
 
 </div>  
-<!--    
-<script type="text/javascript" src="http://localhost/Js/Base.js"></script>
--->
+<!--   
+<script type="text/javascript" src="http://localhost/Js/Base.js"></script>--> 
+
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>    
 <script type="text/javascript">
 /*
@@ -42,70 +41,82 @@ ul,li{ padding:0px; margin:0px;}
 属性item1 下面有 2个属性值 分别是 10,11
 （举个常见的例子 属性尺码 下有 S M L XL 4个属性值 ）
 */
-var keys = {
+var arr = {
     'attr1':['10','11'],
     'attr2':['20','21','22','23'],
     'attr3':['30','31','32'],
     'attr4':['40','41']
     };
 //SKU，Stock Keeping Uint(库存量单位)    
-var sku_list=[
+var skus=[
         {'attrs':'10|20|30|40','num':120},
         {'attrs':'10|21|30|40','num':10},
         {'attrs':'10|22|30|40','num':28},
         {'attrs':'10|22|31|41','num':220},
         {'attrs':'10|22|32|40','num':130},
         {'attrs':'11|23|32|41','num':120},
-        ];    
-        
-
-/**init start */
-
-//显示html结构
-function show_attr_item(){        
+        ];   
+		/*遍历二维数组
+		arr:二维数组；fa：二维元素处理函数，fb一维元素处理函数
+		*/
+		function each(arr, fa, fb) {
+			for (var i = 0; i < arr.length; i++) {
+				var ar = arr[i];
+				ar.i=i;
+				if(fb)
+				fb(ar);
+				for (var j = 0; j < ar.length; j++) {
+					//var a = ar[j];
+					//a.pi = i;
+					//console.log('a.pi',a.pi)
+					//a.i = j;
+					if(fa)
+					fa({v:ar[j],pi:i,i:j});//v:二维元素，pi:当前项之父项的索引，i：当前项索引
+				}
+			}
+		}		
+//将数据绑定到页面
+function showItem(){        
     var html='';
-    for(k in keys){
+    for(k in arr){
         html+='<div class="goods_attr" > <span class="label">'+k+'</span>';
-            html+='<ul>'
-            for(k2 in keys[k]){
-                _attr_id=keys[k][k2];
-                html+='<li class="text" val="'+_attr_id+'" >';
-                html+='<span>'+_attr_id+'</span>';
-                html+='<s></s>';
-                html+='</li>'
+            for(k2 in arr[k]){
+                _attr_id=arr[k][k2];
+                html+='<a val="'+_attr_id+'" >';
+                html+=_attr_id;
+				html+='</a>'
             }
-            html+='</ul>';
         html+='</div>';
     }
     $('#panel_sel').html(html);
 }
 //显示数据
-function show_data(sku_list){
+function logSku(skus){
     var str="";
-    for( k in sku_list){
-        str+=sku_list[k]['attrs']+"\t"+sku_list[k]['num']+"\n";
+    for( k in skus){
+        str+=skus[k]['attrs']+"\t"+skus[k]['num']+"\n";
     }
     $('#panel_sku_list pre').html(str);
 }
+logSku(skus);
 
-show_data(sku_list);
-show_attr_item()
+showItem()
 
 /**init end */
 
 //获取所有包含指定节点的路线
 function filterProduct(ids){
     var result=[];
-    $(sku_list).each(function(k,v){
+    $(skus).each(function(k,v){
         _attr='|'+v['attrs']+'|';
-        _all_ids_in=true;
+        inSku=true;
         for( k in ids){
             if(_attr.indexOf('|'+ids[k]+'|')==-1){
-                _all_ids_in=false;
+                inSku=false;
                 break;
             }
         }
-        if(_all_ids_in){
+        if(inSku){
             result.push(v);    
         }
     
@@ -119,10 +130,12 @@ function filterAttrs(ids){
     var products=filterProduct(ids);
     //console.log(products);
     var result=[];
-    $(products).each(function(k,v){
-        result=result.concat(v['attrs'].split('|'));
-    
-    });
+	each(products,
+	null,
+		function(v){
+	result=result.concat(v['attrs'].split('|'));
+	}
+	)
     return result;
 }
 
@@ -131,13 +144,13 @@ function filterAttrs(ids){
 function _getSelAttrId(){
     
      var list=[];
-     $('.goods_attr li.sel').each(function(){
+     $('.goods_attr a.sel').each(function(){
         list.push($(this).attr('val'));
      });
      return list;
 }
 
-$('.goods_attr li').click(function(){
+$('.goods_attr a').click(function(){
     if($(this).hasClass('b')){
         return ;//被锁定了
     }
@@ -177,7 +190,7 @@ $('.goods_attr li').click(function(){
 function update_2($goods_attr){
     // 若该属性值 $li 是未选中状态的话，设置同级的其他属性是否可选
     var select_ids=_getSelAttrId();
-    var $li=$goods_attr.find('li.sel');
+    var $li=$goods_attr.find('.sel');
     
     var select_ids2=del_array_val(select_ids,$li.attr('val'));
     
@@ -189,7 +202,7 @@ function update_2($goods_attr){
 function set_block($goods_attr,all_ids){
 
 //根据 $goods_attr下的所有节点是否在可选节点中（all_ids） 来设置可选状态
-    $goods_attr.find('li').each(function(k2,li2){
+    $goods_attr.find('a').each(function(k2,li2){
             
         if($.inArray($(li2).attr('val'),all_ids)==-1){
             $(li2).addClass('b');

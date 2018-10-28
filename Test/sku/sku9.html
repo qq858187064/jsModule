@@ -59,13 +59,16 @@
 		.sku a:hover {
 			border-color: #f60;
 		}
-
+		.sku a.dsb:hover {
+			border-color: #ddd;
+		}
 		.sku a.ca {
 			border-color: #f60;
 		}
 
-		.sku a.dis {
+		.sku a.dsb {
 			color: #ddd;
+			border-style:dashed;
 		}
 
 		.sku a.ca:after {
@@ -114,9 +117,9 @@
 <body>
 	<div class="sku">
 		<img src="https://cdn.17shanyuan.com/goods/284566/8b7dcb0571eb85a6aad0b23d1c283cd94f598fc2.jpeg?x-oss-process=style/webp_240" />
-		<b>¥0.05</b>
-		<b>库存：1111件</b>
-		<b>已选：M kg 袋 Linux 5kg 12瓶 </b>
+		<b id='price'>¥0.05</b>
+		<b id=''>库存：1111件</b>
+		<b id='slcted'>请选择规格属性</b><!--已选：M kg 袋 Linux 5kg 12瓶 --> 
 		<p id='num'>购买数量</p>
 		<a class="bt1" id='bt1'>确定</a>
 	</div>
@@ -517,7 +520,7 @@
 		)
 		/*用户选中sku项处理函数*/
 		function slct(o) {
-//console.log(o)
+if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
 			var pc = arr[o.pi],//父类别
 				ci,/*当前分类中选中项索引*/
 				ca;/*当前分类中选中项*/
@@ -580,271 +583,47 @@
 			if(o.v.innerText==s[o.pi])//arr数组下标与skus子项下标相等
 			{
 			console.log(888,o.v.innerText,o.i,o)
+			
 			o.s=true;
+			//if(o.s)
+			C.DelClass(o.v,'dsb');
+			
 			}
 			else if(!o.s)
 			{
 			o.s=false;
+			console.log(o.v)
+			C.AddClass(o.v,'dsb');
 			}
-			o.v.style.color=o.s?'#f60':'#ddd';
 			}
 			});
 			
 			
 }
-			
-			//o.v.innerText
-		/*console.log(arr.length,o.i)
-		if(arr.length>=[o.i])
-		console.log(arr[o.i+1][o.i],12)*/
 		},
 		function(o){
 		console.log(o.i,'_____________')
 		if(o.ca)
 		{
-		//console.log(o)
 		each(skus,function(si){/*sku二维子项*/
 		//console.log(123,si)
 		},
 		function(s){/*sku一维子项*/
 		s.s=false;//是否可选,默认全不可选
-		//console.log()
 		//arr和skus中子项sku等长,如果选中项和sku中对应项相等,判断过滤
 		if(o.ca.innerText==s[o.i])
 		{
-		//console.log(Math.random(),s[o.i]);
-		//console.log('11111111111',arr[o.ci][0].innerText,arr[o.ci][1].innerText,s)
 		s.s=true;
-		//console.log(s)//console.log(s.s,s,s[o.i])
-		
-		
-/*
-		
-				if(s[o.i]==o.v.innerText){
-		console.log('ooooooooo：',o.v.innerText,s[o.i])
-		o.v.style.color="#f60";}
-		else
-		{
-		//o.v.style.color="#ddd";
-		}
-		*/
-		
-		
-		
-		//console.log(o[o.i],999)
-		
-		
-		
-		}
-		else{
-		//s.s=false;
-		//console.log('not',arr[o.ci][0].innerText,arr[o.ci][1].innerText,a)
-		//console.log(Math.random(),a[o.i]);
-		//console.log('222222222222',arr[o.ci][0].innerText,arr[o.ci][1].innerText,a)
-
 		}
 		//console.log(o.i,s.s,s)
 		});
 		
-		//console.log('o[o.i]',arr[o.i][o.ci].innerText)
-		//var ed=arr[o.i][o.ci].innerText;
-		//console.log(o.i)
 		
 		
 		}
 		
 		});
 		}
-		/*
-		//遍历skus
-		function set(a)
-		{
-		console.log('up>set:',a.v)
-		}
-		
-		//更新sku可选状态
-		function skuf()
-		{
-		
-		}*/
-		
-		
-		
-		
-		//console.log(arr, skus)
-
-		//console.log(skus[0].pair,skus[1].pair,skus[2].pair,arr)
-		//console.log(arr.concat(skus).join())
-		//console.log(skus.join())
-
-
-
-		/*
-		传入项是否包括在有效sku列表中
-		
-		function inSku(it) {
-		console.log(it.innerText)
-			//console.log(n,v);
-			for (var j = 0; j < skus.length; j++) {
-				console.log(j,'______')
-				var s = skus[j];
-				if (it.innerText == s[it.pi])
-				//if(v.i==j)
-				{
-				
-					it.style.color='#090';
-					//console.log(Math.random(), it.i==j, it, s[i])
-					//return it.innerText == s[i];
-				}
-				else
-				{
-				it.style.color='#ddd'
-				}
-			}
-
-		}*/
-		/*
-		设置默认选中sku
-		*/
-		/*
-项是否可选
-*/
-
-
-
-var sk = skus;
-		//filt();
-
-		function filt(o) {
-		
-			//匹配选中项后可能的sku组合
-			//console.log(o);
-			/*arr和skus中子项sku等长,下标可匹配*/
-			var z = 0
-			console.log('i', 'n', 'j', 'k', '____________________')
-			for (var i = 0; i < arr.length; i++) {
-				var ar = arr[i],
-					ed = ar.ci != undefined;//该项有选中项
-				//sku = skus[i];
-				/*if (ed)//
-				{
-				console.log(ar[ar.ci].innerText)
-					//console.log('i','n','j','k',ar[ar.ci].innerText,'____________________')
-					//a++;
-					//sk=
-				}
-				else*/
-				for (var n = 0; n < ar.length; n++) {
-					var it = ar[n];
-					//if(o)console.log(o);
-					//it.s=inSku(it);
-					//it.s=false;
-
-					for (var j = 0; j < sk.length; j++) {
-
-						//console.log(j,'______')
-						z++;
-						var s = sk[j];
-
-						if (ed)//如果有选中项
-						{
-							var m = s.indexOf(ar[ar.ci]);
-							if (m < 0)//如果sku中不包含选中项
-							{
-								console.log(i, n, j,it.pi,it.innerText,s[it.pi],z)
-								//console.log(ar[ar.ci].innerText)
-								//it.style.color='#ddd';
-								s.s=true;
-								console.log(i, n, j,it.pi,it.innerText,s[it.pi],z)
-								console.log('s:',s)
-								//sk.splice(j,1);//如果选中项
-								//j--;
-								//break;000
-
-							}
-							else
-							s.s=false;
-							break;
-
-
-						}
-						//console.log(i, n, j,it.pi,it.innerText,s[it.pi],z)
-						//if(it.innerText==s[it.pi])
-						if (it.innerText == s[it.pi]) {
-							it.style.color = '#090';
-							it.s = true;
-						}
-						else {
-							//it.style.color = '#ddd';
-							//it.s = false;
-						}
-						if (it.s)
-							break;
-					}
-
-				}
-
-			}
-
-			/*
-			
-				var a = ["a","b","c"];
-				var b = ["d","e"];
-				var c = ["f"];
-				var x = new Array();
-				x.push(a);
-				x.push(b);
-				x.push(c);
-				var result = new Array(a.length*b.length*c.length);
-			 
-				function pl(c,r){
-					var p = r.length/c.length;
-					for(var i=0;i<c.length;i++){
-						var start = i*p;
-						for(var j=0;j<p;j++){
-							var v = r[start+j];
-							if(v){
-								r[start+j]=v+"-"+c[i];
-							}else{
-								r[start+j]=c[i];
-							}
-							 
-						}
-					}
-				}
-				for(var i=0;i<x.length;i++){
-					pl(x[i],result);
-				}
-				console.log(result)
-				*/
-			/*
-			var str = "A,B,C,D,E";
-			var arr = str.split(",");
-			for (var a2 = []; a2.push([]) < arr.length;);
-			var l = Math.pow(2, arr.length)-1;
-			for (var i = 1; i <= l; i++) {
-				var t = [];
-				for (var s=i,k=0; s>0; s>>=1,k++)
-					if (s&1==1)
-						t.push(arr[k]);
-				a2[t.length-1].push(t.join(""));
-			}
-			console.log(a2.join("\n"));
-			*/
-
-
-
-
-			//selected
-			/*
-			for(var k=0;k<sed.length;k++)
-			{
-			//console.log(sed[k].innerText)
-			}*/
-			//raw array
-			//console.log(skus[0].pair,skus[1].pair,skus[2].pair,skus)
-		}
-
 	</script>
 </body>
 

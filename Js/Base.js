@@ -83,6 +83,10 @@ var C = {
         }
         return Arr;
     },
+	/*兼容获取传入元素的className*/
+	clsNm:function(o){
+		return o.getAttribute("class") || o.getAttribute("className")
+	},
 /* 浏览器是否为IE,且版本为IE8或以下 */
 ie8:function ()
 {

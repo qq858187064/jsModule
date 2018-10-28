@@ -512,13 +512,12 @@
 			t.innerText = o.tit;
 			C.AddClass(t, "fs");
 			num.parentNode.insertBefore(t, num)
-			//console.log(123,o.i)
+			
 		}
 		)
 		/*用户选中sku项处理函数*/
 		function slct(o) {
-		console.log(o,789)
-		//console.log(o.v)
+//console.log(o)
 			var pc = arr[o.pi],//父类别
 				ci,/*当前分类中选中项索引*/
 				ca;/*当前分类中选中项*/
@@ -567,29 +566,73 @@
 		{
 		each(arr,
 		function(o){
-		//console.log('up>set:',o.v,o.pi,o.i);
-		
-		
+			if(!arr[o.pi].ca)//如果该项中没有选中项
+{			
+			each(skus,
+			function(){
+			//console.log(132)
+			},
+			function(s)
+			{
+			if(s.s)
+			{
+			//console.log(o.i,s.s,s[o.i],o.v.innerText,s)
+			if(o.v.innerText==s[o.pi])//arr数组下标与skus子项下标相等
+			{
+			console.log(888,o.v.innerText,o.i,o)
+			o.s=true;
+			}
+			else if(!o.s)
+			{
+			o.s=false;
+			}
+			o.v.style.color=o.s?'#f60':'#ddd';
+			}
+			});
+			
+			
+}
+			
+			//o.v.innerText
+		/*console.log(arr.length,o.i)
+		if(arr.length>=[o.i])
+		console.log(arr[o.i+1][o.i],12)*/
 		},
 		function(o){
 		console.log(o.i,'_____________')
 		if(o.ca)
 		{
-		
-		console.log(o.ca.innerText)
-		
+		//console.log(o)
 		each(skus,function(si){/*sku二维子项*/
 		//console.log(123,si)
 		},
 		function(s){/*sku一维子项*/
-		s.s=false;
+		s.s=false;//是否可选,默认全不可选
+		//console.log()
+		//arr和skus中子项sku等长,如果选中项和sku中对应项相等,判断过滤
 		if(o.ca.innerText==s[o.i])
 		{
 		//console.log(Math.random(),s[o.i]);
 		//console.log('11111111111',arr[o.ci][0].innerText,arr[o.ci][1].innerText,s)
-		s.s=true;//是否可选
-		//console.log(s.s,s)
+		s.s=true;
+		//console.log(s)//console.log(s.s,s,s[o.i])
+		
+		
+/*
+		
+				if(s[o.i]==o.v.innerText){
+		console.log('ooooooooo：',o.v.innerText,s[o.i])
+		o.v.style.color="#f60";}
+		else
+		{
+		//o.v.style.color="#ddd";
+		}
+		*/
+		
+		
+		
 		//console.log(o[o.i],999)
+		
 		
 		
 		}
@@ -600,7 +643,7 @@
 		//console.log('222222222222',arr[o.ci][0].innerText,arr[o.ci][1].innerText,a)
 
 		}
-		console.log(o.i,s.s,s)
+		//console.log(o.i,s.s,s)
 		});
 		
 		//console.log('o[o.i]',arr[o.i][o.ci].innerText)

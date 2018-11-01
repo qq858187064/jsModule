@@ -111,7 +111,7 @@
         }
     }
     pop.pop = pop.prototype.pop;
-    C.Batch();
+    C.Batch(pop,arguments);
 }
 /*移入文档
 pop组件是一个更轻量的弹出框组件，传入参数是1个或多个元素id、name，

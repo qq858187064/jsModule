@@ -52,7 +52,7 @@
 			background: #fff;
 			line-height: 1.8;
 			padding: 0.2em 01em;
-			border: 1px solid #ddd;
+			border: 1px solid #ccc;
 
 		}
 
@@ -60,14 +60,14 @@
 			border-color: #f60;
 		}
 		.sku a.dsb:hover {
-			border-color: #ddd;
+			border-color: #ccc;
 		}
 		.sku a.ca {
 			border-color: #f60;
 		}
 
 		.sku a.dsb {
-			color: #ddd;
+			color: #ccc;
 			border-style:dashed;
 		}
 
@@ -520,31 +520,31 @@
 		)
 		/*用户选中sku项处理函数*/
 		function slct(o) {
-if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
+			if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
 			var pc = arr[o.pi],//父类别
 				ci,/*当前分类中选中项索引*/
 				ca;/*当前分类中选中项*/
 				
 			if (pc.ca) {
 				C.DelClass(pc.ca, 'ca');
+				pc.ca.c=true;//是否取消选中操作
 				//sed.splice(o, 1);
 				
 			}
 			if (pc.ca != o.a) {
 				C.AddClass(o.a, 'ca');
+				//o.a.c=false;//是否取消选中操作
 				ca = o.a;
 				ci = o.i;
 				//sed.push(o);
 			}
 			pc.ca = ca;
 			pc.ci = ci;
-			
-			
 			//filt();
-			up();
+			up(o);
 			
 		}
-		/*遍历二维数组
+		/*二维数组遍历器
 		arr:二维数组；fa：二维元素处理函数，fb一维元素处理函数
 		*/
 		function each(arr, fa, fb) {
@@ -554,10 +554,6 @@ if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
 				if(fb)
 				fb(ar);
 				for (var j = 0; j < ar.length; j++) {
-					//var a = ar[j];
-					//a.pi = i;
-					//console.log('a.pi',a.pi)
-					//a.i = j;
 					if(fa)
 					fa({v:ar[j],pi:i,i:j});//v:二维元素，pi:当前项之父项的索引，i：当前项索引
 				}
@@ -565,25 +561,33 @@ if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
 		}
 		//it(arr, function (a) { console.log(a.i,a) }, function (a) { console.log(a.i,a) });
 		/*更新状态*/
-		function up()
+		function up(co)
 		{
 		each(arr,
 		function(o){
-			if(!arr[o.pi].ca)//如果该项中没有选中项
+		//console.log('o.pi',o.pi)
+		var ca=arr[o.pi].ca,
+		//si=ca?arr[o.pi].i:o.pi;
+		si=o.pi;
+		if(!ca)//如果该项中没有选中项，且当前项处理非选中状态
 {			
-			each(skus,
-			function(){
-			//console.log(132)
-			},
+console.log(888,C.clsNm(co.a),co.pi,o.pi)
+			each(skus,null,
 			function(s)
 			{
+			//
 			if(s.s)
+			//if(1)
 			{
-			//console.log(o.i,s.s,s[o.i],o.v.innerText,s)
-			if(o.v.innerText==s[o.pi])//arr数组下标与skus子项下标相等
+			console.log('o.pi:',o.pi,'o.iv',o.i,o.v.innerText,'s[si]:',s[si])
+			console.log('s',s)
+			//if(o.pi==0)
+			//return;
+			//console.log(o.v.innerText,o.pi,Math.random());
+			//console.log(o.i,s.s,s[o.pi],o.v.innerText,s)
+			if(o.v.innerText==s[si])//arr数组下标与skus子项下标相等
 			{
-			console.log(888,o.v.innerText,o.i,o)
-			
+			//console.log(888,o.v.innerText,o.i,o)
 			o.s=true;
 			//if(o.s)
 			C.DelClass(o.v,'dsb');
@@ -592,7 +596,7 @@ if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
 			else if(!o.s)
 			{
 			o.s=false;
-			console.log(o.v)
+			//console.log(Math.random(),o.v.innerText,s[o.pi],o.pi)
 			C.AddClass(o.v,'dsb');
 			}
 			}
@@ -605,9 +609,7 @@ if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
 		console.log(o.i,'_____________')
 		if(o.ca)
 		{
-		each(skus,function(si){/*sku二维子项*/
-		//console.log(123,si)
-		},
+		each(skus,null,
 		function(s){/*sku一维子项*/
 		s.s=false;//是否可选,默认全不可选
 		//arr和skus中子项sku等长,如果选中项和sku中对应项相等,判断过滤
@@ -623,6 +625,8 @@ if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
 		}
 		
 		});
+		
+		
 		}
 	</script>
 </body>

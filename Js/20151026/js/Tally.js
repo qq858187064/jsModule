@@ -2,7 +2,7 @@
 {
     Tally.prototype = {
         Init: function (o)
-        {
+        {console.log(arguments)
             var ie = ! -[1, ];
 
             C.AddEvent(o, "focus", Tally.prototype.Count, o);
@@ -17,7 +17,7 @@
 
             C.AddEvent(o, "keyup", Tally.prototype.Count, o);
         },
-        Count: function (e, o)
+        Count: function (o)
         {
             var oR = C.G("R" + o.id),
 				nMax = parseInt(o.id.substring(3)) * 2;
@@ -55,7 +55,7 @@
             }
         }
     };
-    C.Batch();
+    C.Batch(Tally, arguments);
 }
 //function Tally()
 //{

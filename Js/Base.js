@@ -355,9 +355,14 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         }
     },
     /* 用该方法调用函数的原型初始化方法Init，批处理该方法调用函数的实参对象 */
-    Batch: function () {
-        var Cl = C.Batch.caller,
+    /* 用该方法调用函数的原型初始化方法Init，批处理该方法调用函数的实参对象
+    es6严格模式禁用了caller和arguments,可显式传入Cl,arg
+    */
+    Batch: function (Cl, arg) {
+        if (!Cl) {
+            Cl = C.Batch.caller,
             arg = Cl.arguments;
+        }
        /* if (!Cl.Initialized) {*/
             var Ns = [],
 			oa = [];/*以name为参数对应的元素数组*/

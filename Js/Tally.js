@@ -17,7 +17,7 @@
 
             C.AddEvent(o, "keyup", Tally.prototype.Count, o);
         },
-        Count: function (e, o)
+        Count: function (o)
         {
             var oR = C.G("R" + o.id),
 				nMax = parseInt(o.id.substring(3)) * 2;

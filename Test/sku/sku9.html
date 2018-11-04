@@ -515,12 +515,21 @@
 			t.innerText = o.tit;
 			C.AddClass(t, "fs");
 			num.parentNode.insertBefore(t, num)
-			
 		}
 		)
 		/*用户选中sku项处理函数*/
 		function slct(o) {
 			if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
+			
+				/*		if(o.pi!=0){
+			console.log('rp')
+			arr[o.pi].i=0;
+			rp(arr,o.pi)
+			arr[o.i].i=0;
+			arr[0].i=o.pi;
+			
+			}
+			*/
 			var pc = arr[o.pi],//父类别
 				ci,/*当前分类中选中项索引*/
 				ca;/*当前分类中选中项*/
@@ -540,6 +549,9 @@
 			}
 			pc.ca = ca;
 			pc.ci = ci;
+			
+
+			
 			//filt();
 			up(o);
 			
@@ -559,6 +571,20 @@
 				}
 			}
 		}
+		/*将指定数组指定位置元素交换位置，a:数组，j:默认为0，-1时表示移至最后*/
+function rp(a,i,j)
+{
+if(j==undefined)//不传z时移到首位，否则移到首位
+j=0;
+else if(j==-1)
+j=a.length-1;
+var o=a[i],
+	b=a[j];
+//a.splice(j,1);
+a[j]=o;
+a[i]=b;
+console.log(j,b,a.join(','))
+}
 		//it(arr, function (a) { console.log(a.i,a) }, function (a) { console.log(a.i,a) });
 		/*更新状态*/
 		function up(co)
@@ -567,11 +593,13 @@
 		function(o){
 		//console.log('o.pi',o.pi)
 		var ca=arr[o.pi].ca,
+		
 		//si=ca?arr[o.pi].i:o.pi;
-		si=o.pi;
-		if(!ca)//如果该项中没有选中项，且当前项处理非选中状态
+		si=o.pi;//si=ca?o.pi+1:o.pi;
+		if(1)
+		//if(!ca)//如果该项中没有选中项，且当前项处理非选中状态
 {			
-console.log(888,C.clsNm(co.a),co.pi,o.pi)
+//console.log(888,C.clsNm(co.a),co.pi,o.pi)
 			each(skus,null,
 			function(s)
 			{
@@ -579,21 +607,15 @@ console.log(888,C.clsNm(co.a),co.pi,o.pi)
 			if(s.s)
 			//if(1)
 			{
-			console.log('o.pi:',o.pi,'o.iv',o.i,o.v.innerText,'s[si]:',s[si])
-			console.log('s',s)
-			//if(o.pi==0)
-			//return;
-			//console.log(o.v.innerText,o.pi,Math.random());
-			//console.log(o.i,s.s,s[o.pi],o.v.innerText,s)
+			console.log(o.v.innerText,s[si])
 			if(o.v.innerText==s[si])//arr数组下标与skus子项下标相等
 			{
 			//console.log(888,o.v.innerText,o.i,o)
 			o.s=true;
 			//if(o.s)
 			C.DelClass(o.v,'dsb');
-			
 			}
-			else if(!o.s)
+			else if(!o.s)//&&C.clsNm(co.a)可选且有选中项
 			{
 			o.s=false;
 			//console.log(Math.random(),o.v.innerText,s[o.pi],o.pi)
@@ -601,28 +623,26 @@ console.log(888,C.clsNm(co.a),co.pi,o.pi)
 			}
 			}
 			});
-			
-			
 }
 		},
 		function(o){
 		console.log(o.i,'_____________')
 		if(o.ca)
+		//if(1)
 		{
+		console.log(o.ca===undefined,o.ca)
 		each(skus,null,
 		function(s){/*sku一维子项*/
 		s.s=false;//是否可选,默认全不可选
 		//arr和skus中子项sku等长,如果选中项和sku中对应项相等,判断过滤
-		if(o.ca.innerText==s[o.i])
+		if((o.ca&&o.ca.innerText==s[o.i]))//||(!o.ca&&)
 		{
 		s.s=true;
 		}
 		//console.log(o.i,s.s,s)
 		});
-		
-		
-		
 		}
+		
 		
 		});
 		

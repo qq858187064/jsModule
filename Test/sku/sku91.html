@@ -533,10 +533,11 @@
 		)
 		/*用户选中sku项处理函数*/
 		function slct(a) {
+		if(C.clsNm(a)=='dsb')return;
 			var pc = arr[a.pi],//父类别
 				ci,/*当前分类中选中项索引*/
 				ca;/*当前分类中选中项*/
-			if (pc.ca) {
+			if (pc.ca){
 				C.DelClass(pc.ca, 'ca');
 				//sed.splice(a, 1);
 			}
@@ -544,10 +545,29 @@
 				C.AddClass(a, 'ca');
 				ca = a;
 				ci = a.i;
+				
 				//sed.push(o);
 			}
 			pc.ca = ca;
 			pc.ci = ci;
+			//rp(arr,a.pi)
+			//pc.i=0;
+			//pc.ci=pc.
+			//arr[0].i=a.pi
+			//arr[0].ci=pc.ci;
+			
+			
+			//根据选中项，将sku中后续不可选中的项标识出来
+			for (var j = 0; j < skus.length; j++) {
+						var s = skus[j];
+						//if(s.d==true)
+						s.d=false;
+						if(pc.ca&&pc.ca.innerText!=s[a.pi])
+						{
+						s.d=true;//将该组sku标识为不可选
+						}
+						console.log(s)
+			}
 			filt(a);
 			//up();
 			
@@ -562,7 +582,6 @@
 				if(fb)
 				fb(ar,i);
 				for (var j = 0; j < ar.length; j++) {
-				
 					//var a = ar[j];
 					//a.pi = i;
 					//console.log('a.pi',a.pi)
@@ -574,6 +593,24 @@
 
 			}
 		}
+				/*将指定数组指定位置元素交换位置，a:数组，j:默认为0，-1时表示移至最后*/
+function rp(a,i,j)
+{
+if(j==undefined)//不传z时移到首位，否则移到首位
+j=0;
+else if(j==-1)
+j=a.length-1;
+var o=a[i],
+	b=a[j];
+//a.splice(j,1);
+a[j]=o;
+a[i]=b;
+console.log(j,b,a.join(','))
+}
+		
+		
+		
+		
 		filt();
 		function filt(o) {
 			//匹配选中项后可能的sku组合
@@ -584,70 +621,37 @@
 			for (var i = 0; i < arr.length; i++) {
 				var ar = arr[i],
 					ed = ar.ci != undefined;//该项有选中项
-					//console.log(ar.ci)
-					//return;
-				//sku = skus[i];
-				/*if (ed)//
-				{
-				console.log(ar[ar.ci].innerText)
-					//console.log('i','n','j','k',ar[ar.ci].innerText,'____________________')
-					//a++;
-					//sk=
-				}
-				else*/
-
-				
-				
 				for (var n = 0; n < ar.length; n++) {
 					var it = ar[n];
 					it.s=false;//默认不可选中状态
-					//if(o)console.log(o);
-					//it.s=inSku(it);
-					//it.s=false;
-					
-				for (var j = 0; j < skus.length; j++)
-				{
-					var s = skus[j];
-					s.s=it.innerText==s[ar.ci];//arr数组下标与skus子项下标相等
-				}
-					
-					
-					
-					for (var j = 0; j < skus.length; j++) {
-						z++;
+				console.log(i,n,it.innerText,'__________________________________')
+						for (var j = 0; j < skus.length; j++) {
 						var s = skus[j];
-						//o.ca.innerText==s[o.i]
-						if(ar.ca)
-						s.s=ar.ca.innerText==s[it.pi];//arr和skus中子项sku等长,如果选中项和sku中对应项相等,判断过滤
-						if(s.s)//如果sku有效果
+						if(!s.d&&it.innerText==s[it.pi])
 						{
-						console.log(i,n,j,it.pi,it.innerText,s[it.pi],s)
-						it.s=(s.s||!ar.ca&&it.innerText==s[it.pi]);//当前项是否能选中
-						if(it.s)
-							break;
+						it.s=true;
+						break;
 						}
 					}
-					
+					/**/	
 			if(it.s)//arr数组下标与skus子项下标相等
 			{
 			//console.log(888,o.v.innerText,o.i,o)
 			it.s=true;
 			//if(o.s)
 			C.DelClass(it,'dsb');
-		
 			}
-			else if(s.s)
+			else if(!ar.ca)
 			{
 			it.s=false;
 			//console.log(Math.random(),o.v.innerText,s[o.pi],o.pi)
 			C.AddClass(it,'dsb');
-			}						
+			}	
 
+
+		
 				}
-
 			}
-
-			
 		}
 
 	</script>

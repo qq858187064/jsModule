@@ -39,7 +39,7 @@
             }
             else
             {
-                C.AddEvent(o, Cen, function (e, o)
+                C.AddEvent(o, Cen, function (o)
                 {
                     var s = "block";
                     if (o.style.display && o.style.display != "none")

@@ -138,7 +138,7 @@
 		<a class="bt1" id='bt1'>确定</a>
 	</div>
 	id stock price originPrice 0,1 100 10 15 0,0 999 20 25 1,1 5 30 35
-	<script type="text/javascript" src="http://localhost/Js/Base.js"></script>
+	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
 	<script type="text/javascript">
 		//服务返回数据：
 		var dirty = {
@@ -540,31 +540,27 @@
 				ca;/*当前分类中选中项*/
 			if (pc.ca) {
 				C.DelClass(pc.ca, 'ca');
-				//sed.splice(a, 1);
+				//sed.splice(sed.indexOf(pc.ca.innerText), 1);
 			}
 			if (pc.ca != a) {
 				C.AddClass(a, 'ca');
 				ca = a;
 				ci = a.i;
-				//sed.push(o);
+				//sed.push(a.innerText);
 			}
 			pc.ca = ca;
 			pc.ci = ci;
-			//rp(arr,a.pi)
-			//pc.i=0;
-			//pc.ci=pc.
-			//arr[0].i=a.pi
-			//arr[0].ci=pc.ci;
-			//根据选中项，将sku中后续不可选中的项标识出来
-			for (var j = 0; j < skus.length; j++) {
-				var s = skus[j];
-				//if(s.d==true)
-				s.d = false;
-				if (pc.ca && pc.ca.innerText != s[a.pi])//&&C.clsNm(pc.ca)
-				{
-					s.d = true;//将该组sku标识为不可选
-				}
-				console.log(s)
+			/**/
+			//根据选中项，将skus列表中不匹配(不可选中)的项标识出来
+			for (var j = 0; j < skus.length; j++)
+			{
+				var s = skus[j],
+				si=s[a.pi];
+				//将包含选中项的sku置为可选
+				if(a.innerText==si)
+				s.d=false;
+				else if(pc.ca)
+				s.d=true;//将该组sku标识为不可选
 			}
 			filt(a);
 			//up();
@@ -602,16 +598,10 @@
 			//a.splice(j,1);
 			a[j] = o;
 			a[i] = b;
-			console.log(j, b, a.join(','))
+			//console.log(j, b, a.join(','))
 		}
-
-
-
-
 		filt();
 		function filt(o) {
-			//匹配选中项后可能的sku组合
-			//console.log(o);
 			/*arr和skus中子项sku等长,下标可匹配*/
 			console.log('i', 'n', 'j','____________________')
 			for (var i = 0; i < arr.length; i++) {
@@ -621,27 +611,27 @@
 					var it = ar[n];
 					it.s = false;//默认不可选中状态
 					//遍历sku
-					for (var j = 0; j < skus.length; j++) {
-						var s = skus[j];
-						if (!s.d && it.innerText == s[it.pi]) {
+					for (var j = 0; j < skus.length; j++){
+						var s = skus[j],
+						ss=s[it.pi];
+						//如果sku未被选中项排除禁用，且当前项和sku对应上
+						if (!s.d&&it.innerText ==ss)
+						{
 							it.s = true;
 							break;
 						}
 					}
-					console.log(i,n,j,it.innerText,it.s)
 					if (it.s)//arr数组下标与skus子项下标相等
 					{
 						C.DelClass(it, 'dsb');
 					}
-					else if(o.pi!=it.pi)// if (!ar.ca)
+					else if(o.pi!=it.pi)
 					{
 						C.AddClass(it, 'dsb');
 					}
 				}
 			}
 		}
-
 	</script>
 </body>
-
 </html>

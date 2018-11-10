@@ -122,7 +122,7 @@ return navigator.appName=="Microsoft Internet Explorer"&&parseFloat(navigator.ap
 	{
 		var t=C.G(t);
 						C.Lt(t)
-						/*// if(dw&&dw.offsetLeft<0)
+		/*// if(dw&&dw.offsetLeft<0)
 	    // t.L=t.L-dw.offsetLeft;*/
 						t.Rpt.style.left=t.L+"px";
 						t.Rpt.style.top=t.T+t.offsetHeight+3+"px";

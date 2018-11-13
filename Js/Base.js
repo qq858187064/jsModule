@@ -127,7 +127,6 @@ return navigator.appName=="Microsoft Internet Explorer"&&parseFloat(navigator.ap
 						t.Rpt.style.left=t.L+"px";
 						t.Rpt.style.top=t.T+t.offsetHeight+3+"px";
 						t.Rpt.style.left=t.L+"px";
-
 	},
 	/*获取对象o在css中的a属性的值，也可指定伪类w*/
 	Css:function(o,a,w){
@@ -784,7 +783,8 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
      /*   //oXHR.responseType = "msxml-document";//兼容IE10+版本，调用selectSingleNode类似方法*/
         if (Method == "POST") {
 
-             // oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//formData//设了这个头request.files居然得不到文件
+              oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              //表单上传文件、formData必须指定编码类型为"multipart/form-data"，否则request.files得不到文件
           /* oXHR.setRequestHeader("Content-type", "multipart/form-data");*///payload
         }
         oXHR.send(Data);

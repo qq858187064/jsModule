@@ -3,26 +3,15 @@
     Tally.prototype = {
         Init: function (o)
         {
-            var ie = ! -[1, ];
-
-            C.AddEvent(o, "focus", Tally.prototype.Count, o);
-
-            if (ie)
-            {
-                C.AddEvent(o, "propertychange", Tally.prototype.Count, o);
-            } else
-            {
-                C.AddEvent(o, "input", Tally.prototype.Count, o);
-            }
-
-            C.AddEvent(o, "keyup", Tally.prototype.Count, o);
-        },
-        Count: function (o)
-        {
-            var oR = C.G("R" + o.id),
-				nMax = parseInt(o.id.substring(3)) * 2;
-
-            Tally.prototype.Limit(o, nMax, oR);
+            o.oR = C.G("R" + o.id);
+            o.nMax = parseInt(o.id.substring(3)) * 2;
+ if (!C.ie8())
+                C.AddEvent(o, "input", Tally.prototype.Limit, o);
+            else
+                C.AddEvent(o, "propertychange", Tally.prototype.Limit, o);
+                
+            C.AddEvent(o, "keyup", Tally.prototype.Limit, o);
+            C.AddEvent(o, 'afterpaste', Tally.prototype.Limit, o);
         },
         Bytes: function (o)
         {
@@ -32,30 +21,30 @@
         {
             return o.match(/[^ -~]/g) == null ? o.length : o.length + o.match(/[^ -~]/g).length;
         },
-        Limit: function (o, nMax, oR)
+        Limit: function (o)
         {
             var oValLen = Tally.prototype.Bytes(o),
-				sum = 0;
+                sum = 0;
 
-            if (nMax >= oValLen)
+            if (o.nMax >= oValLen)
             {
-                oR.style.color = "";
-                oR.innerHTML = Math.floor((nMax - oValLen) / 2);
+                o.oR.style.color = "";
+                o.oR.innerHTML = Math.floor((o.nMax - oValLen) / 2);
             } else
             {
-                oR.style.color = "#F00";
+                o.oR.style.color = "#F00";
                 for (var i = 0; i < o.value.length; i++)
                 {
-                    sum += Tally.prototype.LimitLength(o.value.substr(i, 1));
-                    if (sum > nMax)
+                    sum += Tally.prototype.LimitLength(o.value.substring(i, 1+i));
+                    if (sum > o.nMax)
                     {
-                        o.value = o.value.substr(0, i);
+                        o.value = o.value.substring(0, i);
                     }
                 }
             }
         }
     };
-    C.Batch();
+    C.Batch(Tally, arguments);
 }
 //function Tally()
 //{

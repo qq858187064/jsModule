@@ -1172,13 +1172,13 @@
 			attr = goods.skuValueMap,
 			arr = [],/*属性列表*/
 			skus = [],/*有效sku*/
-			sed=[];
+			sed=[];/*已经选中项*/
 		/*过滤服务返回有效sku数据*/
 		for (var i = 0; i < goods.skuList.length; i++)
 		{
 			var p = goods.skuList[i];
 			var pair = [];
-			pair.id = p.skuId;//idi;//
+			//pair.id = p.skuId;//idi;//
 			pair.stock = p.stocks;//库存
 			pair.price0 = p.originPrice;//原价
 			pair.price = p.price;//现价
@@ -1215,8 +1215,6 @@
 		skus[0].push('red')
 		skus[1].push('red')
 		skus[2].push('bule')
-
-		
 		var num = C.G('num');
 		//console.log('属性列表：',arr)
 		each(arr,
@@ -1248,7 +1246,7 @@
 				ca;/*当前分类中选中项*/
 			if (pc.ca) {
 				C.DelClass(pc.ca, 'ca');
-				//sed.splice(sed.indexOf(pc.ca.innerText), 1);
+				sed.splice(sed.indexOf(pc.ca.innerText), 1);
 				sed.splice(a.pi, 1);
 			}
 			if (pc.ca != a) {
@@ -1266,55 +1264,13 @@
 		["5kg","12个","red",id:"a09prAB3AD", stock:999, price0:"25.00", price:"20.00", d:true]
 		["2.1","12瓶","bule",id:"a09prAB3AE", stock:5, price0:"35.00", price:"30.00", d:false]
 			*/
-				//如果当前属性
-					for(var m=0;m<skus.length;m++)
-					{
-						var s=skus[m];
-						s.od=s.d;
-						if(s.d)
-						s.d=true;
-						//s.indexOf(pc.ca.innerText)!=-1
-						//||(!s.od&&s.indexOf(pc.ca.innerText)!=-1)
-						if(a.innerText==s[a.pi])//如果点击项和sku中对应项相等
-						{
-							if(pc.ca)//如果有选中项
-							{
-								if(s.od)//sku上次状态是不为true
-								s.d=false;
-							}
-						else if(!s.od)
-							s.d=false;
-						//console.log(pc.ca.innerText,s[a.pi],s)
-						}
-						
-						/*
-						else
-						{
-						if(a.innerText==s[a.pi]&&s.od)
-						{
-						s.d=true;
-						//console.log(pc.ca.innerText,s[a.pi],s)
-						}
-						}*/
-						//s.d=s.indexOf(pc.ca.innerText)==-1;
-						/*
-						s.d=false;//默认禁用sku
-						console.log(m,s[a.pi],pc.ca.innerText)
-						if(s[a.pi]!=pc.ca.innerText){
-						s.d=true;
-						rp(skus,m)
-						}
-						console.log(s)
-						*/
-					}
-
-			
-		/*	for (var j = 0; j < skus.length; j++)
+				//根据选中项，将设置sku对状态
+			for (var j = 0; j < skus.length; j++)
 			{
 				var s = skus[j],
 					si=s[a.pi];
 				s.d=false;
-				console.log(sed,si)
+				console.log(sed,si,sed.indexOf(si))
 				//如果选项中不包含sku子项
 				if(sed.indexOf(si)==-1)
 				s.d=true;
@@ -1332,7 +1288,7 @@
 				}
 
 				
-			}				*/
+			}			/*	*/
 			filt(a);
 			//up();
 
@@ -1378,10 +1334,12 @@
 			for (var i = 0; i < arr.length; i++) {
 				var ar = arr[i],
 					d =sed[i];//当前选中项文字，sed和arr等长//ar.ci != undefined;
-					//console.log(ar,123)
+					console.log(i,d)
 					
-
 					
+					
+					//if(ar.ca)
+//console.log(ar.ca.innerText)
 				for (var n = 0; n < ar.length; n++)
 				{
 					var it = ar[n];
@@ -1391,13 +1349,21 @@
 					{
 						var s = skus[j],
 						ss=s[it.pi];
-						//如果sku未被选中项排除禁用，且当前项和sku对应上
-						if (!s.d&&it.innerText ==ss)
+						//console.log(s.indexOf(it.innerText))
+						//如果sku未被选中项排除禁用，且当前项和sku对应上&&sed.indexOf(it.innerText)!=-1
+						if(!s.d)//&&s.indexOf(it.innerText)>-1
+						//if (!s.d&&ss.indexOf(it.innerText)!=-1)
+						{
+						if(it.innerText ==ss)
+						//if(sed.length==0||ss.indexOf(it.innerText)>-1)
 						{
 							it.d = false;
 							break;
+							}
 						}
 					}
+					//if(sed.indexOf(it.innerText)!=-1)
+					//it.d=false;
 					
 					if (!it.d)//arr数组下标与skus子项下标相等
 					{

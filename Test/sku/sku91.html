@@ -1244,10 +1244,12 @@
 			var pc = arr[a.pi],//父类别
 				ci,/*当前分类中选中项索引*/
 				ca;/*当前分类中选中项*/
+				
+				
+				
 			if (pc.ca) {
 				C.DelClass(pc.ca, 'ca');
 				sed.splice(sed.indexOf(pc.ca.innerText), 1);
-				sed.splice(a.pi, 1);
 			}
 			if (pc.ca != a) {
 				C.AddClass(a, 'ca');
@@ -1257,6 +1259,7 @@
 			}
 			pc.ca = ca;
 			pc.ci = ci;
+			console.log(sed)
 			/**/
 			//根据选中项，将skus列表中不匹配(不可选中)的项标识出来
 			/*
@@ -1264,31 +1267,23 @@
 		["5kg","12个","red",id:"a09prAB3AD", stock:999, price0:"25.00", price:"20.00", d:true]
 		["2.1","12瓶","bule",id:"a09prAB3AE", stock:5, price0:"35.00", price:"30.00", d:false]
 			*/
-				//根据选中项，将设置sku对状态
+			//根据选中项，将设置sku对状态
 			for (var j = 0; j < skus.length; j++)
 			{
 				var s = skus[j],
 					si=s[a.pi];
-				s.d=false;
-				console.log(sed,si,sed.indexOf(si))
-				//如果选项中不包含sku子项
-				if(sed.indexOf(si)==-1)
-				s.d=true;
+					s.d=false;
+					for(var k=0;k<sed.length;k++)
+					{
+					var ed=sed[k];
+					if(!ed)continue;
+					if(s.indexOf(ed)==-1)
+					s.d=true;
+					break;
+					}
+				console.log(s)
 				
-				
-				if(pc.ca&&a.innerText!=si)
-				{
-				s.d=true;//选中，且sku对应项未包含选中项，则该sku置为不可选
-				}
-				if(!pc.ca&&a.innerText==si)
-				{
-				console.log(a.innerText,si,s)
-				s.d=false;//取消选中，且sku对应项包含选中项，则该sku置为可选
-				break;
-				}
-
-				
-			}			/*	*/
+			}			
 			filt(a);
 			//up();
 
@@ -1334,10 +1329,7 @@
 			for (var i = 0; i < arr.length; i++) {
 				var ar = arr[i],
 					d =sed[i];//当前选中项文字，sed和arr等长//ar.ci != undefined;
-					console.log(i,d)
-					
-					
-					
+					//console.log(i,d)
 					//if(ar.ca)
 //console.log(ar.ca.innerText)
 				for (var n = 0; n < ar.length; n++)

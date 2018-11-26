@@ -1267,6 +1267,7 @@
 		["5kg","12个","red",id:"a09prAB3AD", stock:999, price0:"25.00", price:"20.00", d:true]
 		["2.1","12瓶","bule",id:"a09prAB3AE", stock:5, price0:"35.00", price:"30.00", d:false]
 			*/
+			//console.clear()
 			//根据选中项，将设置sku对状态
 			for (var j = 0; j < skus.length; j++)
 			{
@@ -1275,14 +1276,14 @@
 					s.d=false;
 					for(var k=0;k<sed.length;k++)
 					{
-					var ed=sed[k];
-					if(!ed)continue;
-					if(s.indexOf(ed)==-1)
-					s.d=true;
-					break;
+						var ed=sed[k];
+						if(!ed)continue;
+						if(s.indexOf(ed)==-1)
+						s.d=true;
+						//break;
 					}
+					
 				console.log(s)
-				
 			}			
 			filt(a);
 			//up();

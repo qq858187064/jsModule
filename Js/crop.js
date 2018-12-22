@@ -142,7 +142,6 @@ function crop() {
      var path = o.ou?o.img.src+o.mime.replace('image/','.'):o.img.src
      fn = path.substring(path.lastIndexOf("/") + 1);
      o.img.onload = function () {
-         console.log(123)
             //以下两步必须要在img load后执行：
             cct.drawImage(img, si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h);
             console.log('si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h', si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h)
@@ -182,8 +181,6 @@ function crop() {
       '/Hs/Handler.ashx?f=up',// +(a.i || 1),+"&token=" + this.cookie("token"),
       fd
     );
-
-		    
         /*
          //ie下报Promise未定义：
            C.ajax('POST',

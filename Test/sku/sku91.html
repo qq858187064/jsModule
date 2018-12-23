@@ -506,9 +506,20 @@
 		}
 		;
 		console.log('arr：', arr.join(), '\nskus：', skus.join());
-		/*将属性列表arr绑至页面
-		arr[2] = ["red", "bule"]
-		arr[2].tit = "color"*/
+/*将属性列表arr绑至页面*/
+		arr[2] = ["red", "bule"];
+		arr[2].tit = "color";
+		/*
+		skus=
+		[
+		["5kg","12瓶","red",id:"a09prAB3AC", stock:100, price0:"15.00", price:"10.00", d:false],
+		["5kg","12个","red",id:"a09prAB3AD", stock:999, price0:"25.00", price:"20.00", d:true]
+		["2.1","12瓶","red",id:"a09prAB3AE", stock:5, price0:"35.00", price:"30.00", d:false]
+		];
+		*/
+		skus[0].push('red')
+		skus[1].push('red')
+		skus[2].push('bule')
 		var num = C.G('num');
 		//console.log('属性列表：',arr)
 		each(arr,

@@ -72,7 +72,7 @@ var C = {
     /* 获取并返回具有传入样式名的元素的数组 */
     Cls: function (ClsNm, Tag, Prt) {
         var Tags = Tag || "*",
-        Prt = C.G(Prt) || document;
+        Prt = C.G(Prt) || document,
         Reg = new RegExp("(^| )" + ClsNm + "( |$)"),
         t = C.Gs(Prt, Tags, true),
         Arr = [];
@@ -724,6 +724,7 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 
     /* 执行异步请求 暂未加入formdata异步上传文件*/
     EXHR: function (CallBack, Method, Url, Data, Proc, Async) {
+        //console.log(arguments.callee.caller)
         var oXHR = this.XHR(),
             Rst = null,
             Junctor = Url.indexOf("?") != -1 ? "&" : "?";
@@ -784,7 +785,7 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
      /*   //oXHR.responseType = "msxml-document";//兼容IE10+版本，调用selectSingleNode类似方法*/
         if (Method == "POST") {
 
-             // oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//formData//设了这个头request.files居然得不到文件
+              oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//formData//设了这个头request.files居然得不到文件
           /* oXHR.setRequestHeader("Content-type", "multipart/form-data");*///payload
         }
         oXHR.send(Data);

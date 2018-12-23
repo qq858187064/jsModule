@@ -492,15 +492,26 @@
 		}
 		;
 		console.log('arr：', arr.join(), '\nskus：', skus.join());
-		/*将属性列表arr绑至页面
-		arr[2] = ["red", "bule"]
-		arr[2].tit = "color"*/
+		/*将属性列表arr绑至页面*/
+		arr[2] = ["red", "bule"];
+		arr[2].tit = "color";
+		/*
+		skus=
+		[
+		["5kg","12瓶","red",id:"a09prAB3AC", stock:100, price0:"15.00", price:"10.00", d:false],
+		["5kg","12个","red",id:"a09prAB3AD", stock:999, price0:"25.00", price:"20.00", d:true]
+		["2.1","12瓶","red",id:"a09prAB3AE", stock:5, price0:"35.00", price:"30.00", d:false]
+		];
+		*/
+		skus[0].push('red')
+		skus[1].push('red')
+		skus[2].push('bule')
 		var num = C.G('num');
 		//console.log('属性列表：',arr)
 		each(arr,
 		/*二维处理函数*/
 		function(o)
-		{
+		{//遍历二维属性项、添加事件
 				var a = C.Ce("a");
 				a.innerText = o.v;
 				o.a=a;
@@ -517,46 +528,7 @@
 			num.parentNode.insertBefore(t, num)
 		}
 		)
-		/*用户选中sku项处理函数*/
-		function slct(o) {
-			if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
-			
-				/*		if(o.pi!=0){
-			console.log('rp')
-			arr[o.pi].i=0;
-			rp(arr,o.pi)
-			arr[o.i].i=0;
-			arr[0].i=o.pi;
-			
-			}
-			*/
-			var pc = arr[o.pi],//父类别
-				ci,/*当前分类中选中项索引*/
-				ca;/*当前分类中选中项*/
-				
-			if (pc.ca) {
-				C.DelClass(pc.ca, 'ca');
-				pc.ca.c=true;//是否取消选中操作
-				//sed.splice(o, 1);
-				
-			}
-			if (pc.ca != o.a) {
-				C.AddClass(o.a, 'ca');
-				//o.a.c=false;//是否取消选中操作
-				ca = o.a;
-				ci = o.i;
-				//sed.push(o);
-			}
-			pc.ca = ca;
-			pc.ci = ci;
-			
-
-			
-			//filt();
-			up(o);
-			
-		}
-		/*二维数组遍历器
+				/*二维数组遍历器
 		arr:二维数组；fa：二维元素处理函数，fb一维元素处理函数
 		*/
 		function each(arr, fa, fb) {
@@ -585,6 +557,44 @@ a[j]=o;
 a[i]=b;
 console.log(j,b,a.join(','))
 }
+		/*用户选中sku项处理函数*/
+		function slct(o) {
+			if(C.clsNm(o.a)=='dsb')return;//已禁用的项不可选
+			
+				/*		if(o.pi!=0){
+			console.log('rp')
+			arr[o.pi].i=0;
+			rp(arr,o.pi)
+			arr[o.i].i=0;
+			arr[0].i=o.pi;
+			
+			}
+			*/
+			var pc = arr[o.pi],//父类别
+				ci,/*当前分类中选中项索引*/
+				ca;/*当前分类中选中项*/
+				
+			if (pc.ca) {
+				C.DelClass(pc.ca, 'ca');
+				pc.ca.c=true;//是否取消选中操作
+				console.log(999999,sed.indexOf(o))
+				//sed.splice(o,1)
+				
+			}
+			if (pc.ca != o.a) {
+				C.AddClass(o.a, 'ca');
+				//o.a.c=false;//是否取消选中操作
+				ca = o.a;
+				ci = o.i;
+				//sed.push(o);
+			}
+			pc.ca = ca;
+			pc.ci = ci;
+			//filt();
+			up(o);
+			
+		}
+
 		//it(arr, function (a) { console.log(a.i,a) }, function (a) { console.log(a.i,a) });
 		/*更新状态*/
 		function up(co)
@@ -630,7 +640,6 @@ console.log(j,b,a.join(','))
 		if(o.ca)
 		//if(1)
 		{
-		console.log(o.ca===undefined,o.ca)
 		each(skus,null,
 		function(s){/*sku一维子项*/
 		s.s=false;//是否可选,默认全不可选
@@ -639,7 +648,7 @@ console.log(j,b,a.join(','))
 		{
 		s.s=true;
 		}
-		//console.log(o.i,s.s,s)
+		console.log(o.i,s.s,s)
 		});
 		}
 		

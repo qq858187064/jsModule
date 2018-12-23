@@ -14,12 +14,13 @@ html
 }
 body {
     height:100%;
-    overflow:auto;
 	margin:0 auto;
 	font:400 14px/2 '微软雅黑',Verdana;
 	text-align:left;
-    overflow-y: scroll;
-  overflow: hidden scroll;
+	
+	overflow: visible;
+    /*overflow-y: scroll;
+  overflow: hidden scroll;*/
   position: relative;
 
 }

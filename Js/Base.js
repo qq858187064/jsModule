@@ -92,6 +92,35 @@ ie8:function ()
 {
 return navigator.appName=="Microsoft Internet Explorer"&&parseFloat(navigator.appVersion)<5
 },
+from: function (t) //t:缺省仅取os，1：只取os，2：os、evn均取
+{
+    var r = {
+        os: 0,
+        env: 0
+    },
+    ua = navigator.userAgent,
+     reg = /(sy[ab])(\d+)[_](\w{32})?/,//该规则与移动组约定
+     ar = ua.match(reg);
+    if (ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1) {
+        r.os = 1;
+    } else if (!!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) //可以再细分：iPhone|iPad|iPod|iOS
+    {
+        r.os = 2;
+    }
+    if (ua.match(/micromessenger/i)) {
+        r.env = 1;
+    }
+    else if (window.__wxjs_environment === 'miniprogram') {
+        r.env = 2;
+        //非微信，后面扩展
+    }
+    else if (ar)//老版本不包含该ua标识，须调取appInfo判断app内
+    {
+        r.env = 3;
+        r.appua = ar;//app中自定义的ua信息数据；1:sya/syb代表android/ios,2:build码，3:token
+    }
+    return r;
+},
     /* 获取并选回radio选定的元素     */
     radio: function (nm) {
         var es = C.Gn(nm);
@@ -127,7 +156,6 @@ return navigator.appName=="Microsoft Internet Explorer"&&parseFloat(navigator.ap
 						t.Rpt.style.left=t.L+"px";
 						t.Rpt.style.top=t.T+t.offsetHeight+3+"px";
 						t.Rpt.style.left=t.L+"px";
-
 	},
 	/*获取对象o在css中的a属性的值，也可指定伪类w*/
 	Css:function(o,a,w){
@@ -785,7 +813,10 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
      /*   //oXHR.responseType = "msxml-document";//兼容IE10+版本，调用selectSingleNode类似方法*/
         if (Method == "POST") {
 
+
               oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//formData//设了这个头request.files居然得不到文件
+              oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              //表单上传文件、formData必须指定编码类型为"multipart/form-data"，否则request.files得不到文件
           /* oXHR.setRequestHeader("Content-type", "multipart/form-data");*///payload
         }
         oXHR.send(Data);

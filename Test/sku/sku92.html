@@ -138,7 +138,7 @@
 		<a class="bt1" id='bt1'>确定</a>
 	</div>
 	id stock price originPrice 0,1 100 10 15 0,0 999 20 25 1,1 5 30 35
-	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
+	<script type="text/javascript" src="http://192.168.1.66/Js/Base.js"></script>
 	<script type="text/javascript">
 		//服务返回数据：
 		/*
@@ -1173,7 +1173,9 @@
 			arr = [],/*属性列表*/
 			skus = [],/*有效sku*/
 			sed=[],/*已经选中项*/
-			un=[];/*当前不可选中项*/
+			dsb=[],/*已经被选中项排除的项*/
+			li,/*上次选中项的父项索引*/
+			enb=[];/*可选项*/
 		/*过滤服务返回有效sku数据*/
 		for (var i = 0; i < goods.skuList.length; i++)
 		{
@@ -1202,11 +1204,7 @@
 			arr.push(ar);
 		}
 		console.log('arr：', arr.join(), '\nskus：', skus.join());
-<<<<<<< HEAD
-/*将属性列表arr绑至页面*/
-=======
 		/*将属性列表arr绑至页面*/
->>>>>>> 4e526bba36c52eecc1fc432091227a27d4d1434f
 		arr[2] = ["red", "bule"];
 		arr[2].tit = "color";
 		/*
@@ -1220,6 +1218,7 @@
 		skus[0].push('red')
 		skus[1].push('red')
 		skus[2].push('bule')
+		//rp(skus,2);
 		var num = C.G('num');
 		//console.log('属性列表：',arr)
 		each(arr,
@@ -1278,77 +1277,58 @@
 			a[i] = b;
 			//console.log(j, b, a.join(','))
 		}
-
 		/*用户选中sku项处理函数*/
 		function slct(a) {
 			if (C.clsNm(a) == 'dsb') return;
+			//a.dsb=a.dsb||[];//被该选中项排除的项
 			var pc = arr[a.pi],//父类别
 				ci,/*当前分类中选中项索引*/
 				ca;/*当前分类中选中项*/
-			if (pc.ca) {
+			if (pc.ca)
+			{
 				C.DelClass(pc.ca, 'ca');
 				//sed.splice(sed.indexOf(pc.ca.innerText), 1);
 				//sed[a.pi]=null
-				sed.splice(sed.indexOf(a),1)
+				//sed.splice(sed.indexOf(a),1)
 			}
-			
-			if (pc.ca != a) {
+			if (pc.ca != a)
+			{
 				C.AddClass(a, 'ca');
 				ca = a;
 				ci = a.i;
 				//sed[a.pi]=a;
-				sed.push(a)
+				//sed.push(a)
 			}
 			pc.ca = ca;
-			pc.ci = ci;
-			//console.log('sed:',sed,a.pi)
-			/**/
-			//根据选中项，将skus列表中不匹配(不可选中)的项标识出来
-			/*
-		["5kg","12瓶","red",id:"a09prAB3AC", stock:100, price0:"15.00", price:"10.00", d:false],
-		["5kg","12个","red",id:"a09prAB3AD", stock:999, price0:"25.00", price:"20.00", d:true]
-		["2.1","12瓶","bule",id:"a09prAB3AE", stock:5, price0:"35.00", price:"30.00", d:false]
-			*/
-			//console.clear()
-			//根据选中项，将设置sku对状态
-			//var ind=pc.ca?false:true;
+			
+			//pc.ci = ci;
+			
+			
 			for (var j = 0; j < skus.length; j++)
 			{
 				var s = skus[j],
-					si=s[a.pi];
+					si=s[a.pi];//,//sku对中对应索引的项
+					//tmp=enb;
+					//tmp.p=dsb;
+					//if(s.d)continue;
 					s.d=false;
-					
-					for(var k=0;k<sed.length;k++)
-					{
-						var ed=sed[k];
-						
-						//if(!ed)continue;
-						
 						//如果sku中不包含选中项，则将该组sku禁用
-						//其它未被禁用的项，不应该禁掉
-						//console.log(3333333333,ed.innerText,ed.pi,k)
-						var si=s.indexOf(ed.innerText);
-						if(si==-1)
+						//if(s.indexOf(a.innerText)==-1)
+						//如果sku中对应索引和选中项不相等，则将该组sku禁用
+						if(si!=a.innerText)
 						{
-						console.log('s.d=true',sed,s)
+						//console.log('ed.pi',ed.pi,a.pi)
 						s.d=true;
-						break;
+						//tmp=dsb;
+						//tmp.p=enb;
 						}
-
-						//console.log('ed:',ed.innerText)
-					}
-			}			
-			filt(a);
-			//up();
-
-		}
-		filt();
-		function filt(o) {
+			}
 			/*arr和skus中子项sku等长,下标可匹配*/
-			console.log('i', 'n', 'j','____________________\n',skus)
+			console.log('i', 'n', 'j','____________________')
+			a.dsb=a.dsb||[];
 			for (var i = 0; i < arr.length; i++) {
-				var ar = arr[i],
-					d =sed[i];//当前选中项文字，sed和arr等长//ar.ci != undefined;
+				var ar = arr[i];
+					//d =sed[i];//当前选中项文字，sed和arr等长//ar.ci != undefined;
 					//console.log(i,d)
 					//if(ar.ca)
 //console.log(ar.ca.innerText)
@@ -1356,6 +1336,8 @@
 				{
 					var it = ar[n];
 					it.d = true;//默认不可选中状态
+					if(dsb.indexOf(it.innerText)>-1)
+					it.d=true;
 					//遍历sku
 					for (var j = 0; j < skus.length; j++)
 					{
@@ -1373,31 +1355,27 @@
 							break;
 							}
 						}
-						/*else if(s.indexOf(it.innerText)==-1)
-						{
-						console.log(s,it.innerText)
-							if(it.innerText ==ss)
-							{
-							//it.d = false;
-							//break;
-							}
-						}*/
 
-					}
+					}/**/
 					//if(sed.indexOf(it.innerText)!=-1)
 					//it.d=false;
-					
 					if (!it.d)//arr数组下标与skus子项下标相等
 					{
+					//console.log(123,li,pc.ca.pi,li!=pc.ca.pi)
+					//如果项没有被禁用（样式名不为‘dsb'），且非同父项
+					if(C.clsNm(it)!='dsb'||(pc.ca&&pc.ca.pi==li))
 						C.DelClass(it, 'dsb');
 					}
-					else if((o&&o.pi!=it.pi)||!o)//如果传入项和当前项父索引不等
+					else if(a.pi!=it.pi)//如果传入项和当前项父索引不等
 					{
 					
 						C.AddClass(it, 'dsb');
+						//a.dsb.push(it);
 					}
 				}
 			}
+			if(pc.ca)
+			li=pc.ca.pi;
 		}
 	</script>
 </body>

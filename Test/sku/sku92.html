@@ -1315,10 +1315,12 @@
 						//如果sku中不包含选中项，则将该组sku禁用
 						//if(s.indexOf(a.innerText)==-1)
 						//如果sku中对应索引和选中项不相等，则将该组sku禁用
+						console.log(si,a.innerText)
 						if(si!=a.innerText)
 						{
 						//console.log('ed.pi',ed.pi,a.pi)
 						s.d=true;
+						//break;
 						//tmp=dsb;
 						//tmp.p=enb;
 						}
@@ -1336,8 +1338,8 @@
 				{
 					var it = ar[n];
 					it.d = true;//默认不可选中状态
-					if(dsb.indexOf(it.innerText)>-1)
-					it.d=true;
+					//if(dsb.indexOf(it.innerText)>-1)
+					//it.d=true;
 					//遍历sku
 					for (var j = 0; j < skus.length; j++)
 					{
@@ -1374,6 +1376,7 @@
 					}
 				}
 			}
+			console.log(skus)
 			if(pc.ca)
 			li=pc.ca.pi;
 		}

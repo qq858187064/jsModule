@@ -1300,97 +1300,38 @@
 			}
 			pc.ca = ca;
 			//pc.ci = ci;
-			
-			
 			for (var j = 0; j < skus.length; j++)
 			{
 				var s = skus[j],
 					si=s[a.pi];//,//sku对中对应索引的项
-					//tmp=enb;
-					//tmp.p=dsb;
-					//if(s.d)continue;
 					s.d=false;
 						//如果sku中不包含选中项，则将该组sku禁用
 						//if(s.indexOf(a.innerText)==-1)
 						//如果sku中对应索引和选中项不相等，则将该组sku禁用
 						if(si!=a.innerText)
 						{
-						//console.log('ed.pi',ed.pi,a.pi)
 						s.d=true;
-						//tmp=dsb;
-						//tmp.p=enb;
-						if(false)
-						for(var n=0;n<s.length;n++)
-							{
-								if(a.pi!=n)//||!s.d
-								{
-								var ss=s[n];
-								//console.log(a.pi,n,ss)
-								//将被禁用sku中非选中项同索引的项、或未禁用的sku所有项，加入到被选中项禁用项集合中
-								if(tmp.indexOf(ss)==-1)//||(s.d&&tmp.p.indexOf(ss)==-1)
-								tmp.push(ss);//a.dsb.push(ss);
-								}/*
-								else
-								{
-								if(enb.indexOf(ss)==-1)//||(s.d&&tmp.p.indexOf(ss)==-1)
-								enb.push(ss);//a.dsb.push(ss);
-								}*/
-							}
 						}
-						//从禁用项集合中移除存在于未禁用sku中的项
-					/*
-						if(!s.d)
-							for(var m=0;m<tmp.length;m++)
-							{
-							var t=tmp[m],
-								g=s.indexOf(t);
-							if(g>-1)
-								tmp.splice(m,1);
-							}
-							*/
-
-
-
 						//break;
 					//console.log(j,s)
 			}
-			if(false)
-			for (var i = 0; i < dsb.length; i++)
-			{
-				var d = dsb[i];
-				for (var j = 0; j < enb.length; j++)
-				{
-					var e = enb[j];
-					if(d==e)
-					dsb.splice(i,1)
-				}
-				
-				
-			}
-console.log('dsb',dsb)	
-console.log('enb',enb)	
-			//filt(a);
 			/*arr和skus中子项sku等长,下标可匹配*/
 			console.log('i', 'n', 'j','____________________')
 			
 			for (var i = 0; i < arr.length; i++) {
 				var ar = arr[i];
 					//d =sed[i];//当前选中项文字，sed和arr等长//ar.ci != undefined;
-					//console.log(i,d)
-					//if(ar.ca)
-//console.log(ar.ca.innerText)
 				for (var n = 0; n < ar.length; n++)
 				{
 					var it = ar[n];
 					it.d = true;//默认不可选中状态
-					if(dsb.indexOf(it.innerText)>-1)
+					//if(dsb.indexOf(it.innerText)>-1)
 					it.d=true;
 					//遍历sku
 					for (var j = 0; j < skus.length; j++)
 					{
 						var s = skus[j],
 						ss=s[it.pi];
-						//console.log(s.indexOf(it.innerText))
 						//如果sku未被选中项排除禁用，且当前项和sku对应上&&sed.indexOf(it.innerText)!=-1
 						if(!s.d)//&&s.indexOf(it.innerText)>-1
 						//if (!s.d&&ss.indexOf(it.innerText)!=-1)
@@ -1402,66 +1343,12 @@ console.log('enb',enb)
 							break;
 							}
 						}
-
-					}/**/
-					//if(sed.indexOf(it.innerText)!=-1)
-					//it.d=false;
-					console.log(it.d)
+					}
 					if (!it.d)//arr数组下标与skus子项下标相等
 					{
 						C.DelClass(it, 'dsb');
 					}
 					else if(a.pi!=it.pi)//如果传入项和当前项父索引不等
-					{
-					
-						C.AddClass(it, 'dsb');
-					}
-				}
-			}
-			//up();
-
-		}
-		//filt();
-		function filt(o) {
-			/*arr和skus中子项sku等长,下标可匹配*/
-			console.log('i', 'n', 'j','____________________')
-			for (var i = 0; i < arr.length; i++) {
-				var ar = arr[i];
-					//d =sed[i];//当前选中项文字，sed和arr等长//ar.ci != undefined;
-					//console.log(i,d)
-					//if(ar.ca)
-//console.log(ar.ca.innerText)
-				for (var n = 0; n < ar.length; n++)
-				{
-					var it = ar[n];
-					it.d = true;//默认不可选中状态
-					//遍历sku
-					for (var j = 0; j < skus.length; j++)
-					{
-						var s = skus[j],
-						ss=s[it.pi];
-						//console.log(s.indexOf(it.innerText))
-						//如果sku未被选中项排除禁用，且当前项和sku对应上&&sed.indexOf(it.innerText)!=-1
-						if(!s.d)//&&s.indexOf(it.innerText)>-1
-						//if (!s.d&&ss.indexOf(it.innerText)!=-1)
-						{
-							if(it.innerText ==ss)
-							//if(sed.length==0||ss.indexOf(it.innerText)>-1)
-							{
-							it.d = false;
-							break;
-							}
-						}
-
-					}
-					//if(sed.indexOf(it.innerText)!=-1)
-					//it.d=false;
-					
-					if (!it.d)//arr数组下标与skus子项下标相等
-					{
-						C.DelClass(it, 'dsb');
-					}
-					else if((o&&o.pi!=it.pi)||!o)//如果传入项和当前项父索引不等
 					{
 					
 						C.AddClass(it, 'dsb');

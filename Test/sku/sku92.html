@@ -139,7 +139,7 @@
 		<a class="bt1" id='bt1'>确定</a>
 	</div>
 	id stock price originPrice 0,1 100 10 15 0,0 999 20 25 1,1 5 30 35
-	<script type="text/javascript" src="http://192.168.1.66/Js/Base.js"></script>
+	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
 	<script type="text/javascript">
 		//服务返回数据：
 		/*
@@ -1301,12 +1301,12 @@
 				//sed.push(a)
 			}
 			pc.ca = ca;
-			
 			//pc.ci = ci;
 			for (var j = 0; j < skus.length; j++)
 			{
 				var s = skus[j],
 					si=s[a.pi];//,//sku对中对应索引的项
+					if(!s.d||!pc.ca)
 					s.d=false;
 						//如果sku中不包含选中项，则将该组sku禁用
 						//if(s.indexOf(a.innerText)==-1)

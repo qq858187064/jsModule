@@ -125,7 +125,7 @@ function crop() {
     }
    // else
        // alert("图片超过5M或不存在");
-    img.src = o.view.src = o.ou
+    img.src = o.view.src = o.ou;
     o.mime = fs[0].type;
 },
     /*将图片指定区域画到画布上,并在加载完成后提取数据并上传*/
@@ -142,8 +142,10 @@ function crop() {
      var path = o.ou?o.img.src+o.mime.replace('image/','.'):o.img.src
      fn = path.substring(path.lastIndexOf("/") + 1);
      o.img.onload = function () {
+
+         var ws = o.img.naturalWidth / o.img.offsetWidth;
             //以下两步必须要在img load后执行：
-            cct.drawImage(img, si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h);
+         cct.drawImage(img, si.offsetLeft * ws, si.offsetTop * ws, w * ws, h * ws, 0, 0, w, h);
             console.log('si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h', si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h)
             sd = cvs.toDataURL(o.mime, o.q);//.replace('data:image/jpeg;base64,', '');
             sd = crop.prototype.toBlob(sd,o.mime);

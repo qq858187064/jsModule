@@ -20,8 +20,8 @@
              <input name="Fu" id="Fu" type="file" onchange="UpImg()" accept="image/gif, image/jpeg"/ style="margin-right:114px;display:none" />
             <iframe name='Hi' id="hi" class="hi"></iframe>
 			</form>-->
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br />img:用户上传的原图，prev:用于预览图片id(可选)，w、h:是裁剪框的宽度，
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        img:用户上传的原图，prev:用于预览图片id(可选)，w、h:是裁剪框的宽度，
         可选：q:图片压缩质量(0-1,值越小，图片压缩力度越大。)，s:锁定比例的标识,
         fu:上传文件输入框，up:确定上传铵钮id
 

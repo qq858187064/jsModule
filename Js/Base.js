@@ -812,10 +812,7 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         oXHR.setRequestHeader('X-Requested-With', "XMLHttpRequest");
      /*   //oXHR.responseType = "msxml-document";//兼容IE10+版本，调用selectSingleNode类似方法*/
         if (Method == "POST") {
-
-
-              oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//formData//设了这个头request.files居然得不到文件
-              oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              //oXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//formData//设了这个头request.files居然得不到文件
               //表单上传文件、formData必须指定编码类型为"multipart/form-data"，否则request.files得不到文件
           /* oXHR.setRequestHeader("Content-type", "multipart/form-data");*///payload
         }

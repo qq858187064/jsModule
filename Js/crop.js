@@ -59,20 +59,20 @@ function crop() {
             i.view.style.top = -i.offsetTop + "px";
 
         },
-        /*调整大小,本质上也是一个拖动处理*/
+        /*调整大小,本质上也是一个拖动处理
         resize: function (o, e) {
             o.p = o.parentNode;
             if (!o.p.w) {
                 o.p.w = o.p.offsetWidth;
                 o.p.h = o.p.offsetHeight;
             } 
-                /*var sy = e.clientY || e.changedTouches[0].clientY;
-                if (o.p.te && o.p.te != e) {
-                    sy = o.p.te.clientY || o.p.te.changedTouches[0].clientY;
-                    o.p.te = e;
-                    //console.log((o.p.te&&o.p.te!=e)+"__only one")
-                }
-                */
+               // var sy = e.clientY || e.changedTouches[0].clientY;
+               // if (o.p.te && o.p.te != e) {
+                //    sy = o.p.te.clientY || o.p.te.changedTouches[0].clientY;
+               //     o.p.te = e;
+               //     //console.log((o.p.te&&o.p.te!=e)+"__only one")
+               // }
+                
             var mx = (e.clientX || e.changedTouches[0].clientX) - o.p.ox;//o.p.rx,
             my = (e.clientY || e.changedTouches[0].clientY) - o.p.oy,// o.p.ry;//e.clientY
             l = parseInt(o.p.style.left),
@@ -110,7 +110,7 @@ function crop() {
                 }
                 o.p.style.width = o.p.w + mx + "px";
                 //return;
-        },
+},*/
        // var img = C.G("img"),
        // fs, ou, sd, mime;
 /*设置图片处理*/

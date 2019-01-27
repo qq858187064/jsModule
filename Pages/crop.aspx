@@ -57,9 +57,7 @@
 	window.onload=function(){
 	crop(si)
 }; 
-	
         /*确认图像*/
-
         function cut() {
             C.EXHR(function (o) {
                 r.innerHTML = "图片处理完成，返回值：" + o+"<br />";

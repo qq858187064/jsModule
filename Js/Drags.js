@@ -86,6 +86,7 @@ function Drags() {
                         mx = -mx;
                         my = -my;
                         x = o.x;
+                        y = o.y;
                         break;
                     case "b":
                         my = -my;
@@ -157,10 +158,11 @@ function Drags() {
                 x = o.x;
                 y = o.y;
             }
-            //if(x)
-            o.style.left = x + "px";
-            //if(y)
-            o.style.top = y + "px";
+
+                //if(x)
+                o.style.left = x + "px";
+                //if(y)
+                o.style.top = y + "px";
         },
         Stop: function (o, e) {
             if (touch)

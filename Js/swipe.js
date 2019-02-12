@@ -23,13 +23,13 @@
             v.p = C.Pt(o);
             /*//C.AddEvent(v, "load", this.zoom, v);此image非彼image*/
             var vp = v.parentNode;
-            if (C.isTouch()) {
+            if (C.isTouch()) {//可触摸设备
                 v.r = 0;
                 C.AddEvent(vp, "touchstart", this.rule, v);
                 C.AddEvent(vp, "touchmove", this.rule, v)
                 C.AddEvent(vp, "touchend", this.rule, v);
             }
-            else  /*//pc*/ {
+            else {  //pc等非可触摸设备
                 C.AddEvent(vp, "click", this.rule, v);
                 var cx = vp.offsetWidth / 2;
                 C.AddEvent(vp, "mousemove", function (e) {
@@ -51,14 +51,22 @@
                 });
             }
         },
-        rule: function (o, e) {
-            if (e.type == "touchstart") {
-                var s = e.touches[0];
-                o.sp = { x: s.clientX, y: s.clientY };/*//,time:+new Date};可记录时间*/
+        rule: function (o, e)
+        {
+            if (e.type == "touchstart")
+            {
+                var s = e.touches[0],
+                     s1 = e.touches[1];
+                if (s1)
+                    o.s1={x:s1.clientX,y:s1.clientY}
+                    o.sp = { x: s.clientX, y: s.clientY };/*//,time:+new Date};可记录时间*/
             }
-            else if (e.type == "touchend") {
+            else if (e.type == "touchend")
+            {
                 /*// var dur = +new Date - sp.time; //滑动的持续时间*/
                 var b = e.changedTouches[0];
+                
+                //document.body.appendChild('123'+document.createTextNode(e.changedTouches.length))
                 o.ep = { x: b.clientX, y: b.clientY };
                 var x = o.ep.x - o.sp.x,
                 y = o.ep.y - o.sp.y;
@@ -86,7 +94,19 @@
                     return;
                 }
             }
-            else if (e.type == "touchmove") {
+            else if (e.type == "touchmove")
+            {
+                alert(o.s1.x+"_"+o.s1.y)
+                if (o.s1)
+                {
+                    var b = e.changedTouches[1];
+
+                    o.ep1 = { x: b.clientX, y: b.clientY };
+                    var x = o.ep1.x - o.sp1.x,
+                         y = o.ep1.y - o.sp1.y,
+                        l = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+                    alert(l)
+                }
                 C.PreventDefault(e);/*阻止触摸事件的默认滚屏行为*/
             }
             /*else if (e.type == "click") {//鼠标事件事处理

@@ -171,7 +171,7 @@ dl.Cot dt.RBar
         background: #fff url(/Images/Icons.gif) no-repeat 10px -265px;
     }
 
-        dl.Cot dt.RBar a:hover, dl.Cot dt.RBar a.CM, dl.Cot dt.Prt a.CM, dl.Cot dt.Prt a:hover
+        dl.Cot dt.RBar a:hover, dl.Cot dt.RBar a.cm, dl.Cot dt.Prt a.cm, dl.Cot dt.Prt a:hover
         {
             font-weight: 600;
             color: #f60;
@@ -179,7 +179,7 @@ dl.Cot dt.RBar
             background: #fafafa url(/Images/Arrow.gif) no-repeat 14px 12px;
         }
 
-        dl.Cot dt.RBar a:hover, dl.Cot dt.RBar a.CM
+        dl.Cot dt.RBar a:hover, dl.Cot dt.RBar a.cm
         {
             background: #f9f9f9 url(/Images/Icons.gif) no-repeat 10px -213px;
         }
@@ -255,7 +255,7 @@ dl.Cp dt a
     margin-bottom: -1px;
 }
 
-    dl.Cp dt a.CM
+    dl.Cp dt a.cm
     {
         background: #fff url(/Images/CMbg.gif) no-repeat 0px -25px;
         color: #cb5931;
@@ -490,7 +490,7 @@ pre
    {
 	   display:block;
 	   position:relative;
-	   width:100%;
+	   /*width:100%;*/
 	   background:#666;
    }
    .view
@@ -847,7 +847,7 @@ a.Next
         cursor: pointer;
         width: 90px;
     }
-.Ima dt img.CM
+.Ima dt img.cm
 {
     border-top: 2px solid #f90;
     padding-top: 1px;
@@ -926,7 +926,7 @@ dl.Cot dd dl dd dl.Imb
         }
 
 
-    dl.Cot dd dl dd dl.Imb dt a.CM
+    dl.Cot dd dl dd dl.Imb dt a.cm
     {
         background: #f60;
         color: #fff;
@@ -1081,7 +1081,7 @@ dl.Cot dd dl dd dl.Imb
             line-height: 24px;
         }
 
-            .SI b a:hover, .SI b a.CM
+            .SI b a:hover, .SI b a.cm
             {
                 background: #fff;
                 color: #f60;
@@ -1132,7 +1132,7 @@ dd.finEyeC
     border-top: #909193 dashed 1px;
 }
 
-    .finEyeC a.CM
+    .finEyeC a.cm
     {
         height: 224px;
         background: #e4e8eb;
@@ -1164,7 +1164,7 @@ dd.finEyeC
         background: url(http://hs.cnfol.com/ua/imgs/cms/reIBg.png) -235px -210px no-repeat;
     }
 
-    .finEyeC a.CM:hover b
+    .finEyeC a.cm:hover b
     {
         color: #f60;
     }
@@ -1198,7 +1198,7 @@ dd.finEyeC
         cursor: pointer;
     }
 
-    .finEyeC a.CM span
+    .finEyeC a.cm span
     {
         background: #eee;
         font-weight: bold;
@@ -1216,7 +1216,7 @@ dd.finEyeC
         cursor: pointer;
     }
 
-    .finEyeC a.CM em
+    .finEyeC a.cm em
     {
         color: #c80f00;
     }
@@ -1235,7 +1235,7 @@ dd.finEyeC
     display: none;
 }
 
-.Wa a.CM
+.Wa a.cm
 {
     background-position: 6px -131px;
 }

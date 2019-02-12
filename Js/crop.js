@@ -13,8 +13,9 @@ function crop() {
             o.view = C.G(o.ps.prev);
 
             C.evt("drop", false, true);
-            var ii = C.sliceC(C.Gs(o, "i"));
-            ii.push(o)
+
+            //var ii = C.sliceC(C.Gs(o, "i"));
+           // ii.push(o)
             Drags(o);
             C.AddEvent(o, "drop", function fun(o, e) {
                 o.ol = parseInt(o.style.left);

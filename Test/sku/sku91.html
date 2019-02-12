@@ -1202,11 +1202,7 @@
 			arr.push(ar);
 		}
 		console.log('arr：', arr.join(), '\nskus：', skus.join());
-<<<<<<< HEAD
 /*将属性列表arr绑至页面*/
-=======
-		/*将属性列表arr绑至页面*/
->>>>>>> 4e526bba36c52eecc1fc432091227a27d4d1434f
 		arr[2] = ["red", "bule"];
 		arr[2].tit = "color";
 		/*
@@ -1312,35 +1308,31 @@
 			//console.clear()
 			//根据选中项，将设置sku对状态
 			//var ind=pc.ca?false:true;
-			for (var j = 0; j < skus.length; j++)
+			for(var j = 0; j < skus.length; j++)
 			{
-				var s = skus[j],
-					si=s[a.pi];
-					s.d=false;
-					
+			    var s = skus[j];
+					//si = s[a.pi],
+                    s.d= false;
+					//s.d=false;
 					for(var k=0;k<sed.length;k++)
 					{
 						var ed=sed[k];
-						
 						//if(!ed)continue;
-						
 						//如果sku中不包含选中项，则将该组sku禁用
 						//其它未被禁用的项，不应该禁掉
 						//console.log(3333333333,ed.innerText,ed.pi,k)
-						var si=s.indexOf(ed.innerText);
-						if(si==-1)
+						if (s.indexOf(ed.innerText) == -1)
+						//if (s[j]==sed)
 						{
-						console.log('s.d=true',sed,s)
-						s.d=true;
-						break;
+						//console.log('s.d=true',sed,s)
+						    s.d=true;
+						//break;
 						}
-
 						//console.log('ed:',ed.innerText)
 					}
 			}			
 			filt(a);
 			//up();
-
 		}
 		filt();
 		function filt(o) {

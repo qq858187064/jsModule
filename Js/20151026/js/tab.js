@@ -20,11 +20,11 @@
             }
             if (!this.IsFirst && oDL.oi > -1)
             {
-                C.DelClass(Ms[oDL.oi], "CM");
+                C.DelClass(Ms[oDL.oi], "cm");
                 C.DelStyle(Cs[oDL.oi]);
             }
             var n = L.getAttribute("n");
-            C.AddClass(L, "CM");
+            C.AddClass(L, "cm");
             Cs[n].style.display = "block";
             oDL.oi = parseInt(n);
         };

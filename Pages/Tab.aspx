@@ -13,7 +13,7 @@
 <a href="#"><img src="Images/Iswa/BnD.jpg" /></a>
 <a href="#"><img src="Images/Iswa/BnF.jpg" /></a>
 <i></i>
-<b><a href="#">1</a><a href="#" class="CM">2</a><a href="#">3</a><a href="#">4</a></b>
+<b><a href="#">1</a><a href="#" class="cm">2</a><a href="#">3</a><a href="#">4</a></b>
 </div>
 --%>
 <dl id="M1aA" class="Imb">

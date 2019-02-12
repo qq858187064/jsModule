@@ -27,7 +27,7 @@
                     var e = e || window.event,
                         t = e.toElement || e.relatedTarget;
                     if (t.contains(o)) {
-                        C.DelClass(o.la, "CM");
+                        C.DelClass(o.la, "cm");
                         o.la.ct.style.display = "none";
                     }
                 }, o);
@@ -60,13 +60,13 @@
                 t1 = o.tt && o.tt == 1;
             if (o.la)
             {
-                C.DelClass(o.la, "CM");
+                C.DelClass(o.la, "cm");
                 o.la.ct.style.display = "none";
                 //if (t1)
                 //o.la.ct.style.opacity = 0;
             }
             var n = C.Attr(a, "n");
-            C.AddClass(a, "CM");
+            C.AddClass(a, "cm");
             if (t1)
                 a.ct.style.opacity = 0;
             a.ct.style.display = "block";

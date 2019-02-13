@@ -1307,29 +1307,41 @@
 			*/
 			//console.clear()
 			//根据选中项，将设置sku对状态
-			//var ind=pc.ca?false:true;
+		    //var ind=pc.ca?false:true;
+			console.log('sku:\n', s)
 			for(var j = 0; j < skus.length; j++)
 			{
 			    var s = skus[j];
-					//si = s[a.pi],
+			    //si = s[a.pi],
                     s.d= false;
-					//s.d=false;
 					for(var k=0;k<sed.length;k++)
 					{
-						var ed=sed[k];
+					    var ed = sed[k];
 						//if(!ed)continue;
 						//如果sku中不包含选中项，则将该组sku禁用
 						//其它未被禁用的项，不应该禁掉
-						//console.log(3333333333,ed.innerText,ed.pi,k)
-						if (s.indexOf(ed.innerText) == -1)
-						//if (s[j]==sed)
+					    //console.log(3333333333, s[ed.pi], a.innerText)
+					    //if (s.indexOf(ed.innerText) == -1)
+					    if (ed.innerText!=s[ed.pi]&&a.pi!=ed.pi)
 						{
 						//console.log('s.d=true',sed,s)
-						    s.d=true;
-						//break;
+					        if (pc.ca && s.d != true)
+					        {
+						        s.d = true;
+						        a.ds = s;
+                                //alert(s.t)
+						        if (s.t == undefined)
+						        s.t = a;
+                               // alert(a.ds)
+						    }
+						    else if (a.ds&&s.t==a) {
+						        a.ds.d = false;
+						    }
+						    break;
 						}
 						//console.log('ed:',ed.innerText)
 					}
+					console.log(a.innerText,a.ds)//, s
 			}			
 			filt(a);
 			//up();
@@ -1337,7 +1349,7 @@
 		filt();
 		function filt(o) {
 			/*arr和skus中子项sku等长,下标可匹配*/
-			console.log('i', 'n', 'j','____________________\n',skus)
+			//console.log('i', 'n', 'j','____________________\n',skus)
 			for (var i = 0; i < arr.length; i++) {
 				var ar = arr[i],
 					d =sed[i];//当前选中项文字，sed和arr等长//ar.ci != undefined;

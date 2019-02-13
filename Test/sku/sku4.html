@@ -37,7 +37,8 @@
     </p>
   </script>
   <script type="text/template" id="btn_arr">
-    <a type="a" data-name='{$item}' data-index='{$index}' class='enable'>{$item}</a>
+   <a type="a" data-name='{$item}' data-index='{$index}' class='enable'>{$item}</a>
+       <!-- <input type='button' data-name='{$item}' data-index='{$index}' class='enable' value="{$item}" />-->
   </script>
 	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
   <script src='http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
@@ -124,7 +125,8 @@ const sku = {
 //要显示的项
   showIt() {
   //console.log(888,this.showData)
-    for (let item of this.data) {
+      for (let item of this.data)
+      {
       let pair = '';
       for (let key in item) {
         if (key !== 'id' && key !== 'num') {
@@ -159,7 +161,10 @@ const sku = {
    * @param {string} key 查找关键字以；分割
    * @return {array} 所有可选属性数组
    */
-  getResult(key, isRealFind=true) {
+  getResult(key, isRealFind)//  getResult(key, isRealFind=true)
+  {
+      if(isRealFind==undefined)
+          isRealFind = true
     /* 如缓存中存在，则直接返回结果
     if (this.cacheData[key] && isRealFind) {
       this.result = this.cacheData[key];
@@ -249,7 +254,6 @@ const sku = {
       let index = C.Attr(this,'data-index');
       choose[index] =this.innerText;
       choose.forEach(item => {
-	  
         let $btn = $('a[data-name="' + item + '"]');
 		//console.log(C.Attr($btn[0],'disabled'))
 		if(C.Attr($btn[0],'disabled'))return;
@@ -264,9 +268,15 @@ const sku = {
         }
       });
       let result = sku.getResult(key);
+      //C.DelClass($btn, 'enable')
+      //$btn.setAttribute('disabled', true)
       $btn.removeClass('enable').attr('disabled', true);
       result.forEach(item => {
-        $('a[data-name="' + item + '"]').addClass('enable').attr('disabled', false);
+          console.log(item)
+          $('a[data-name="' + item + '"]').addClass('enable').attr('disabled', false);
+          //var oa=$('a[data-name="' + item + '"]');
+         // C.AddClass(oa, 'enable');
+          //oa.setAttribute('disabled', false)
       });
     });
   }

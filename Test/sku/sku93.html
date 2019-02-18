@@ -1172,8 +1172,10 @@
 			attr = goods.skuValueMap,
 			arr = [],/*属性列表*/
 			skus = [],/*有效sku*/
-			sed=[],/*已经选中项*/
-			un=[];/*当前不可选中项*/
+            /*es = [],可选sku*/
+			sed = [],/*已经选中项*/
+
+            enb = [];/*当前可选中项*/
 		/*过滤服务返回有效sku数据*/
 		for (var i = 0; i < goods.skuList.length; i++)
 		{
@@ -1295,124 +1297,68 @@
 		}
 		/*用户选中sku项处理函数*/
 		function slct(a) {
-			if (C.clsNm(a) == 'dsb') return;
-			var pc = arr[a.pi],//父类别
+		    if (C.clsNm(a) == 'dsb') return;
+		    var pc = arr[a.pi],//父类别
 				ci,/*当前分类中选中项索引*/
-				ca;/*当前分类中选中项*/
-			if (pc.ca) {
-				C.DelClass(pc.ca, 'ca');
-				//sed.splice(sed.indexOf(pc.ca.innerText), 1);
-				sed[a.pi]=null
-			    //sed.splice(sed.indexOf(a),1)
-			}
-			if (pc.ca != a) {
-				C.AddClass(a, 'ca');
-				ca = a;
-				ci = a.i;
-				sed[a.pi]=a;
-			    //sed.push(a)
-			}
-			pc.ca = ca;
-			pc.ci = ci;
-			//console.log('sed:',sed,a.pi)
-			/**/
-			//根据选中项，将skus列表中不匹配(不可选中)的项标识出来
-			/*
-		["5kg","12瓶","red",id:"a09prAB3AC", stock:100, price0:"15.00", price:"10.00", d:false],
-		["5kg","12个","red",id:"a09prAB3AD", stock:999, price0:"25.00", price:"20.00", d:true]
-		["2.1","12瓶","bule",id:"a09prAB3AE", stock:5, price0:"35.00", price:"30.00", d:false]
-			*/
-			//console.clear()
-			//根据选中项，将设置sku对状态
-		    //var ind=pc.ca?false:true;
-			console.log('sku:\n', s)
-					for(var k=0;k<sed.length;k++)
-					{
-					    var ed = sed[k];
-						//if(!ed)continue;
-					    //console.log(3333333333, s[ed.pi], a.innerText)
-					    //如果sku未包含选中项，则将该组sku禁用
-					    //if (s.indexOf(ed.innerText) == -1)
-					    //如果sku和选中项对应位置的值不匹配，则将该组sku禁用，且当前选中项不禁用
-					    //5kg", "12瓶", "red
-					    if (ed)//&&es(ed)&& a.pi != ed.pi
-					    {
-					        for (var j = 0; j < skus.length; j++)
-					        {
-					            var s = skus[j];
-					            //console.log('sku', s)
-					            //si = s[a.pi],
-					            if (s.d) continue;
-					            s.d = true;
-					            if (ed.innerText== s[ed.pi])// && !es(ed)
-					                s.d = false;
-					        }
-					    }
-					    console.log('sku', ed&&ed.innerText,s)
-					    //console.log('ed:',ed.innerText)
+				ca,/*当前分类中选中项*/
+                ed = pc.ca != a;/*当前是选中操作*/
+		    if (pc.ca)/*如果父项中有选中项*/ {
+		        C.DelClass(pc.ca, 'ca');
+		        //sed[a.pi]=null
+		        sed.splice(sed.indexOf(a), 1)
 
-					}
-					console.log(a.innerText,a.ds)//, s
-			//}			
-			filt(a);
-			//up();
-		}
-		filt();
-		function filt(o) {
-			/*arr和skus中子项sku等长,下标可匹配*/
-			//console.log('i', 'n', 'j','____________________\n',skus)
-			for (var i = 0; i < arr.length; i++) {
-				var ar = arr[i],
-					d =sed[i];//当前选中项文字，sed和arr等长//ar.ci != undefined;
-					//console.log(i,d)
-					//if(ar.ca)
-//console.log(ar.ca.innerText)
-				for (var n = 0; n < ar.length; n++)
-				{
-					var it = ar[n];
-					it.d = true;//默认不可选中状态
-					//遍历sku
-					for (var j = 0; j < skus.length; j++)
-					{
-						var s = skus[j],
-						ss=s[it.pi];
-						//console.log(s.indexOf(it.innerText))
-						//如果sku未被选中项排除禁用，且当前项和sku对应上&&sed.indexOf(it.innerText)!=-1
-						if(!s.d)//&&s.indexOf(it.innerText)>-1
-						//if (!s.d&&ss.indexOf(it.innerText)!=-1)
-						{
-							if(it.innerText ==ss)
-							//if(sed.length==0||ss.indexOf(it.innerText)>-1)
-							{
-							it.d = false;
-							break;
-							}
-						}
-						/*else if(s.indexOf(it.innerText)==-1)
-						{
-						console.log(s,it.innerText)
-							if(it.innerText ==ss)
-							{
-							//it.d = false;
-							//break;
-							}
-						}*/
+		    }
+		    if (ed) {
+		        C.AddClass(a, 'ca');
+		        ca = a;
+		        ci = a.i;
+		        //sed[a.pi]=a;
+		        sed.push(a)
+		    }
+		    pc.ca = ca;
+		    pc.ci = ci;
+		    //console.log('sed:',sed,a.pi)
 
-					}
-					//if(sed.indexOf(it.innerText)!=-1)
-					//it.d=false;
-					
-					if (!it.d)//arr数组下标与skus子项下标相等
-					{
-						C.DelClass(it, 'dsb');
-					}
-					else if((o&&o.pi!=it.pi)||!o)//如果传入项和当前项父索引不等
-					{
-					
-						C.AddClass(it, 'dsb');
-					}
-				}
-			}
+		    var exc = es(a);
+            //标识sku状态：
+		    for (var j = 0; j < skus.length; j++) {
+		        var s = skus[j],
+                    eq = a.innerText == s[a.pi];
+		        /*选中、对应项相等、sku未被禁用
+                   取消选中、对应项相等、sku被禁用
+                */
+		        if ((ed && eq&&exc)|| (!ed && (eq||!exc)))// || (!ed && eq && s.d)
+		        {
+		            s.d = false;
+		        }
+		        if ((ed && !eq))
+		        {
+		           s.d = true;
+		        }
+		        console.log(skus)
+		        //标识属性项状态：
+		        for (var i = 0; i < arr.length; i++)
+		        {
+		            var ar = arr[i];
+		            for (var n = 0; n < ar.length; n++)
+		            {
+		                var it = ar[n];
+		                //it.d = true;//默认不可选中状态
+		                //if (s.d == false && it.innerText == s[it.pi])
+		                if (it.innerText == s[it.pi])//arr数组下标与skus子项下标相等
+		                {
+		                    if (!s.d)
+		                    {
+		                        C.DelClass(it, 'dsb');
+		                    }
+		                    else// if ((a && a.pi != it.pi) || !a)//如果传入项和当前项父索引不等
+		                    {
+		                        C.AddClass(it, 'dsb');
+		                    }
+		            }
+		            }
+		        }
+		    }
 		}
 	</script>
 </body>

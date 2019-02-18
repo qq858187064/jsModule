@@ -25,6 +25,9 @@
     .enable {
       background: #999;
     }
+    .dsb{
+         background-color: #ddd;
+    }
   </style>
 </head>
 <body>
@@ -37,8 +40,8 @@
     </p>
   </script>
   <script type="text/template" id="btn_arr">
-   <a type="a" data-name='{$item}' data-index='{$index}' class='enable'>{$item}</a>
-       <!-- <input type='button' data-name='{$item}' data-index='{$index}' class='enable' value="{$item}" />-->
+   <a data-name='{$item}' data-index='{$index}' class='enable'>{$item}</a>
+       <!-- <button type='button' data-name='{$item}' data-index='{$index}' class='enable' value="{$item}" />-->
   </script>
 	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
   <script src='http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
@@ -81,6 +84,15 @@ let goodsData = [
     {'颜色': '绿', '尺码': '大', '型号': 'C', 'id': '008', 'num': 1}
   ];
   
+   var  aaskus=
+{
+'白;中;A;': {id: "005", num: 2},
+'白;大;A;': {id: "006", num: 1},
+'绿;大;C;': {id: "008", num: 1},
+'黑;中;B;': {id: "004", num: 3}
+}
+
+
   /* let goodsData =[
 ["5kg", "12瓶","red"],
 ["5kg", "12个","red"],
@@ -142,18 +154,19 @@ const sku = {
         }
       }
       if (item.num > 0) {
+          console.log('pair:',pair)
         this.skus[pair] = {
           id: item.id,
           num: item.num
         };
       }
-    }
+      }
+      console.log('skus:', this.skus)
 
     for (let key in this.showData) {
       this.arr.push(this.showData[key]);
     }
-    console.log(this.skus);
-    console.log(this.arr);
+    console.log('arr:',this.arr);
     console.log(this.showData);
   },
   /**
@@ -172,7 +185,14 @@ const sku = {
       console.log(this.resultID);
       return this.result;
     }*/
-
+      /*skus:
+      {
+          白;中;A;: {id: "005", num: 2}
+          白;大;A;: {id: "006", num: 1}
+          绿;大;C;: {id: "008", num: 1}
+          黑;中;B;: {id: "004", num: 3}
+      }
+      */
     // 继续查找
     let result = '';
     for (let s in this.skus) {
@@ -218,7 +238,7 @@ const sku = {
       // 缓存数据
       //this.cacheData[key] = this.result;
       this.resultID = this.skus[key] ? this.skus[key] : '';
-      console.log(this.resultID);
+      console.log('this.result', this.result);
       return this.result;
     } else {
       return result;
@@ -255,7 +275,8 @@ const sku = {
       choose[index] =this.innerText;
       choose.forEach(item => {
         let $btn = $('a[data-name="' + item + '"]');
-		//console.log(C.Attr($btn[0],'disabled'))
+          //console.log(C.Attr($btn[0],'disabled'))
+          //  if (C.clsNm($btn[0]) == 'dsb') return;
 		if(C.Attr($btn[0],'disabled'))return;
         if ($btn.hasClass('checked') && item === $(this).text()) {
           $btn.removeClass('checked');

@@ -96,15 +96,14 @@
             }
             else if (e.type == "touchmove")
             {
-                alert(o.s1.x+"_"+o.s1.y)
+               /// alert(o.s1.x+"_"+o.s1.y)
                 if (o.s1)
                 {
                     var b = e.changedTouches[1];
-
                     o.ep1 = { x: b.clientX, y: b.clientY };
-                    var x = o.ep1.x - o.sp1.x,
-                         y = o.ep1.y - o.sp1.y,
-                        l = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+                    var x = o.ep1.x - o.s1.x;
+                      var y= o.ep1.y - o.s1.y;
+                      var   l = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
                     alert(l)
                 }
                 C.PreventDefault(e);/*阻止触摸事件的默认滚屏行为*/

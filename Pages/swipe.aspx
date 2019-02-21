@@ -183,6 +183,7 @@
         <i id="pg" class="pg"></i><i id="count" class="pg"></i>
     </p>
 <%--    <div id="bg" class="DBg"></div>--%>
+        <h1 id="rr"></h1>
     </dd>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="FBHtml" runat="Server">
@@ -226,5 +227,16 @@
             im = C.G("img");
         pop(im);//弹出框
         swipe(im);//滑屏切换
+
+
+
+        C.AddEvent(window, "touchstart", swipe.prototype.rule, window);
+        C.AddEvent(window, "touchmove", swipe.prototype.rule, window)
+        C.AddEvent(window, "touchend", swipe.prototype.rule, window);
+
+
+
+
+
     </script>
 </asp:Content>

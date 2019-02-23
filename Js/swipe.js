@@ -101,7 +101,7 @@
                 if (o.p2)
                 {
                     var p3 = e.touches[0],
-     p4 = e.touches[1];
+                         p4 = e.touches[1];
                     if (!o.ll)
                     {
                        
@@ -109,21 +109,11 @@
                         var b1 = o.p1.y - o.p2.y,
                          l1 = Math.sqrt(Math.pow(a1, 2) + Math.pow(b1, 2));
                         o.ll = l1;
-                       // alert('no o.ll,new o.ll:'+o.ll)
                     }
                    var a = p3.clientX - p4.clientX; 
                     var b = p3.clientY- p4.clientY,
                      l = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));  /**/
-
-
-
                     //alert('L'+l+'oL'+o.ll)
-
-                    /*p3.lx = p3.clientX;
-                    p3.ly = p3.clientY;
-                    p4.lx = p4.clientX;
-                    p4.ly = p4.clientY;*/
-
                     var rr = C.G('rr');
                     rr.innerHTML = l + '<br />' + o.ll
                    if (o.ll && e.target.tagName == 'IMG')
@@ -150,9 +140,9 @@
             }
             /*else if (e.type == "click") {//鼠标事件事处理
                console.log(e.type)
-            } */
+            }*/
             if ((e.type == "touchend" || e.type == "click") && o.r > 2)
-                swipe.prototype.handle(o);
+                swipe.prototype.handle(o); 
         },
         handle: function (o, e) {
             var s = o.t.p.s,

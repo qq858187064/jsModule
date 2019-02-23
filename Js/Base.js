@@ -1006,8 +1006,9 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         return a.contains ? a != b && a.contains(b) : a.compareDocumentPosition(b) == 16//!!(a.compareDocumentPosition(b) & 16);
     },
     /* 获取并返回get请求参数        */
-    param: function (k) {
-		var s=location.search;
+    param: function (k, s) {
+        if(!s)
+		 s=location.search;
 			if(k)
 			{
 				var z=k+"=",

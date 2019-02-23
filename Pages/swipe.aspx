@@ -1,5 +1,12 @@
 ﻿<%@ Page Title="滑动切换" Language="C#" %>
 <script runat="server">
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if(Request.QueryString.Get("wx")=="1")
+        {
+            Response.Redirect("http://192.168.1.142/Pages/swipe.aspx?wx=8");
+        }
+    }
 </script>
 <asp:Content ContentPlaceHolderID="hd" runat="Server">
     <link href="../App_Themes/Black/Style.css" rel="stylesheet" />
@@ -183,7 +190,6 @@
         <i id="pg" class="pg"></i><i id="count" class="pg"></i>
     </p>
 <%--    <div id="bg" class="DBg"></div>--%>
-        <h1 id="rr"></h1>
     </dd>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="FBHtml" runat="Server">
@@ -233,10 +239,5 @@
         C.AddEvent(window, "touchstart", swipe.prototype.rule, window);
         C.AddEvent(window, "touchmove", swipe.prototype.rule, window)
         C.AddEvent(window, "touchend", swipe.prototype.rule, window);
-
-
-
-
-
     </script>
 </asp:Content>

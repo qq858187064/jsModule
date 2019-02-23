@@ -55,7 +55,7 @@
         {
             if (e.type == "touchstart")
             {
-                C.PreventDefault(e);/*阻止触摸事件的默认滚屏行为*/
+                //C.PreventDefault(e);/*阻止触摸事件的默认滚屏行为*/
                 var p1 = e.touches[0],
                      p2 = e.touches[1];
                 //起点1

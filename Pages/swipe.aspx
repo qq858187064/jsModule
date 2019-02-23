@@ -1,12 +1,5 @@
 ﻿<%@ Page Title="滑动切换" Language="C#" %>
 <script runat="server">
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        if(Request.QueryString.Get("wx")=="1")
-        {
-            Response.Redirect("http://192.168.1.142/Pages/swipe.aspx?wx=8");
-        }
-    }
 </script>
 <asp:Content ContentPlaceHolderID="hd" runat="Server">
     <link href="../App_Themes/Black/Style.css" rel="stylesheet" />
@@ -235,9 +228,9 @@
         swipe(im);//滑屏切换
 
 
-
+        /*
         C.AddEvent(window, "touchstart", swipe.prototype.rule, window);
         C.AddEvent(window, "touchmove", swipe.prototype.rule, window)
-        C.AddEvent(window, "touchend", swipe.prototype.rule, window);
+        C.AddEvent(window, "touchend", swipe.prototype.rule, window);*/
     </script>
 </asp:Content>

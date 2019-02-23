@@ -88,8 +88,8 @@
                 o.box.ct = o.ct;
                 o.box.fd = true;
             }
-            var bd = document.documentElement,//C.Bd(),
-                         st = bd.scrollTop;// document.documentElement.scrollTop || C.Bd().scrollTop;
+            var bd = C.Bd(),//document.documentElement,//
+                         st = document.documentElement.scrollTop || C.Bd().scrollTop;//bd.scrollTop;// 
 
             if (!o.w)
                 o.w = o.box.offsetWidth;

@@ -226,5 +226,11 @@
             im = C.G("img");
         pop(im);//弹出框
         swipe(im);//滑屏切换
+
+
+        /*
+        C.AddEvent(window, "touchstart", swipe.prototype.rule, window);
+        C.AddEvent(window, "touchmove", swipe.prototype.rule, window)
+        C.AddEvent(window, "touchend", swipe.prototype.rule, window);*/
     </script>
 </asp:Content>

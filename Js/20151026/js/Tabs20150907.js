@@ -22,7 +22,7 @@
                     var e = e || window.event,
                         t = e.toElement || e.relatedTarget;
                     if (t.contains(o)) {
-                        C.DelClass(o.la, "CM");
+                        C.DelClass(o.la, "cm");
                         o.la.ct.style.display = "none";
                     }
                 }, o);
@@ -53,12 +53,12 @@
         swc: function (e, a) {
             var o = a.o;
             if (o.la) {
-                C.DelClass(o.la, "CM");
+                C.DelClass(o.la, "cm");
                 o.la.ct.style.display = "none";
 
             }
             var n = C.Attr(a, "n");
-            C.AddClass(a, "CM");
+            C.AddClass(a, "cm");
             a.ct.style.display = "block";
             o.la = a;
             o.lc = a.ct;

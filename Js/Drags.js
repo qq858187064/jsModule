@@ -51,6 +51,9 @@ function Drags() {
             //C.AddEvent(document, "mouseup", Drags.prototype.Stop, o);
         },
         Move: function (o, e) {
+
+            alert(123)
+            alert(e.changedTouches.length)
             var ex = touch ? e.changedTouches[0].clientX : e.clientX,
                 ey = touch ? e.changedTouches[0].clientY : e.clientY,
                 xro = o.offsetWidth + o.offsetLeft > o.parentNode.offsetWidth,//x轴右侧超出
@@ -86,6 +89,7 @@ function Drags() {
                         mx = -mx;
                         my = -my;
                         x = o.x;
+                        y = o.y;
                         break;
                     case "b":
                         my = -my;
@@ -157,10 +161,11 @@ function Drags() {
                 x = o.x;
                 y = o.y;
             }
-            //if(x)
-            o.style.left = x + "px";
-            //if(y)
-            o.style.top = y + "px";
+                //if(x)
+                o.style.left = x + "px";
+                //if(y)
+                o.style.top = y + "px";
+
         },
         Stop: function (o, e) {
             if (touch)

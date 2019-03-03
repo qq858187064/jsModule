@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>sku</title>
+  <style>
+    .sku {
+      padding: 10px;
+    }
+    a {
+      padding: 4px 12px;
+      margin: 0 10px;
+      background-color: #ddd;
+      color: #ffffff;
+      border: 0;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    a.checked {
+      background: #096;
+	  
+    }
+    .enable {
+      background: #999;
+    }
+    .dsb{
+         background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class='sku'></div>
+
+  <!-- template -->
+  <script type="text/template" id="it">
+    <p>
+      {$key}:
+    </p>
+  </script>
+  <script type="text/template" id="btn_arr">
+   <a data-name='{$item}' data-index='{$index}' class='enable'>{$item}</a>
+       <!-- <button type='button' data-name='{$item}' data-index='{$index}' class='enable' value="{$item}" />-->
+  </script>
+	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
+  <script src='http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
+  <script>
+/**
+ * 拿到的数据
+ *[
+ *   {'颜色': '红', '尺码': '大', '型号': 'A', 'id': '001'},
+ *   {'颜色': '红', '尺码': '中', '型号': 'A', 'id': '002'},
+ *   {'颜色': '红', '尺码': '大', '型号': 'B', 'id': '003'},
+ *   {'颜色': '黑', '尺码': '中', '型号': 'B', 'id': '004'},
+ *   {'颜色': '白', '尺码': '中', '型号': 'A', 'id': '005'},
+ *   {'颜色': '白', '尺码': '大', '型号': 'A', 'id': '006'},
+ *   {'颜色': '绿', '尺码': '大', '型号': 'B', 'id': '007'}
+ *]
+ */
+/**
+ * 显示到页面
+ * {
+ *   '颜色': ['红', '黑', '白', '绿'],
+ *   '尺码': ['大', '中', '小'],
+ *   '型号': ['A', 'B']
+ * }
+ */
+// 模板渲染
+function renderTpl(template, params, pureHtml, escape){
+  var rtn = template.replace(/\{\$(.+?)\}/gi, function (total, param) {
+    return (params[param] === undefined) ? total : (escape ? encodeURIComponent(params[param]) : params[param]);
+  });
+  return pureHtml ? rtn : $(rtn);
+};
+let goodsData = [
+    {'颜色': '红', '尺码': '大', '型号': 'A', 'id': '001', 'num': 0},
+    {'颜色': '红', '尺码': '中', '型号': 'A', 'id': '002', 'num': 0},
+    {'颜色': '红', '尺码': '大', '型号': 'B', 'id': '003', 'num': 0},
+    {'颜色': '黑', '尺码': '中', '型号': 'B', 'id': '004', 'num': 3},
+    {'颜色': '白', '尺码': '中', '型号': 'A', 'id': '005', 'num': 2},
+    {'颜色': '白', '尺码': '大', '型号': 'A', 'id': '006', 'num': 1},
+    {'颜色': '绿', '尺码': '大', '型号': 'B', 'id': '007', 'num': 0},
+    {'颜色': '绿', '尺码': '大', '型号': 'C', 'id': '008', 'num': 1}
+  ];
+  
+   var  aaskus=
+{
+'白;中;A;': {id: "005", num: 2},
+'白;大;A;': {id: "006", num: 1},
+'绿;大;C;': {id: "008", num: 1},
+'黑;中;B;': {id: "004", num: 3}
+}
+
+
+  /* let goodsData =[
+["5kg", "12瓶","red"],
+["5kg", "12个","red"],
+["2.1", "12瓶","bule"]
+];
+goodsData[0].stock=100;
+goodsData[0].price0=15;
+goodsData[0].price=10;
+goodsData[1].stock=999;
+goodsData[1].price0=25;
+goodsData[1].price=20;
+goodsData[2].stock=5;
+goodsData[2].price0=35;
+goodsData[2].price=30;
+ */ 
+  
+  
+  
+  
+  
+const sku = {
+  // 原始数据
+  data: [],
+
+  // 展示数据
+  showData: {},
+
+  // 所有属性
+  arr: [],
+
+  //有效skus对
+  skus: {},
+
+  // 缓存查找数据
+  //cacheData: {},
+
+  // 所有可选属性
+  result: [],
+
+  // 确定的ID
+  resultID: '',
+//要显示的项
+  showIt() {
+  //console.log(888,this.showData)
+      for (let item of this.data)
+      {
+      let pair = '';
+      for (let key in item) {
+        if (key !== 'id' && key !== 'num') {
+          pair += item[key] + ';';
+        }
+        if (this.showData[key]) {
+          // 去重
+          if (this.showData[key].indexOf(item[key]) === -1) {
+            this.showData[key].push(item[key]);
+          }
+        } else {
+          this.showData[key] = new Array(item[key]);
+        }
+      }
+      if (item.num > 0) {
+          console.log('pair:',pair)
+        this.skus[pair] = {
+          id: item.id,
+          num: item.num
+        };
+      }
+      }
+      console.log('skus:', this.skus)
+
+    for (let key in this.showData) {
+      this.arr.push(this.showData[key]);
+    }
+    console.log('arr:',this.arr);
+    console.log(this.showData);
+  },
+  /**
+   * 得到结果
+   * @param {string} key 查找关键字以；分割
+   * @return {array} 所有可选属性数组
+   */
+  getResult(key, isRealFind)//  getResult(key, isRealFind=true)
+  {
+      if(isRealFind==undefined)
+          isRealFind = true
+    /* 如缓存中存在，则直接返回结果
+    if (this.cacheData[key] && isRealFind) {
+      this.result = this.cacheData[key];
+      this.resultID = this.skus[key] ? this.skus[key] : '';
+      console.log(this.resultID);
+      return this.result;
+    }*/
+      /*skus:
+      {
+          白;中;A;: {id: "005", num: 2}
+          白;大;A;: {id: "006", num: 1}
+          绿;大;C;: {id: "008", num: 1}
+          黑;中;B;: {id: "004", num: 3}
+      }
+      */
+    // 继续查找
+    let result = '';
+    for (let s in this.skus) {
+      let keyArr = key.split(';');
+      let _keyArr = s.split(';');
+      let arr = keyArr.concat(_keyArr);
+      arr = Array.from(new Set(arr));
+      if (arr.length === _keyArr.length) {
+        result += s;
+      }
+    }
+    if (isRealFind) {
+      // 所有可选属性
+      this.result = result.split(';');
+      let _keyArr = key.split(';');
+      if (_keyArr[_keyArr.length - 1] === '') {
+        _keyArr.pop();
+      }
+      for (let i = 0; i < _keyArr.length; i++) {
+        let _arr = key.split(';');
+        let str = _arr.splice(i, 1);
+        let oldResult = this.getResult(_arr.join(';'), false);
+        let index = '';
+        // 获取该key所在索引
+        this.arr.forEach((item, i) => {
+          if (item.indexOf(str.join('')) !== -1) {
+            index = i;
+            return;
+          }
+        });
+        oldResult = oldResult.split(';');
+        this.arr[index].forEach(item => {
+          if (oldResult.indexOf(item) !== -1) {
+            this.result.push(item);
+          }
+        });
+      }
+      this.result = Array.from(new Set(this.result));
+
+	  console.log(999,this.result)
+	  
+	  
+      // 缓存数据
+      //this.cacheData[key] = this.result;
+      this.resultID = this.skus[key] ? this.skus[key] : '';
+      console.log('this.result', this.result);
+      return this.result;
+    } else {
+      return result;
+    }
+  },
+  /**
+   * 页面渲染
+   */
+  renderPage($cateTpl, $btnTpl, $dom) {
+    let index = 0;
+    for (let key in sku.showData) {
+      if (key === 'id') {
+        return;
+      } else {
+        let $item = renderTpl($cateTpl, {key}).appendTo($dom);
+        sku.showData[key].forEach(item => {
+          renderTpl($btnTpl, {item, index}).appendTo($item);
+        });
+      }
+      index++;
+    }
+  },
+  init(data, $parentText, $btnText, $wrapper) {
+    this.data = data;
+    this.showIt();
+    this.renderPage($parentText, $btnText, $wrapper);
+    this.getResult('', []);
+  },
+  pageShow($btn) {
+    let choose = [];
+    $btn.on('click', function() {
+      let key = '';
+      let index = C.Attr(this,'data-index');
+      choose[index] =this.innerText;
+      choose.forEach(item => {
+        let $btn = $('a[data-name="' + item + '"]');
+          //console.log(C.Attr($btn[0],'disabled'))
+          //  if (C.clsNm($btn[0]) == 'dsb') return;
+		if(C.Attr($btn[0],'disabled'))return;
+        if ($btn.hasClass('checked') && item === $(this).text()) {
+          $btn.removeClass('checked');
+          choose[index] = '';
+        } else {
+          $btn.addClass('checked').siblings().removeClass('checked');
+          if (item !== '') {
+            key += item + ';';
+          }
+        }
+      });
+      let result = sku.getResult(key);
+      //C.DelClass($btn, 'enable')
+      //$btn.setAttribute('disabled', true)
+      $btn.removeClass('enable').attr('disabled', true);
+      result.forEach(item => {
+          console.log(item)
+          $('a[data-name="' + item + '"]').addClass('enable').attr('disabled', false);
+          //var oa=$('a[data-name="' + item + '"]');
+         // C.AddClass(oa, 'enable');
+          //oa.setAttribute('disabled', false)
+      });
+    });
+  }
+};
+
+sku.init(goodsData, $('#it').text(), $('#btn_arr').text(), $('.sku'), $('.sku a'));
+sku.pageShow($('.sku a'));
+  </script>
+</body>
+</html>

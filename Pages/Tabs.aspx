@@ -9,7 +9,7 @@
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="MainC">
     <dd>
-        <dl id="M2XX" class="Cp"><dt><a href="#">选项卡一</a><a href="#" class="CM">选项卡二</a><a href="#">选项卡三</a></dt>
+        <dl id="M2XX" class="Cp"><dt><a href="#">选项卡一</a><a href="#" class="cm">选项卡二</a><a href="#">选项卡三</a></dt>
         <dd>我是选项卡一的内容<br />
         我是选项卡一的内容<br />我是选项卡一的内容<br />
         我是选项卡一的内容<br />我是选项卡一的内容<br />
@@ -63,13 +63,13 @@ dl.Ct
 {
     display:none;
 }
-// CM样式是切换选项卡中，用来定义当前菜单的外观
-dl.Cp dt a.CM 
+// cm样式是切换选项卡中，用来定义当前菜单的外观
+dl.Cp dt a.cm 
 {
     background:#fff;
     color:#cb5931;
 }
-dl.Ct dt a.CM
+dl.Ct dt a.cm
 {
     background:#ddd;
     color:#06c;

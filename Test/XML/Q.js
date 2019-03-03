@@ -21,7 +21,7 @@ function Sc(FA)
             else
             {
                 Ds[i].style.display="block";
-                FA.className="CM";
+                FA.className="cm";
             }
         }
 }

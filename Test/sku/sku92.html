@@ -1,5 +1,4 @@
-﻿Test/sku/sku92.html
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html lang="en-US">
 
 <head>
@@ -139,7 +138,7 @@
 		<a class="bt1" id='bt1'>确定</a>
 	</div>
 	id stock price originPrice 0,1 100 10 15 0,0 999 20 25 1,1 5 30 35
-	<script type="text/javascript" src="http://localhost/Js/Base.js"></script>
+	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
 	<script type="text/javascript">
 		//服务返回数据：
 		/*
@@ -1301,18 +1300,18 @@
 				//sed.push(a)
 			}
 			pc.ca = ca;
-			
 			//pc.ci = ci;
 			for (var j = 0; j < skus.length; j++)
 			{
 				var s = skus[j],
 					si=s[a.pi];//,//sku对中对应索引的项
+					if(!s.d||!pc.ca)
 					s.d=false;
 						//如果sku中不包含选中项，则将该组sku禁用
 						//if(s.indexOf(a.innerText)==-1)
 						//如果sku中对应索引和选中项不相等，则将该组sku禁用
 						console.log(si,a.innerText)
-						if(si!=a.innerText&&!s.d)
+						if(si!=a.innerText)
 						{
 						s.d=true;
 						}
@@ -1320,7 +1319,6 @@
 					//console.log(j,s)
 			}
 			/*arr和skus中子项sku等长,下标可匹配*/
-			console.log(skus)
 			console.log('i', 'n', 'j','____________________')
 			a.dsb=a.dsb||[];
 			for (var i = 0; i < arr.length; i++) {

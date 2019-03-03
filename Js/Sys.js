@@ -14,8 +14,8 @@
         {
             Pn[i].setAttribute("m", i);
         }
-        //C.AddClass(Pn[parseInt(Pn[window.Cm].getAttribute("m"))], "CM");
-		C.AddClass(Pn[parseInt(C.Attr(Pn[window.Cm],"m"))], "CM");
+        //C.AddClass(Pn[parseInt(Pn[window.Cm].getAttribute("m"))], "cm");
+		C.AddClass(Pn[parseInt(C.Attr(Pn[window.Cm],"m"))], "cm");
 		
         Sys.prototype.Code = function ()
         {
@@ -53,7 +53,7 @@ function Sys() {
         for (var i = 0; i < Pn.length; i++) {
             Pn[i].setAttribute("m", i);
         }
-        C.AddClass(Pn[parseInt(Pn[window.Cm].getAttribute("m"))], "CM");
+        C.AddClass(Pn[parseInt(Pn[window.Cm].getAttribute("m"))], "cm");
         Sys.prototype.Code = function () {
             var Ci = parseInt(Cdl.oi);
             if (Ci != Lst) {

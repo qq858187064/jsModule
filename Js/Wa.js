@@ -17,10 +17,10 @@
             var M = (e.target || e.srcElement).getAttribute("n");
             for (var j = 0; j < o.Ts.length; j++)
             {
-                C.DelClass(o.Ts[j], "CM");
+                C.DelClass(o.Ts[j], "cm");
                 o.Cs[j].style.display = "none";
             }
-            C.AddClass(o.Ts[M], "CM");
+            C.AddClass(o.Ts[M], "cm");
             o.Cs[M].style.display = "block";
         }
     }

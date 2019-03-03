@@ -13,8 +13,9 @@ function crop() {
             o.view = C.G(o.ps.prev);
 
             C.evt("drop", false, true);
-            var ii = C.sliceC(C.Gs(o, "i"));
-            ii.push(o)
+
+            //var ii = C.sliceC(C.Gs(o, "i"));
+           // ii.push(o)
             Drags(o);
             C.AddEvent(o, "drop", function fun(o, e) {
                 o.ol = parseInt(o.style.left);
@@ -59,20 +60,20 @@ function crop() {
             i.view.style.top = -i.offsetTop + "px";
 
         },
-        /*调整大小,本质上也是一个拖动处理*/
+        /*调整大小,本质上也是一个拖动处理
         resize: function (o, e) {
             o.p = o.parentNode;
             if (!o.p.w) {
                 o.p.w = o.p.offsetWidth;
                 o.p.h = o.p.offsetHeight;
             } 
-                /*var sy = e.clientY || e.changedTouches[0].clientY;
-                if (o.p.te && o.p.te != e) {
-                    sy = o.p.te.clientY || o.p.te.changedTouches[0].clientY;
-                    o.p.te = e;
-                    //console.log((o.p.te&&o.p.te!=e)+"__only one")
-                }
-                */
+               // var sy = e.clientY || e.changedTouches[0].clientY;
+               // if (o.p.te && o.p.te != e) {
+                //    sy = o.p.te.clientY || o.p.te.changedTouches[0].clientY;
+               //     o.p.te = e;
+               //     //console.log((o.p.te&&o.p.te!=e)+"__only one")
+               // }
+                
             var mx = (e.clientX || e.changedTouches[0].clientX) - o.p.ox;//o.p.rx,
             my = (e.clientY || e.changedTouches[0].clientY) - o.p.oy,// o.p.ry;//e.clientY
             l = parseInt(o.p.style.left),
@@ -110,7 +111,7 @@ function crop() {
                 }
                 o.p.style.width = o.p.w + mx + "px";
                 //return;
-        },
+},*/
        // var img = C.G("img"),
        // fs, ou, sd, mime;
 /*设置图片处理*/
@@ -125,7 +126,7 @@ function crop() {
     }
    // else
        // alert("图片超过5M或不存在");
-    img.src = o.view.src = o.ou
+    img.src = o.view.src = o.ou;
     o.mime = fs[0].type;
 },
     /*将图片指定区域画到画布上,并在加载完成后提取数据并上传*/
@@ -142,8 +143,10 @@ function crop() {
      var path = o.ou?o.img.src+o.mime.replace('image/','.'):o.img.src
      fn = path.substring(path.lastIndexOf("/") + 1);
      o.img.onload = function () {
+
+         var ws = o.img.naturalWidth / o.img.offsetWidth;
             //以下两步必须要在img load后执行：
-            cct.drawImage(img, si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h);
+         cct.drawImage(img, si.offsetLeft * ws, si.offsetTop * ws, w * ws, h * ws, 0, 0, w, h);
             console.log('si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h', si.offsetLeft, si.offsetTop, w, h, 0, 0, w, h)
             sd = cvs.toDataURL(o.mime, o.q);//.replace('data:image/jpeg;base64,', '');
             sd = crop.prototype.toBlob(sd,o.mime);

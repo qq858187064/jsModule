@@ -97,7 +97,6 @@
                 o.h = o.box.offsetHeight;
             o.box.style.width = o.w != 0 ? o.w + "px" : "auto";
             o.box.style.height = o.h != 0 ? o.h + "px" : "auto";
-
             o.box.style.top = (bd.clientHeight - o.h) / 2 + st+ "px";/*50是滚动条上下部分高度？*/
             o.box.style.left = (bd.offsetWidth - o.w) / 2 + "px";
             console.log("o.box_"+o.box)

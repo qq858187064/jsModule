@@ -139,7 +139,7 @@
 		<a class="bt1" id='bt1'>确定</a>
 	</div>
 	id stock price originPrice 0,1 100 10 15 0,0 999 20 25 1,1 5 30 35
-	<script type="text/javascript" src="http://192.168.1.66/Js/Base.js"></script>
+	<script type="text/javascript" src="http://localhost/Js/Base.js"></script>
 	<script type="text/javascript">
 		//服务返回数据：
 		/*
@@ -1312,7 +1312,7 @@
 						//if(s.indexOf(a.innerText)==-1)
 						//如果sku中对应索引和选中项不相等，则将该组sku禁用
 						console.log(si,a.innerText)
-						if(si!=a.innerText)
+						if(si!=a.innerText&&!s.d)
 						{
 						s.d=true;
 						}
@@ -1320,6 +1320,7 @@
 					//console.log(j,s)
 			}
 			/*arr和skus中子项sku等长,下标可匹配*/
+			console.log(skus)
 			console.log('i', 'n', 'j','____________________')
 			a.dsb=a.dsb||[];
 			for (var i = 0; i < arr.length; i++) {

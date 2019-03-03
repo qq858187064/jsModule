@@ -20,8 +20,8 @@ body {
 	
 	overflow: visible;
     /*overflow-y: scroll;
-  overflow: hidden scroll;*/
-  position: relative;
+  overflow: hidden scroll;
+  position: relative;*/
 
 }
 @media screen and (min-width:999px)
@@ -184,7 +184,10 @@ margin-right:10px;
 .p9{
 	padding:10px;
 }
-
+.pr0
+{
+	padding-right:0!important;
+}
 .Ifr6
 {
     width:888px;

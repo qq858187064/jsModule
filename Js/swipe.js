@@ -138,9 +138,6 @@
                 }
               
             }
-            /*else if (e.type == "click") {//鼠标事件事处理
-               console.log(e.type)
-            }*/
             if ((e.type == "touchend" || e.type == "click") && o.r > 2)
                 swipe.prototype.handle(o); 
         },

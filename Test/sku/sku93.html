@@ -644,7 +644,54 @@ return r;
 		    pc.ca = ca;
 		    pc.ci = ci;
 		    //console.log('sed:',sed,a.pi)
+			/*
+			思路：
+			1、有选中时，默认全部禁用;
+			2、再根据选中项解禁其所在sku中各项;
+			*/
+			var es=[];
+			for(var j=0;j<sed.length;j++)
+			{
+			var a=sed[j];
+				for (var k = 0; k< skus.length; k++)
+				{
+		        var s = skus[k];
+				for (var n = 0; n< s.length; n++)
+				{
+				var t=s[n];
+				if(a.pi==n&&t==a.innerText)
+				es=es.concat(s);
+				//if(s.indexOf(a.innerText)>-1)
+				}
+				}
 			
+			}
+			console.log(es)
+			return;
+
+			for (var i = 0; i < arr.length; i++)
+		        {
+		            var ar = arr[i];
+		            for (var n = 0; n < ar.length; n++)
+		            {
+		                var it = ar[n];
+		                it.d = true;//默认不可选中状态
+		                //if (s.d == false && it.innerText == s[it.pi])
+		                if (it.innerText == s[it.pi])//arr数组下标与skus子项下标相等
+		                {
+						console.log(it.innerText)
+		                    if (!s.d)
+		                    {
+		                        C.DelClass(it, 'dsb');
+		                    }
+		                    else if (a && a.pi != it.pi&&cited(it))//如果传入项和当前项父索引不等
+		                    {
+								console.log(it.innerText,es(it))
+		                        C.AddClass(it, 'dsb');
+		                    }
+						}
+		            }
+		        }
 		    var exc = es(a);
             //标识sku状态：
 		    for (var j = 0; j < skus.length; j++) {
@@ -653,7 +700,7 @@ return r;
 		        /*选中、对应项相等、sku未被禁用
                    取消选中、对应项相等、sku被禁用
                 */
-		        if (!s.d&&(ed&&eq&&exc)||(!ed && eq && s.d))// || 
+		        if (((ed&&eq&&exc)||(!ed && eq && s.d))&&cited(a))// || 
 		        {
 		            s.d = false;
 		        }

@@ -141,700 +141,6 @@
 	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
 	<script type="text/javascript">
 		//服务返回数据：
-		/*
-		var dirty = {
-	"code": 200,
-	"message": "获取成功",
-	"data": {
-		"goods": {
-			"goodsId": "a004dAAB",
-			"goodsName": "秦总专用商品",
-			"createId": "4564",
-			"localIncreaseIncome": "0.00",
-			"poorIncreaseIncome": "0.00",
-			"isPoorCounty": 1,
-			"supportCountyId": "522728000000",
-			"poorCount": "0",
-			"supportCountyIsPoorCounty": 1,
-			"goodsAreasMap": null,
-			"specName": null,
-			"createName": null,
-			"selfCounty": "522728000000",
-			"goodsStatus": 3,
-			"sumSaleNum": 0,
-			"helpCount": 0,
-			"presellRemainAt": null,
-			"skuPropertyIdList": ["a38674e528b14127853557a6f314576b", "a11f3b9c309d49dc9118fddffa0377ba", "4c7f89a8363d4900aef790b5d4d43b7a"],
-			"selfCountyStr": "罗甸县",
-			"createAt": 1541833141000,
-			"originStoreId": "06b7f9979e6b472f93d2211eec107ba9",
-			"buyLimitCount": 0,
-			"buyLimitCity": null,
-			"referGoodsUrl": ["1", "1"],
-			"supportCounty": ["罗甸县"],
-			"goodsMediaList": null,
-			"goodsMainMedia": {
-				"goodsMediaId": "cee695ce74ff4fecb5cece4281a7ae85",
-				"idx": 0,
-				"imgUrl": "https://cdn.17shanyuan.com/goods/06b7f9979e6b472f93d2211eec107ba9/3f116c9880ddccde65cfa9317f784724575ab52b.jpeg",
-				"position": 0,
-				"status": 1,
-				"type": 1,
-				"videoUrl": ""
-			},
-			"storeId": "06b7f9979e6b472f93d2211eec107ba9",
-			"custStoreId": "06b7f9979e6b472f93d2211eec107ba9",
-			"mode": 0,
-			"sender": "06b7f9979e6b472f93d2211eec107ba9",
-			"senderType": 0,
-			"areaId": "110101000000",
-			"speciesId": "692690883b6249b69c5c0292eff9b0b1",
-			"transFeeTemplateId": null,
-			"transFeeTemplateBO": null,
-			"goodsDesc": "[{\"idx\":0,\"max_num\":1,\"type\":\"text\",\"value\":[\"多种组合sku\"]}]",
-			"goodsDescStr": null,
-			"goodsType": 1,
-			"presellAt": null,
-			"promiseDeliveryAt": null,
-			"propertyList": [{
-				"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-				"idx": 1,
-				"propertyName": "容量",
-				"goodsPropertyId": "13d1cce3060741d0bb8880a86d57859f",
-				"propertyValueId": "4c9c6d4dc65f4b7f869b441b0cac96ef",
-				"propertyValueName": "100mL",
-				"type": 3,
-				"typeValue": "0"
-			}, {
-				"propertyId": "42a87ed477bb52e7a74bfaae9d085771",
-				"idx": 0,
-				"propertyName": "产地",
-				"goodsPropertyId": "3cc62e201d7943729b0f0639121fa002",
-				"propertyValueId": "",
-				"propertyValueName": "110101000000",
-				"type": 7,
-				"typeValue": "0"
-			}, {
-				"propertyId": "a38674e528b14127853557a6f314576b",
-				"idx": 7,
-				"propertyName": "规格",
-				"goodsPropertyId": "9d21798335ed4c1785bae1a317d74b52",
-				"propertyValueId": "",
-				"propertyValueName": "数量",
-				"type": 3,
-				"typeValue": "0"
-			}, {
-				"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-				"idx": 2,
-				"propertyName": "容量",
-				"goodsPropertyId": "9de1b8ef37494de78ab15ca7c4fd8e45",
-				"propertyValueId": "",
-				"propertyValueName": "150ML",
-				"type": 3,
-				"typeValue": "0"
-			}, {
-				"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-				"idx": 4,
-				"propertyName": "鞋码",
-				"goodsPropertyId": "c6f9b85e5a1240fa96bdd20b2f658af4",
-				"propertyValueId": "aba97ba216194c8986c55a09a2aed482",
-				"propertyValueName": "28",
-				"type": 3,
-				"typeValue": "0"
-			}, {
-				"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-				"idx": 5,
-				"propertyName": "鞋码",
-				"goodsPropertyId": "e8c297c2fdad4422b17e11f493617412",
-				"propertyValueId": "",
-				"propertyValueName": "30",
-				"type": 3,
-				"typeValue": "0"
-			}, {
-				"propertyId": "a38674e528b14127853557a6f314576b",
-				"idx": 6,
-				"propertyName": "规格",
-				"goodsPropertyId": "ec137ca49a1340de9cd4871cd983b809",
-				"propertyValueId": "7762cc5ab3aa4eb2855a6abf191d7508",
-				"propertyValueName": "默认",
-				"type": 3,
-				"typeValue": "0"
-			}, {
-				"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-				"idx": 3,
-				"propertyName": "容量",
-				"goodsPropertyId": "fc66fa5135654bbaa92c15916c7cd551",
-				"propertyValueId": "",
-				"propertyValueName": "200ML",
-				"type": 3,
-				"typeValue": "0"
-			}],
-			"skuList": [{
-				"skuId": "a004dAABAN",
-				"skuImgUrl": null,
-				"originPrice": "1.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "12.00",
-				"stocks": 444,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "2b1e05a52689466e934f4754defdb401",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "30",
-					"idx": null
-				}, {
-					"skuValueId": "37d31ab14aa74839837bb464306834de",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "200ML",
-					"idx": null
-				}, {
-					"skuValueId": "5ca4965638de4bb4be2fe7acd994b6d3",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "数量",
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAM",
-				"skuImgUrl": null,
-				"originPrice": "7.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "11.00",
-				"stocks": 333,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "0c5c8ace531747cf86f5d9f15945d269",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "30",
-					"idx": null
-				}, {
-					"skuValueId": "5c23c893abef4c41af33230b8cd7f1d1",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "200ML",
-					"idx": null
-				}, {
-					"skuValueId": "c734fd1274f04e7882dcb8599a65eada",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "7762cc5ab3aa4eb2855a6abf191d7508",
-					"propertyValueName": "默认",
-					"skuValue": null,
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAC",
-				"skuImgUrl": null,
-				"originPrice": "1.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "1.50",
-				"stocks": 345,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "ad421a489ed84531ac2136bf29a55846",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "aba97ba216194c8986c55a09a2aed482",
-					"propertyValueName": "28",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "f542867c0577472c8f93d54d729dc482",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "4c9c6d4dc65f4b7f869b441b0cac96ef",
-					"propertyValueName": "100mL",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "199554017fda4b2abc784ee2f98a8216",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "7762cc5ab3aa4eb2855a6abf191d7508",
-					"propertyValueName": "默认",
-					"skuValue": null,
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 1,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAK",
-				"skuImgUrl": null,
-				"originPrice": "9.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "9.00",
-				"stocks": 33,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "cd15e1bcd6494c8489d1bf9822ac3cca",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "aba97ba216194c8986c55a09a2aed482",
-					"propertyValueName": "28",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "9fa31087a00e45d9bcc6269a64b334c0",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "200ML",
-					"idx": null
-				}, {
-					"skuValueId": "b0a508966cd44b32ba7042be5595ad5b",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "7762cc5ab3aa4eb2855a6abf191d7508",
-					"propertyValueName": "默认",
-					"skuValue": null,
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAD",
-				"skuImgUrl": null,
-				"originPrice": "2.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "2.00",
-				"stocks": 11,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "57d2af43a2d349f8abc8cd089f1acad7",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "aba97ba216194c8986c55a09a2aed482",
-					"propertyValueName": "28",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "9c0a238204a44e729418a7c620581eb4",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "4c9c6d4dc65f4b7f869b441b0cac96ef",
-					"propertyValueName": "100mL",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "1c746b3e31f94fffbaededdecc17dafa",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "数量",
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAG",
-				"skuImgUrl": null,
-				"originPrice": "5.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "5.00",
-				"stocks": 111,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "26af5fa0744547b4b8c8e8bb8e8f2727",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "aba97ba216194c8986c55a09a2aed482",
-					"propertyValueName": "28",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "e89b7ae8cd6c4a25a5e99a01b4620e39",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "150ML",
-					"idx": null
-				}, {
-					"skuValueId": "e351970507d145499544797b89408b3f",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "7762cc5ab3aa4eb2855a6abf191d7508",
-					"propertyValueName": "默认",
-					"skuValue": null,
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAJ",
-				"skuImgUrl": null,
-				"originPrice": "8.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "8.00",
-				"stocks": 33,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "84dfd767843b4cef969fc770fff7881e",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "30",
-					"idx": null
-				}, {
-					"skuValueId": "838cd9aa245e418896329abc3726e393",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "150ML",
-					"idx": null
-				}, {
-					"skuValueId": "7f043bd54d384d55b976773384a763c0",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "数量",
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAF",
-				"skuImgUrl": null,
-				"originPrice": "4.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "4.00",
-				"stocks": 0,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "ecccb5b52c50439b9a672f8b03455130",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "30",
-					"idx": null
-				}, {
-					"skuValueId": "6cda062644104e02968c30f3344a47b0",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "4c9c6d4dc65f4b7f869b441b0cac96ef",
-					"propertyValueName": "100mL",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "661a2003d193477295c9f78e6357a97b",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "数量",
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAI",
-				"skuImgUrl": null,
-				"originPrice": "7.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "7.00",
-				"stocks": 333,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "842afc21767d4d75b2bb778354f4d523",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "30",
-					"idx": null
-				}, {
-					"skuValueId": "251c37dccc924664b7ae4972d7605b20",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "150ML",
-					"idx": null
-				}, {
-					"skuValueId": "eb68e99aa40740cb8124de2491cdb7bc",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "7762cc5ab3aa4eb2855a6abf191d7508",
-					"propertyValueName": "默认",
-					"skuValue": null,
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAE",
-				"skuImgUrl": null,
-				"originPrice": "3.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "3.00",
-				"stocks": 11,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "a0c92f9ae68f4007ad8fee05cecf8e79",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "30",
-					"idx": null
-				}, {
-					"skuValueId": "baeb462b851343c19e254164b380a139",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "4c9c6d4dc65f4b7f869b441b0cac96ef",
-					"propertyValueName": "100mL",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "46df313c3ba94f2cabf251cd6b4012ae",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "7762cc5ab3aa4eb2855a6abf191d7508",
-					"propertyValueName": "默认",
-					"skuValue": null,
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}, {
-				"skuId": "a004dAABAH",
-				"skuImgUrl": null,
-				"originPrice": "6.00",
-				"costPrice": null,
-				"points": "0",
-				"price": "6.00",
-				"stocks": 222,
-				"wholesaleList": null,
-				"skuValueList": [{
-					"skuValueId": "33fdaf66052c47c8b7cf6e3dcade076c",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "aba97ba216194c8986c55a09a2aed482",
-					"propertyValueName": "28",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "529a976be2934c1ca9539b56804ec4f9",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "150ML",
-					"idx": null
-				}, {
-					"skuValueId": "b2e4cc5d9b33442ca9b2f13e0d644a95",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "数量",
-					"idx": null
-				}],
-				"isWholesale": 0,
-				"skuStatus": 1,
-				"saleNum": 0,
-				"isDefault": 0,
-				"spec": null,
-				"isLock": 0,
-				"state": 0,
-				"topicGoodsNum": null,
-				"topicGoodsPrice": null
-			}],
-			"isQuality": 0,
-			"approveContent": null,
-			"areaMap": {
-				"0": {
-					"areaId": "110",
-					"areaCode": null,
-					"areaName": "北京市",
-					"parentId": "1",
-					"hasChild": 0
-				},
-				"1": {
-					"areaId": "110101000000",
-					"areaCode": null,
-					"areaName": "东城区",
-					"parentId": "110100000000",
-					"hasChild": 0
-				}
-			},
-			"isCanUseCode": false,
-			"identificationMap": {},
-			"skuValueMap": {
-				"a38674e528b14127853557a6f314576b": [{
-					"skuValueId": "5ca4965638de4bb4be2fe7acd994b6d3",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "数量",
-					"idx": null
-				}, {
-					"skuValueId": "c734fd1274f04e7882dcb8599a65eada",
-					"propertyId": "a38674e528b14127853557a6f314576b",
-					"propertyName": "规格",
-					"propertyValueId": "7762cc5ab3aa4eb2855a6abf191d7508",
-					"propertyValueName": "默认",
-					"skuValue": null,
-					"idx": null
-				}],
-				"a11f3b9c309d49dc9118fddffa0377ba": [{
-					"skuValueId": "2b1e05a52689466e934f4754defdb401",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "30",
-					"idx": null
-				}, {
-					"skuValueId": "ad421a489ed84531ac2136bf29a55846",
-					"propertyId": "a11f3b9c309d49dc9118fddffa0377ba",
-					"propertyName": "鞋码",
-					"propertyValueId": "aba97ba216194c8986c55a09a2aed482",
-					"propertyValueName": "28",
-					"skuValue": null,
-					"idx": null
-				}],
-				"4c7f89a8363d4900aef790b5d4d43b7a": [{
-					"skuValueId": "37d31ab14aa74839837bb464306834de",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "200ML",
-					"idx": null
-				}, {
-					"skuValueId": "f542867c0577472c8f93d54d729dc482",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "4c9c6d4dc65f4b7f869b441b0cac96ef",
-					"propertyValueName": "100mL",
-					"skuValue": null,
-					"idx": null
-				}, {
-					"skuValueId": "e89b7ae8cd6c4a25a5e99a01b4620e39",
-					"propertyId": "4c7f89a8363d4900aef790b5d4d43b7a",
-					"propertyName": "容量",
-					"propertyValueId": "",
-					"propertyValueName": null,
-					"skuValue": "150ML",
-					"idx": null
-				}]
-			},
-			"totalPrice": "0.00",
-			"priceComponents": null,
-			"isProxySale": null,
-			"proxySaleImgs": null,
-			"isTopicGoods": 0,
-			"north4CountyGoods": false,
-			"guoTouCountyGoods": true
-		}
-	}
-}
-*/
 		var dirty = {
 			"code": 200,
 			"message": "获取成功",
@@ -1295,6 +601,26 @@
 		    }
 		    return ak;
 		}
+		/*判断传入项是否被引用了选中项的sku包含*/
+function cited(o)
+{
+var r=true;
+	for (var j = 0; j < skus.length; j++)
+	{
+		var s = skus[j];
+		if(!s.d)//&&o.innerText == s[o.pi]
+		for(var i=0;i<sed.length;i++)
+		{
+		var a=sed[i];
+		if(s[o.pi]==o.innerText)//o.innerText==a.innerText
+		{
+			r=false;
+			break;
+		}
+		}
+	}
+return r;
+}
 		/*用户选中sku项处理函数*/
 		function slct(a) {
 		    if (C.clsNm(a) == 'dsb') return;
@@ -1318,6 +644,54 @@
 		    pc.ca = ca;
 		    pc.ci = ci;
 		    //console.log('sed:',sed,a.pi)
+			/*
+			思路：
+			1、有选中时，默认全部禁用;
+			2、再根据选中项解禁其所在sku中各项;
+			*/
+			var es=[];
+			for(var j=0;j<sed.length;j++)
+			{
+			var a=sed[j];
+				for (var k = 0; k< skus.length; k++)
+				{
+		        var s = skus[k];
+				for (var n = 0; n< s.length; n++)
+				{
+				var t=s[n];
+				if(a.pi==n&&t==a.innerText)
+				es=es.concat(s);
+				//if(s.indexOf(a.innerText)>-1)
+				}
+				}
+			
+			}
+			console.log(es)
+			return;
+
+			for (var i = 0; i < arr.length; i++)
+		        {
+		            var ar = arr[i];
+		            for (var n = 0; n < ar.length; n++)
+		            {
+		                var it = ar[n];
+		                it.d = true;//默认不可选中状态
+		                //if (s.d == false && it.innerText == s[it.pi])
+		                if (it.innerText == s[it.pi])//arr数组下标与skus子项下标相等
+		                {
+						console.log(it.innerText)
+		                    if (!s.d)
+		                    {
+		                        C.DelClass(it, 'dsb');
+		                    }
+		                    else if (a && a.pi != it.pi&&cited(it))//如果传入项和当前项父索引不等
+		                    {
+								console.log(it.innerText,es(it))
+		                        C.AddClass(it, 'dsb');
+		                    }
+						}
+		            }
+		        }
 		    var exc = es(a);
             //标识sku状态：
 		    for (var j = 0; j < skus.length; j++) {
@@ -1326,11 +700,14 @@
 		        /*选中、对应项相等、sku未被禁用
                    取消选中、对应项相等、sku被禁用
                 */
-		        if ((ed && eq&&exc)|| (!ed && (eq||!exc)))// || (!ed && eq && s.d)
+		        if (((ed&&eq&&exc)||(!ed && eq && s.d))&&cited(a))// || 
 		        {
 		            s.d = false;
 		        }
-		        if ((ed && !eq))
+				var tmp=true;
+				if(sed.length>1)
+				tmp=!exc;
+		        if ((ed && !eq&&tmp))
 		        {
 		           s.d = true;
 		        }
@@ -1346,15 +723,17 @@
 		                //if (s.d == false && it.innerText == s[it.pi])
 		                if (it.innerText == s[it.pi])//arr数组下标与skus子项下标相等
 		                {
+						console.log(it.innerText)
 		                    if (!s.d)
 		                    {
 		                        C.DelClass(it, 'dsb');
 		                    }
-		                    else// if ((a && a.pi != it.pi) || !a)//如果传入项和当前项父索引不等
+		                    else if (a && a.pi != it.pi&&cited(it))//如果传入项和当前项父索引不等
 		                    {
+								console.log(it.innerText,es(it))
 		                        C.AddClass(it, 'dsb');
 		                    }
-		            }
+						}
 		            }
 		        }
 		    }

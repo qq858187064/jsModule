@@ -31,8 +31,10 @@
   </style>
 </head>
 <body>
-  <div class='sku'></div>
-
+  <div class='sku'>
+  
+  
+  </div>
   <!-- template -->
   <script type="text/template" id="it">
     <p>
@@ -74,25 +76,33 @@ function renderTpl(template, params, pureHtml, escape){
   return pureHtml ? rtn : $(rtn);
 };
 let goodsData = [
-    {'颜色': '红', '尺码': '大', '型号': 'A', 'id': '001', 'num': 0},
-    {'颜色': '红', '尺码': '中', '型号': 'A', 'id': '002', 'num': 0},
-    {'颜色': '红', '尺码': '大', '型号': 'B', 'id': '003', 'num': 0},
-    {'颜色': '黑', '尺码': '中', '型号': 'B', 'id': '004', 'num': 3},
-    {'颜色': '白', '尺码': '中', '型号': 'A', 'id': '005', 'num': 2},
-    {'颜色': '白', '尺码': '大', '型号': 'A', 'id': '006', 'num': 1},
-    {'颜色': '绿', '尺码': '大', '型号': 'B', 'id': '007', 'num': 0},
-    {'颜色': '绿', '尺码': '大', '型号': 'C', 'id': '008', 'num': 1}
+/*['红','大','A',id:'001',stock:999,price:20],
+['红','中','A'],
+['红','大','B'],
+['黑','中','B'],
+['白','中','A'],
+['白','大','A'],
+['绿','大','B'],
+['绿','大','C'],*/
+
+ /*   [ '红', '大',  'A'],
+    [ '红', '中',  'A'],
+    [ '红', '大',  'B'],
+    [ '黑', '中',  'B'],
+    [ '白', '中',  'A'],
+    [ '白', '大',  'A'],
+    [ '绿', '大',  'B'],
+    [ '绿', '大',  'C']*/
+    {'颜色': '红', '尺码': '大', '型号': 'A', 'id': '001', 'stock': 0},
+    {'颜色': '红', '尺码': '中', '型号': 'A', 'id': '002', 'stock': 0},
+    {'颜色': '红', '尺码': '大', '型号': 'B', 'id': '003', 'stock': 0},
+    {'颜色': '黑', '尺码': '中', '型号': 'B', 'id': '004', 'stock': 3},
+    {'颜色': '白', '尺码': '中', '型号': 'A', 'id': '005', 'stock': 2},
+    {'颜色': '白', '尺码': '大', '型号': 'A', 'id': '006', 'stock': 1},
+    {'颜色': '绿', '尺码': '大', '型号': 'B', 'id': '007', 'stock': 0},
+    {'颜色': '绿', '尺码': '大', '型号': 'C', 'id': '008', 'stock': 1}
+
   ];
-  
-   var  aaskus=
-{
-'白;中;A;': {id: "005", num: 2},
-'白;大;A;': {id: "006", num: 1},
-'绿;大;C;': {id: "008", num: 1},
-'黑;中;B;': {id: "004", num: 3}
-}
-
-
   /* let goodsData =[
 ["5kg", "12瓶","red"],
 ["5kg", "12个","red"],
@@ -125,7 +135,6 @@ const sku = {
 
   //有效skus对
   skus: {},
-
   // 缓存查找数据
   //cacheData: {},
 
@@ -136,12 +145,11 @@ const sku = {
   resultID: '',
 //要显示的项
   showIt() {
-  //console.log(888,this.showData)
       for (let item of this.data)
       {
       let pair = '';
       for (let key in item) {
-        if (key !== 'id' && key !== 'num') {
+        if (key !== 'id' && key !== 'stock') {
           pair += item[key] + ';';
         }
         if (this.showData[key]) {
@@ -153,11 +161,11 @@ const sku = {
           this.showData[key] = new Array(item[key]);
         }
       }
-      if (item.num > 0) {
+      if (item.stock > 0) {
           console.log('pair:',pair)
         this.skus[pair] = {
           id: item.id,
-          num: item.num
+          stock: item.stock
         };
       }
       }
@@ -187,14 +195,16 @@ const sku = {
     }*/
       /*skus:
       {
-          白;中;A;: {id: "005", num: 2}
-          白;大;A;: {id: "006", num: 1}
-          绿;大;C;: {id: "008", num: 1}
-          黑;中;B;: {id: "004", num: 3}
+          白;中;A;: {id: "005", stock: 2}
+          白;大;A;: {id: "006", stock: 1}
+          绿;大;C;: {id: "008", stock: 1}
+          黑;中;B;: {id: "004", stock: 3}
       }
       */
     // 继续查找
     let result = '';
+	alert(key)
+	console.log("888:",key)
     for (let s in this.skus) {
       let keyArr = key.split(';');
       let _keyArr = s.split(';');
@@ -229,12 +239,8 @@ const sku = {
             this.result.push(item);
           }
         });
-      }
+      } 
       this.result = Array.from(new Set(this.result));
-
-	  console.log(999,this.result)
-	  
-	  
       // 缓存数据
       //this.cacheData[key] = this.result;
       this.resultID = this.skus[key] ? this.skus[key] : '';
@@ -249,7 +255,14 @@ const sku = {
    */
   renderPage($cateTpl, $btnTpl, $dom) {
     let index = 0;
+	/*console.log(8888,sku.showData)
+	for(var i=0;i<sku.showData;i++)
+	{
+	var ar=sku.showData[i];
+	
+	}*/
     for (let key in sku.showData) {
+	console.log('key:'+key)
       if (key === 'id') {
         return;
       } else {
@@ -261,50 +274,106 @@ const sku = {
       index++;
     }
   },
-  init(data, $parentText, $btnText, $wrapper) {
-    this.data = data;
-    this.showIt();
-    this.renderPage($parentText, $btnText, $wrapper);
-    this.getResult('', []);
-  },
-  pageShow($btn) {
-    let choose = [];
-    $btn.on('click', function() {
+  pageShow(arr) {
+      let choose = [];
+	  console.log('arr:'+arr.length)
+	  
+	  for(var i=0;i<arr.length;i++)
+	  {
+	  var a=arr[i];
+	 C.AddEvent(a, "click", 
+	 function(a) {
+
       let key = '';
-      let index = C.Attr(this,'data-index');
-      choose[index] =this.innerText;
+      let index = C.Attr(a,'data-index');
+      choose[index] =a.innerText;
+	  	console.log("choose:",choose)
+
       choose.forEach(item => {
-        let $btn = $('a[data-name="' + item + '"]');
-          //console.log(C.Attr($btn[0],'disabled'))
-          //  if (C.clsNm($btn[0]) == 'dsb') return;
-		if(C.Attr($btn[0],'disabled'))return;
-        if ($btn.hasClass('checked') && item === $(this).text()) {
-          $btn.removeClass('checked');
+        let arr = $('a[data-name="' + item + '"]');
+          //console.log(C.Attr(arr[0],'disabled'))
+          //  if (C.clsNm(arr[0]) == 'dsb') return;
+		if(C.Attr(a,'disabled')) return;
+        if (arr.hasClass('checked') && item === a.innerText) {
+          arr.removeClass('checked');
           choose[index] = '';
         } else {
-          $btn.addClass('checked').siblings().removeClass('checked');
+          arr.addClass('checked').siblings().removeClass('checked');
           if (item !== '') {
             key += item + ';';
           }
         }
       });
       let result = sku.getResult(key);
-      //C.DelClass($btn, 'enable')
-      //$btn.setAttribute('disabled', true)
-      $btn.removeClass('enable').attr('disabled', true);
+	console.log("result：",result)
+
+      //C.DelClass(arr, 'enable')
+      //arr.setAttribute('disabled', true)
+      arr.removeClass('enable').attr('disabled', true);
       result.forEach(item => {
-          console.log(item)
           $('a[data-name="' + item + '"]').addClass('enable').attr('disabled', false);
+		  
+		  
+		  
           //var oa=$('a[data-name="' + item + '"]');
          // C.AddClass(oa, 'enable');
           //oa.setAttribute('disabled', false)
       });
-    });
+    }, a);
+	  
+	  }
+	  
+	  
+	  
+	  
+	  /*
+	  
+	  
+    arr.on('click', function() {
+
+      let key = '';
+      let index = C.Attr(this,'data-index');
+      choose[index] =this.innerText;
+	  	console.log("choose:",choose)
+
+      choose.forEach(item => {
+        let arr = $('a[data-name="' + item + '"]');
+          //console.log(C.Attr(arr[0],'disabled'))
+          //  if (C.clsNm(arr[0]) == 'dsb') return;
+		if(C.Attr(arr[0],'disabled')) return;
+        if (arr.hasClass('checked') && item === $(this).text()) {
+          arr.removeClass('checked');
+          choose[index] = '';
+        } else {
+          arr.addClass('checked').siblings().removeClass('checked');
+          if (item !== '') {
+            key += item + ';';
+          }
+        }
+      });
+      let result = sku.getResult(key);
+	console.log("result：",result)
+
+      //C.DelClass(arr, 'enable')
+      //arr.setAttribute('disabled', true)
+      arr.removeClass('enable').attr('disabled', true);
+      result.forEach(item => {
+          $('a[data-name="' + item + '"]').addClass('enable').attr('disabled', false);
+		  
+		  
+		  
+          //var oa=$('a[data-name="' + item + '"]');
+         // C.AddClass(oa, 'enable');
+          //oa.setAttribute('disabled', false)
+      });
+    });*/
   }
 };
-
-sku.init(goodsData, $('#it').text(), $('#btn_arr').text(), $('.sku'), $('.sku a'));
-sku.pageShow($('.sku a'));
+    sku.data = goodsData;
+    sku.showIt();
+    sku.renderPage($('#it').text(), $('#btn_arr').text(), $('.sku'));
+    sku.getResult('', []);
+	sku.pageShow($('.sku a'));
   </script>
 </body>
 </html>

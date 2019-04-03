@@ -353,7 +353,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 			
         }
         //b.appendChild(run);
-        console.log(gr);
         b.insertBefore(run,gr);
     },
     /* 隐藏元素 */

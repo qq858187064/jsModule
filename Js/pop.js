@@ -14,6 +14,7 @@
 
     pop.prototype = {
         Init: function (o) {
+            console.log(o)
             o.p = C.Pt(o);
            // !object.hasOwnProperty(name)&&(name in object)
             for (var z in o.p)

@@ -273,7 +273,8 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         var rgx = /<script\b.*?(?:\bsrc\s?=\s?"([^>]*)")?>([\s\S]*?)<\/script>/ig,
         ss,
         b = C.Bd(),
-        run = C.Ce('script');
+        run = C.Ce('script'),
+        rjs = '';
         var i = 0;
         while (ss = rgx.exec(s)) {
             var js = C.Ce('script'),
@@ -290,18 +291,21 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
                 }
                C.exjs.pre = js;//上一个script标记
             }
-            else
+            else if (ss[2])
 			{/*无src的script*/
                 var t = ss[2];
+                //eval(t);
 			if(C.exjs.pre&&C.exjs.pre.src!="")//||typeof C.exjs.pre.onload!="undefined"
 			{
 				if(typeof C.exjs.pre.onload!="undefined")
 				{
+				    rjs += t;
 				 C.exjs.pre.onload = function ()
-					{
-						//eval(t);
-						js.appendChild(document.createTextNode(t));
-						b.appendChild(js);// 重复
+				 {
+				     //eval(t);
+				     js.appendChild(document.createTextNode(rjs));
+				     b.appendChild(js);// 重复
+                     
 					};	
 				}
 				else
@@ -321,11 +325,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 			}
 			else// if(C.exjs.pre.src==""||typeof C.exjs.pre.onload=="undefined")/*||typeof C.exjs.pre.onload=="undefined" for ie7、8*/
 			{
-
-
-
-
-
 				//if(navigator.appName!="Microsoft Internet Explorer"&&parseFloat(navigator.appVersion)<5)
                 /* 换成append形式
 			    if (!C.ie8())

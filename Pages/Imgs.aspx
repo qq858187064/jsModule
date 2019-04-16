@@ -8,6 +8,16 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainC" Runat="Server">
     <dd>
+     <div class="sw sw2" id="sw3">
+        <a class="pro"></a>
+        <p>
+            <a id="21">1<img src="/Images/Iswa/BnB.jpg" /></a>
+            <a id="22">2<img src="/Images/Iswa/BnC.jpg" /></a>
+            <a id="23">3<img src="/Images/Iswa/BnD.jpg" /></a>
+            <a id="24">4<img src="/Images/Iswa/BnF.jpg" /></a>
+        </p>
+        <a class="nxt"></a>
+    </div>
     <div class="sw" id="sw1_3000">
         <a class="pro"></a>
         <p>
@@ -78,4 +88,4 @@
     <script src="../Js/sw.js"></script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="TabId" runat="server">"M1a","C3aB_1000",</asp:Content>
-<asp:Content ID="ContentRunJs" ContentPlaceHolderID="RunJs" Runat="Server">window.Cm=5;sw("sw1_3000", "sw2");</asp:Content>
+<asp:Content ID="ContentRunJs" ContentPlaceHolderID="RunJs" Runat="Server">window.Cm=5;sw("sw3", "sw2");//,"sw1_3000"</asp:Content>

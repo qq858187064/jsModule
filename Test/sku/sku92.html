@@ -1278,6 +1278,38 @@
 			a[i] = b;
 			//console.log(j, b, a.join(','))
 		}
+		
+		/*根据选中项标识sku状态:
+		1、选中项与sku对应项匹配，且该组sku未被其它项禁用，则sku可选
+		2、
+		*/
+		function filt()
+		{
+		for (var j = 0; j < skus.length; j++)
+			{
+			var s = skus[j];
+				//sku对中对应索引的项
+				if(!s.d)//||!pc.ca    未被禁用，且
+				s.d=false;
+					//如果sku中不包含选中项，则将该组sku禁用
+					//if(s.indexOf(a.innerText)==-1)
+					//如果sku中对应索引和选中项不相等，则将该组sku禁用
+				for(var i=0;i<sed.length;i++)
+				{
+					var a=sed[i],
+					si=s[a.pi];
+					console.log('si、a：',si,a.innerText)
+					if(si!=a.innerText)
+					{
+					s.d=true;
+					}
+				}
+					//break;
+					console.log(s)
+			}
+		}
+
+		
 		/*用户选中sku项处理函数*/
 		function slct(a) {
 			if (C.clsNm(a) == 'dsb') return;
@@ -1290,7 +1322,7 @@
 				C.DelClass(pc.ca, 'ca');
 				//sed.splice(sed.indexOf(pc.ca.innerText), 1);
 				//sed[a.pi]=null
-				//sed.splice(sed.indexOf(a),1)
+				sed.splice(sed.indexOf(a),1)
 			}
 			if (pc.ca != a)
 			{
@@ -1298,28 +1330,11 @@
 				ca = a;
 				ci = a.i;
 				//sed[a.pi]=a;
-				//sed.push(a)
+				sed.push(a)
 			}
 			pc.ca = ca;
 			//pc.ci = ci;
-			for (var j = 0; j < skus.length; j++)
-			{
-				var s = skus[j],
-					si=s[a.pi];//,//sku对中对应索引的项
-					if(!s.d||!pc.ca)
-					s.d=false;
-						//如果sku中不包含选中项，则将该组sku禁用
-						//if(s.indexOf(a.innerText)==-1)
-						//如果sku中对应索引和选中项不相等，则将该组sku禁用
-						console.log(si,a.innerText)
-						if(si!=a.innerText)
-						{
-						s.d=true;
-						}
-						//break;
-					console.log(s)
-			}
-			
+			filt();
 			/*arr和skus中子项sku等长,下标可匹配*/
 			console.log('i', 'n', 'j','____________________')
 			a.dsb=a.dsb||[];

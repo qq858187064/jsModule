@@ -150,6 +150,7 @@
         opacity: 1;
     }
 }
+
 .pg{
     color:#ccc;
 }
@@ -158,6 +159,22 @@
     top: 0;
     left: 0;
 }
+
+/*sw1*/
+.sw1{
+    text-align:center;
+    white-space: nowrap;
+    margin-right: 2%;
+    margin-bottom:200%;
+}
+.sw1 p{
+    display:inline-block;
+    width:11rem;
+    height:8rem;
+    background:#eee;
+    margin-right:2%;
+}
+
     </style>
 
 </asp:Content>
@@ -165,7 +182,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Descr" runat="Server">滑动切换</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MenuC" runat="Server"><a>滑动切换</a></asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainC" runat="Server">
-    <dd class="sip">1'56"<i class="audio" id="abt"><img class="w3" id="w3" src="../App_Themes/Black/images/wave3.png" />
+    <dd class="sip">
+        
+               <div id="sw1" class="sw1"><p>p1</p><p>p2</p><p>p3</p><p>p4</p><p>p5</p></div> 
+        1'56"<i class="audio" id="abt">
+        <img class="w3" id="w3" src="../App_Themes/Black/images/wave3.png" />
         <img class="w2" id="w2" src="../App_Themes/Black/images/wave2.png" />
         <img src="../App_Themes/Black/images/wave1.png" />
             <audio id="audio" src="http://obj00.cdn.ipalfish.com/aud/65/82/84025b7bf7e1939500c72f8292c4"></audio>

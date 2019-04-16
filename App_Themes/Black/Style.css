@@ -1005,7 +1005,7 @@ dl.Cot dd dl dd dl.Imb
     border: 1px solid #ccc;
     margin: 144px 0 0 0;
 }
-        .sw {
+ .sw {
             position: relative;
             width: 360px;
             overflow: hidden;
@@ -1047,6 +1047,54 @@ dl.Cot dd dl dd dl.Imb
             .nxt:hover {
                     background-position: 0 -68px;
                 }
+            .sw2 p a 
+            {
+                width:5rem;
+                margin-right:1rem;
+                border:2px solid #f99;
+
+            }
+.sw2 {
+margin-bottom:44rem;
+}
+            /*移动动画向左*/
+.w4Animate {
+    -webkit-animation: w4 4s linear;
+    -o-animation: w4 4s linear;
+    animation: w4 4s linear;
+}
+@-webkit-keyframes w4 {
+    0% {
+        margin-left:0;
+    }
+    100% {
+       margin-left:-5rem;
+    }
+}
+@keyframes w4 {
+    0% {
+        margin-left:0;
+    }
+    100% {
+       margin-left:-5rem;
+    }
+}
+
+@-webkit-keyframes w4 {
+    0% {
+        margin-left:0;
+    }
+    100% {
+       margin-left:-5rem;
+    }}
+
+@keyframes w4 {
+    0% {
+        margin-left:0;
+    }
+    100% {
+       margin-left:-5rem;
+    }}
 
 /******************* 图片展示结束 *******************/
 .SI

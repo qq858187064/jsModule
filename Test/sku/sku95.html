@@ -139,8 +139,15 @@
 	<!--id stock price originPrice 0,1 100 10 15 0,0 999 20 25 1,1 5 30 35-->
 	<script type="text/javascript" src="http://192.168.1.142/Js/Base.js"></script>
 	<script type="text/javascript">
+	//
+	var dirty;
+	C.ajax("GET","https://api.17shanyuan.com/ebgoods/goods/d000xCLQ",null,
+	function(o){
+	dirty=JSON.parse(o)
+	});
+	
 		//服务返回数据：
-		var dirty = {
+		dirty = {
 			"code": 200,
 			"message": "获取成功",
 			"data": {
@@ -547,10 +554,10 @@
 				num.parentNode.insertBefore(t, num)
 			}
 		)
-				/*遍历二维数组
+		/*遍历二维数组
 		arr:二维数组；fa：二维元素处理函数，fb一维元素处理函数
 		*/
-		function each(arr, fa, fb) {
+		function each(arr, fa, fb){
 			for (var i = 0; i < arr.length; i++) {
 				var ar = arr[i];
 				//ar.i=i;
@@ -563,11 +570,10 @@
 					//a.i = j;
 					if (fa)
 						fa(ar[j], j, i);
-
 				}
-
 			}
 		}
+		/*判断传入项o是否被引用了选中项的sku包含*/
 function cited(o,z)
 {
 var r=true;
@@ -607,7 +613,6 @@ return r;
 		        C.DelClass(pc.ca, 'ca');
 		        sed[a.pi]=null
 		        //sed.splice(sed.indexOf(a), 1)
-
 		    }
 		    if (ed) {
 		        C.AddClass(a, 'ca');
@@ -628,12 +633,14 @@ return r;
 			var it = ar[n];
 			if(cited(it))//(s.d&&it.innerText == s[it.pi])
 			{
+			if(a.pi!=it.pi)//如果传入项和当前项父索引不等
 			C.AddClass(it, 'dsb');
 			}
 			else
 			 C.DelClass(it, 'dsb');
 		}
 	}
+	console.log('sed.length:',sed)
 		}
 	</script>
 </body>

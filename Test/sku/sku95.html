@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>4模式</title>
+	<title>95</title>
 	<style type="text/css">
 		html,
 		body {
@@ -129,7 +129,7 @@
 
 <body style="background:url(/Images/g.png) no-repeat;">
 	<div class="sku">
-		<img src="https://cdn.17shanyuan.com/goods/284566/8b7dcb0571eb85a6aad0b23d1c283cd94f598fc2.jpeg?x-oss-process=style/webp_240" />
+		<img src="https://cdn.17shanyuan.com/goods/284566/oss_a20160dc604cd14f16ecf027f5e75434.jpeg?x-oss-process=style/webp_240" />
 		<b>¥0.05</b>
 		<b>库存：1111件</b>
 		<b>已选：M kg 袋 Linux 5kg 12瓶 </b>
@@ -568,79 +568,35 @@
 
 			}
 		}
-	/*将指定数组指定位置元素交换位置，a:数组，j:默认为0，-1时表示移至最后
-		function rp(a, i, j) {
-			if (j == undefined)//不传z时移到首位，否则移到首位
-				j = 0;
-			else if (j == -1)
-				j = a.length - 1;
-			var o = a[i],
-				b = a[j];
-			//a.splice(j,1);
-			a[j] = o;
-			a[i] = b;
-			//console.log(j, b, a.join(','))
-		}
-        根据传入项，判断同级元素是否未被其它sku禁用
-		function ds(a)
-		{
-		    var br = arr[a.pi],
-                ak = false;
-		    for(var j = 0; j < skus.length; j++)
-		    {
-		        var s = skus[j];
-                if(!s.d)
-		        for (var i = 0; i < br.length; i++)
-		        {
-		            var it = br[i];
-		            if (s[a.pi] != a.innerText){
-		                return true;
-		            }
-		        }
-		    }
-		    return ak;
-		}
-		判断传入项是否被引用了选中项的sku包含
-function cited(o)
+function cited(o,z)
 {
 var r=true;
 	for (var j = 0; j < skus.length; j++)
 	{
 		var s = skus[j];
+		if(z)
+		s.d=false;//默认禁用sku
 		if(!s.d)//&&o.innerText == s[o.pi]
+		{
+		if(o&&s[o.pi]==o.innerText)//o.innerText==a.innerText
+		{
+			r=false;
+		}
+		if(z)//遍历选中项集合，标识要禁用的项
 		for(var i=0;i<sed.length;i++)
 		{
 		var a=sed[i];
-		if(s[o.pi]==o.innerText)//o.innerText==a.innerText
+		if(a&&s[a.pi]!=a.innerText)//o.innerText==a.innerText
 		{
-			r=false;
+			s.d=true;
 			break;
+		}
 		}
 		}
 	}
 return r;
-}*/
-//是否可被加入可选集合
-function ad(s){
-var a=true;
-		for(var j=0;j<sed.length;j++)
-		{
-		var d=sed[j];
-		if(!d) continue;
-		//if(d)
-		//console.log(d.pi,j)
-		a=s[d.pi]==d.innerText;
-		}
-		return a;
-		/*
-		while (i<5)
-  {
-  x=x +  i;
-  i++;
-  }
-		*/
 }
-		/*用户选中sku项处理函数*/
+/*用户选中sku项处理函数*/
 		function slct(a) {
 		    if (C.clsNm(a) == 'dsb') return;
 		    var pc = arr[a.pi],//父类别
@@ -663,59 +619,21 @@ var a=true;
 		    pc.ca = ca;
 		    pc.ci = ci;
 			
-		    console.log('sed:',sed,a.pi)
-			/*
-			思路：
-			1、通过遍历选中项集合禁用项；
-			2、
-			思路1：
-			1、有选中时，默认全部禁用;
-			2、再根据选中项解禁其所在sku中各项;
-
-			*/
-			var es=[];//可选中项集合
-			//ex=[];
-			//for(var j=0;j<sed.length;j++)
-			//{
-			//var d=sed[j];
-			//if(!d) continue;
-				for (var k = 0; k< skus.length; k++)
-				{
-		        var s = skus[k];
-				//ad=true;
-				//ad=ad(s);//s[d.pi]==d.innerText;//是否可被加入可选集合
-				if(ad(s))//&&es.join().indexOf(s.join())==-1
-				es=es.concat(s)
-				//s.d=false;//1、所有sku默认可选
-				/*for (var n = 0; n< s.length; n++)
-				{
-				var t=s[n];
-				
-				if(d.pi==n&&d.innerText!=t){console.log(n,d.innerText,t)
-				ad=false;
-				break;
-				}
-				}*/
-				}
-				
-			//}
-			console.log(123,es)
-				for(var i = 0; i < arr.length; i++)
-		        {
-		            var ar = arr[i];
-		            for (var n = 0; n < ar.length; n++)
-		            {
-		                var it = ar[n];
-		                //it.d = true;//默认不可选中状态
-		                //if (s.d == false && it.innerText == s[it.pi])
-		                if(es.length&&es.indexOf(it.innerText)==-1)//arr数组下标与skus子项下标相等
-		                {
-						C.AddClass(it, 'dsb');
-						}
-						else
-						 C.DelClass(it, 'dsb');
-						}
-						}
+	cited(a,1)
+	for(var i = 0; i < arr.length; i++)
+	{
+		var ar = arr[i];
+		for (var n = 0; n < ar.length; n++)
+		{
+			var it = ar[n];
+			if(cited(it))//(s.d&&it.innerText == s[it.pi])
+			{
+			C.AddClass(it, 'dsb');
+			}
+			else
+			 C.DelClass(it, 'dsb');
+		}
+	}
 		}
 	</script>
 </body>

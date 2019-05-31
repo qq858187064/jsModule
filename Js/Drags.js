@@ -20,8 +20,7 @@ function Drags() {
             o.mt = parseInt(C.CurrentStyle(o).marginTop);//+o.bw;
             //计算相对于范围元素(图片亦是其父元素)绝对定位的左、上位置
             o.l = o.offsetLeft - o.ml;
-            o.t = o.offsetTop- o.mt;
-            console.log(1,o.id+o.t)
+            o.t = o.offsetTop - o.mt;
 
             var f = !o.id ? o.parentNode : o;
             if (f.id.charAt(0).toLowerCase() == "s") {
@@ -40,7 +39,6 @@ function Drags() {
 
             //o.setCapture();//releaseCapture
             //window.captureEvents(e.type);
-
             o.tg = C.Ge(e);
             o.isd = o.tg.parentNode == o && o.tg.tagName == 'I'
             if (!document["on" + e2])
@@ -52,7 +50,6 @@ function Drags() {
             //C.AddEvent(document, "mouseup", Drags.prototype.Stop, o);
         },
         Move: function (o, e) {
-            console.log(2,o.id + o.t)
             var ex = touch ? e.changedTouches[0].clientX : e.clientX,
                 ey = touch ? e.changedTouches[0].clientY : e.clientY,
                 xro = o.offsetWidth + o.offsetLeft > o.parentNode.offsetWidth,//x轴右侧超出
@@ -60,6 +57,7 @@ function Drags() {
                 out = xro || ybo;
             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
             o.x = o.l + ex - o.ox;
+            console.log(o.y)
             o.y = o.t + ey - o.oy;
             //限制x轴：
             if (o.x <= -o.ml)/*x轴左边超出*/
@@ -164,7 +162,6 @@ function Drags() {
                 o.style.left = x + "px";
                 //if(y)
                 o.style.top = y + "px";
-
         },
         Stop: function (o, e) {
             if (touch)

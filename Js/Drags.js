@@ -56,19 +56,18 @@ function Drags() {
                 ybo = o.offsetHeight + o.offsetTop > o.parentNode.offsetHeight,//y轴下方超出
                 out = xro || ybo;
             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-            o.x = o.l + ex - o.ox;
-            console.log(o.y)
-            o.y = o.t + ey - o.oy;
+            o.cx = o.l + ex - o.ox;
+            o.cy = o.t + ey - o.oy;
             //限制x轴：
-            if (o.x <= -o.ml)/*x轴左边超出*/
-                o.x = -o.ml;
-            else if (o.offsetWidth + o.x + o.ml >= o.parentNode.offsetWidth)/*x轴右边超出*/
-                o.x = o.parentNode.offsetWidth - o.offsetWidth - o.ml;
+            if (o.cx <= -o.ml)/*x轴左边超出*/
+                o.cx = -o.ml;
+            else if (o.offsetWidth + o.cx + o.ml >= o.parentNode.offsetWidth)/*x轴右边超出*/
+                o.cx = o.parentNode.offsetWidth - o.offsetWidth - o.ml;
             //限制y轴：
-            if (o.y <= -o.mt)/*y轴上边超出*/
-                o.y = -o.mt;
-            else if (o.offsetHeight + o.y + o.mt >= o.parentNode.offsetHeight)/*y轴下边超出*/
-                o.y = o.parentNode.offsetHeight - o.offsetHeight - o.mt;
+            if (o.cy <= -o.mt)/*y轴上边超出*/
+                o.cy = -o.mt;
+            else if (o.offsetHeight + o.cy + o.mt >= o.parentNode.offsetHeight)/*y轴下边超出*/
+                o.cy = o.parentNode.offsetHeight - o.offsetHeight - o.mt;
             //o.tg = C.Ge(e);
             var x, y;
             if (o.isd)//暂时根据元素结构、标签判断是否方向键，考虑其它方式
@@ -85,17 +84,17 @@ function Drags() {
                     case "a":
                         mx = -mx;
                         my = -my;
-                        x = o.x;
-                        y = o.y;
+                        x = o.cx;
+                        y = o.cy;
                         break;
                     case "b":
                         my = -my;
                         mx = 0;
-                        y = o.y;
+                        y = o.cy;
                         break;
                     case "c":
                         my = -my;
-                        y = o.y;
+                        y = o.cy;
                         break;
                     case "d":
                         my = 0;
@@ -107,11 +106,11 @@ function Drags() {
                         break;
                     case "g":
                         mx = -mx;
-                        x = o.x;
+                        x = o.cx;
                         break;
                     case "h":
                         mx = -mx;
-                        x = o.x;
+                        x = o.cx;
                         break;
                 }
 				/*更新是否超出值，为了实现超出后回拉时有响应*/
@@ -155,8 +154,8 @@ function Drags() {
             }
             else// if(o.co == o.tg)
             {
-                x = o.x;
-                y = o.y;
+                x = o.cx;
+                y = o.cy;
             }
                 //if(x)
                 o.style.left = x + "px";

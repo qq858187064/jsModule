@@ -217,7 +217,14 @@ dl.Cot dd
             min-height: 0;
             height: auto;
         }
-
+        .pw
+        {
+               position: relative; /**/
+        }
+        .pw .DW
+        {
+            width:50%;
+        }
 dl.Cp
 {
     margin: 0px 0px 12px 0px;

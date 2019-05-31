@@ -20,14 +20,15 @@ function Drags() {
             o.mt = parseInt(C.CurrentStyle(o).marginTop);//+o.bw;
             //计算相对于范围元素(图片亦是其父元素)绝对定位的左、上位置
             o.l = o.offsetLeft - o.ml;
-            o.t = o.offsetTop - o.mt;
+            o.t = o.offsetTop- o.mt;
+            console.log(1,o.id+o.t)
 
             var f = !o.id ? o.parentNode : o;
             if (f.id.charAt(0).toLowerCase() == "s") {
                 o.Bar = o;
             }
             else {
-                o.Bar = o.firstChild.nodeType == 1 ? o.firstChild : C.Nxt(o.firstChild);
+                o.Bar = o.firstChild&&o.firstChild.nodeType == 1 ? o.firstChild : C.Nxt(o.firstChild);
             }
             C.AddEvent(o.Bar, e1, Drags.prototype.Start, o);
             //o.co = o;
@@ -51,9 +52,7 @@ function Drags() {
             //C.AddEvent(document, "mouseup", Drags.prototype.Stop, o);
         },
         Move: function (o, e) {
-
-            alert(123)
-            alert(e.changedTouches.length)
+            console.log(2,o.id + o.t)
             var ex = touch ? e.changedTouches[0].clientX : e.clientX,
                 ey = touch ? e.changedTouches[0].clientY : e.clientY,
                 xro = o.offsetWidth + o.offsetLeft > o.parentNode.offsetWidth,//x轴右侧超出

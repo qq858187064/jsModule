@@ -1,6 +1,7 @@
 ﻿/*参考HTML5的拖放（Drag 和 drop）http://www.w3school.com.cn/html5/html_5_draganddrop.asp*/
 function Drags() {
     var e1, e2, e3, touch = C.isTouch();
+	window.li=8888;//可以参数化
     if (touch) {
         e1 = "touchstart";
         e2 = "touchmove";
@@ -33,6 +34,8 @@ function Drags() {
             //o.co = o;
         },
         Start: function (o, e) {
+			window.li++
+			o.style.zIndex=window.li;
             /*开始拖动的起始点，鼠标按下时，相对于document的坐标*/
             o.ox = touch ? e.changedTouches[0].clientX : e.clientX;
             o.oy = touch ? e.changedTouches[0].clientY : e.clientY;
@@ -42,14 +45,14 @@ function Drags() {
             o.tg = C.Ge(e);
             o.isd = o.tg.parentNode == o && o.tg.tagName == 'I'
             if (!document["on" + e2])
-                document["on" + e2] = function (oe) { Drags.prototype.Move(o, oe) };
-            if (!document["on" + e3])
+                document["on" + e2] = function (oe) {Drags.prototype.Move(o, oe) };
+            if (!document["on" + e3]){
                 document["on" + e3] = function (oe) {
-                    Drags.prototype.Stop(o, oe)
-                }
+                    Drags.prototype.Stop(o, oe);
+		}}
             //C.AddEvent(document, "mouseup", Drags.prototype.Stop, o);
         },
-        Move: function (o, e) {
+        Move: function (o, e){
             var ex = touch ? e.changedTouches[0].clientX : e.clientX,
                 ey = touch ? e.changedTouches[0].clientY : e.clientY,
                 xro = o.offsetWidth + o.offsetLeft > o.parentNode.offsetWidth,//x轴右侧超出
@@ -161,6 +164,7 @@ function Drags() {
                 o.style.left = x + "px";
                 //if(y)
                 o.style.top = y + "px";
+			C.PreventDefault(e);
         },
         Stop: function (o, e) {
             if (touch)

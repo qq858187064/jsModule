@@ -14,7 +14,6 @@
 
     pop.prototype = {
         Init: function (o) {
-            console.log(o)
             o.p = C.Pt(o);
            // !object.hasOwnProperty(name)&&(name in object)
             for (var z in o.p)
@@ -26,7 +25,8 @@
                 o[z] = o.p[z];}
             }
             o.box = o.box ? C.G(o.box) : o;
-            o.box.oh = o.box.innerHTML;
+            if (!o.box.oh)
+            o.box.oh = o.box.innerHTML; console.log(0,o.box.oh)
             o.box.bg = C.G(o.bg);
             o.ct = C.G(o.ct);
             if (o.cls) {
@@ -106,7 +106,6 @@
 
             o.box.style.top = (bd.clientHeight - o.h) / 2 + st+ "px";/*50是滚动条上下部分高度？*/
             o.box.style.left = (bd.offsetWidth - o.w) / 2 + "px";
-            console.log("o.box_"+o.box)
             if (o.box.bg) {
                 o.box.bg.style.height = bd.scrollHeight + "px";
                 o.box.bg.style.left = 0;

@@ -499,7 +499,7 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
     },
     /*是否支持触摸事件*/
     isTouch: function (e) {
-            return "ontouchend" in document ? true : false;
+        return "ontouchend" in document.documentElement ? true : false;
     },
 
     /* 为对象添加的事件监听  */

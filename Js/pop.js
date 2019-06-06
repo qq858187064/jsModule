@@ -26,7 +26,7 @@
             }
             o.box = o.box ? C.G(o.box) : o;
             if (!o.box.oh)
-            o.box.oh = o.box.innerHTML; console.log(0,o.box.oh)
+            o.box.oh = o.box.innerHTML;
             o.box.bg = C.G(o.bg);
             o.ct = C.G(o.ct);
             if (o.cls) {

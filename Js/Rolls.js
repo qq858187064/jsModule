@@ -1,51 +1,41 @@
-﻿function Rolls(Id, Speed, Step, Stay)
+﻿function Rolls(Id, Speed, Stay)
 {
     this.Wrap = C.G(Id);
     this.Original = C.Gs(this.Wrap, "span")[0];
     this.Ectype = this.Original.cloneNode(true);
     this.Wrap.appendChild(this.Ectype);
-    this.Om = Id;
+    //this.Om = Id;
     this.Count = 0;
     this.Can = true;
     var Stay = !Stay ? 0 : Stay,
+        it = C.Gs(this.Original, "a")[1],
+    Step,
     Roll = this;
-    if (typeof Rolls.Initialized == "undefined")
-    {
-        Rolls.prototype.Marquee = function ()
-        {
-            if (Roll.Wrap.offsetWidth > 0)
-            {
-                switch (Id.charAt(0).toUpperCase())
-                {
-                    case "L":
-                        if (Roll.Can)
-                        {
-                            Roll.Wrap.scrollLeft++;
-                            if (Roll.Wrap.scrollLeft >= Roll.Original.offsetWidth)
-                            {
-                                Roll.Wrap.scrollLeft -= Roll.Original.offsetWidth;
-                            }
-                            Roll.Count++;
-                        }
-                        break;
-                    case "T":
-                        if (Roll.Can)
-                        {
-                            Roll.Wrap.scrollTop++;
-                            if (Roll.Wrap.scrollTop >= Roll.Original.offsetHeight)
-                            {
-                                Roll.Wrap.scrollTop -= Roll.Original.offsetHeight;
-                            }
-                            Roll.Count++;
-                        }
-                        break;
+    if (typeof Rolls.Initialized == "undefined") {
+        Rolls.prototype.Marquee = function () {
+            if (Roll.Can) {
+                var d, p,m;
+                if (Roll.Wrap.id.charAt(0).toUpperCase() == "L") {
+                    d = "scrollLeft";
+                    p = "offsetWidth";
+                    m = "marginRight";
                 }
+                else// "T"
+                {
+                    d = "scrollTop";
+                    p = "offsetHeight";
+                    m = "marginBottom";
+                }
+                Step = it[p] + parseInt(C.CurrentStyle(it)[m]);
+               
+                Roll.Wrap[d]++;
+                if (Roll.Wrap[d] >= Roll.Original[p]) {
+                    Roll.Wrap[d] -= Roll.Original[p];
+                }
+                Roll.Count++;
             }
-            //            Roll.Om = setInterval(Roll.Marquee, Stay);
-            //            Roll.Wrap.onmouseover = function () { clearInterval(Roll.Om) }
-            //            Roll.Wrap.onmouseout = function () { Roll.Om = setInterval(Roll.Marquee, Stay) }
-            if (Roll.Count >= Step)
-            {
+
+            if (Roll.Count >= Step) {
                 Roll.Can = false;
                 Roll.Count = 0;
                 var Ts = setTimeout(function () { Roll.Can = true; }, Stay);

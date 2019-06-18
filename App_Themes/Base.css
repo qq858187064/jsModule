@@ -89,9 +89,17 @@ a.trsho:hover,
 	opacity:0.8!important;
 }
 .trs5{
-	filter:alpha(opacity=50);
+	 透明度
+         filter:alpha(opacity=50);
 	opacity:0.5;
+       /*  饱和度
+               filter: saturate(1.2);
+           -webkit-filter: saturate(1.2);  Chrome, Safari, Opera */
+           /*对比度 
+           filter: contrast(1.05);
+           -webkit-filter: contrast(1.05);*/
 }
+
 
 .I2 p,
 p.I2

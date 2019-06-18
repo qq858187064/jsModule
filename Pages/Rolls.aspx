@@ -37,7 +37,7 @@
 <script type="text/javascript" src="/Js/Rolls.js"></script>
 </asp:Content>
 <asp:Content ID="Content7" Runat="Server" ContentPlaceHolderID="RunJs">
-new Rolls("LMar",10,100,2000);
-new Rolls("TMar",10,135,2000);
+new Rolls("LMar",10,2000);
+new Rolls("TMar",10,2000);
 window.Cm=4;
 </asp:Content>

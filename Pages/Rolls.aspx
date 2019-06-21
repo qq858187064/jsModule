@@ -14,19 +14,24 @@
 </div>
 </dd>--%>
 <dd>
-<div id="LMar" class="Mar">
-<span><a href="#"><img src="/Images/PfH.jpg" alt="1" /></a><a href="#"><img src="/Images/PfH.jpg" alt="2" /></a><a href="#"><img src="/Images/PfH.jpg" alt="3" /></a><a href="#"><img src="/Images/PfH.jpg" alt="4" /></a><a href="#"><img src="/Images/PfH.jpg" alt="5" /></a><a href="#"><img src="/Images/PfH.jpg" alt="6" /></a><a href="#"><img src="/Images/PfH.jpg" alt="7" /></a><a href="#"><img src="/Images/PfH.jpg" alt="8" /></a><a href="#"><img src="/Images/PfH.jpg" alt="9" /></a><a href="#"><img src="/Images/PfH.jpg" alt="10" /></a></span></div>
-<p class="I2">该功能模块需要四个参数，第一个参数是外层元素的ID值，其第一个字符是预留的，用来指示模块滚动的方向，第一个字符为“T”，则表示向上滚动，“L”，则表示向左滚动，不区分大小写；
-第二个参数用来指示模块的滚动速度，单位为毫秒，值越小，滚动速度越快，值越大，则滚动速度越慢；
-第三个和第四个参数不是必须的，但如果需要该滚动模块“间歇”滚动，请设置这两个参数，第三个参数用来指示每滚动多少像素时暂停，单位为px;第四个参数则表示滚动暂停多少毫秒时恢复滚动</p>
+<div id="LMar" class="Mar" p="dir:2,speed:20,stay:3000,n:1" >
+<a href="#"><img src="/Images/PfH.jpg" alt="1" /></a><a href="#"><img src="/Images/PfH.jpg" alt="2" /></a><a href="#"><img src="/Images/PfH.jpg" alt="3" /></a><a href="#"><img src="/Images/PfH.jpg" alt="4" /></a><a href="#"><img src="/Images/PfH.jpg" alt="5" /></a><a href="#"><img src="/Images/PfH.jpg" alt="6" /></a><a href="#"><img src="/Images/PfH.jpg" alt="7" /></a><a href="#"><img src="/Images/PfH.jpg" alt="8" /></a><a href="#"><img src="/Images/PfH.jpg" alt="9" /></a><a href="#"><img src="/Images/PfH.jpg" alt="10" /></a></div>
+<div id="TMar" class="Mar MarUp"  p="dir:1,speed:20,stay:3000,n:1" ><a href="#"><img src="/Images/Pf.jpg" alt="1" /></a><a href="#"><img src="/Images/Pf.jpg" alt="2" /></a><a href="#"><img src="/Images/Pf.jpg" alt="3" /></a><a href="#"><img src="/Images/Pf.jpg" alt="4" /></a><a href="#"><img src="/Images/Pf.jpg" alt="5" /></a><a href="#"><img src="/Images/Pf.jpg" alt="6" /></a><a href="#"><img src="/Images/Pf.jpg" alt="7" /></a><a href="#"><img src="/Images/Pf.jpg" alt="8" /></a><a href="#"><img src="/Images/Pf.jpg" alt="9" /></a><a href="#"><img src="/Images/Pf.jpg" alt="10" /></a><a href="#"><img src="/Images/Pf.jpg" alt="9" /></a><a href="#"><img src="/Images/Pf.jpg" alt="10" /></a></div>
+
+<p class="I2">html中需要滚动的的元素加属性如：p="dir:1,speed:20,stay:3000,n:1"
+dir:代表滚动的方向：1上，否则向左(以后可以再扩展)
+speed:用来指示模块的滚动速度，单位为毫秒，值越小，滚动速度越快，值越大，则滚动速度越慢
+stay:表示滚动暂停多少毫秒时恢复滚动
+n:滚动完成后，次需要向最后移入n个元素，默认为1</p>
 <h6>该模块调用代码:</h6>
-<pre>&lt;script type="text/javascript"&gt;<br />Rolls("LMar",10,100,2000);<br />&lt;/script&gt;</pre>
+<pre>&lt;script type="text/javascript"&gt;<br />rolls("LMar","TMar");<br />&lt;/script&gt;</pre>
 </dd>
 <dd>
-<div id="TMar" class="Mar MarUp"><span><a href="#"><img src="/Images/Pf.jpg" alt="1" /></a><a href="#"><img src="/Images/Pf.jpg" alt="2" /></a><a href="#"><img src="/Images/Pf.jpg" alt="3" /></a><a href="#"><img src="/Images/Pf.jpg" alt="4" /></a><a href="#"><img src="/Images/Pf.jpg" alt="5" /></a><a href="#"><img src="/Images/Pf.jpg" alt="6" /></a><a href="#"><img src="/Images/Pf.jpg" alt="7" /></a><a href="#"><img src="/Images/Pf.jpg" alt="8" /></a><a href="#"><img src="/Images/Pf.jpg" alt="9" /></a><a href="#"><img src="/Images/Pf.jpg" alt="10" /></a><a href="#"><img src="/Images/Pf.jpg" alt="9" /></a><a href="#"><img src="/Images/Pf.jpg" alt="10" /></a></span></div>
-<p class="I2">该功能模块需要四个参数，第一个参数是外层元素的ID值，其第一个字符是预留的，用来指示模块滚动的方向，第一个字符为“T”，则表示向上滚动，“L”，则表示向左滚动，不区分大小写；
-第二个参数用来指示模块的滚动速度，单位为毫秒，值越小，滚动速度越快，值越大，则滚动速度越慢；
-第三个和第四个参数不是必须的，但如果需要该滚动模块“间歇”滚动，请设置这两个参数，第三个参数用来指示每滚动多少像素时暂停，单位为px;第四个参数则表示滚动暂停多少毫秒时恢复滚动</p>
+<p class="I2">html中需要滚动的的元素加属性如：p="dir:1,speed:20,stay:3000,n:1"
+dir:代表滚动的方向：1上，否则向左(以后可以再扩展)
+speed:用来指示模块的滚动速度，单位为毫秒，值越小，滚动速度越快，值越大，则滚动速度越慢
+stay:表示滚动暂停多少毫秒时恢复滚动
+n:滚动完成后，次需要向最后移入n个元素，默认为1</p>
 <h6>该模块调用代码:</h6>
 <pre>&lt;script type="text/javascript"&gt;<br />Rolls("TMar",10,131,2000);<br />&lt;/script&gt;</pre>
 </dd>
@@ -37,7 +42,6 @@
 <script type="text/javascript" src="/Js/Rolls.js"></script>
 </asp:Content>
 <asp:Content ID="Content7" Runat="Server" ContentPlaceHolderID="RunJs">
-new Rolls("LMar",10,2000);
-new Rolls("TMar",10,2000);
+rolls("LMar","TMar");
 window.Cm=4;
 </asp:Content>

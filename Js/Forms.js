@@ -33,15 +33,20 @@
             F.V = undefined;
             F.b = F.id.charAt(0).toLowerCase() == "b";
             F.Rpt = C.Attr(F, "rpt");
-            F.Rpt = F.Rpt ? C.G(F.Rpt) : false;
+            F.Rpt = F.Rpt ? C.G(F.Rpt) : "";
             F.es =F.tagName=="FORM"?F.elements:C.Gs(F, "input", true);//F.id.charAt(1).toLowerCase() == "c" 
             for (var i = 0; i < F.es.length; i++) {
                 var T = F.es[i],
-                    N = T.type.toLowerCase(),
-                    p = C.Pt(T);
-                if (p) {
-                    for (var a in p) {
-                        T[a] = p[a]
+                    N = T.type.toLowerCase();
+                if(!T.p)
+                    T.p = C.Pt(T);
+                console.log(T.p)
+                if (T.p) {
+                    for (var a in T.p) {
+                        //console.log(a, p.hasOwnProperty[a])
+                       // if (!p.hasOwnProperty[a])
+                          //  if(T[a])
+                        T[a] = T.p[a]
                     }
                 }
                 if ((N == "textarea" || N == "password" || N == "text") && (typeof T.Preset == "string" || typeof T.Regex == "string" || typeof T.Cpt == "string"))

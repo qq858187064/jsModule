@@ -1,49 +1,45 @@
-﻿function Rolls(Id, Speed, Stay)
+﻿function rolls()
 {
-    this.Wrap = C.G(Id);
-    this.Original = C.Gs(this.Wrap, "span")[0];
-    this.Ectype = this.Original.cloneNode(true);
-    this.Wrap.appendChild(this.Ectype);
-    //this.Om = Id;
-    this.Count = 0;
-    this.Can = true;
-    var Stay = !Stay ? 0 : Stay,
-        it = C.Gs(this.Original, "a")[1],
-    Step,
-    Roll = this;
-    if (typeof Rolls.Initialized == "undefined") {
-        Rolls.prototype.Marquee = function () {
-            if (Roll.Can) {
-                var d, p,m;
-                if (Roll.Wrap.id.charAt(0).toUpperCase() == "L") {
-                    d = "scrollLeft";
-                    p = "offsetWidth";
-                    m = "marginRight";
-                }
-                else// "T"
-                {
-                    d = "scrollTop";
-                    p = "offsetHeight";
-                    m = "marginBottom";
-                }
-                Step = it[p] + parseInt(C.CurrentStyle(it)[m]);
-               
-                Roll.Wrap[d]++;
-                if (Roll.Wrap[d] >= Roll.Original[p]) {
-                    Roll.Wrap[d] -= Roll.Original[p];
-                }
-                Roll.Count++;
+    rolls.prototype = {
+        Init: function (o) {
+            o.p=C.Pt(o);
+            o.it=C.Gs(o,"a")[1];//用来取高度、宽度的样本元素，如果有异常可以传参
+            o.can=true;
+            o.count=0;
+            if (o.p.dir==1) {
+                o.ad = "scrollTop";
+                o.ap = "offsetHeight";
+                o.am = "marginBottom";
             }
-
-            if (Roll.Count >= Step) {
-                Roll.Can = false;
-                Roll.Count = 0;
-                var Ts = setTimeout(function () { Roll.Can = true; }, Stay);
+            else
+            {
+                o.ad = "scrollLeft";
+                o.ap = "offsetWidth";
+                o.am = "marginRight";
             }
-            C.AddEvent(Roll.Wrap, "mouseover", function () { Roll.Can = false; });
-            C.AddEvent(Roll.Wrap, "mouseout", function () { Roll.Can = true; });
-        };
-        Roll.Om = setInterval(Roll.Marquee, Speed);
-        //Rolls.Initialized = true;
+            o.step = o.it[o.ap] + parseInt(C.CurrentStyle(o.it)[o.am]);
+            setTimeout(function(){//console.log(o)
+                o.om = setInterval(function () { rolls.prototype.roll(o)}, o.p.speed);
+        }, o.p.stay);
+            
+},
+roll:function(o){
+    if (o.can) {
+        o[o.ad]++;
+        console.log(o.id, o.ad, o[o.ad])
+       if (o[o.ad] >= o.it[o.ap])
+        {
+            o[o.ad] -= o.it[o.ap];
+        }
+        o.count++;
     }
+    if (o.count >= o.step) {
+        o.can = false;
+        o.count = 0;
+        o.appendChild(o.firstChild)//如果一次需要移走n个元素时需要传入，暂未处理
+        setTimeout(function () { o.can = true; }, o.p.stay);
+    }
+}
+}
+C.Batch(rolls,arguments);
 }

@@ -5,6 +5,7 @@
             o.p=C.Pt(o);
             o.it=C.Gs(o,"a")[1];//用来取高度、宽度的样本元素，如果有异常可以传参
             o.can=true;
+			o.n=o.p.n;
             o.count=0;
             if (o.p.dir==1) {
                 o.ad = "scrollTop";
@@ -26,7 +27,6 @@
 roll:function(o){
     if (o.can) {
         o[o.ad]++;
-        console.log(o.id, o.ad, o[o.ad])
        if (o[o.ad] >= o.it[o.ap])
         {
             o[o.ad] -= o.it[o.ap];
@@ -36,7 +36,8 @@ roll:function(o){
     if (o.count >= o.step) {
         o.can = false;
         o.count = 0;
-        o.appendChild(o.firstChild)//如果一次需要移走n个元素时需要传入，暂未处理
+		for(var i=0;i<o.n;i++)
+			        o.appendChild(o.firstChild)
         setTimeout(function () { o.can = true; }, o.p.stay);
     }
 }

@@ -753,17 +753,15 @@ a.Btn:hover
     text-align: center;
 }
 
-.MarUp span
+.MarUp
 {
-    white-space: normal;
+    white-space: normal!important;
     display: block;
 }
 
-.Mar span a
+.Mar a
 {
     display: inline-block;
-    width: 94px;
-    height: 129px;
     margin: 0 6px 6px 0;
 }
 
@@ -771,6 +769,9 @@ a.Btn:hover
 {
     border: 1px solid #ccc;
     padding: 1px;
+	width: 94px;
+    height: 133px;
+
 }
 
 .Mar span a:hover img

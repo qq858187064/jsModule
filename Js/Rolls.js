@@ -18,8 +18,14 @@
                 o.ap = "offsetWidth";
                 o.am = "marginRight";
             }
+			if(!o.px){
+				o[o.ad]++;
+				o.px=o[o.ad]
+				o[o.ad]--;
+			}
+			
             o.step = o.it[o.ap] + parseInt(C.CurrentStyle(o.it)[o.am]);
-            setTimeout(function(){//console.log(o)
+            setTimeout(function(){
                 o.om = setInterval(function () { rolls.prototype.roll(o)}, o.p.speed);
         }, o.p.stay);
             
@@ -27,12 +33,14 @@
 roll:function(o){
     if (o.can) {
         o[o.ad]++;
+		/*
        if (o[o.ad] >= o.it[o.ap])
         {
             o[o.ad] -= o.it[o.ap];
-        }
-        o.count++;
+        }*/
+        o.count=o.count+o.px;
     }
+						
     if (o.count >= o.step) {
         o.can = false;
         o.count = 0;

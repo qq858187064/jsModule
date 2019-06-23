@@ -5,7 +5,7 @@
             o.p=C.Pt(o);
             o.it=C.Gs(o,"a")[1];//用来取高度、宽度的样本元素，如果有异常可以传参
             o.can=true;
-			o.n=o.p.n;
+			o.n=o.p.n||1;
             o.count=0;
             if (o.p.dir==1) {
                 o.ad = "scrollTop";

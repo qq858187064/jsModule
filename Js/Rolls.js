@@ -33,7 +33,7 @@
 roll:function(o){
     if (o.can) {
         o[o.ad]++;
-		/*
+		/*这句到底有啥用，有空研究
        if (o[o.ad] >= o.it[o.ap])
         {
             o[o.ad] -= o.it[o.ap];
@@ -44,6 +44,7 @@ roll:function(o){
     if (o.count >= o.step) {
         o.can = false;
         o.count = 0;
+        o[o.ad] = 0;
 		for(var i=0;i<o.n;i++)
 			        o.appendChild(o.firstChild)
         setTimeout(function () { o.can = true; }, o.p.stay);

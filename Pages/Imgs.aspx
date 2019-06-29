@@ -10,7 +10,16 @@
     <dd>
         <!--
 <img src="/Images/Iswa/BnB.jpg" style="width: 422px;position: absolute; width: 488px; height: 222px;  filter: url(#blur);  -webkit-filter: blur(2px); -moz-filter: blur(2px); -ms-filter: blur(2px); filter: blur(2px);opacity: 0.9;" />
-  -->          <div class="sw sw3" id="sw4" p="ef:3,efm:700,ms:5" style="margin-bottom:999px;">
+  --> 
+            <a class="sw sw5" id="sw0" p="ef:1,ms:1,at:2000,tg:'img'">
+            <img src="/Images/Iswa/BnB.jpg" />
+            <img src="/Images/Iswa/BnC.jpg" />
+            <img src="/Images/Iswa/BnD.jpg" />
+            <img src="/Images/Iswa/BnF.jpg" />
+            </a>
+        
+        
+         <div class="sw sw3" id="sw4" p="ef:3,efm:700,ms:5,ls:'p',p:'p'" style="margin-bottom:999px;">
         <a class="pro"></a>
         <p>
             <a><img src="/Images/Iswa/BnB.jpg" /></a><a><img src="/Images/Iswa/BnC.jpg" /></a><a><img src="/Images/Iswa/BnD.jpg" /></a>
@@ -19,7 +28,7 @@
         <a class="nxt"></a>
     </div>
 
-     <div class="sw sw2" id="sw1" p="ef:1,ms:5,at:1000,dir:-1">
+     <div class="sw sw2" id="sw1" p="ef:1,ms:5,at:1000,dir:-1,ls:'p',p:'p'">
         <a class="pro"></a>
         <p>
             <a id="21">1<img src="/Images/Iswa/BnB.jpg" /></a>
@@ -29,7 +38,7 @@
         </p>
         <a class="nxt"></a>
     </div>
-    <div class="sw sw4" id="sw2" p="ef:1,ms:1,at:4000,bn:'cbu'">
+    <div class="sw sw4" id="sw2" p="ef:1,ms:1,at:4000,bn:'cbu',ls:'p'">
         <a class="pro"></a>
         <p>
             <a id="1"><img src="/Images/Iswa/BnB.jpg" /></a>
@@ -40,7 +49,7 @@
         <a class="nxt"></a>
     </div>
     <hr />
-    <div class="sw sw3" id="sw3" p="ef:2,ms:5">
+    <div class="sw sw3" id="sw3" p="ef:2,ms:5,ls:'p'">
         <a class="pro"></a>
         <p>
             <a id="5"><img src="/Images/Iswa/BnB.jpg" /></a>
@@ -99,4 +108,4 @@
     <script src="../Js/sw.js"></script>
 </asp:Content>
 <asp:Content ID="Content7" ContentPlaceHolderID="TabId" runat="server">"M1a","C3aB_1000",</asp:Content>
-<asp:Content ID="ContentRunJs" ContentPlaceHolderID="RunJs" Runat="Server">window.Cm=5;sw("sw1","sw2", "sw3","sw4");</asp:Content>
+<asp:Content ID="ContentRunJs" ContentPlaceHolderID="RunJs" Runat="Server">window.Cm=5;sw("sw0");//,"sw1","sw2", "sw3","sw4"</asp:Content>

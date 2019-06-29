@@ -227,7 +227,7 @@ a.formula {
 <a onclick="()">图</a>-->
 <!-- <div id="ifRTC"></div> -->
 <!-- <iframe id="ifRTC" width="400" height="200" border="1" src="blank.html" ></iframe> -->
-<iframe id="ifRTC"></iframe>
+    <iframe id="ifRTC" name="ifRTC"></iframe>
 <textarea id="ht" cols="50" rows="10" style="display:none"></textarea>
 <br>
 <input type="button" value="+" name="Add" onclick="Add()" />&nbsp;&nbsp;
@@ -301,13 +301,13 @@ function Image()
    var obj = frames['ifRTC'].RTC;
    obj.focus();
    ImagePath = window.prompt('请输入图片路径：', '');
-   exeCommand('InsertImage', ImagePath);
+   document.execCommand('InsertImage', ImagePath);
 }
 
 // 预览效果
 function Preview()
 {
-   var htmlContent = frames['ifRTC'].RTC.innerHTML;
+    var htmlContent = C.G('ifRTC').contentWindow.document.body.innerHTML;
    var open = window.open('');
    open.document.write(htmlContent);
 }

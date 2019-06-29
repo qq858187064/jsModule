@@ -1013,6 +1013,7 @@ dl.Cot dd dl dd dl.Imb
     border: 1px solid #ccc;
     margin: 144px 0 0 0;
 }
+.sw5,
  .sw {
             position: relative;
             width: 360px;
@@ -1020,6 +1021,11 @@ dl.Cot dd dl dd dl.Imb
             margin: 20px auto;
             text-align: center;
         }
+.sw5{
+    display:block;
+    height:180px;
+}
+.sw5,
        .sw p {
                 white-space: nowrap;
                 background: #eee;

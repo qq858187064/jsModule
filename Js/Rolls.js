@@ -2,8 +2,8 @@
 {
     rolls.prototype = {
         Init: function (o) {
-            o.p=C.Pt(o);
-            o.it=C.Gs(o,"a")[1];//用来取高度、宽度的样本元素，如果有异常可以传参
+            o.p = C.Pt(o);
+            o.it = C.Gs(o, (o.p.st||"a"))[1];//用来取高度、宽度的样本元素，如果有异常可以传参
             o.can=true;
 			o.n=o.p.n||1;
             o.count=0;
@@ -20,7 +20,7 @@
             }
 			if(!o.px){
 				o[o.ad]++;
-				o.px=o[o.ad]
+				o.px = o[o.ad];
 				o[o.ad]--;
 			}
 			
@@ -33,14 +33,14 @@
 roll:function(o){
     if (o.can) {
         o[o.ad]++;
-		/*这句到底有啥用，有空研究
+		/*
        if (o[o.ad] >= o.it[o.ap])
         {
             o[o.ad] -= o.it[o.ap];
         }*/
         o.count=o.count+o.px;
     }
-						
+    console.log(o.count,o.step)
     if (o.count >= o.step) {
         o.can = false;
         o.count = 0;

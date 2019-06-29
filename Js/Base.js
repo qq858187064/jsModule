@@ -28,7 +28,14 @@ var C = {
     Ce: function (Tag) {
         return document.createElement(Tag);
     },
-
+    //获取当前用户对象
+    cu: function () {
+        var o = sessionStorage.getItem("u");
+        if (o)
+        {
+             return JSON.parse(o);
+        }
+    },
     /* 获取并返回传入document的body元素 */
     Bd: function (D) {
         var D = D || document;
@@ -909,7 +916,19 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             alert("抱歉!您的浏览器不支持直接设为首页。您可通过浏览器 工具->选项->使用当前页->确定，完成设为首页。");
         }
     },
+    date:function(){
+        var d = new Date;
+        wd = ["日", "一", "二", "三", "四", "五", "六"],
+        y = d.getUTCFullYear(),
+        m = (d.getUTCMonth() + 1),
+        ds = d.getUTCDate(),
+        h = d.getUTCHours(),
+        mt = d.getUTCMinutes(),
+        s = d.getUTCSeconds(),
+        w = wd[d.getDay()];
+        return d;
 
+    },
     /* 获取客户机日期并返回字符串
     传入ID的第一个字符代表不同时区： A:当前时区(北京) +8    B:伦敦 0    C:纽约 -9    D:东京 +9    E:芝加哥 -6
     传入ID的第二个字符代表不同的精确模式：D 精确到日期  W 星期 M为精确到分钟 S为精确到秒的时间

@@ -9,7 +9,11 @@
                 1、从左到右；
                 -1、从右到左；默认值
             at:自动切换属性，其值代表自动切换时间间隔,单位：毫秒；l
-            bn:小圆点标识当前高亮样式名*/
+            bn:小圆点标识当前高亮样式名
+            ls: 指定要从o中获取的标签名，默认为o本身
+            tg:指定标签名，默认为"a"本身
+
+            */
 function sw()
 {
     sw.prototype = {
@@ -23,12 +27,17 @@ function sw()
                 C.AddEvent(o, "mouseover", sw.prototype.ca,o);
                 C.AddEvent(o, "mouseout", sw.prototype.ar,o);
             }
-            o.p = C.Gs(o, "p")[0];
-            o.ls = C.Gs(o.p, "a");
+            o.p = o.pt.ls ? C.Gs(o, o.pt.ls)[0] : o;
+            if (!o.pt.tg)
+            {
+                    o.pt.tg="a"
+            }
+            o.pt.tg ? o.pt.tg : "a"
+            o.ls = C.Gs(o.p,o.pt.tg);
             o.bs = C.Gs(o, "i");
+            console.log(o.p.tagName,o.ls)
 
             o.aw = o.ls[0].offsetWidth;
-
             var cs = C.Gs(o, "a"),
                 len = o.ls.length;
             if (len < 2) return;
@@ -40,8 +49,9 @@ function sw()
                 o.lb = o.bs[o.ci];
                 C.AddClass(o.lb, o.pt.bn);
             }
+            if (o.pre){
             C.AddEvent(o.pre, "click", function () { o.s = -1; sw.prototype.swc(o);});
-            C.AddEvent(o.nxt, "click", function () { o.s = 1; sw.prototype.swc(o); });
+            C.AddEvent(o.nxt, "click", function () { o.s = 1; sw.prototype.swc(o); });}
         },
         ar: function (o) {
             o.tmr = setInterval(function () {if(!document.hidden)sw.prototype.swc(o); }, o.pt.at);
@@ -67,7 +77,7 @@ function sw()
           //o.a = o.ls[o.ci];
           //o.img = C.Gs(o.a, "img")[0];
 
-          o.cls = C.Gs(o.p, "a");
+          o.cls = C.Gs(o.p, o.pt.tg);
           o.cf = o.cls[0];//当前第一个
           o.cl = o.cls[o.cls.length - 1];//当前最后一个
           if (o.pt.bn)

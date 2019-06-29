@@ -105,13 +105,14 @@
         );
             console.log(si.view.src + "_x:" + si.l + "_y:" + si.t);
         }
+        /*
         function UpImg() {
             C.G("ImI").submit();
             hi.onload = function () {
                 console.log(C.Bd(hi.contentWindow.document).firstChild.innerHTML);
                 img.src = C.Bd(hi.contentWindow.document).firstChild.innerHTML;
             };
-        }
+        }*/
 
     </script>
 </asp:Content>

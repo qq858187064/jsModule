@@ -40,13 +40,13 @@ roll:function(o){
         }*/
         o.count=o.count+o.px;
     }
-    console.log(o.count,o.step)
     if (o.count >= o.step) {
         o.can = false;
         o.count = 0;
-        o[o.ad] = 0;
-		for(var i=0;i<o.n;i++)
-			        o.appendChild(o.firstChild)
+        //
+        for (var i = 0; i < o.n; i++)
+            o.appendChild(C.fe(o));
+		o[o.ad] = 0;
         setTimeout(function () { o.can = true; }, o.p.stay);
     }
 }

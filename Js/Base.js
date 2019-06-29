@@ -178,6 +178,17 @@ from: function (t) //t:缺省仅取os，1：只取os，2：os、evn均取
     Nxt: function (Ele) {
         return C.Sbl(Ele, "nextSibling");
     },
+    /* 获取并返回传入元素的第一个标签元素 firstElementChild*/
+    fe: function (p) {
+        var e=p.firstElementChild;
+        if(!e)
+        {
+            e=p.firstChild;
+            if(e.nodeType==3)
+                e=C.Nxt(e);
+        }
+        return e;
+    },
 
     /* 获取并返回传入元素的上一个或下一个非空元素 */
     Sbl: function (Ele, Fn) {

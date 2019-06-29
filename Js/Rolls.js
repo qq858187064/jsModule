@@ -45,7 +45,7 @@ roll:function(o){
         o.count = 0;
         //
         for (var i = 0; i < o.n; i++)
-            o.appendChild(C.fe(o));
+            o.appendChild(C.fe(o, o.p.st));
 		o[o.ad] = 0;
         setTimeout(function () { o.can = true; }, o.p.stay);
     }

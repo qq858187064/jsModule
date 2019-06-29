@@ -178,8 +178,10 @@ from: function (t) //t:缺省仅取os，1：只取os，2：os、evn均取
     Nxt: function (Ele) {
         return C.Sbl(Ele, "nextSibling");
     },
-    /* 获取并返回传入元素的第一个标签元素 firstElementChild*/
-    fe: function (p) {
+    /* 获取并返回传入父元素的第一个标签元素 firstElementChild
+    t为指定的标签名
+    */
+    fe: function (p,t) {
         var e=p.firstElementChild;
         if(!e)
         {
@@ -187,6 +189,9 @@ from: function (t) //t:缺省仅取os，1：只取os，2：os、evn均取
             if(e.nodeType==3)
                 e=C.Nxt(e);
         }
+        while (t && e.tagName.toLowerCase() != t) {
+            e=C.Nxt(e)
+            }
         return e;
     },
 

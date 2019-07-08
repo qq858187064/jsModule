@@ -451,6 +451,7 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             for (var i = 0; i < Ns.length; i++) {
                 var n = Ns[i],
                     o = C.G(n);
+                console.log(o)
 				if(!o.Initialized)
                 Cl.prototype.Init(o);
 				o.initialized=true;
@@ -932,18 +933,27 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             alert("抱歉!您的浏览器不支持直接设为首页。您可通过浏览器 工具->选项->使用当前页->确定，完成设为首页。");
         }
     },
-    date:function(){
+    date:function(p){
         var d = new Date;
         wd = ["日", "一", "二", "三", "四", "五", "六"],
-        y = d.getUTCFullYear(),
-        m = (d.getUTCMonth() + 1),
-        ds = d.getUTCDate(),
-        h = d.getUTCHours(),
-        mt = d.getUTCMinutes(),
-        s = d.getUTCSeconds(),
-        w = wd[d.getDay()];
-        return d;
+        d.y = d.getUTCFullYear(),
+        d.m = (d.getUTCMonth() + 1),
+        d.ds = d.getUTCDate(),
+        d.h = d.getHours(),//getUTCHours
+        d.mt = d.getUTCMinutes(),
+        d.s = d.getUTCSeconds(),
+        d.w = wd[d.ds];
+        if (p == 1)
+            d.r = "{0}年{1}月{2}日".format(d.y, d.m, d.ds);
+        return d;//"{0}{1}{2}{3}{4}{5}{6}".format(o.y + a, o.m + a, o.ds + a, o.h + b, o.mt + b, o.s + b, c + o.w);
 
+    },
+    //获取两个时间间隔,精确到c=1():天、2:时、3:分、4:秒、5:时、6:转换成X天X时X分X秒
+    tmSpan:function(a,b,c)
+    {
+        a = a.replace(/年|月|日/g, '/');
+        b = b.replace(/年|月|日/g, '/');
+       return Math.floor(Math.abs(Date.parse(a)-Date.parse(b))/(24*3600*1000));
     },
     /* 获取客户机日期并返回字符串
     传入ID的第一个字符代表不同时区： A:当前时区(北京) +8    B:伦敦 0    C:纽约 -9    D:东京 +9    E:芝加哥 -6

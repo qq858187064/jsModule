@@ -4,19 +4,33 @@
 2、wx.ready处理处理函数中，调用相应的事件处理函数wx.xxx并传入参数
 3、传入title、desc、link、imgUrl
 */
+
+//import wx from 'weixin-js-sdk'//http://res.wx.qq.com/open/js/jweixin-1.0.0.js
 var config = require('../../../config/sy3.0'),
   apihost = process.env.NODE_ENV === 'production' ? config.api_production : config.api_dev;
+
+
 function cfg(title, desc, link, imgUrl, sign) {
+
+    var arg={title:title,desc:desc,link:link,imgUrl:imgUrl,
+        success: function(res) {},
+        trigger:function(){},//监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。
+        cancel: function() {}
+    };
+
+
+
+
     //type 判断是否需要调用分享的时候监听点击分享与否
     //初始化配置信息
     //wx_config(signPackage.appId, signPackage.timestamp, signPackage.nonceStr, signPackage.signature,);
     wx.config({
-        debug: false, //调试阶段建议开启
-        appId: sign.appId,
-        timestamp: sign.timestamp,
-        nonceStr:sign.nonceStr,
-        signature: sign.signature,
-        jsApiList: [
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: sign.appId,// 必填，公众号的唯一标识
+        timestamp: sign.timestamp,// 必填，生成签名的时间戳
+        nonceStr:sign.nonceStr,// 必填，生成签名的随机串
+        signature: sign.signature,// 必填，签名
+        jsApiList: [// 必填，需要使用的JS接口列表
             "chooseImage",
             "previewImage",
             "uploadImage",
@@ -37,8 +51,7 @@ function cfg(title, desc, link, imgUrl, sign) {
         console.log(JSON.stringify(res));
       }
     });*/
-    var arg={title:title,desc:desc,link:link,imgUrl};
-    console.log(123,arg)
+   
     wx.ready(function() {
         wx.hideMenuItems({
             menuList: ["menuItem:favorite"], // 隐藏微信收藏按钮
@@ -75,33 +88,11 @@ function cfg(title, desc, link, imgUrl, sign) {
                 success: function(res) {}
             });
         }
-        wx.onMenuShareTimeline({ //分享朋友圈
-            title: title, // 分享标题
-            link: link, // 分享链接
-            imgUrl: imgUrl, // 分享图标
-            success: function(res) {
-                // _app.syJsbAlert(res.toString())
-            },
-            trigger:function(){//监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。
-                //app.addShare(type);
-            },
-            cancel: function() {}
-        });
-        wx.onMenuShareAppMessage({ //分享朋友
-            title: title, // 分享标题
-            desc: desc, // 分享描述
-            link: link, // 分享链接
-            imgUrl: imgUrl, // 分享图标
-            type: '', // 分享类型,music、video或link，不填默认为link
-            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-            success: function(res) {
-                // _app.syJsbAlert(res.toString())
-            },
-            trigger:function(){//监听Menu中的按钮点击时触发的方法，该方法仅支持Menu中的相关接口。
-                // app.addShare(type);
-            },
-            cancel: function() {}
-        });
+        wx.onMenuShareTimeline(arg);
+
+        //有这个需求时，要向arg添加
+        //分享朋友特有属性type: '', // 分享类型,music、video或link，不填默认为link dataUrl: 
+        wx.onMenuShareAppMessage(arg);
         wx.onMenuShareQQ({ //分享到QQ
             title: title, // 分享标题
             desc: desc, // 分享描述
@@ -138,4 +129,3 @@ function share(a) {
         cfg(a.title, a.desc, a.link, a.imgUrl, o.content);
     })
 }
-export default share

@@ -1,7 +1,7 @@
-﻿var config = require('../../../config/sy3.0'),
-  apihost = process.env.NODE_ENV === 'production' ? config.api_production : config.api_dev;
+﻿//var config = require('../../../config/sy3.0'),
+ // apihost = process.env.NODE_ENV === 'production' ? config.api_production : config.api_dev;
 
-var wx = {
+var ws = {
     /*登录： 
     0、判断用户是否登录、token是否有效，如果在微信环境，且未登录或token失效
 1、用户同意授权，获取code
@@ -213,60 +213,22 @@ var wx = {
                     success: function (res) { }
                 });
             }
+            /*
             if (location.pathname.indexOf('mine') !== -1 && type.type != 3) {//判断是否是 个人中心页面 yzy 2018/12/10
                 console.log("隐藏了")
                 wx.hideAllNonBaseMenuItem();//隐藏所有非基础按钮接口yzy 2018/12/10
                 wx.hideMenuItems({
-                    /*  发送给朋友: "menuItem:share:appMessage"
-                        分享到朋友圈: "menuItem:share:timeline"
-                        分享到QQ: "menuItem:share:qq"
-                        分享到Weibo: "menuItem:share:weiboApp"
-                        收藏: "menuItem:favorite"
-                        分享到FB: "menuItem:share:facebook"
-                        分享到 QQ 空间/menuItem:share:QZone
-                        编辑标签: "menuItem:editTag"
-                        删除: "menuItem:delete"
-                        复制链接: "menuItem:copyUrl"
-                        原网页: "menuItem:originPage"
-                        阅读模式: "menuItem:readMode"
-                        在QQ浏览器中打开: "menuItem:openWithQQBrowser"
-                        在Safari中打开: "menuItem:openWithSafari"
-                        邮件: "menuItem:share:email"
-                        一些特殊公众号: "menuItem:share:brand"
-                     */
                     menuList: ["menuItem:readMode", "menuItem:openWithSafari", "menuItem:openWithQQBrowser", "menuItem:share:email", "menuItem:share:brand", "menuItem:share:appMessage", "menuItem:share:timeline", "menuItem:share:qq", "menuItem:share:weiboApp", "menuItem:favorite", "menuItem:share:facebook", "menuItem:share:QZone"], // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
                     success: function (res) { }
                 });
-            }
+            }*/
             wx.onMenuShareTimeline(arg);
 
             //有这个需求时，要向arg添加
             //分享朋友特有属性type: '', // 分享类型,music、video或link，不填默认为link dataUrl: 
             wx.onMenuShareAppMessage(arg);
-            wx.onMenuShareQQ({ //分享到QQ
-                title: title, // 分享标题
-                desc: desc, // 分享描述
-                link: link, // 分享链接
-                imgUrl: imgUrl, // 分享图标
-                success: function (res) {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function () {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
-            wx.onMenuShareQZone({ //分享到QQ空间
-                title: title, // 分享标题
-                desc: desc, // 分享描述
-                link: link, // 分享链接
-                imgUrl: imgUrl, // 分享图标
-                success: function (res) {
-                    // 用户确认分享后执行的回调函数
-                },
-                cancel: function () {
-                    // 用户取消分享后执行的回调函数
-                }
-            });
+            wx.onMenuShareQQ(arg);
+            wx.onMenuShareQZone(arg);
 
         });
         wx.error(function (res) {
@@ -274,11 +236,13 @@ var wx = {
         })
     },
     share: function (a) {
-        C.ajax('get', '/wx/sign?url=' + encodeURIComponent(window.location.href), null, function (o) {
+       
+        C.ajax("get", "/wx/sign", null, function (o) {//?url=' + encodeURIComponent(window.location.href
             o = JSON.parse(o);
-            cfg(a.title, a.desc, a.link, a.imgUrl, o)
-            //cfg(a.title, a.desc, a.link, a.imgUrl, o.content);
-        })
+            ws.cfg(a.title, a.desc, a.link, a.imgUrl, o);
+        });
+
+        
         /*支付： */
     }
 }

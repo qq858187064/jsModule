@@ -90,7 +90,8 @@
                 o.box.fd = true;
             }
             var bd = C.Bd(),//document.documentElement,//
-                         st = document.documentElement.scrollTop || C.Bd().scrollTop;//bd.scrollTop;// 
+                         st = document.documentElement.scrollTop || bd.scrollTop,//bd.scrollTop;// 
+                         bl=window.getComputedStyle(bd, null).marginLeft;
 
             if (!o.w)
                 o.w = o.box.offsetWidth;
@@ -100,12 +101,8 @@
             o.box.style.height = o.h != 0 ? o.h + "px" : "auto";
            /* o.box.style.height = o.h != 0 ? (window.devicePixelRatio && window.devicePixelRatio > 1 ? o.h * window.devicePixelRatio : o.h)
     + "px" : "auto";*/
-
-
-
-
             o.box.style.top = (bd.clientHeight - o.h) / 2 + st+ "px";/*50是滚动条上下部分高度？*/
-            o.box.style.left = (bd.offsetWidth - o.w) / 2 + "px";
+            o.box.style.left = (bd.offsetWidth - o.w) / 2 +parseInt(bl)+"px";
             if (o.box.bg) {
                 o.box.bg.style.height = bd.scrollHeight + "px";
                 o.box.bg.style.left = 0;

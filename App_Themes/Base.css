@@ -18,7 +18,6 @@ body {
 	margin:0 auto;
 	font:400 14px/2 '微软雅黑',Verdana;
 	text-align:left;
-	
 	overflow: visible;
     /*
         position: relative;为了让弹出框全屏，但可能引起其它问题

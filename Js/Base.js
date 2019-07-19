@@ -462,8 +462,9 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
     },
 
     /* 获取传入元素的当前样式对象 */
-    CurrentStyle: function (element) {
-        return element.currentStyle || document.defaultView.getComputedStyle(element, null);
+    style: function (o) {
+        return document.defaultView.getComputedStyle(o) || o.currentStyle;
+        //return getComputedStyle(o) || o.currentStyle;
     },
 
     AttrStyle: function (Elem, Attr) {
@@ -771,7 +772,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         }
         return XHR;
     },
-
     /* 执行异步请求 暂未加入formdata异步上传文件*/
     EXHR: function (CallBack, Method, Url, Data, Proc, Async) {
         //console.log(arguments.callee.caller)
@@ -948,12 +948,19 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         return d;//"{0}{1}{2}{3}{4}{5}{6}".format(o.y + a, o.m + a, o.ds + a, o.h + b, o.mt + b, o.s + b, c + o.w);
 
     },
-    //获取两个时间间隔,精确到c=1():天、2:时、3:分、4:秒、5:时、6:转换成X天X时X分X秒
+    /*将时间字符串转成date对象*/
+    dateParse: function (s) {
+        if(s){
+        s = s.replace(/年|月|日/g, '/');
+        return new Date(s);
+    }
+    },
+    //获取两个时间间隔,精确到c=0:年、1:天、2:时、3:分、4:秒、5:时、6:转换成X天X时X分X秒
     tmSpan:function(a,b,c)
     {
-        a = a.replace(/年|月|日/g, '/');
-        b = b.replace(/年|月|日/g, '/');
-       return Math.floor(Math.abs(Date.parse(a)-Date.parse(b))/(24*3600*1000));
+        a = C.dateParse(a);
+        b = C.dateParse(b);
+        return Math.floor(Math.abs(Date.parse(a)-Date.parse(b))/(24*3600*1000));
     },
     /* 获取客户机日期并返回字符串
     传入ID的第一个字符代表不同时区： A:当前时区(北京) +8    B:伦敦 0    C:纽约 -9    D:东京 +9    E:芝加哥 -6

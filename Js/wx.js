@@ -236,13 +236,10 @@ var ws = {
         })
     },
     share: function (a) {
-       
-        C.ajax("get", "/wx/sign", null, function (o) {//?url=' + encodeURIComponent(window.location.href
+        C.ajax('get', apihost + '/user-center/wxApi/share?url=' + encodeURIComponent(window.location.href), null, function (o) {
             o = JSON.parse(o);
-            ws.cfg(a.title, a.desc, a.link, a.imgUrl, o);
+            cfg(a.title, a.desc, a.link, a.imgUrl, o.content);
         });
-
-        
         /*支付： */
     }
 }

@@ -24,7 +24,7 @@
 				o[o.ad]--;
 			}
 			
-            o.step = o.it[o.ap] + parseInt(C.CurrentStyle(o.it)[o.am]);
+			o.step = o.it[o.ap] + parseInt(C.style(o.it)[o.am]);
             setTimeout(function(){
                 o.om = setInterval(function () { rolls.prototype.roll(o)}, o.p.speed);
         }, o.p.stay);

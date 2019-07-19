@@ -8,7 +8,7 @@
         o.style.left = dl;
         if (o.bg)
             o.bg.style.left = dl;
-        html.style.overflow = "";////允许滚动
+        //html.style.overflow = "";////允许滚动
     };
     pop.r = C.G("rpt");
 
@@ -62,7 +62,7 @@
         },
         pop: function (o)//此o是带有p属性的元素，是弹出元素box或触发元素o.t
         {
-            html.style.overflow = "hidden";//禁止滚动
+            //html.style.overflow = "hidden";//禁止滚动
             if (o.box.fd && o.box.ct && o.box.ct != o.ct) {
                 o.box.ct.prt.appendChild(o.box.ct);
             }
@@ -91,7 +91,7 @@
             }
             var bd = C.Bd(),//document.documentElement,//
                          st = document.documentElement.scrollTop || bd.scrollTop,//bd.scrollTop;// 
-                         bl=window.getComputedStyle(bd, null).marginLeft;
+                         bl = C.style(bd).marginLeft;
 
             if (!o.w)
                 o.w = o.box.offsetWidth;

@@ -16,9 +16,9 @@ function Drags() {
         Init: function (o) {
             //o.ml = o.mt = 0;
             //元素边框宽度
-            o.bw = parseInt(C.CurrentStyle(o).borderWidth);
-            o.ml = parseInt(C.CurrentStyle(o).marginLeft);//+o.bw;
-            o.mt = parseInt(C.CurrentStyle(o).marginTop);//+o.bw;
+            o.bw = parseInt(C.style(o).borderWidth);
+            o.ml = parseInt(C.style(o).marginLeft);//+o.bw;
+            o.mt = parseInt(C.style(o).marginTop);//+o.bw;
             //计算相对于范围元素(图片亦是其父元素)绝对定位的左、上位置
             o.l = o.offsetLeft - o.ml;
             o.t = o.offsetTop - o.mt;

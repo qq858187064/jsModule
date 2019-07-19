@@ -19,8 +19,9 @@ body {
 	font:400 14px/2 '微软雅黑',Verdana;
 	text-align:left;
 	overflow: visible;
+    position: relative;
     /*
-        position: relative;为了让弹出框全屏，但可能引起其它问题
+        position: relative;//为了让弹出框全屏，但可能引起其它问题
         overflow-y: scroll;
   overflow: hidden scroll;*/
   
@@ -81,6 +82,7 @@ a:hover{
 	background:url(http://hs.cnfol.com/Cm/Imgs/Load.gif) no-repeat center center;
 	position:relative
 }
+.cm,
 .trsho a:hover,
 a.trsho:hover,
 .trs8{

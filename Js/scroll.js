@@ -1,7 +1,5 @@
-﻿
-/*
+﻿/*
 滚动事件处理函数
-
 */
 //o vue实例 
 //scrollId 推荐外层元素id
@@ -10,59 +8,36 @@
 /**/
 function scroll()
 {
-    scroll.prototype = {
-        Init: function (o)
+    var a = arguments,
+        r = C.Bd();
+    window.onscroll = function () {
+        var st = r.scrollTop || document.documentElement.scrollTop;
+        for (var i = 0; i < a.length; i++)
         {
-            var r = C.Bd(),
-              vh = r.clientHeight,
-              p = C.Pt(o);
-
-            if (C.clsNm(o).indexOf(p.cls)==-1)
-            window.onscroll = function () {
-
-                var st = r.scrollTop || document.documentElement.scrollTop;
-                console.log("st", st)
-                if (st > p.t && C.clsNm(o) != p.cls) {
-                    C.AddClass(o, p.cls);
-                    if (p.cb)
-                        p.cb(o);
-
-
-
-                    console.log(78978978978978)
-                }
-                else
-                    return;
-               
-
-
-
-
-                // this.handleScroll();
-                return function () {
-                    var st = r.scrollTop || document.documentElement.scrollTop;
-                    console.log("st",st)
-                    if (st > p.t && C.clsNm(o) != p.cls)
-                    {
-                        C.AddClass(o, p.cls);
-                        if (p.cb)
-                            p.cb(o);
-
-
-
-                        console.log(78978978978978)
-                    }
-                        
-
-                        /*
-                    o.showTop = o.offsetHeight > 0 && o.offsetTop - vh < st - 400
-                    var btm = vh + st + height > r.scrollHeight;
-                    if (btm) {
-
-                    }*/
-                }
-            }//();
+            var o = C.G(a[i]),
+                p = C.Pt(o);
+            if (!o.f && st > o.ps.t)//&& C.clsNm(o).indexOf(p.cls)==-1
+            {
+                console.log("if:", st < o.ps.t)
+                //C.AddClass(o, p.cls);class好像实现不了
+                // if (p.cb)
+                //   p.cb(o);
+                o.style.left = o.offsetLeft + parseInt(C.style(C.Bd()).marginLeft) + "px";
+                o.style.marginLeft = 0;
+                o.style.top = o.offsetTop + "px";
+                o.style.width = o.offsetWidth + "px";
+                o.style.position = "fixed";
+                o.f = 1;
+               // console.log(st > p.t && C.clsNm(o) != p.cls, "st:", st, "p.t:", p.t, C.clsNm(o), p.cls)
+            }
+            else if (o.f && st <= o.ps.t)
+            {
+                console.log("else:",st < p.t)
+                o.style =o.f= 0;
+            }/**/
         }
+        // else
+        // C.DelClass(o, p.cls);
+        //return;
     }
-    C.Batch(scroll, arguments);
 }

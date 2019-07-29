@@ -451,7 +451,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             for (var i = 0; i < Ns.length; i++) {
                 var n = Ns[i],
                     o = C.G(n);
-                console.log(o)
 				if(!o.Initialized)
                 Cl.prototype.Init(o);
 				o.initialized=true;
@@ -460,7 +459,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             Cl.Initialized = true;
         }*/
     },
-
     /* 获取传入元素的当前样式对象 */
     style: function (o) {
         return document.defaultView.getComputedStyle(o) || o.currentStyle;

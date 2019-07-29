@@ -33,7 +33,7 @@
                 o.cls = C.G(o.cls);
                 C.AddEvent(o.cls, "click", pop.close);
             }
-            //触发元素
+            //指定的触发元素
             if (!o.t)
             {
                 o.t = o;
@@ -60,8 +60,9 @@
                 }
             }
         },
-        pop: function (o)//此o是带有p属性的元素，是弹出元素box或触发元素o.t
+        pop: function (o,e)//此o是带有p属性的元素，是弹出元素box或触发元素o.t
         {
+            //o.et = C.Ge(e);//真正的触发元素
             //html.style.overflow = "hidden";//禁止滚动
             if (o.box.fd && o.box.ct && o.box.ct != o.ct) {
                 o.box.ct.prt.appendChild(o.box.ct);
@@ -101,7 +102,8 @@
             o.box.style.height = o.h != 0 ? o.h + "px" : "auto";
            /* o.box.style.height = o.h != 0 ? (window.devicePixelRatio && window.devicePixelRatio > 1 ? o.h * window.devicePixelRatio : o.h)
     + "px" : "auto";*/
-            o.box.style.top = (bd.clientHeight - o.h) / 2 + st+ "px";/*50是滚动条上下部分高度？*/
+            //o.box.style.top = (bd.clientHeight - o.h) / 2 + st/2+ "px";/*50是滚动条上下部分高度？*/
+            o.box.style.top = (bd.clientHeight - o.box.offsetHeight)/ 2 + "px";/*50是滚动条上下部分高度？*/
             o.box.style.left = (bd.offsetWidth - o.w) / 2 +parseInt(bl)+"px";
             if (o.box.bg) {
                 o.box.bg.style.height = bd.scrollHeight + "px";

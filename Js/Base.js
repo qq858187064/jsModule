@@ -931,20 +931,21 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             alert("抱歉!您的浏览器不支持直接设为首页。您可通过浏览器 工具->选项->使用当前页->确定，完成设为首页。");
         }
     },
-    date:function(p){
-        var d = new Date;
-        wd = ["日", "一", "二", "三", "四", "五", "六"],
-        d.y = d.getUTCFullYear(),
-        d.m = (d.getUTCMonth() + 1),
-        d.ds = d.getUTCDate(),
-        d.h = d.getHours(),//getUTCHours
-        d.mt = d.getUTCMinutes(),
-        d.s = d.getUTCSeconds(),
-        d.w = wd[d.ds];
+    /*
+     p为格式化日期参数：1：XXXX年X月X日
+     */
+    date: function (p) {
+        var d = new Date();
+        d.y = d.getUTCFullYear();
+        d.m = (d.getUTCMonth() + 1);
+        d.ds = d.getUTCDate();
+        d.h = d.getHours();//getUTCHours
+        d.mt = d.getUTCMinutes();
+        d.s = d.getUTCSeconds();
+        d.w = ["日", "一", "二", "三", "四", "五", "六"][d.ds];
         if (p == 1)
             d.r = "{0}年{1}月{2}日".format(d.y, d.m, d.ds);
         return d;//"{0}{1}{2}{3}{4}{5}{6}".format(o.y + a, o.m + a, o.ds + a, o.h + b, o.mt + b, o.s + b, c + o.w);
-
     },
     /*将时间字符串转成date对象*/
     dateParse: function (s) {
@@ -1080,8 +1081,23 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         }
         return o;
 		}
-
-    }
+    },
+    /* 设置get请求参数，返回相对路径*/
+    setParam: function (k, v, p) {
+        var p = p || location.pathname + location.search,
+          s = p.indexOf('?') > -1 ? '&' : '?',
+          i = p.indexOf(k);
+        if (i > -1) {
+            var o = p.substring(i),
+            e = o.indexOf("&"),
+            n = o.substring(o.indexOf("=") + 1, e == -1 ? o.length : e);
+            p = p.replace(n, v)
+            // p.replace(i,v)
+        }
+        else
+            p = p + s + k + '=' + v;
+        return p;
+    },
 };
 Function.prototype.Method = function (Nm, Fun) {
     if (!this.prototype[Nm]) {

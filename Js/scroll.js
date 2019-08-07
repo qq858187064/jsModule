@@ -22,7 +22,7 @@ function scroll()
                 //C.AddClass(o, p.cls);class好像实现不了
                 // if (p.cb)
                 //   p.cb(o);
-                o.style.left = o.offsetLeft + parseInt(C.style(C.Bd()).marginLeft) + "px";
+                o.style.left = o.offsetLeft + parseInt(C.style(r).marginLeft) + "px";
                 o.style.marginLeft = 0;
                 o.style.top = o.offsetTop + "px";
                 o.style.width = o.offsetWidth + "px";

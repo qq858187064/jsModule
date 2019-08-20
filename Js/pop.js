@@ -9,6 +9,8 @@
         if (o.bg)
             o.bg.style.left = dl;
         //html.style.overflow = "";////允许滚动
+        pop.ps.pop();
+        pop.co = pop.ps[pop.ps.length - 1];
     };
     pop.r = C.G("rpt");
 
@@ -41,7 +43,7 @@
             }
             //if (o.tit != 0)
               //  o.box.tit = o.box.firstChild; 
-            if (o.ct) {
+            if (o.ct){
                 o.box.ct = o.ct;
                 o.box.ct.nxt = C.Nxt(C.G(o.ct));
                 o.box.ct.prt = o.ct.parentNode;
@@ -111,7 +113,10 @@
             }
             if (!o.url && o.fc)/*异步请求的fc无效，因innerHTML赋值方式*/
                 C.G(o.fc).focus();
-            pop.co = o.box;//用于关闭或其它组件中引用
+            pop.ps = pop.ps || [];
+            pop.ps.push(o.box)
+            pop.co = pop.ps[pop.ps.length - 1];//用于关闭或其它组件中引用
+
         }
     }
     pop.pop = pop.prototype.pop;

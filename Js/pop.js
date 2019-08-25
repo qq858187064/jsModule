@@ -6,7 +6,7 @@
         if (!(o && o.nodeType && o.nodeType == 1))
             o = pop.co;
         o.style.left = dl;
-        if (o.bg)
+        if (o.bg && pop.ps.length<2)
             o.bg.style.left = dl;
         //html.style.overflow = "";////允许滚动
         pop.ps.pop();
@@ -104,8 +104,8 @@
             o.box.style.height = o.h != 0 ? o.h + "px" : "auto";
            /* o.box.style.height = o.h != 0 ? (window.devicePixelRatio && window.devicePixelRatio > 1 ? o.h * window.devicePixelRatio : o.h)
     + "px" : "auto";*/
-            //o.box.style.top = (bd.clientHeight - o.h) / 2 + st/2+ "px";/*50是滚动条上下部分高度？*/
-            o.box.style.top = (bd.clientHeight - o.box.offsetHeight)/2 + "px";/*50是滚动条上下部分高度？*/
+            o.box.style.top = (o.ps.top == undefined ? (bd.clientHeight - o.h) / 2 : o.ps.top )+ "px";/*50是滚动条上下部分高度？*/
+           // o.box.style.top = (bd.clientHeight - o.box.offsetHeight)/2 + "px";/*50是滚动条上下部分高度？*/
             o.box.style.left = (bd.offsetWidth - o.w) / 2 +parseInt(bl)+"px";
             if (o.box.bg) {
                 o.box.bg.style.height = bd.scrollHeight + "px";

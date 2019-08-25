@@ -18,7 +18,7 @@ function scroll()
                 p = C.Pt(o);
             if (!o.f && st > o.ps.t)//&& C.clsNm(o).indexOf(p.cls)==-1
             {
-                console.log("if:", st < o.ps.t)
+                console.log("if:", o)
                 //C.AddClass(o, p.cls);class好像实现不了
                 // if (p.cb)
                 //   p.cb(o);

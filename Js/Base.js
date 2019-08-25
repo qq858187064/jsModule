@@ -1,5 +1,16 @@
 ﻿/*
 调用组件用new，this指向组件本身，不用new时指向window
+function base(){
+base.prototype={
+init(){
+    console.log('base.prototype.init')
+}
+}
+}
+console.log(typeof module === "object" && typeof module.exports === "object")
+if (typeof module === "object" && typeof module.exports === "object") {
+    module.exports =base
+}
 */
 var C = {
     Slice: Array.prototype.slice,
@@ -7,14 +18,14 @@ var C = {
     isArr: function (o) {
         return Object.prototype.toString.apply(o) === '[object Array]';
     },
-	/*arr.push.apply(arr,C.Gn(nm));
+    /*arr.push.apply(arr,C.Gn(nm));
 	sliceC考虑用数组对象arr的push方法取代
 	*/
     sliceC: function (arr) {
         var a = [];
-		a.push.apply(a,arr);
+        a.push.apply(a,arr);
         // for (var i = 0; i < arr.length; i++) {
-            // a.push(arr[i]);
+        // a.push(arr[i]);
         // }
         return a;
     },
@@ -33,7 +44,7 @@ var C = {
         var o = sessionStorage.getItem("u");
         if (o)
         {
-             return JSON.parse(o);
+            return JSON.parse(o);
         }
     },
     /* 获取并返回传入document的body元素 */
@@ -90,44 +101,62 @@ var C = {
         }
         return Arr;
     },
-	/*兼容获取传入元素的className*/
-	clsNm:function(o){
-		return o.getAttribute("class") || o.getAttribute("className")
-	},
-/* 浏览器是否为IE,且版本为IE8或以下 */
-ie8:function ()
-{
-return navigator.appName=="Microsoft Internet Explorer"&&parseFloat(navigator.appVersion)<5
-},
-from: function (t) //t:缺省仅取os，1：只取os，2：os、evn均取
-{
-    var r = {
-        os: 0,
-        env: 0
+    /*兼容获取传入元素的className*/
+    clsNm:function(o){
+        return o.getAttribute("class") || o.getAttribute("className")
     },
-    ua = navigator.userAgent,
-     reg = /(sy[ab])(\d+)[_](\w{32})?/,//该规则与移动组约定
-     ar = ua.match(reg);
-    if (ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1) {
-        r.os = 1;
-    } else if (!!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) //可以再细分：iPhone|iPad|iPod|iOS
+    /* 浏览器是否为IE,且版本为IE8或以下 */
+    ie8:function ()
     {
-        r.os = 2;
-    }
-    if (ua.match(/micromessenger/i)) {
-        r.env = 1;
-    }
-    else if (window.__wxjs_environment === 'miniprogram') {
-        r.env = 2;
-        //非微信，后面扩展
-    }
-    else if (ar)//老版本不包含该ua标识，须调取appInfo判断app内
+        return navigator.appName=="Microsoft Internet Explorer"&&parseFloat(navigator.appVersion)<5
+    },
+
+    /*请求源
+        iPhone|iPad|iPod|iOS|
+        系统
+        os:0、未知；1、android；2、ios:
+        h5所在环境
+        env:0、未知；1、微信；2、小程序；3、app；
+        */
+    from: function (t) //t:缺省仅取os，1：只取os，2：os、evn均取
     {
-        r.env = 3;
-        r.appua = ar;//app中自定义的ua信息数据；1:sya/syb代表android/ios,2:build码，3:token
-    }
-    return r;
-},
+        if (C.from.r) return C.from.r;
+        var r = {
+            os: 0,
+            env: 0
+        },
+          ua = navigator.userAgent,
+          reg = /(sy[ab])(\d+)[_](\w{32})?/,//该规则与移动组约定
+          ar = ua.match(reg);
+        if (ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1) {
+            r.os = 1;
+        } else if (!!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) //可以再细分：iPhone|iPad|iPod|iOS
+        {
+            r.os = 2;
+        }
+        if (window.__wxjs_environment === 'miniprogram' || /miniProgram/i.test(ua)) {
+            r.env = 2;
+        }
+        else if (ua.match(/micromessenger/i)) {
+            r.env = 1;
+            //非微信，后面扩展
+        }
+            /*env是环境，非来源，不应在此处，个性化处理不应该在公用文件内，且项目中未使用 qin190226
+            else if(this.param('loginFrom') === 'gygw' || window.sessionStorage.getItem('gygw_login_code')){
+              r.env = 5
+            }*/
+        else if (ar)//新版app中自定义的ua信息数据；1:sya/syb代表android/ios,2:build码，3:token
+        {
+            r.env = 3;
+            r.appua = C.sliceC(ar);
+            //console.log(r.appua[2])
+            //r.appua =JSON.parse(ar);
+        }
+        else//老版本不包含该ua标识，须调取appInfo判断app内
+            r.toapp = 1
+        C.env = r.env;
+        return r;
+    },
     /* 获取并选回radio选定的元素     */
     radio: function (nm) {
         var es = C.Gn(nm);
@@ -1027,29 +1056,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         }
         setTimeout(function () { C.sDate() }, 1000);
     },
-    /* 显示百度广告 */
-    Bdo: function () {
-        var Baw = C.G("Bas"),
-        Args = arguments;
-        for (var i = 0; i < Args.length; i++) {
-            BAIDU_CLB_fillSlot(arguments[i]);
-        }
-        //Baw.id += Math.random().toString().replace(".", "");
-        window.setTimeout(function () {
-            var Bad = C.Gs(Baw, "div");
-            for (var j = 0; j < Args.length; j++) {
-                var Win = C.G("baidu_clb_slot_iframe_" + Args[j]);
-                if (Win != null) {
-
-                    //tn = "a" || "object" || "embed",
-                    var Ad = Win.contentWindow.document.getElementsByTagName("a")[0] || Win.contentWindow.document.getElementsByTagName("object")[0] || Win.contentWindow.document.getElementsByTagName("embed")[0];
-                    if (!Ad) { continue; }
-                    C.G(Bad[j].id.substring(15)).innerHTML = Ad.parentNode.innerHTML;
-                }
-            }
-            //Baw.parentNode.removeChild(Baw);
-        }, 2400);
-    },
     Contain: function (a, b) {
         //console.log(a.compareDocumentPosition(b));
         return a.contains ? a != b && a.contains(b) : a.compareDocumentPosition(b) == 16//!!(a.compareDocumentPosition(b) & 16);
@@ -1099,6 +1105,7 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         return p;
     },
 };
+C["env"]=  C.env||C.from().env;
 Function.prototype.Method = function (Nm, Fun) {
     if (!this.prototype[Nm]) {
         this.prototype[Nm] = Fun;

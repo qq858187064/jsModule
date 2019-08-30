@@ -29,6 +29,12 @@
     }, "GET", "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxaf138c03b8df658d&secret=1fa324ab7d87be1bf98b6606446d2101")
       
     C.EXHR(function (o) {
+    /*
+    o:
+    {"ticket":"gQH47joAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2taZ2Z3TVRtNzJXV1Brb3ZhYmJJAAIEZ23sUwMEmm
+3sUw==","expire_seconds":60,"url":"http://weixin.qq.com/q/kZgfwMTm72WWPkovabbI"}
+    src=https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=TICKET
+    */
         console.log(o)
     }, "POST", "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token="+accessToken,
     {"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": 123}}}

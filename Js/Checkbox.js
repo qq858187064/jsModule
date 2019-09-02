@@ -4,7 +4,7 @@
         Init: function (o)
         {
                 var o = C.G(o);
-                o.Cs = C.Gs(o, "input", true);
+                o.Cs = C.Gs(o, "input", true);//此处有漏洞，应该按name
                 o.rcs = [];
                 o.fn = C.Attr(o, "fn");/*再扩展属性加入p,指定name更合理*/
                 var fn = o.fn ? true : false;
@@ -24,6 +24,7 @@
                         break;
                 }
                 C.AddEvent(o.Itr, "click", this.Ca, o);
+
                 for(var i=0;i<o.Cs.length;i++)
                 {
                     var ck = o.Cs[i];
@@ -32,7 +33,8 @@
                        o.rcs.push(ck);
                         C.AddEvent(ck, "change", this.Refle, o);
                         if (fn)
-                            C.AddEvent(ck, "change", function(a) { window[o.fn](a); }, ck)
+                            C.AddEvent(ck, "change", window[o.fn], ck);
+                        // C.AddEvent(ck, "change", function (a) { window[o.fn](a); }, ck)
                     }
                 }
                 o.Cs=o.rcs;

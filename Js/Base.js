@@ -34,7 +34,6 @@ var C = {
     G: function (Id) {
         return typeof (Id) == "string" ? document.getElementById(Id) : Id;
     },
-
     /*创建并返回传入标签名的元素 */
     Ce: function (Tag) {
         return document.createElement(Tag);
@@ -46,13 +45,27 @@ var C = {
         {
             return JSON.parse(o);
         }
+        else
+            console.log("sessionStorage中不含key为u的对象")
     },
     /* 获取并返回传入document的body元素 */
-    Bd: function (D) {
-        var D = D || document;
-        return C.Gs(D.documentElement, "body")[0];
+    Bd: function (d) {
+        var d = d || document;
+        if(!d.body)
+        d.body=C.Gs(d.documentElement, "body")[0]
+        return d.body;
     },
-
+    natural: function (img, cb) {
+            if (img.naturalWidth)
+                cb({w:img.naturalWidth,h:img.naturalHeight});//这里可同步获取，故可以不用cb
+           else { // IE6/7/8
+                var ti = new Image();
+                ti.onload = function () {
+                    cb({ w: ti.width, h: ti.height });
+                }
+                ti.src = img.src;
+            }
+    },
     /* 获取并返回传入Name的集合对象*/
     Gn: function (Nm, Tg) {
         var a = document.getElementsByName(Nm);

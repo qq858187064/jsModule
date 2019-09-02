@@ -85,7 +85,7 @@
                     o.box.innerHTML += t;
                     C.exjs(t);
                     o.box.url = o.url;
-                }, "GET", o.url);
+                }, o.p.d?"POST": "GET", o.url,o.p.d);
             }
             else if (o.ct) {
                 o.box.appendChild(o.ct);

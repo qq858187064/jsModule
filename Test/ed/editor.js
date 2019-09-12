@@ -101,7 +101,7 @@ function editor() {
                 }
             }
         },
-        insertText: function (el, value) {//在光标后插入文本
+        insertText: function (el, value){//在光标后插入文本
             var selectRange;
             if (document.selection) {
                 // IE Support

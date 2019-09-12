@@ -123,7 +123,18 @@ var C = {
     {
         return navigator.appName=="Microsoft Internet Explorer"&&parseFloat(navigator.appVersion)<5
     },
-
+    /*全局rt
+    弹出全局提示框,约定html中已定义了id为rt的元素
+    t:弹出文本，s:弹出s(秒)
+    */
+    rt:function (t, s) {
+        if (!s) s = 3;//默认弹出三秒后关闭
+        if (!rt) rt = C.G("rt");
+        if (!t) t = "操作成功";
+        rt.innerText = t;
+        rt.style.display = "block";
+        setTimeout(function () {rt.style.display = "none"; }, s*1000);
+    },
     /*请求源
         iPhone|iPad|iPod|iOS|
         系统

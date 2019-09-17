@@ -45,8 +45,12 @@ var C = {
         {
             return JSON.parse(o);
         }
-        else
-            console.log("sessionStorage中不含key为u的对象")
+            /*
+        else if(location.pathname!="/login")
+        {
+            console.log("sessionStorage中不含key为u的对象");
+            lgb.click();
+        }*/
     },
     /* 获取并返回传入document的body元素 */
     Bd: function (d) {
@@ -88,7 +92,7 @@ var C = {
     },
     /* 获取并返回传入对象和传入标签子元素的数组 */
     Gs: function (prt, tg, Progeny) {
-        var prt = typeof (prt) == "string" ? C.G(prt) : prt,
+        var prt = typeof prt == "string" ? C.G(prt) : prt,
 		         Childs = new Array(),
 		         Ds = prt.getElementsByTagName(tg),
                  Progeny = !Progeny ? false : true;
@@ -456,6 +460,27 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
             setTimeout(function () { C.Show(Id) }, 0);
         }
     },
+
+/*遍历二维数组
+arr:二维数组；fa(a,i)：一维元素处理函数,a是回归的一维元素，i是a的索引，fb：二维元素处理函数
+*/
+    each:function(arr, fa, fb) {
+    for (var i = 0; i < arr.length; i++) {
+        var a= arr[i];
+        //ar.i=i;
+        fa(a, i);
+        if(fb)
+        for (var j = 0; j < a.length; j++) {
+            //var a = ar[j];
+            //a.pi = i;
+            //console.log('a.pi',a.pi)
+            //a.i = j;
+                fb(a[j], j, i);
+
+        }
+
+    }
+},
     /* 用该方法调用函数的原型初始化方法Init，批处理该方法调用函数的实参对象 */
     /* 用该方法调用函数的原型初始化方法Init，批处理该方法调用函数的实参对象
     es6严格模式禁用了caller和arguments,可显式传入Cl,arg

@@ -6,20 +6,24 @@ qin 20190722
   存储介质可根据情况切换：cookie、storage.......暂时使用storage
   */
 var stor = {
-    s: {},
-    get: function (k) {
-        var o = localStorage.getItem(k),
-        i=this.s[k];
-        if (i && (!i.e||i.e >= Date.now() / 1000)) {
-            return o;
+    get: function (k)
+    {
+        var o = JSON.parse(localStorage.getItem(k));
+        if (o) {
+            /*如果未设置有效期，或未过期，则返回对应的对象*/
+            if (!o.e || o.e >= Date.now() / 1000)
+                return o.v;
+            else
+                this.del(k);
         }
-        else
-            this.del(k);
     },
     //增、改
     set: function (k, v, e) {
-        localStorage.setItem(k, v);
-        stor.s[k] = { v: v, e: Date.now() / 1000 + e * 60 }
+        //stor.s[k] = { v: v, e: Date.now() / 1000 + e * 60 };
+        var o = { v: v };
+        if (e)
+            o.e=Date.now() / 1000 + e * 60
+        localStorage.setItem(k, JSON.stringify(o));
     },
     //删
     del: function (k) {

@@ -7,6 +7,7 @@ function slide() {
             C.Pt(o);
             o.style.width = o.ps.w + "px";
             o.style.height = o.ps.h + "px";
+            console.log(o.ps)
         },
         /*预览*/
         clip: function (i) {

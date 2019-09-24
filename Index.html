@@ -291,15 +291,14 @@ body{
 }
         .s1, s2 {
             position: absolute;
-            opacity:0.3;
+            opacity:1;
         }
         .s1 {
             background: #ddd;
             height:100%;
             width:5em;
             top:0;
-            right:0;
-            
+            left:100%;
         }
         .s2 {
             background: #eee;
@@ -307,141 +306,155 @@ body{
             width: 100%;
             bottom:0;
         }
+        .lr {
+            -webkit-animation: lr 2s;
+            -o-animation: lr 2s;
+            animation: lr 2s;
+        }
+        /*从左往右*/
+        @keyframes lr {
+            0%; {
+                left: 100%;
+            }
+            100% {
+                left: 95%;
+            }
+        }
     </style>
     <script src="Js/Base.js"></script>
     <script src="Js/slide.js"></script>
 </head>
 
-<body class="Wrap">
+<body class="Wrap" onclick='var s1 = C.G("s1"); C.AddClass(s1, "lr"); setTimeout(function () { s1.style.left = "95%" }, 1900);'>
     <img src="/Images/g.png" style="width:100%;" />
-<!--
-<div class="L W2">
-<h3><a href="#">最新动态</a></h3>
-    <p class="AL">
-    <a href="####">Navigate</a>
-    <a href="####">Spider</a>
-    <a href="####">WebServies</a>
-    <a href="####">AjaxSite</a>
-    <a href="####">ThinkTank</a>
-    <a href="####">ThinkTankV3</a>
-    <a href="####">ThinkTankV3</a>
-    </p>
-</div>
-<div class="L W5">
-<h3><a href="#">最新动态</a></h3>
-    <p class="AL">
-    <a href="####">暂无</a>
-    <a href="####">Enterprises</a>
-    <a href="####">Net4</a>
-    <a href="####">QuanXin</a>
-    <a href="####">JsDemos</a>
-    <a href="####">Forum</a>
-    <a href="####">ThinkTankV3</a>
-    </p>
-</div>
+    <!--
+    <div class="L W2">
+    <h3><a href="#">最新动态</a></h3>
+        <p class="AL">
+        <a href="####">Navigate</a>
+        <a href="####">Spider</a>
+        <a href="####">WebServies</a>
+        <a href="####">AjaxSite</a>
+        <a href="####">ThinkTank</a>
+        <a href="####">ThinkTankV3</a>
+        <a href="####">ThinkTankV3</a>
+        </p>
+    </div>
+    <div class="L W5">
+    <h3><a href="#">最新动态</a></h3>
+        <p class="AL">
+        <a href="####">暂无</a>
+        <a href="####">Enterprises</a>
+        <a href="####">Net4</a>
+        <a href="####">QuanXin</a>
+        <a href="####">JsDemos</a>
+        <a href="####">Forum</a>
+        <a href="####">ThinkTankV3</a>
+        </p>
+    </div>
 
-<div class="R W22">
-<h3><a href="#">最新动态</a></h3>
-    <p class="AL">
-<a href="http://192.168.100.5/Default.aspx">JsDemos:80</a>
-    <a href="http://192.168.100.5:60082/">Enterprises:60082</a>
-    <a href="http://192.168.100.5:60083/">ThinkTank:60083</a>
-    <a href="http://192.168.100.5:60084/">Dnn:60084</a>
-    <a href="http://192.168.100.5:60086/">WCF:60086</a>  
-    <a href="http://192.168.100.5:60087/">SiteFactory:60087</a>    
-    <a href="http://192.168.100.5:60088/">We7:60088</a>      </p>
-    </div><br class="Clr" />
-    <div class="L W7 MV9">
-<h3><a href="#">专家团队</a></h3>
-	<div class="Is">
-    <dl>
-    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
-    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
-    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
-    </dl>
-   <dl>
-    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
-    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
-    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
-    </dl>
-      <dl>
-    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
-    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
-    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
-    </dl>
-      <dl>
-    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
-    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
-    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
-    </dl>
-      <dl>
-    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
-    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
-    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
-    </dl>
-      <dl>
-    <dt><a href="#"><img src="Images/Pf.jpg" /></a>
-    <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
-    <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
-    </dl>
-    <br class="Clr" /></div>
-</div>
-<div class="R W22 MV9">
-<h3><a href="#">最新动态</a></h3>
-    <p class="AL">
-    <a href="#">文章列表文字文章列表文字文章列表文字</a>
-    <a href="#">文章列表文字文章列表文字文章列表文字</a>
-    <a href="#">文章列表文字文章列表文字文章列表文字</a>
-    <a href="#">文章列表文字文章列表文字文章列表文字</a>
-    <a href="#">文章列表文字文章列表文字文章列表文字</a>
-    <a href="#">文章列表文字文章列表文字文章列表文字</a>
-    </p>
-    </div><br class="Clr" />
-	<h3 class="MT9"><a href="#">活动现场</a></h3>
-	<div class="Is">
+    <div class="R W22">
+    <h3><a href="#">最新动态</a></h3>
+        <p class="AL">
+    <a href="http://192.168.100.5/Default.aspx">JsDemos:80</a>
+        <a href="http://192.168.100.5:60082/">Enterprises:60082</a>
+        <a href="http://192.168.100.5:60083/">ThinkTank:60083</a>
+        <a href="http://192.168.100.5:60084/">Dnn:60084</a>
+        <a href="http://192.168.100.5:60086/">WCF:60086</a>
+        <a href="http://192.168.100.5:60087/">SiteFactory:60087</a>
+        <a href="http://192.168.100.5:60088/">We7:60088</a>      </p>
+        </div><br class="Clr" />
+        <div class="L W7 MV9">
+    <h3><a href="#">专家团队</a></h3>
+        <div class="Is">
+        <dl>
+        <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+        <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+        <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+        </dl>
+       <dl>
+        <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+        <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+        <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+        </dl>
+          <dl>
+        <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+        <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+        <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+        </dl>
+          <dl>
+        <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+        <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+        <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+        </dl>
+          <dl>
+        <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+        <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+        <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+        </dl>
+          <dl>
+        <dt><a href="#"><img src="Images/Pf.jpg" /></a>
+        <span><a href="#">某某某</a><a href="#">咨询</a></span>    </dt>
+        <dd><a href="#">标题文字标题文字标题文字标题文字</a></dd>
+        </dl>
+        <br class="Clr" /></div>
+    </div>
+    <div class="R W22 MV9">
+    <h3><a href="#">最新动态</a></h3>
+        <p class="AL">
+        <a href="#">文章列表文字文章列表文字文章列表文字</a>
+        <a href="#">文章列表文字文章列表文字文章列表文字</a>
+        <a href="#">文章列表文字文章列表文字文章列表文字</a>
+        <a href="#">文章列表文字文章列表文字文章列表文字</a>
+        <a href="#">文章列表文字文章列表文字文章列表文字</a>
+        <a href="#">文章列表文字文章列表文字文章列表文字</a>
+        </p>
+        </div><br class="Clr" />
+        <h3 class="MT9"><a href="#">活动现场</a></h3>
+        <div class="Is">
+        <p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
     <p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
-<p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
-<p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
-<p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
-    </div>
-    <div>
-      <ul class="MV9 FC">
-        <li>
-          <h3>网上留言</h3>
-          <form class="Ctn" action="#">
-            <textarea name="a">请输入您的健康疑问，点击“提交”或“查看”来获得专家回复。</textarea>
-            <input type="button" value="提&nbsp;&nbsp;交" class="BtG ML40" />
-            &nbsp;
-            <input type="button" value="重&nbsp;&nbsp;填" class="BtG" />
-          </form>
-        </li>
-        <li>待定内容待定内容待定内容待定内容待定内容待定内容待定内容待定内容</li>
-        <li>
-          <h3>网上预约&nbsp;优先就诊</h3>
-          <form class="Ctn" action="#">
-            您的姓名:&nbsp;
-            <input type="text" class="W96" />
-            <br />
-            联系电话:&nbsp;
-            <input type="text" class="W96" />
-            <br />
-            预约时间:&nbsp;
-            <input type="text" class="W96" />
-            <br />
-            <textarea name="b">请输入您的预约内容!</textarea>
-            <input type="button" value="提&nbsp;&nbsp;交" class="BtG ML40" />
-            &nbsp;
-            <input type="button" value="查&nbsp;&nbsp;看" class="BtG" />
-          </form>
-        </li>
-        <li>待定内容待定内容待定内容待定内容待定内容待定内容待定内容待定内容</li>
-      </ul>
-    </div>
--->
+    <p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
+    <p><a href="#"><img src="XML/180X135.jpg" /></a><a href="#">标题文字标题文字标题文字标题文字</a></p>
+        </div>
+        <div>
+          <ul class="MV9 FC">
+            <li>
+              <h3>网上留言</h3>
+              <form class="Ctn" action="#">
+                <textarea name="a">请输入您的健康疑问，点击“提交”或“查看”来获得专家回复。</textarea>
+                <input type="button" value="提&nbsp;&nbsp;交" class="BtG ML40" />
+                &nbsp;
+                <input type="button" value="重&nbsp;&nbsp;填" class="BtG" />
+              </form>
+            </li>
+            <li>待定内容待定内容待定内容待定内容待定内容待定内容待定内容待定内容</li>
+            <li>
+              <h3>网上预约&nbsp;优先就诊</h3>
+              <form class="Ctn" action="#">
+                您的姓名:&nbsp;
+                <input type="text" class="W96" />
+                <br />
+                联系电话:&nbsp;
+                <input type="text" class="W96" />
+                <br />
+                预约时间:&nbsp;
+                <input type="text" class="W96" />
+                <br />
+                <textarea name="b">请输入您的预约内容!</textarea>
+                <input type="button" value="提&nbsp;&nbsp;交" class="BtG ML40" />
+                &nbsp;
+                <input type="button" value="查&nbsp;&nbsp;看" class="BtG" />
+              </form>
+            </li>
+            <li>待定内容待定内容待定内容待定内容待定内容待定内容待定内容待定内容</li>
+          </ul>
+        </div>
+    -->
     <div id="s1" p="m:1" class="s1">从右滑出</div>
     <div id="s2" p="m:2" class="s2">从下滑出</div>
     <script>
-        slide("s1","s2")
+        slide("s1", "s2")
     </script>
 </body>
 </html>

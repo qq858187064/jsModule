@@ -311,6 +311,9 @@ body{
             -o-animation: lr 2s;
             animation: lr 2s;
         }
+        .lr1 {
+            left: 95%;
+        }
         /*从左往右*/
         @keyframes lr {
             0%; {
@@ -324,9 +327,7 @@ body{
     <script src="Js/Base.js"></script>
     <script src="Js/slide.js"></script>
 </head>
-
-<body class="Wrap" onclick='var s1 = C.G("s1"); C.AddClass(s1, "lr"); setTimeout(function () { s1.style.left = "95%" }, 1900);'>
-    <img src="/Images/g.png" style="width:100%;" />
+<body class="Wrap" style="background: url(/Images/g.png) no-repeat 0 0; background-size: contain; ">
     <!--
     <div class="L W2">
     <h3><a href="#">最新动态</a></h3>
@@ -451,8 +452,10 @@ body{
           </ul>
         </div>
     -->
-    <div id="s1" p="m:1" class="s1">从右滑出</div>
-    <div id="s2" p="m:2" class="s2">从下滑出</div>
+    <div id="s1" p="m:1,t:'t1',ac:'lr',ec:'lr1',s:1980" class="s1">从右滑出</div>
+    <div id="s2" p="m:2,t:'t2'" class="s2">从下滑出</div>
+    <a id="t1">右滑出</a>
+    <a id="t2">下滑出</a>
     <script>
         slide("s1", "s2")
     </script>

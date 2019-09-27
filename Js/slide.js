@@ -1,21 +1,41 @@
 ﻿/*
-该组件用到drag组件，使用前须引用drag组件
+slide组件,元素参数
+    m:1从右滑出;2从下滑出
+    t:触发元素；
+    ac:动画样式；
+    ec:动画结束后的样式；
+    s:动画播放时长
+
 */
 function slide() {
     slide.prototype = {
         Init: function (o) {
             C.Pt(o);
-            o.style.width = o.ps.w + "px";
-            o.style.height = o.ps.h + "px";
-            console.log(o.ps)
-        },
-        /*预览*/
-        clip: function (i) {
-       },
+            o.t = C.G(o.ps.t);
+            C.AddEvent(o.t, "click", function () {
+                if (!o.ex)
+                    slide.prototype.ex(o);
+                else
+                    ;
 
-    /*将图片指定区域画到画布上,并在加载完成后提取数据并上传*/
- draw: function (o)
- {
+            },o);
+        },
+        /*展开*/
+        ex: function (o) {
+            C.AddClass(o, o.ps.ac);
+            setTimeout(function () {
+                C.AddClass(o, o.ps.ec);
+            }, o.ps.s);
+            o.ex = 1;
+        },
+        /* 收回*/
+     cls: function (o)
+     {
+         C.AddClass(o, o.ps.ac);
+         setTimeout(function () {
+             C.AddClass(o, o.ps.ec);
+         }, o.ps.s);
+         o.ex = 1;
     }
     }
     C.Batch();

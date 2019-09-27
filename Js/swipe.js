@@ -157,10 +157,9 @@
                 //o.src = s[--o.n];
                 var i = s[--o.n];
                 o.src = str ? i : (i.src);
-
             }
             /*仅浏览已显示的图对应大图的场景,待扩展
-                        var s;
+            var s;
             if (o.r == 3)
             {
                 s = C.Nxt(o.ci);

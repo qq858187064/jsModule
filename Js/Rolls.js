@@ -1,4 +1,11 @@
-﻿function rolls()
+﻿/*
+p="dir:1,speed:20,stay:3000,n:1"
+dir:1:向上，否则:向左;可以再扩展
+speed:速度，单位毫秒,
+stay:停留时长,单位毫秒,
+n:每次移动几个？？？
+*/
+function rolls()
 {
     rolls.prototype = {
         Init: function (o) {
@@ -24,8 +31,8 @@
 				o[o.ad]--;
 			}
 			
-			o.step = o.it[o.ap] + parseInt(C.style(o.it)[o.am]);
-            setTimeout(function(){
+			setTimeout(function () {
+			    o.step = o.it[o.ap] + parseInt(C.style(o.it)[o.am]);
                 o.om = setInterval(function () { rolls.prototype.roll(o)}, o.p.speed);
         }, o.p.stay);
             

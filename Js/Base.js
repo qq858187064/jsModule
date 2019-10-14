@@ -134,16 +134,16 @@ var C = {
     rt: function (t, s) {
         if(t==true||t==undefined)
         {
-            t="成功";
+            t = "操作成功";
         }
         else if (t == false)
         {
-            t = "失败";
+            t = "操作失败";
         }
         if (!s) s = 3;//默认弹出三秒后关闭
         if (!rt) rt = C.G("rt");
        // if (!t) t = "操作成功";
-        rt.innerText ="操作"+ t;
+        rt.innerText =t;
         rt.style.display = "block";
         setTimeout(function () {rt.style.display = "none"; }, s*1000);
     },

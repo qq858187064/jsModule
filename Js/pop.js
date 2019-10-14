@@ -13,7 +13,6 @@
         pop.co = pop.ps[pop.ps.length - 1];
     };
     pop.r = C.G("rpt");
-
     pop.prototype = {
         Init: function (o) {
             o.p = C.Pt(o);
@@ -43,12 +42,13 @@
             }
             //if (o.tit != 0)
               //  o.box.tit = o.box.firstChild; 
-            if (o.ct){
+            if (o.ct)
+            {
                 o.box.ct = o.ct;
                 o.box.ct.nxt = C.Nxt(C.G(o.ct));
                 o.box.ct.prt = o.ct.parentNode;
             }
-            if (!C.isArr(o.t)) {
+            if (!C.isArr(o.t)){
                 C.AddEvent(o.t, "click", this.pop, o);
             }
             else {

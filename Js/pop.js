@@ -107,7 +107,8 @@
             o.box.style.top = (o.ps.top == undefined ? (bd.clientHeight - o.h) / 2 : o.ps.top )+ "px";/*50是滚动条上下部分高度？*/
            // o.box.style.top = (bd.clientHeight - o.box.offsetHeight)/2 + "px";/*50是滚动条上下部分高度？*/
             o.box.style.left = (bd.offsetWidth - o.w) / 2 +parseInt(bl)+"px";
-            if (o.box.bg) {
+            if (o.box.bg)
+            {
                 o.box.bg.style.height = bd.scrollHeight + "px";
                 o.box.bg.style.left = 0;
             }

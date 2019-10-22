@@ -30,12 +30,10 @@ function rolls()
 				o.px = o[o.ad];
 				o[o.ad]--;
 			}
-			
 			setTimeout(function () {
 			    o.step = o.it[o.ap] + parseInt(C.style(o.it)[o.am]);
                 o.om = setInterval(function () { rolls.prototype.roll(o)}, o.p.speed);
         }, o.p.stay);
-            
 },
 roll:function(o){
     if (o.can) {

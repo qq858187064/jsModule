@@ -100,8 +100,9 @@
                     if (Rs[j] in Forms || typeof Rs[j] == "object")
                     {
                         var Rg = Forms[Rs[j]] || Rs[j];
-                        if (T.value.search(Rg) > -1 || T.value.search(Rs[j]) > -1) {
-if(!T.f.Rpt){/*如果是共用的rpt,通过验证不新增class*/
+                        if (T.value.search(Rg) > -1 || T.value.search(Rs[j]) > -1)
+                        {
+                            if(!T.f.Rpt){/*如果是共用的rpt,通过验证不新增class*/
                             C.AddClass(T.Rpt, "ok");
                             C.DelClass(T.Rpt, "no");
 							}

@@ -326,7 +326,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         return C.Gs("tr", "td");
     },
     */
-
     /* 获取传入td对应的tr、table */
     rpt: function (o, r) {
         if (o.code > 1) {
@@ -407,7 +406,6 @@ return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
 						//js.innerHTML=t;
 						//b.appendChild(js);// 重复
 						}
-						
 					};
 				}
 			}
@@ -610,7 +608,6 @@ arr:二维数组；fa(a,i)：一维元素处理函数,a是回归的一维元素�
     isTouch: function (e) {
         return "ontouchend" in document.documentElement ? true : false;
     },
-
     /* 为对象添加的事件监听  */
     AddEvent: function (obj, ev, fn,arg) {
         obj = C.G(obj);
@@ -627,7 +624,6 @@ arr:二维数组；fa(a,i)：一维元素处理函数,a是回归的一维元素�
 		  fn.apply(null,args)
 		   };//将e和arg换了位置，这样不需要使用e对象的函数可以只传arg
         }
-
 		/*
         if (arguments.length>3) {
           //old:变更后使用了event对象的组件可能需要修改如Menus、Drags.  f = function (ev) { fn(ev, arg) };
@@ -648,7 +644,6 @@ arr:二维数组；fa(a,i)：一维元素处理函数,a是回归的一维元素�
         //    Ehd = function () { return function () { fn.apply(obj, C.Slice.call(arguments, 3)); }; }();
         //}
         */
-
         if (window.addEventListener) {
             obj.addEventListener(ev, f , false);
             //1、注册处理函数时，明确声明为非被动的window.addEventListener('touchmove', f, { passive: false })

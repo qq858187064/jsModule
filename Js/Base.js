@@ -38,12 +38,18 @@ var C = {
     Ce: function (Tag) {
         return document.createElement(Tag);
     },
+    u: (function () {
+        return sessionStorage.getItem("u");
+    })(),
+    hsu:function(){
+        return C.u!=null;
+    },
     //获取当前用户对象
     cu: function () {
-        var o = sessionStorage.getItem("u");
-        if (o)
+        if (C.hsu())
         {
-            return JSON.parse(o);
+            var cu = JSON.parse(C.u)
+            return cu;
         }
             /*
         else if(location.pathname!="/login")
@@ -52,6 +58,7 @@ var C = {
             lgb.click();
         }*/
     },
+    //var a = { b: (function () { return 12 }()) }; a.b
     /* 获取并返回传入document的body元素 */
     Bd: function (d) {
         var d = d || document;

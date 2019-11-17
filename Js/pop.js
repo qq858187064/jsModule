@@ -22,8 +22,8 @@
                 //
                 if (o.p.hasOwnProperty(z))
                 {
-                   // console.log(z)
-                o[z] = o.p[z];}
+                    o[z] = o.p[z];
+                }
             }
             o.box = o.box ? C.G(o.box) : o;
             if (!o.box.oh)
@@ -117,7 +117,7 @@
             pop.ps = pop.ps || [];
             pop.ps.push(o.box)
             pop.co = pop.ps[pop.ps.length - 1];//用于关闭或其它组件中引用
-
+            pop.co.t = o.t;
         }
     }
     pop.pop = pop.prototype.pop;

@@ -29,7 +29,6 @@ var C = {
         // }
         return a;
     },
-
     /* 获取并返回传入id的对象 */
     G: function (Id) {
         return typeof (Id) == "string" ? document.getElementById(Id) : Id;
@@ -38,24 +37,37 @@ var C = {
     Ce: function (Tag) {
         return document.createElement(Tag);
     },
-    u: (function () {
+    u: function () {
         return sessionStorage.getItem("u");
-    })(),
+    },
     hsu:function(){
-        return C.u!=null;
+        return C.u()!=null;
     },
     //获取当前用户对象
     cu: function () {
         if (C.hsu())
         {
-            var cu = JSON.parse(C.u)
+            var cu = JSON.parse(C.u())
             return cu;
+        }
+        else //if(i>0)
+        {
+            console.log(1,C.cu.caller.arguments[0],C.cu.caller);
+            //设置提示信息：并登录成功后回调原来的方法，或者两个弹框
+            lgb.tit = "为了您的信息安全，请再次登录";
+            //lgb.cb = (function (f) { return function () { f(); pop.close(); } })(C.cu.caller);
+             lgb.cb = (function (f,a) { return function () { f(a); pop.close(); } })(C.cu.caller, C.cu.caller.arguments[0]);
+            pop.pop(lgb);
+           //  return;
+           return false;
+           // if(!window.onload)
+           // C.AddEvent(window, "load", function () { pop.pop(lgb); })
         }
             /*
         else if(location.pathname!="/login")
         {
             console.log("sessionStorage中不含key为u的对象");
-            lgb.click();
+            pop.pop(lgb)
         }*/
     },
     //var a = { b: (function () { return 12 }()) }; a.b
@@ -238,7 +250,7 @@ var C = {
 	},
 	/*获取对象o在css中的a属性的值，也可指定伪类w*/
 	Css:function(o,a,w){
-            return (getComputedStyle(o,w)[a]);   
+            return (getComputedStyle(o,w)[a]);   ha
 	},
 
     /* 获取并返回传入元素的上一个非空元素 */

@@ -30,6 +30,11 @@ function slide() {
         /* 收回*/
      cls: function (o)
      {
+         /*
+          当项目中只有一个方向的动画，比如只有前进动画，但是又需要做一个后退的动作。
+解决方法：可以在播放动画的时候设置Speed属性为-1，然后就会反向播放前进动画了。
+transition: width 0.5s,height 0.5s;
+          */
          console.log(999)
          C.AddClass(o, o.ps.rvs);
          setTimeout(function () {

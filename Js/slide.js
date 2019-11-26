@@ -5,7 +5,6 @@ slide组件,元素参数
     ac:动画样式；
     ec:动画结束后的样式；
     s:动画播放时长
-
 */
 function slide() {
     slide.prototype = {
@@ -16,7 +15,7 @@ function slide() {
                 if (!o.ex)
                     slide.prototype.ex(o);
                 else
-                    ;
+                    slide.prototype.cls(o);
 
             },o);
         },
@@ -31,11 +30,12 @@ function slide() {
         /* 收回*/
      cls: function (o)
      {
-         C.AddClass(o, o.ps.ac);
+         console.log(999)
+         C.AddClass(o, o.ps.rvs);
          setTimeout(function () {
-             C.AddClass(o, o.ps.ec);
+             //C.AddClass(o, o.ps.ec);
          }, o.ps.s);
-         o.ex = 1;
+         o.ex = 0;
     }
     }
     C.Batch();

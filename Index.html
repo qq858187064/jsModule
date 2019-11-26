@@ -310,6 +310,10 @@ body{
             -webkit-animation: lr 2s;
             -o-animation: lr 2s;
             animation: lr 2s;
+        }.rl {
+            -webkit-animation: rl 2s;
+            -o-animation: rl 2s;
+            animation: rl 2s;
         }
         .lr1 {
             left: 95%;
@@ -321,6 +325,15 @@ body{
             }
             100% {
                 left: 95%;
+            }
+        }
+        /*从右往左*/
+        @keyframes rl {
+            0%; {
+                left:95%;
+            }
+            100% {
+                left: 100%;
             }
         }
     </style>
@@ -453,7 +466,7 @@ body{
           </ul>
         </div>
     -->
-    <div id="s1" p="m:1,t:'t1',ac:'lr',ec:'lr1',s:1980" class="s1">从右滑出</div>
+    <div id="s1" p="m:1,t:'t1',ac:'lr',rvs:'rl',ec:'lr1',s:1000" class="s1">从右滑出</div>
     <div id="s2" p="m:2,t:'t2'" class="s2">从下滑出</div>
     <a id="t1">右滑出</a>
     <a id="t2">下滑出</a>

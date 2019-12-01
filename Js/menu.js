@@ -16,14 +16,13 @@ function menu() {
                     a.nxt = a.nxt || C.Nxt(a);
                     if (o.cc)
                        o.cc.click();//关闭上一个
-                    
                     a.nxt.style.display =   a.nxt.style.display == "block" ? "none" : "block";
                     o.cc = a;
 
                     var ms = C.Gs(C.Nxt(o.cc), p.t);
                     C.each(ms, function (a) {
                         if (a.href.endsWith(location.pathname))
-                        C.AddClass(a,"c")
+                        C.AddClass(a,"cm")
                     });
 
                     C.AddEvent(a.nxt, "click", function (e) {
@@ -45,13 +44,6 @@ function menu() {
                 cc=s[p.i];
                }
                 cc.click();
-
-
-
-               C.AddEvent(window, "load", function () {
-
-
-               })
         }
     }
     C.Batch();

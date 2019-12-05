@@ -5,17 +5,27 @@ slide组件,元素参数
     ac:动画样式；
     ec:动画结束后的样式；
     s:动画播放时长
+    animation-play-state:paused;
+-webkit-animation-play-state:paused; 
+object.style.animationPlayState = "paused"running
 */
 function slide() {
     slide.prototype = {
         Init: function (o) {
             C.Pt(o);
             o.t = C.G(o.ps.t);
+            var s = "paused";
             C.AddEvent(o.t, "click", function () {
+                /*
                 if (!o.ex)
                     slide.prototype.ex(o);
                 else
                     slide.prototype.cls(o);
+                */
+                //console.log(C.Css(o, "animationPlayState"));
+                s = o.style.animationPlayState == "paused" ? "running" : "paused";
+                    o.style.animationPlayState = s;
+
 
             },o);
         },
@@ -23,7 +33,9 @@ function slide() {
         ex: function (o) {
             C.AddClass(o, o.ps.ac);
             setTimeout(function () {
-                C.AddClass(o, o.ps.ec);
+               // .style.animationPlayState = "paused
+               // C.DelClass(o, o.ps.ac);
+               // C.AddClass(o, o.ps.ec);
             }, o.ps.s);
             o.ex = 1;
         },
@@ -36,9 +48,12 @@ function slide() {
 transition: width 0.5s,height 0.5s;
           */
          console.log(999)
-         C.AddClass(o, o.ps.rvs);
+         
+
+        // C.AddClass(o, o.ps.rvs);
          setTimeout(function () {
-             //C.AddClass(o, o.ps.ec);
+            // C.DelClass(o, o.ps.ec);
+            // C.AddClass(o, o.ps.ac);
          }, o.ps.s);
          o.ex = 0;
     }

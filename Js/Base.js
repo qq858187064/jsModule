@@ -250,7 +250,7 @@ var C = {
 	},
 	/*获取对象o在css中的a属性的值，也可指定伪类w*/
 	Css:function(o,a,w){
-            return (getComputedStyle(o,w)[a]);   ha
+            return (getComputedStyle(o,w)[a]);ha
 	},
 
     /* 获取并返回传入元素的上一个非空元素 */

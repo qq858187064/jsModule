@@ -307,17 +307,23 @@ body{
             bottom:0;
         }
         .lr {
-            -webkit-animation: lr 2s;
-            -o-animation: lr 2s;
-            animation: lr 2s;
-        }.rl {
+            /*
+            -webkit-animation: lr 4s  alternate;
+            -o-animation: lr 4s  alternate;
+            animation: lr 4s alternate;
+            animation-direction:alternate;*/
+            animation: lr 2s linear 0s infinite alternate;
+                animation-play-state:paused;
+-webkit-animation-play-state:paused; 
+
+        }/*.rl {
             -webkit-animation: rl 2s;
             -o-animation: rl 2s;
             animation: rl 2s;
         }
         .lr1 {
             left: 95%;
-        }
+        }*/
         /*从左往右*/
         @keyframes lr {
             0%; {
@@ -327,7 +333,7 @@ body{
                 left: 95%;
             }
         }
-        /*从右往左*/
+        /*从右往左
         @keyframes rl {
             0%; {
                 left:95%;
@@ -335,7 +341,7 @@ body{
             100% {
                 left: 100%;
             }
-        }
+        }*/
     </style>
     <script src="Js/Base.js"></script>
     <script src="Js/slide.js"></script>
@@ -466,7 +472,7 @@ body{
           </ul>
         </div>
     -->
-    <div id="s1" p="m:1,t:'t1',ac:'lr',rvs:'rl',ec:'lr1',s:1000" class="s1">从右滑出</div>
+    <div id="s1" p="m:1,t:'t1',s:2000" class="s1 lr">从右滑出</div>
     <div id="s2" p="m:2,t:'t2'" class="s2">从下滑出</div>
     <a id="t1">右滑出</a>
     <a id="t2">下滑出</a>

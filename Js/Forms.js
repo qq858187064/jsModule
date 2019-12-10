@@ -17,14 +17,12 @@
     Forms.Idn = /^\d{17}\d|X$/;
     Forms.Idn.No = "身份证号码不合法";
     Forms.Cpt = 1;
-    Forms.Cpt.No =Forms.Cpe= "两次输入不一致s!";
+    Forms.Cpt.No =Forms.Cpe= "两次输入不一致!";
 	Forms.Cp="两项输入不能相同";
 	Forms.Ns = /^[A-Za-z0-9\u4e00-\u9fa5]+$/;
     Forms.Ns.No = "请输入字母、数字、汉字或其组合";
 
-	
     var that = this;
-
     // /^[\w|-|\.]++@[\w|-]+(\.[\w|-]+)+$/
 
     Forms.prototype = {
@@ -40,7 +38,6 @@
                     N = T.type.toLowerCase();
                 if(!T.p)
                     T.p = C.Pt(T);
-                console.log(T.p)
                 if (T.p) {
                     for (var a in T.p) {
                         //console.log(a, p.hasOwnProperty[a])
@@ -81,6 +78,8 @@
         },
         Ve: function (T) {
             var T = arguments.length == 1 ? T : arguments[1];
+            if (T.offsetHeight == 0){//如果元素未显示则认为验证通过
+                T.V = true;return}
             if ((T.Preset && T.Preset.indexOf("Rqd") > -1) || T.value != "" || T.Regex || T.Cpt) {
                 var Rs = T.Preset ? T.Preset.split(" ") : [];//Hr = (typeof T.Regex == "string") && T.Regex.Trim() != "";
                 if (T.Regex) { Rs.push(eval(T.Regex)) }
@@ -95,8 +94,7 @@
                 T.value = T.value.trim();
                 T.Em = "";
                 for (var j = 0; j < Rs.length; j++) {
-                    //                    if (T.Rpt && (Rs[j] in that || typeof Rs[j] == "object"))
-
+                    //if (T.Rpt && (Rs[j] in that || typeof Rs[j] == "object"))
                     if (Rs[j] in Forms || typeof Rs[j] == "object")
                     {
                         var Rg = Forms[Rs[j]] || Rs[j];

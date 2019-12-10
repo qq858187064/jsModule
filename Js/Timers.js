@@ -4,8 +4,8 @@ function Timers()
         Init: function (o)
         {
 			//console.log(o.onclick)
-			o.fn=o.onclick;//考其它事件？
-			o.onclick=null;
+            //o.fn = o.onclick;//考其它事件？fn调用先注掉，有问题再说
+			//o.onclick=null;
             C.AddEvent(o, "click", this.Count, o);
             o.ot = o.innerText;
 			o.fmt=(o.ot+"({0})");
@@ -23,7 +23,7 @@ function Timers()
             //o.Gd.innerHTML = o.Ms;
             o.innerHTML = o.fmt.format(o.Ms);
 			C.AddClass(o, "ti");
-			o.fn();
+			//o.fn();
 			o.status = true;
 
             o.Tm = setInterval(function ()

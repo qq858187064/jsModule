@@ -206,3 +206,11 @@ margin-right:10px;
     background:#000;
     filter:alpha(opacity=0);
 }
+.ok,
+.no,
+.tip{
+    padding:0.2em 0.8em;
+}
+.tip{
+    background:#ffe;
+}

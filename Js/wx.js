@@ -1,7 +1,7 @@
 ﻿//var config = require('../../../config/sy3.0'),
  // apihost = process.env.NODE_ENV === 'production' ? config.api_production : config.api_dev;
 
-var ws = {
+var wx = {
     /*登录： 
     0、判断用户是否登录、token是否有效，如果在微信环境，且未登录或token失效
 1、用户同意授权，获取code

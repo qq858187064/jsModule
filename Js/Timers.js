@@ -11,7 +11,7 @@ function Timers()
 			o.fmt=(o.ot+"({0})");
 			o.oh=o.href;
         },
-        Count: function (e, o)
+        Count: function (o)
         {
 			// if(o.ot==undefined)
 			// o.ot=o.innerText;

@@ -30,14 +30,18 @@
                     var ck = o.Cs[i];
                     if (ck.type == "checkbox")
                     {
-                       o.rcs.push(ck);
-                        C.AddEvent(ck, "change", this.Refle, o);
+                        o.rcs.push(ck);
+                        if(!ck.ad){
+                       C.AddEvent(ck, "change", this.Refle, o);
                         if (fn)
                             C.AddEvent(ck, "change", window[o.fn], ck);
+                        ck.ad = 1;
+                    }
                         // C.AddEvent(ck, "change", function (a) { window[o.fn](a); }, ck)
                     }
                 }
-                o.Cs=o.rcs;
+                o.Cs = o.rcs;
+                //console.log(11, o.rcs)
                 if (o.id.indexOf("_") != -1)
                 {
                     var Params = o.id.split("_");

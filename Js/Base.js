@@ -47,8 +47,8 @@ var C = {
     cu: function () {
         if (C.hsu())
         {
-            var cu = JSON.parse(C.u())
-            return cu;
+            window.cu = JSON.parse(C.u())
+            return window.cu;
         }
         else //if(i>0)
         {

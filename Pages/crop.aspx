@@ -69,20 +69,6 @@
             //window.zoom = zoom;
             return false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
         window.Cm = 21;
         var hi = C.G("hi"),

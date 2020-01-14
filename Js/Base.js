@@ -52,7 +52,6 @@ var C = {
         }
         else //if(i>0)
         {
-            console.log(1,C.cu.caller.arguments[0],C.cu.caller);
             //设置提示信息：并登录成功后回调原来的方法，或者两个弹框
             lgb.tit = "为了您的信息安全，请再次登录";
             //lgb.cb = (function (f) { return function () { f(); pop.close(); } })(C.cu.caller);
@@ -290,7 +289,9 @@ var C = {
 
     /* 获取并返回传入字符串所字义的Json对象 */
     Json: function (Str) {
-        if (Str) {
+        if (typeof (Str) == "object")
+        return Str;
+        else if (Str) {
 return eval(Str.startsWith("{") ? "(" + Str + ")" : "({" + Str + "})")
         }
 		/*IE7及以下好像不支持

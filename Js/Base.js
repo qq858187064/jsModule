@@ -38,7 +38,7 @@ var C = {
         return document.createElement(Tag);
     },
     u: function () {
-        return sessionStorage.getItem("u");
+        return Cookie("u");//sessionStorage.getItem("u");//晚些完成stor.js
     },
     hsu:function(){
         return C.u()!=null;

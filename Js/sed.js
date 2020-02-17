@@ -1,50 +1,51 @@
-﻿/*
-    p="t:'a',e:'click',i:0"
-   元素标签名：t
-  触发事件类型：e
-  默认展开元素的索引:i
-  当前菜单项样式：
-   */
+﻿ /*
+    pid:需要选中列表元素的id
+    e:列表中子元素标签名称
+    c:默认选中第几个？
+    se:选中图标元素id
+    cn:选中图标元素选中的样式名
+    sf:选中处理函数
+	et:1,表示事件添加到第一个元素上
+    如:p="pid:'ls',e:'i',se:'se',cls:'sed',et:1"
+   */ 
 function sed() {
-    sed.prototype = {
-        Init: function (o) {
-            var p = C.Pt(o),
-             s = C.Gs(o, p.t),
-            k=o.id+"ca";
-            C.each(s, function (a,i) {
-                C.AddEvent(a, p.e, function () {
-                    a.nxt = a.nxt || C.Nxt(a);
-                    if (o.cc)
-                       o.cc.click();//关闭上一个
-                    a.nxt.style.display =   a.nxt.style.display == "block" ? "none" : "block";
-                    o.cc = a;
+        sed.prototype = {
+            Init: function (o) {
+                var p = C.Pt(o),
+				 ls = C.G(p.pid),
+    s = C.Gs(ls, p.e),
+    se = C.G(p.se),/*选中图标元素*/
+    cn = p.cls;
+   ls.ls = [];
+ls.c = se.parentNode;
+ C.each(s, function (a, i) {
+var i=s[i],
+p=o.ps.et==1?i.firstChild:i;
+C.AddEvent(p,"click",function(i){
+C.DelClass(ls.c,cn);
+C.AddClass(i,cn);
+i.appendChild(se);
+ls.c = i;
+if (ls.ps.sf)
+    ls.ps.sf(ls.c);
+    //window[ls.ps.sf](ls.c);
 
-                    var ms = C.Gs(C.Nxt(o.cc), p.t);
-                    C.each(ms, function (a) {
-                        if (a.href.endsWith(location.pathname))
-                        C.AddClass(a,"cm")
-                    });
+}, i);
+ 
+/*预览暂时先不要
+C.AddEvent(C.Gs(i,"a")[0],"click",function(p){
+    pre.src = p.src;
+pre.style.display="block";
+var cls = dw.firstChild;
+cls.onclick = function () { pre.style.display = "none"; dw.firstChild.onclick = pop.close;};
+}, p);*/
+ls.ls.push(C.Gs(i, "a")[0]);
+ });
+ ls.c =s[p.c||0]
+ C.AddClass(ls.c, cn);
 
-                    C.AddEvent(a.nxt, "click", function (e) {
-                        var ca = C.Ge(e);
-                        if (ca.href) {
-                            o.cc.a = ca;
-                            localStorage.setItem(k, i)
-                        }
-                    })/**/
-                })
-            });
-            /**/
-            var ci = localStorage.getItem(k),
-                cc = s[ci];
-                if (ci)
-                    cc=s[ci];
-                else
-               if (p.i != undefined) {
-                cc=s[p.i];
-               }
-                cc.click();
+
+            }
         }
+        C.Batch();
     }
-    C.Batch();
-}

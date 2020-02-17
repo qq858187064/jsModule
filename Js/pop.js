@@ -27,7 +27,8 @@
             }
             o.box = o.box ? C.G(o.box) : o;
             if (!o.box.oh)
-            o.box.oh = o.box.innerHTML;
+                o.box.oh = o.box.innerHTML;
+           if(o.bg)
             o.box.bg = C.G(o.bg);
             o.ct = C.G(o.ct);
             if (o.cls) {
@@ -100,6 +101,11 @@
                 o.w = o.box.offsetWidth;
             if (!o.h)
                 o.h = o.box.offsetHeight;
+            var w=document.documentElement.offsetWidth;
+            if (o.w < w)
+            {
+                o.w = w;
+            }
             o.box.style.width = o.w != 0 ? o.w + "px" : "auto";
             o.box.style.height = o.h != 0 ? o.h + "px" : "auto";
            /* o.box.style.height = o.h != 0 ? (window.devicePixelRatio && window.devicePixelRatio > 1 ? o.h * window.devicePixelRatio : o.h)
@@ -107,7 +113,7 @@
             o.box.style.top = (o.ps.top == undefined ? (bd.clientHeight - o.h) / 2 : o.ps.top )+ "px";/*50是滚动条上下部分高度？*/
            // o.box.style.top = (bd.clientHeight - o.box.offsetHeight)/2 + "px";/*50是滚动条上下部分高度？*/
             o.box.style.left = (bd.offsetWidth - o.w) / 2 +parseInt(bl)+"px";
-            if (o.box.bg)
+            if (o.bg)
             {
                 o.box.bg.style.height = bd.scrollHeight + "px";
                 o.box.bg.style.left = 0;

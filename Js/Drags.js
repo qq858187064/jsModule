@@ -1,6 +1,6 @@
 ﻿/*参考HTML5的拖放（Drag 和 drop）http://www.w3school.com.cn/html5/html_5_draganddrop.asp*/
 function Drags() {
-    var e1, e2, e3, touch = C.isTouch();
+    var e1, e2, e3, touch = C.touch;
 	window.li=8888;//可以参数化
     if (touch) {
         e1 = "touchstart";

@@ -44,7 +44,7 @@ var C = {
         return C.u()!=null;
     },
     //获取当前用户对象
-    cu: function () {
+    cu: function () {console.log(C.cu.caller, C.cu.caller.arguments[0])
         if (C.hsu())
         {
             window.cu = JSON.parse(C.u())
@@ -55,7 +55,7 @@ var C = {
             //设置提示信息：并登录成功后回调原来的方法，或者两个弹框
             lgb.tit = "为了您的信息安全，请再次登录";
             //lgb.cb = (function (f) { return function () { f(); pop.close(); } })(C.cu.caller);
-             lgb.cb = (function (f,a) { return function () { f(a); pop.close(); } })(C.cu.caller, C.cu.caller.arguments[0]);
+             lgb.cb = (function (f,a) {alert(456); return function () {alert(789); f(a); pop.close(); } })(C.cu.caller, C.cu.caller.arguments[0]);
             pop.pop(lgb);
            //  return;
            return false;
@@ -625,9 +625,9 @@ arr:二维数组；fa(a,i)：一维元素处理函数,a是回归的一维元素�
         return mt;
     },
     /*是否支持触摸事件*/
-    isTouch: function (e) {
+    touch:"ontouchend" in document.documentElement,/* function (e) {
         return "ontouchend" in document.documentElement ? true : false;
-    },
+    },*/
     /* 为对象添加的事件监听  */
     AddEvent: function (obj, ev, fn,arg) {
         obj = C.G(obj);

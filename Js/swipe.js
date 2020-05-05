@@ -23,7 +23,7 @@
             v.p = C.Pt(o);
             /*//C.AddEvent(v, "load", this.zoom, v);此image非彼image*/
             var vp = v.parentNode;
-            if (C.isTouch()) {//可触摸设备
+            if (C.touch) {//可触摸设备
                 v.r = 0;
                 C.AddEvent(vp, "touchstart", this.rule, v);
                 C.AddEvent(vp, "touchmove", this.rule, v)

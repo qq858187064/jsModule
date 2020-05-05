@@ -11,7 +11,7 @@
         <!--
 <img src="/Images/Iswa/BnB.jpg" style="width: 422px;position: absolute; width: 488px; height: 222px;  filter: url(#blur);  -webkit-filter: blur(2px); -moz-filter: blur(2px); -ms-filter: blur(2px); filter: blur(2px);opacity: 0.9;" />
   --> 
-            <a class="sw sw5" id="sw0" p="ef:1,ms:1,at:2000,tg:'img'">
+            <a class="sw sw5" id="sw0" p="ef:1,ms:2000,at:1000,tg:'img'">
             <img src="/Images/Iswa/BnB.jpg" />
             <img src="/Images/Iswa/BnC.jpg" />
             <img src="/Images/Iswa/BnD.jpg" />

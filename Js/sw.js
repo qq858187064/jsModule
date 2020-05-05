@@ -23,7 +23,7 @@ function sw()
             if (o.pt.at > 0)
             {
                 o.s = o.pt.dir || 1;
-                sw.prototype.ar(o);
+                sw.prototype.ar(o); 
                 C.AddEvent(o, "mouseover", sw.prototype.ca,o);
                 C.AddEvent(o, "mouseout", sw.prototype.ar,o);
             }
@@ -38,6 +38,7 @@ function sw()
             console.log(o.p.tagName,o.ls)
 
             o.aw = o.ls[0].offsetWidth;
+            console.log(o.aw)
             var cs = C.Gs(o, "a"),
                 len = o.ls.length;
             if (len < 2) return;
@@ -109,7 +110,7 @@ function sw()
       },
         /*移动切换效果*/
       mv: function (o) {
-          o.pt.ms = 0;
+         o.pt.ms = 0;
           var step = function () {
               if (o.s == 1) {
                  // console.log('向右', o.s)
@@ -123,19 +124,18 @@ function sw()
               if  ((o.s == -1 && am <= o.aw) || (o.s == 1 && am != 1))
               {
                   o.cf.style.marginLeft = (o.cf.ml + o.s) + "px"
-                 setTimeout(step, o.pt.ms);
+                 //setTimeout(step, o.pt.ms);
              }
               else
               {
                   o.cf.style.marginLeft = "0";
                  if (o.s ==-1)
                  {
-                    // console.log('向左', o.s)
                      o.p.appendChild(o.cf);
              }
              }
          };
-          setTimeout(step, o.pt.ms);
+         setTimeout(step, o.pt.ms);
       },
         /*半透明渐变*/
       ts: function (o) {

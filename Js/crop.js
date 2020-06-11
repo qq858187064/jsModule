@@ -130,8 +130,8 @@ function crop() {
     o.mime = fs[0].type;
 },
     /*将图片指定区域画到画布上,并在加载完成后提取数据并上传*/
- draw: function (o)
- {
+        draw: function (o)
+        {
         var w = si.offsetWidth,
         h = si.offsetHeight,
         cvs = C.Ce('canvas'); //C.G('cvs');

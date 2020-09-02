@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Line Count</title>
+ <style>
+ body{line-height:2;}
+ textarea{width:100%;height:4em}
+ a{color:#f60}
+ </style>
+</head>
+<body>
+服务返回的内容：
+<textarea id="st" >主题，我们在此倡议：各级党政机关、社会团体、企事业单位、社会各界人士积极响应，踊跃捐款，奉献爱心。活动所筹善款将主要用于我镇对口帮扶地
+主题，我们在此倡议：各级党政机关、社会团体、企事业单位、社会各界人士积极响应，踊跃捐款，奉献爱心。活动所筹善款将主要用于我镇对口帮扶地
+主题，我们在此倡议：各级党政机关、社会团体、企事业单位、社会各界人士积极响应，踊跃捐款，奉献爱心。活动所筹善款将主要用于我镇对口帮扶地
+主题，我们在此倡议：各级党政机关、社会团体、企事业单位、社会各界人士积极响应，踊跃捐款，奉献爱心。活动所筹善款将主要用于我镇对口帮扶地
+主题，我们在此倡议：各级党政机关、社会团体、企事业单位、社会各界人士积极响应，踊跃捐款，奉献爱心。活动所筹善款将主要用于我镇对口帮扶地</textarea>
+要显示的行数：<input  type="number" id="ri" value="2" />
+<p id="target">......<a>查看详情</a></p>
+<a onclick="overflow(st.value,ri.value)" style="float: right;color: #fff;font-weight: 600;background: #096;padding: 0.2em 1em;">显示</a>
+<script type="text/javascript">
+var t = document.getElementById('target'),
+ri=document.getElementById('ri');
+//lh=getComputedStyle(document.documentElement)["lineHeight"];
+t.ot=t.innerHTML;
+//text:服务返回的内容
+//row:要显示的行数//text,row
+function overflow(text,row)
+{
+var pdw=parseFloat(window.getComputedStyle(t, null)["paddingLeft"])+parseFloat(window.getComputedStyle(t, null)["paddingRight"]),
+bdw=parseFloat(window.getComputedStyle(t, null)["borderLeftWidth"])+parseFloat(window.getComputedStyle(t, null)["borderRightWidth"]),
+n=Math.floor((t.offsetWidth-pdw-bdw)/parseFloat(window.getComputedStyle(t, null)["fontSize"])),
+y=row*n;
+//t.innerHTML=text.length>y?text.substring(0,y-6)+t.ot:text;//更合理的效果
+t.innerHTML=text.substring(0,y-6)+t.ot;//产品要求的效果
+}
+overflow(st.value,ri.value);
+</script>
+</body>
+</html>
